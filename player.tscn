@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4kk5p1t6j1lv"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_c34vk"]
+[ext_resource type="Texture2D" uid="uid://b84v6bxg3y07g" path="res://sprites/testsprite.png" id="2_l2gik"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqg2s"]
+atlas = ExtResource("2_l2gik")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s30sp"]
+atlas = ExtResource("2_l2gik")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q7vs"]
+atlas = ExtResource("2_l2gik")
+region = Rect2(0, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g8xl"]
+atlas = ExtResource("2_l2gik")
+region = Rect2(20, 20, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h36fe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqg2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s30sp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q7vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g8xl")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yx6s8"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_c34vk")
+
+[node name="rb" type="CharacterBody2D" parent="."]
+
+[node name="animation" type="AnimatedSprite2D" parent="rb"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_h36fe")
+animation = &"walk"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://testsprite.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "eb96187a9cd2bf6dbc2c9b006d77a684"
+
+[node name="collider" type="CollisionShape2D" parent="rb"]
+shape = SubResource("CircleShape2D_yx6s8")
+
+[node name="debug" type="Node2D" parent="rb"]
+
+[node name="aimline" type="Line2D" parent="rb/debug"]
+width = 1.0
