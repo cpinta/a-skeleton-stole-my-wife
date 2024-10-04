@@ -1,5 +1,7 @@
-extends Node2D
+extends Element
 class_name Entity
+
+enum Direction {LEFT = -1, RIGHT = 1}
 
 var anim : AnimatedSprite2D
 var rb : CharacterBody2D
@@ -10,9 +12,14 @@ var rb : CharacterBody2D
 
 @export var MAX_COLLISIONS := 6
 
+@export var inputVector := Vector2.ZERO
 @export var velocity := Vector2.ZERO
+@export var facingDirection := Direction.RIGHT	#The direction the entity's sprite is facing: left or right. Set using set_direction
+@export var canWalk := true
 
-@export var usesDefaultMovement := true
+@export var USES_DEFAULT_MOVEMENT := true
+@export var USES_DEFAULT_ANIMATIONS := true
+@export var MIN_SPEED_TO_ANIM: float = 1
 
 @export var STARTING_HEALTH : int = 5
 @export var health : int
@@ -23,16 +30,22 @@ func _ready():
 	MAX_WALK_SPEED = 100
 	rb = $rb
 	anim = $rb/animation
-	
+	health = STARTING_HEALTH
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if USES_DEFAULT_ANIMATIONS:
+		if canWalk:
+			if velocity.length() > MIN_SPEED_TO_ANIM:
+				anim.play("walk")
+			else:
+				anim.play("idle")
 	pass
 
 func _physics_process(delta):
-	if usesDefaultMovement:
-		collision(delta)
+	if USES_DEFAULT_MOVEMENT:
+		collide(delta)
 		if velocity.length() > MAX_WALK_SPEED:
 			velocity = velocity.normalized() * MAX_WALK_SPEED
 		
@@ -42,8 +55,11 @@ func _physics_process(delta):
 				velocity = (diff) * velocity.normalized()
 			else:
 				velocity = Vector2.ZERO
+		
+		if not velocity.length() > MAX_WALK_SPEED:
+			velocity += inputVector * WALK_ACCELERATION * delta
 
-func collision(delta: float):
+func collide(delta: float):
 	var collision_count := 0
 	var collision = rb.move_and_collide(-Vector2(velocity.x, velocity.y) * delta)
 	while collision and collision_count < MAX_COLLISIONS:
@@ -83,3 +99,13 @@ func was_killed():
 func apply_knockback(amount: int, direction: Vector2):
 	velocity = amount * direction
 	pass
+	
+func set_direction(dir: Direction):
+	facingDirection = dir
+	if dir == Direction.LEFT:
+		anim.flip_h = false
+	if dir == Direction.RIGHT:
+		anim.flip_h = true
+		
+func global_position():
+	return rb.global_position

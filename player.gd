@@ -1,16 +1,21 @@
 extends Entity
 class_name Player
 
+enum HandToUse {LEFT = 0, RIGHT = 1}
+
 var lineMouseAim : Line2D
 var aimPoint : Vector2
 
 @export var DASH_SPEED := 750
 
-@export var inputVector := Vector2.ZERO
+@export var weapons: Array[Weapon]
+@export var curWeaponIndex: int = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
+	rb.collision_mask = 3
 	
 	WALK_ACCELERATION = 500
 	MAX_WALK_SPEED = 100
@@ -20,7 +25,12 @@ func _ready():
 	lineMouseAim.add_point(Vector2.ZERO)
 	
 	anim.play("idle")
-	pass # Replace with function body.
+	
+	
+	#debug variables
+	weapons[0] = $"rb/Active Weapon/Sledgehammer"
+	
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,8 +43,12 @@ func _process(delta):
 		velocity = inputVector * DASH_SPEED
 		pass
 	if Input.is_action_just_released("shoot_left"):
+		if not weapons[HandToUse.LEFT] == null:
+			weapons[HandToUse.LEFT].use_weapon()
 		pass
 	if Input.is_action_just_pressed("shoot_right"):
+		if not weapons[HandToUse.RIGHT] == null:
+			weapons[HandToUse.RIGHT].use_weapon()
 		pass
 	
 	lineMouseAim.points[1] = get_global_mouse_position() - rb.global_position
@@ -44,8 +58,6 @@ func _process(delta):
 	
 func _physics_process(delta):
 	super._physics_process(delta)
-	if not velocity.length() > MAX_WALK_SPEED:
-		velocity += inputVector * WALK_ACCELERATION * delta
 	
 	pass
 	

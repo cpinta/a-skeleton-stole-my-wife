@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://chfidnfkpiklh"]
+
+[ext_resource type="Script" path="res://sledgehammer.gd" id="1_nvxyx"]
+[ext_resource type="Texture2D" uid="uid://drcm8c5sqxbaq" path="res://sprites/weapons/sledge.png" id="2_5a08x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xfqr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpjbw"]
+atlas = ExtResource("2_5a08x")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m20e5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpjbw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Sledgehammer" type="Node2D"]
+rotation = 0.785398
+script = ExtResource("1_nvxyx")
+
+[node name="collider" type="Area2D" parent="."]
+position = Vector2(5, -5)
+rotation = 0.785398
+scale = Vector2(0.45, 0.865)
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collider"]
+shape = SubResource("RectangleShape2D_1xfqr")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(5, -5)
+sprite_frames = SubResource("SpriteFrames_m20e5")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/weapons",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/weapons/sledge.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "64549a713a5a2baf4a88aef9d11f7433"

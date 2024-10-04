@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4kk5p1t6j1lv"]
+[gd_scene load_steps=9 format=3 uid="uid://c4kk5p1t6j1lv"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_c34vk"]
 [ext_resource type="Texture2D" uid="uid://b84v6bxg3y07g" path="res://sprites/testsprite.png" id="2_l2gik"]
-[ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://sledgehammer.tscn" id="3_vli1j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mqg2s"]
 atlas = ExtResource("2_l2gik")
@@ -49,6 +48,20 @@ animations = [{
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_c34vk")
+DASH_SPEED = null
+WALK_ACCELERATION = null
+MAX_WALK_SPEED = null
+DECCELERATION = null
+MAX_COLLISIONS = null
+inputVector = null
+velocity = null
+facingDirection = null
+canWalk = null
+USES_DEFAULT_MOVEMENT = null
+USES_DEFAULT_ANIMATIONS = null
+MIN_SPEED_TO_ANIM = null
+STARTING_HEALTH = null
+health = null
 
 [node name="rb" type="CharacterBody2D" parent="."]
 
@@ -79,7 +92,3 @@ shape = SubResource("CircleShape2D_yx6s8")
 
 [node name="aimline" type="Line2D" parent="rb/debug"]
 width = 1.0
-
-[node name="Active Weapon" type="Node2D" parent="rb"]
-
-[node name="Sledgehammer" parent="rb/Active Weapon" instance=ExtResource("3_vli1j")]
