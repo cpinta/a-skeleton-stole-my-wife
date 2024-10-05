@@ -6,9 +6,12 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var weaponName := "Weapon"
 @export var description := "this is a weapon"
 @export var weaponType : WeaponType
-@export var DAMAGE := 1
-@export var COOLDOWN := 3
-@export var ATTACKSPEED := 3
+@export var BASE_DAMAGE := 1
+@export var BASE_COOLDOWN: float = 3
+@export var BASE_ATTACKSPEED: float = 3
+@export var BASE_DURATION: float = 1
+@export var BASE_SIZE: float = 1
+@export var BASE_KNOCKBACK: float = 1
 
 @export var inUse := false
 @export var onCooldown := false
@@ -37,12 +40,13 @@ func _physics_process(delta):
 	pass
 
 func use_weapon():
+	inUse = true
 	pass
 
 func stop_use_weapon():
 	inUse = false
 	onCooldown = true
-	curCooldownTime = COOLDOWN
+	curCooldownTime = BASE_COOLDOWN
 	pass
 
 func equip():

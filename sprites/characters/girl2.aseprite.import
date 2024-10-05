@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dstuosgdigmb6"
+path="res://.godot/imported/girl2.aseprite-56949e18ac2001602dd88d6a49bd7909.res"
+
+[deps]
+
+source_file="res://sprites/characters/girl2.aseprite"
+dest_files=["res://.godot/imported/girl2.aseprite-56949e18ac2001602dd88d6a49bd7909.res"]
+
+[params]
+

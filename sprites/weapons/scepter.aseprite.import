@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ifegcwvd31ns"
+path="res://.godot/imported/scepter.aseprite-c7546cbae8f6b2723ed239f3a29484e2.res"
+
+[deps]
+
+source_file="res://sprites/weapons/scepter.aseprite"
+dest_files=["res://.godot/imported/scepter.aseprite-c7546cbae8f6b2723ed239f3a29484e2.res"]
+
+[params]
+

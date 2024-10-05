@@ -50,6 +50,7 @@ animations = [{
 script = ExtResource("1_2clfu")
 
 [node name="rb" type="CharacterBody2D" parent="."]
+up_direction = Vector2(0, 1)
 
 [node name="animation" type="AnimatedSprite2D" parent="rb"]
 texture_filter = 1

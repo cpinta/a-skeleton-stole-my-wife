@@ -5,6 +5,7 @@ enum Direction {LEFT = -1, RIGHT = 1}
 
 var anim : AnimatedSprite2D
 var rb : CharacterBody2D
+var col : CollisionShape2D
 
 @export var WALK_ACCELERATION := 250
 @export var MAX_WALK_SPEED := 100
@@ -47,7 +48,7 @@ func _physics_process(delta):
 	if USES_DEFAULT_MOVEMENT:
 		collide(delta)
 		if velocity.length() > MAX_WALK_SPEED:
-			velocity = velocity.normalized() * MAX_WALK_SPEED
+			velocity = velocity * (0.99)
 		
 		if velocity.length() > 0:
 			var diff = velocity.length() - (DECCELERATION * delta)
@@ -97,7 +98,7 @@ func was_killed():
 	pass
 	
 func apply_knockback(amount: int, direction: Vector2):
-	velocity = amount * direction
+	velocity = -amount * direction
 	pass
 	
 func set_direction(dir: Direction):

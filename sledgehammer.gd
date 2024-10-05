@@ -3,13 +3,17 @@ class_name Sledgehammer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	super._ready()
 	weaponName = "Sledgehammer"
 	description = "A hammer. Used for sledging"
 	weaponType = WeaponType.Swing
-	DAMAGE = 4
+	BASE_DAMAGE = 0
+	BASE_KNOCKBACK = 100
+	SWING_ARC_ANGLE = 180
+	BASE_DURATION = 0.5
 	
 	collider = $collider
+	
+	super._ready()
 	pass # Replace with function body.
 
 
@@ -21,3 +25,7 @@ func _process(delta):
 func _physics_process(delta):
 	super._physics_process(delta)
 	pass
+
+
+func _on_collider_area_entered(area):
+	pass # Replace with function body.

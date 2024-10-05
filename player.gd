@@ -5,8 +5,12 @@ enum HandToUse {LEFT = 0, RIGHT = 1}
 
 var lineMouseAim : Line2D
 var aimPoint : Vector2
+var arm : Node2D
+var hand : Node2D
 
 @export var DASH_SPEED := 750
+@export var HAND_DISTANCE: float = 0
+@export var ARM_OFFSET: Vector2
 
 @export var weapons: Array[Weapon]
 @export var curWeaponIndex: int = 0
@@ -26,9 +30,13 @@ func _ready():
 	
 	anim.play("idle")
 	
+	arm = $rb/arm
+	ARM_OFFSET = arm.position
+	hand = $rb/arm/hand
 	
 	#debug variables
-	weapons[0] = $"rb/Active Weapon/Sledgehammer"
+	weapons.append(hand.get_node("sledgehammer"))
+	weapons.append(null)
 	
 	pass
 
@@ -58,7 +66,9 @@ func _process(delta):
 	
 func _physics_process(delta):
 	super._physics_process(delta)
-	
+	arm.look_at(get_global_mouse_position())
+	arm.rotate(-(PI/2))
+	#arm.position = Vector2.RIGHT.rotated(arm.rotation)
 	pass
 	
 func get_input_vector():

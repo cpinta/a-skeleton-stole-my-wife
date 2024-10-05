@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c24m7u8jlj2f"
+path="res://.godot/imported/arm.aseprite-8935f74e1e74fb265055ab168f8f0d40.res"
+
+[deps]
+
+source_file="res://sprites/characters/arm.aseprite"
+dest_files=["res://.godot/imported/arm.aseprite-8935f74e1e74fb265055ab168f8f0d40.res"]
+
+[params]
+

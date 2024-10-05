@@ -23,15 +23,32 @@ animations = [{
 [node name="Sledgehammer" type="Node2D"]
 rotation = 0.785398
 script = ExtResource("1_nvxyx")
+FRONT_FACING_ANGLE = null
+INHAND_ANGLE = null
+SWING_ARC_ANGLE = null
+SWING_START_ANGLE = null
+SWING_END_ANGLE = null
+curSwingTime = null
+weaponName = null
+description = null
+weaponType = null
+DAMAGE = null
+COOLDOWN = null
+ATTACKSPEED = null
+DURATION = null
+SIZE = null
+inUse = null
+onCooldown = null
+curCooldownTime = null
 
 [node name="collider" type="Area2D" parent="."]
 position = Vector2(5, -5)
 rotation = 0.785398
 scale = Vector2(0.45, 0.865)
-collision_layer = 16
-collision_mask = 4
+collision_layer = 0
+collision_mask = 12
 
-[node name="shape" type="CollisionShape2D" parent="collider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collider"]
 shape = SubResource("RectangleShape2D_1xfqr")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
@@ -53,5 +70,3 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": true
 }
 metadata/_aseprite_wizard_source_file_hash_ = "64549a713a5a2baf4a88aef9d11f7433"
-
-[connection signal="area_entered" from="collider" to="." method="_on_collider_area_entered"]

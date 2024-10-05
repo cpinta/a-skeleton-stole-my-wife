@@ -1,18 +1,9 @@
 extends Weapon
-class_name SwingWeapon
+class_name ProjecteWeapon
 
-@export var area: Area2D
-@export var hitbox: CollisionShape2D
+@export var shootPoint: Node2D
 
-@export var FRONT_FACING_ANGLE = 135 #DO NOT CHANGE IN INHERITERS
-
-@export var INHAND_ANGLE = 0
-
-@export var SWING_ARC_ANGLE = 90
-@export var SWING_START_ANGLE: float
-@export var SWING_END_ANGLE: float
-
-@export var curSwingTime: float = 0
+@export var projectile: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

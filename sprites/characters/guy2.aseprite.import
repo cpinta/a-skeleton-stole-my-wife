@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ccvenhir5gkjv"
+path="res://.godot/imported/guy2.aseprite-88f8ced1abcf6b5707a5ac8e43595888.res"
+
+[deps]
+
+source_file="res://sprites/characters/guy2.aseprite"
+dest_files=["res://.godot/imported/guy2.aseprite-88f8ced1abcf6b5707a5ac8e43595888.res"]
+
+[params]
+

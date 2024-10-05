@@ -20,6 +20,7 @@ func _ready():
 	
 	WALK_ACCELERATION = 500
 	MAX_WALK_SPEED = 10
+	check_direction()
 	
 	pass # Replace with function body.
 
@@ -29,12 +30,16 @@ func _process(delta):
 	if FOLLOWS_PLAYER:
 		inputVector = (target.global_position() - global_position()).normalized()
 		inputVector = -Vector2(inputVector.x, inputVector.y)
-		if Direction.LEFT && inputVector.x > 0:
-			set_direction(Direction.RIGHT)
-		elif Direction.RIGHT && inputVector.x < 0:
-			set_direction(Direction.LEFT)
+		check_direction()
 	pass
 
 func _physics_process(delta):
 	super._physics_process(delta)
 	pass
+	
+func check_direction():
+	if facingDirection == Direction.LEFT && inputVector.x > 0:
+		set_direction(Direction.RIGHT)
+		
+	elif facingDirection == Direction.RIGHT && inputVector.x < 0:
+		set_direction(Direction.LEFT)
