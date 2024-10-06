@@ -24,6 +24,29 @@ animations = [{
 [node name="Sledgehammer" type="Node2D"]
 rotation = 0.785398
 script = ExtResource("1_nvxyx")
+FRONT_FACING_ANGLE = null
+INHAND_ANGLE = null
+SWING_ARC_ANGLE = null
+SWING_START_ANGLE = null
+SWING_END_ANGLE = null
+curSwingTime = null
+weaponName = null
+description = null
+weaponType = null
+BASE_DAMAGE = null
+BASE_COOLDOWN = null
+BASE_ATTACKSPEED = null
+BASE_DURATION = null
+BASE_SIZE = null
+BASE_KNOCKBACK = null
+damage = null
+cooldown = null
+attackspeed = null
+duration = null
+size = null
+knockback = null
+inUse = null
+onCooldown = null
 
 [node name="collider" type="Area2D" parent="."]
 rotation = 0.785398

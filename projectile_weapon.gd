@@ -2,20 +2,17 @@ extends Weapon
 class_name ProjecteWeapon
 
 @export var shootPoint: Node2D
+@export var projectile: Projectile
 
-@export var projectile: Node2D
+@export var IS_CONTINUOUS: bool = true	#if the weapon is automatic or not
+@export var continuousTimer: float = 0
+@export var IS_FIRST_SHOT: bool = true
+@export var BASE_CLIP_SIZE: int = 10
+@export var bulletsInClip: int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	SWING_START_ANGLE = FRONT_FACING_ANGLE - (SWING_ARC_ANGLE/2)
-	SWING_END_ANGLE = FRONT_FACING_ANGLE + (SWING_ARC_ANGLE/2)
-	rotation_degrees = FRONT_FACING_ANGLE
-	INHAND_ANGLE = SWING_START_ANGLE
-	
-	area = $"collider"
-	area.connect("body_entered", hit_entity)
-	hitbox = area.get_node("shape")
-	hitbox.disabled = true
+	IS_QUITTABLE = true
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,28 +22,40 @@ func _process(delta):
 func _physics_process(delta):
 	super._physics_process(delta)
 	if inUse:
-		if curSwingTime < BASE_DURATION:
-			curSwingTime += delta
-			rotation_degrees = SWING_START_ANGLE + ((curSwingTime/BASE_DURATION) * (SWING_END_ANGLE - SWING_START_ANGLE))
+		if IS_CONTINUOUS:
+			if(continuousTimer > 0):
+				continuousTimer -= delta
+			else:
+				if(bulletsInClip > 0):
+					shoot()
+				else:
+					end_use_weapon()
 		else:
-			stop_use_weapon()
+			if(bulletsInClip > 0):
+				shoot()
+				quit_use_weapon()
+			else:
+				end_use_weapon()
+				pass
+			pass
 	pass
 
 func use_weapon():
 	super.use_weapon()
-	swing()
 	pass
 	
-func stop_use_weapon():
-	super.stop_use_weapon()
-	rotation_degrees = INHAND_ANGLE
-	hitbox.disabled = true
+func end_use_weapon():
+	super.end_use_weapon()
+	pass
+	
+func quit_use_weapon():
+	super.quit_use_weapon()
 	pass
 
-func swing():
-	hitbox.disabled = false
-	rotation_degrees = SWING_START_ANGLE
-	curSwingTime = 0
+func shoot():
+	bulletsInClip -= 1
+	var proj = projectile.new()
+	proj.global_rotation = shootPoint.global_rotation
 	pass
 
 func hit_entity(body: Node2D):

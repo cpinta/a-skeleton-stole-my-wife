@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cniqfsfvun0h8"
+path="res://.godot/imported/scythe2.aseprite-c222725e4648404e28ce53750f3aeec4.res"
+
+[deps]
+
+source_file="res://sprites/weapons/scythe2.aseprite"
+dest_files=["res://.godot/imported/scythe2.aseprite-c222725e4648404e28ce53750f3aeec4.res"]
+
+[params]
+

@@ -8,7 +8,7 @@ var aimPoint : Vector2
 var arm : Node2D
 var hand : Node2D
 
-@export var DASH_SPEED := 750
+@export var DASH_SPEED := 125
 @export var HAND_DISTANCE: float = 0
 @export var ARM_OFFSET: Vector2
 

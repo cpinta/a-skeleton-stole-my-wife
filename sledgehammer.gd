@@ -7,7 +7,7 @@ func _ready():
 	description = "A hammer. Used for sledging"
 	weaponType = WeaponType.Swing
 	BASE_DAMAGE = 0
-	BASE_KNOCKBACK = 100
+	BASE_KNOCKBACK = 150
 	SWING_ARC_ANGLE = 180
 	BASE_DURATION = 0.5
 	

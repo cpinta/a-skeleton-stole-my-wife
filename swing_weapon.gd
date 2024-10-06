@@ -38,7 +38,7 @@ func _physics_process(delta):
 			curSwingTime += delta
 			rotation_degrees = SWING_START_ANGLE + ((curSwingTime/BASE_DURATION) * (SWING_END_ANGLE - SWING_START_ANGLE))
 		else:
-			stop_use_weapon()
+			end_use_weapon()
 	pass
 
 func use_weapon():
@@ -47,7 +47,7 @@ func use_weapon():
 	pass
 	
 func stop_use_weapon():
-	super.stop_use_weapon()
+	super.end_use_weapon()
 	rotation_degrees = INHAND_ANGLE
 	hitbox.disabled = true
 	pass
