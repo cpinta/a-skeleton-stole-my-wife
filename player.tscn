@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://c4kk5p1t6j1lv"]
+[gd_scene load_steps=16 format=3 uid="uid://c4kk5p1t6j1lv"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_c34vk"]
 [ext_resource type="Texture2D" uid="uid://bhtwq5jnhwbty" path="res://sprites/characters/guy2.png" id="2_ymrhe"]
 [ext_resource type="Texture2D" uid="uid://cypilpykkmbyk" path="res://sprites/characters/arm.png" id="3_s1pg7"]
-[ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://sledgehammer.tscn" id="3_vli1j"]
+[ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://sprites/weapons/sledgehammer.tscn" id="3_vli1j"]
+[ext_resource type="PackedScene" uid="uid://cpm6nu6nagl0n" path="res://sprites/weapons/pistol.tscn" id="5_jwjfw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s2br0"]
 atlas = ExtResource("2_ymrhe")
@@ -146,26 +147,9 @@ metadata/_aseprite_wizard_source_file_hash_ = "76cf3ea04cfa0b7271752777e79b9c8d"
 position = Vector2(0, 6)
 
 [node name="sledgehammer" parent="rb/arm/hand" instance=ExtResource("3_vli1j")]
-FRONT_FACING_ANGLE = null
-INHAND_ANGLE = null
-SWING_ARC_ANGLE = null
-SWING_START_ANGLE = null
-SWING_END_ANGLE = null
-curSwingTime = null
-weaponName = null
-description = null
-weaponType = null
-BASE_DAMAGE = null
-BASE_COOLDOWN = null
-BASE_ATTACKSPEED = null
-BASE_DURATION = null
-BASE_SIZE = null
-BASE_KNOCKBACK = null
-damage = null
-cooldown = null
-attackspeed = null
-duration = null
-size = null
-knockback = null
-inUse = null
-onCooldown = null
+
+[node name="back" type="Node2D" parent="rb"]
+z_index = -1
+rotation = 0.785398
+
+[node name="pistol" parent="rb/back" instance=ExtResource("5_jwjfw")]

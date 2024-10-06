@@ -15,6 +15,9 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var BASE_KNOCKBACK: float = 1
 @export var IS_QUITTABLE: bool = false
 
+@export var STORE_ANGLE: int = 0
+@export var EQUIP_ANGLE: int = 0
+
 @export var damage := 1
 @export var cooldown: float = 3
 @export var attackspeed: float = 3
@@ -43,7 +46,7 @@ func _physics_process(delta):
 		if(cooldown > 0):
 			cooldown -= delta
 		else:
-			onCooldown = false
+			cooldown_over()
 	super._physics_process(delta)
 	pass
 
@@ -51,6 +54,9 @@ func use_weapon():
 	inUse = true
 	pass
 
+func cooldown_over():
+	onCooldown = false
+	pass
 
 func end_use_weapon():
 	inUse = false
@@ -63,8 +69,52 @@ func quit_use_weapon():
 		inUse = false
 	pass
 
+#called when weapon is put in players hand
 func equip():
+	rotation_degrees = EQUIP_ANGLE
+	position = Vector2.ZERO
 	pass
 
+#called when weapon is put on players back
 func unequip():
+	rotation_degrees = STORE_ANGLE
+	position = Vector2.ZERO
+	pass
+	
+func pickup(entity : Entity):
+	ownerEntity = entity
+	pass
+	
+func drop():
+	ownerEntity = null
+	pass
+	
+func hit_entity(body: Node2D):
+	var parent = body.get_parent()
+	print("hit:",parent.name)
+	if parent != null:
+		if parent is Entity:
+			var entity = parent as Entity
+			apply_attack(entity)
+	pass
+	
+func apply_attack(entity: Entity):
+	apply_stats()
+	pass
+	
+func apply_stats():
+	damage = BASE_DAMAGE
+	cooldown = BASE_COOLDOWN
+	attackspeed = BASE_ATTACKSPEED
+	duration = BASE_DURATION
+	size = BASE_SIZE
+	knockback = BASE_KNOCKBACK
+	
+	if ownerEntity != null:
+		damage *= ownerEntity.attack_damage
+		cooldown *= ownerEntity.attack_cooldown
+		attackspeed *= ownerEntity.attack_speed
+		duration *= ownerEntity.attack_duration
+		size *= ownerEntity.attack_size
+		knockback *= ownerEntity.attack_knockback
 	pass

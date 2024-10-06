@@ -4,7 +4,7 @@ class_name SwingWeapon
 @export var area: Area2D
 @export var hitbox: CollisionShape2D
 
-@export var FRONT_FACING_ANGLE = 135 #DO NOT CHANGE IN INHERITERS
+@export var FRONT_FACING_ANGLE := 135 #DO NOT CHANGE IN INHERITERS
 
 @export var INHAND_ANGLE = 0
 
@@ -34,7 +34,7 @@ func _process(delta):
 func _physics_process(delta):
 	super._physics_process(delta)
 	if inUse:
-		if curSwingTime < BASE_DURATION:
+		if curSwingTime < duration:
 			curSwingTime += delta
 			rotation_degrees = SWING_START_ANGLE + ((curSwingTime/BASE_DURATION) * (SWING_END_ANGLE - SWING_START_ANGLE))
 		else:
@@ -46,23 +46,29 @@ func use_weapon():
 	swing()
 	pass
 	
-func stop_use_weapon():
+func end_use_weapon():
 	super.end_use_weapon()
 	rotation_degrees = INHAND_ANGLE
 	hitbox.disabled = true
 	pass
 
 func swing():
+	apply_stats()
 	hitbox.disabled = false
 	rotation_degrees = SWING_START_ANGLE
 	curSwingTime = 0
 	pass
 
 func hit_entity(body: Node2D):
-	var parent = body.get_parent()
-	print("hit:",parent.name)
-	if parent != null:
-		if parent is Entity:
-			var entity = parent as Entity
-			entity.hurt(BASE_DAMAGE, BASE_KNOCKBACK, Vector2.RIGHT.rotated(global_rotation))
+	super.hit_entity(body)
+	pass
+	
+func apply_attack(entity: Entity):
+	super.apply_attack(entity)
+	entity.hurt(damage, knockback, Vector2.RIGHT.rotated(global_rotation))
+	pass
+	
+func unequip():
+	super.unequip()
+	hitbox.disabled = true
 	pass

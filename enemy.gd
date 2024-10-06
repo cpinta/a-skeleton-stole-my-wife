@@ -17,9 +17,8 @@ func _ready():
 	if FOLLOWS_PLAYER:
 		target = player
 	
-	
-	WALK_ACCELERATION = 500
-	MAX_WALK_SPEED = 10
+	BASE_MOVEMENT_ACCELERATION = 500
+	BASE_MOVEMENT_MAX_SPEED = 10
 	check_direction()
 	
 	pass # Replace with function body.

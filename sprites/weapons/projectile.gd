@@ -1,8 +1,14 @@
 extends Weapon
 class_name Projectile
 
+@export var area: Area2D
+@export var hitbox: CollisionShape2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	area = $"collider"
+	area.connect("body_entered", hit_entity)
+	hitbox = area.get_node("shape")
 	pass # Replace with function body.
 
 
@@ -14,15 +20,11 @@ func _physics_process(delta):
 	global_position += Vector2.RIGHT.rotated(global_rotation) * attackspeed
 	pass
 	
-func setup(owner: Entity, speed: float):
-	
+func setup(owner: Entity, speed: float, damage: float):
+	self.attackspeed = speed
+	self.damage = damage
 	pass
-
-func hit_entity(body: Node2D):
-	var parent = body.get_parent()
-	print("hit:",parent.name)
-	if parent != null:
-		if parent is Entity:
-			var entity = parent as Entity
-			entity.hurt(BASE_DAMAGE, BASE_KNOCKBACK, Vector2.RIGHT.rotated(global_rotation))
+	
+func apply_attack(entity: Entity):
+	super.apply_attack(entity)
 	pass

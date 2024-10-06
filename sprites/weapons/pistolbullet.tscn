@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://s276nehy2o24"]
+
+[ext_resource type="Script" path="res://sprites/weapons/pistol_bullet.gd" id="1_db873"]
+[ext_resource type="Texture2D" uid="uid://dnsbpk07v8d4i" path="res://sprites/testcube.png" id="1_takhx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r1ee"]
+atlas = ExtResource("1_takhx")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7muah"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r1ee")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqtf5"]
+size = Vector2(5, 3)
+
+[node name="pistolbullet" type="Node2D"]
+script = ExtResource("1_db873")
+weaponName = "Pistol Bullet"
+description = "POW, u dun got shot pardner"
+weaponType = 2
+
+[node name="animator" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.225, 0.125)
+sprite_frames = SubResource("SpriteFrames_7muah")
+animation = &"idle"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/testcube.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "cda7b55acf449e77978a6b9d4097d12a"
+
+[node name="collider" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 13
+
+[node name="shape" type="CollisionShape2D" parent="collider"]
+shape = SubResource("RectangleShape2D_lqtf5")

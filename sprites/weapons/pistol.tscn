@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpm6nu6nagl0n"]
+
+[ext_resource type="Script" path="res://sprites/weapons/pistol.gd" id="1_47drg"]
+[ext_resource type="Texture2D" uid="uid://cmecsyfnckr56" path="res://sprites/weapons/testcube.png" id="1_maew8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk5ea"]
+atlas = ExtResource("1_maew8")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dogwh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk5ea")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="pistol" type="Node2D" node_paths=PackedStringArray("shootPoint")]
+script = ExtResource("1_47drg")
+shootPoint = NodePath("shoot_point")
+weaponName = "Pistol"
+description = "PEW PEW!"
+weaponType = 2
+
+[node name="animator" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, -0.75)
+scale = Vector2(0.2, 0.125)
+sprite_frames = SubResource("SpriteFrames_dogwh")
+animation = &"idle"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/testcube.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "cda7b55acf449e77978a6b9d4097d12a"
+
+[node name="shoot_point" type="Node2D" parent="."]
+position = Vector2(4, -1)

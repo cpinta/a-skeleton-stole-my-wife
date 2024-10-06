@@ -7,6 +7,7 @@ var lineMouseAim : Line2D
 var aimPoint : Vector2
 var arm : Node2D
 var hand : Node2D
+var back : Node2D
 
 @export var DASH_SPEED := 125
 @export var HAND_DISTANCE: float = 0
@@ -21,8 +22,8 @@ func _ready():
 	super._ready()
 	rb.collision_mask = 3
 	
-	WALK_ACCELERATION = 500
-	MAX_WALK_SPEED = 100
+	BASE_MOVEMENT_ACCELERATION = 500
+	BASE_MOVEMENT_MAX_SPEED = 100
 	
 	lineMouseAim = $"rb/debug/aimline"
 	lineMouseAim.add_point(Vector2.ZERO)
@@ -33,10 +34,11 @@ func _ready():
 	arm = $rb/arm
 	ARM_OFFSET = arm.position
 	hand = $rb/arm/hand
+	back = $rb/back
 	
 	#debug variables
 	weapons.append(hand.get_node("sledgehammer"))
-	weapons.append(null)
+	weapons.append(back.get_node("pistol"))
 	
 	pass
 
@@ -51,18 +53,36 @@ func _process(delta):
 		velocity = inputVector * DASH_SPEED
 		pass
 	if Input.is_action_just_released("shoot_left"):
-		if not weapons[HandToUse.LEFT] == null:
-			weapons[HandToUse.LEFT].use_weapon()
-		pass
+		using_weapon(HandToUse.LEFT)
 	if Input.is_action_just_pressed("shoot_right"):
-		if not weapons[HandToUse.RIGHT] == null:
-			weapons[HandToUse.RIGHT].use_weapon()
-		pass
+		using_weapon(HandToUse.RIGHT)
 	
 	lineMouseAim.points[1] = get_global_mouse_position() - rb.global_position
 	aimPoint = lineMouseAim.points[1]
 	
 	pass
+	
+func using_weapon(hand: HandToUse):
+	if not weapons[hand] == null:
+		if hand != curWeaponIndex:
+			swap_weapons()
+		weapons[hand].use_weapon()
+	pass
+	
+func swap_weapons():
+	var handWeapon: Weapon = hand.get_child(0)
+	var backWeapon: Weapon = back.get_child(0)
+	
+	if backWeapon != null:
+		backWeapon.reparent(hand)
+		backWeapon.equip()
+		pass
+	if handWeapon != null:
+		handWeapon.reparent(back)
+		handWeapon.unequip()
+		pass
+		
+	curWeaponIndex = HandToUse.RIGHT if curWeaponIndex == HandToUse.LEFT else HandToUse.LEFT
 	
 func _physics_process(delta):
 	super._physics_process(delta)

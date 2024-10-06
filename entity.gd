@@ -7,9 +7,33 @@ var anim : AnimatedSprite2D
 var rb : CharacterBody2D
 var col : CollisionShape2D
 
-@export var WALK_ACCELERATION := 250
-@export var MAX_WALK_SPEED := 100
-@export var DECCELERATION := 200
+@export var BASE_ATTACK_DAMAGE: float = 1
+@export var BASE_ATTACK_COOLDOWN: float = 1
+@export var BASE_ATTACK_SPEED: float = 1
+@export var BASE_ATTACK_DURATION: float = 1
+@export var BASE_ATTACK_SIZE: float = 1
+@export var BASE_ATTACK_KNOCKBACK: float = 1
+
+@export var BASE_MOVEMENT_MAX_SPEED: float = 100
+@export var BASE_MOVEMENT_ACCELERATION: float = 250
+@export var BASE_DECCELERATION := 200
+@export var BASE_DASH_SPEED: float = 125
+@export var BASE_SIZE: float = 1
+
+@export var attack_damage: float = 1
+@export var attack_cooldown: float = 1
+@export var attack_speed: float = 1
+@export var attack_duration: float = 1
+@export var attack_size: float = 1
+@export var attack_knockback: float = 1
+
+@export var movement_max_speed: float = 1
+@export var movement_acceleration: float = 1
+@export var movement_decceleration: float = 1
+@export var dash_speed: float = 1
+@export var size: float = 1
+
+
 
 @export var MAX_COLLISIONS := 6
 
@@ -25,13 +49,14 @@ var col : CollisionShape2D
 @export var STARTING_HEALTH : int = 5
 @export var health : int
 
+var statusEffects: Array[StatusEffect]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	WALK_ACCELERATION = 500
-	MAX_WALK_SPEED = 100
 	rb = $rb
 	anim = $rb/animation
 	health = STARTING_HEALTH
+	set_default_stats()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,20 +70,24 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
+	if statusEffects.size() > 0:
+		apply_effects(delta)
+	else:
+		set_default_stats()
 	if USES_DEFAULT_MOVEMENT:
 		collide(delta)
-		if velocity.length() > MAX_WALK_SPEED:
+		if velocity.length() > movement_max_speed:
 			velocity = velocity * (0.99)
 		
 		if velocity.length() > 0:
-			var diff = velocity.length() - (DECCELERATION * delta)
+			var diff = velocity.length() - (movement_decceleration * delta)
 			if diff > 0:
 				velocity = (diff) * velocity.normalized()
 			else:
 				velocity = Vector2.ZERO
 		
-		if not velocity.length() > MAX_WALK_SPEED:
-			velocity += inputVector * WALK_ACCELERATION * delta
+		if not velocity.length() > movement_max_speed:
+			velocity += inputVector * movement_acceleration * delta
 
 func collide(delta: float):
 	var collision_count := 0
@@ -110,3 +139,32 @@ func set_direction(dir: Direction):
 		
 func global_position():
 	return rb.global_position
+
+func apply_effects(delta):
+	set_default_stats()
+	for effect in statusEffects:
+		var timeLeft: float = effect.apply(delta, self)
+		if timeLeft < 0:
+			statusEffects.erase(effect)
+		pass
+	pass
+	
+func set_default_stats():
+	movement_max_speed = BASE_MOVEMENT_MAX_SPEED
+	movement_acceleration = BASE_MOVEMENT_ACCELERATION
+	movement_decceleration = BASE_DECCELERATION
+	dash_speed = BASE_DASH_SPEED
+	size = BASE_SIZE
+	
+	attack_damage = BASE_ATTACK_DAMAGE
+	attack_cooldown = BASE_ATTACK_COOLDOWN
+	attack_speed = BASE_ATTACK_SPEED
+	attack_duration = BASE_ATTACK_DURATION
+	attack_size = BASE_ATTACK_SIZE
+	attack_knockback = BASE_ATTACK_KNOCKBACK
+	pass
+
+func add_status_effect(effect: StatusEffect):
+	statusEffects.append(effect)
+	apply_effects(0)
+	pass

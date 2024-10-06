@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://chfidnfkpiklh"]
 
-[ext_resource type="Script" path="res://sledgehammer.gd" id="1_nvxyx"]
+[ext_resource type="Script" path="res://sprites/weapons/sledgehammer.gd" id="1_nvxyx"]
 [ext_resource type="Texture2D" uid="uid://hd4u8682poyl" path="res://sprites/weapons/sledge2.png" id="2_vjjtg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xfqr"]
