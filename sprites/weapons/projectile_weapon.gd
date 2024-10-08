@@ -14,6 +14,7 @@ class_name ProjecteWeapon
 func _ready():
 	IS_QUITTABLE = true
 	bulletsInClip = BASE_CLIP_SIZE
+	
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -13,6 +13,8 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var BASE_DURATION: float = 1
 @export var BASE_SIZE: float = 1
 @export var BASE_KNOCKBACK: float = 1
+@export var BASE_RANGE: float = 1
+
 @export var IS_QUITTABLE: bool = false
 
 @export var STORE_ANGLE: int = 0
@@ -24,6 +26,7 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var duration: float = 1
 @export var size: float = 1
 @export var knockback: float = 1
+@export var range: float = 1
 
 @export var inUse := false
 @export var onCooldown := false
@@ -109,6 +112,7 @@ func apply_stats():
 	duration = BASE_DURATION
 	size = BASE_SIZE
 	knockback = BASE_KNOCKBACK
+	range = BASE_RANGE
 	
 	if ownerEntity != null:
 		damage *= ownerEntity.attack_damage
@@ -117,4 +121,5 @@ func apply_stats():
 		duration *= ownerEntity.attack_duration
 		size *= ownerEntity.attack_size
 		knockback *= ownerEntity.attack_knockback
+		range *= ownerEntity.attack_range
 	pass

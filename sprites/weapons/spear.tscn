@@ -1,29 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://chfidnfkpiklh"]
+[gd_scene load_steps=6 format=3 uid="uid://bp0ah35c447mj"]
 
-[ext_resource type="Script" path="res://sprites/weapons/sledgehammer.gd" id="1_nvxyx"]
-[ext_resource type="Texture2D" uid="uid://hd4u8682poyl" path="res://sprites/weapons/sledge2.png" id="2_vjjtg"]
+[ext_resource type="Script" path="res://spear.gd" id="1_xhvt7"]
+[ext_resource type="Texture2D" uid="uid://cmecsyfnckr56" path="res://sprites/weapons/testcube.png" id="2_xk31s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xfqr"]
-size = Vector2(20, 27.7457)
+size = Vector2(6.66667, 27.7457)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_giobj"]
-atlas = ExtResource("2_vjjtg")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ynjf"]
+atlas = ExtResource("2_xk31s")
+region = Rect2(0, 0, 20, 20)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_h1cbd"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7rgke"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_giobj")
+"texture": SubResource("AtlasTexture_8ynjf")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 10.0
 }]
 
-[node name="Sledgehammer" type="Node2D"]
+[node name="Spear" type="Node2D"]
 rotation = 0.785398
-script = ExtResource("1_nvxyx")
+script = ExtResource("1_xhvt7")
 description = "A hammer. Used for sledging"
 
 [node name="collider" type="Area2D" parent="."]
@@ -33,13 +33,16 @@ collision_layer = 16
 collision_mask = 4
 
 [node name="shape" type="CollisionShape2D" parent="collider"]
-position = Vector2(1.60644e-05, -13.7907)
+position = Vector2(-1.1111, -13.7907)
 shape = SubResource("RectangleShape2D_1xfqr")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(15, -15)
-sprite_frames = SubResource("SpriteFrames_h1cbd")
+position = Vector2(8.26039, -8.65814)
+rotation = 0.785398
+scale = Vector2(0.18125, 1.20625)
+sprite_frames = SubResource("SpriteFrames_7rgke")
+animation = &"idle"
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
@@ -47,13 +50,13 @@ metadata/_aseprite_wizard_config_ = {
 "o_name": "",
 "only_visible": false,
 "slice": "",
-"source": "res://sprites/weapons/sledge2.aseprite"
+"source": "res://sprites/testcube.aseprite"
 }
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
 "slice_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "eaf834180aa7da270025579cb045fab0"
+metadata/_aseprite_wizard_source_file_hash_ = "cda7b55acf449e77978a6b9d4097d12a"
 
 [connection signal="area_entered" from="collider" to="." method="_on_collider_area_entered"]

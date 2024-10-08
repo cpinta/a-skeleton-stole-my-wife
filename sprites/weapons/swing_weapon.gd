@@ -36,7 +36,7 @@ func _physics_process(delta):
 	if inUse:
 		if curSwingTime < duration:
 			curSwingTime += delta
-			rotation_degrees = SWING_START_ANGLE + ((curSwingTime/BASE_DURATION) * (SWING_END_ANGLE - SWING_START_ANGLE))
+			rotation_degrees = SWING_START_ANGLE + ((curSwingTime/duration) * (SWING_END_ANGLE - SWING_START_ANGLE))
 		else:
 			end_use_weapon()
 	pass

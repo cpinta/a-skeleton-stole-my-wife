@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player.gd" id="1_c34vk"]
 [ext_resource type="Texture2D" uid="uid://bhtwq5jnhwbty" path="res://sprites/characters/guy2.png" id="2_ymrhe"]
 [ext_resource type="Texture2D" uid="uid://cypilpykkmbyk" path="res://sprites/characters/arm.png" id="3_s1pg7"]
-[ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://sprites/weapons/sledgehammer.tscn" id="3_vli1j"]
+[ext_resource type="PackedScene" uid="uid://bp0ah35c447mj" path="res://sprites/weapons/spear.tscn" id="4_0gsgs"]
 [ext_resource type="PackedScene" uid="uid://cpm6nu6nagl0n" path="res://sprites/weapons/pistol.tscn" id="5_jwjfw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s2br0"]
@@ -146,7 +146,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "76cf3ea04cfa0b7271752777e79b9c8d"
 [node name="hand" type="Node2D" parent="rb/arm"]
 position = Vector2(0, 6)
 
-[node name="sledgehammer" parent="rb/arm/hand" instance=ExtResource("3_vli1j")]
+[node name="Spear" parent="rb/arm/hand" instance=ExtResource("4_0gsgs")]
 
 [node name="back" type="Node2D" parent="rb"]
 z_index = -1

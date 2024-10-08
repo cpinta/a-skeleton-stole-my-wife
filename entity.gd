@@ -13,6 +13,7 @@ var col : CollisionShape2D
 @export var BASE_ATTACK_DURATION: float = 1
 @export var BASE_ATTACK_SIZE: float = 1
 @export var BASE_ATTACK_KNOCKBACK: float = 1
+@export var BASE_ATTACK_RANGE: float = 1
 
 @export var BASE_MOVEMENT_MAX_SPEED: float = 100
 @export var BASE_MOVEMENT_ACCELERATION: float = 250
@@ -26,6 +27,7 @@ var col : CollisionShape2D
 @export var attack_duration: float = 1
 @export var attack_size: float = 1
 @export var attack_knockback: float = 1
+@export var attack_range: float = 1
 
 @export var movement_max_speed: float = 1
 @export var movement_acceleration: float = 1
@@ -162,6 +164,7 @@ func set_default_stats():
 	attack_duration = BASE_ATTACK_DURATION
 	attack_size = BASE_ATTACK_SIZE
 	attack_knockback = BASE_ATTACK_KNOCKBACK
+	attack_range = BASE_ATTACK_RANGE
 	pass
 
 func add_status_effect(effect: StatusEffect):

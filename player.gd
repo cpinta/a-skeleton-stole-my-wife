@@ -37,7 +37,7 @@ func _ready():
 	back = $rb/back
 	
 	#debug variables
-	weapons.append(hand.get_node("sledgehammer"))
+	weapons.append(hand.get_node("Spear"))
 	weapons.append(back.get_node("pistol"))
 	
 	pass
@@ -52,10 +52,14 @@ func _process(delta):
 	if Input.is_action_just_pressed("dash"):
 		velocity = inputVector * DASH_SPEED
 		pass
-	if Input.is_action_just_released("shoot_left"):
+	if Input.is_action_just_pressed("shoot_left"):
 		using_weapon(HandToUse.LEFT)
+	if Input.is_action_just_released("shoot_left"):
+		stop_using_weapon(HandToUse.LEFT)
 	if Input.is_action_just_pressed("shoot_right"):
 		using_weapon(HandToUse.RIGHT)
+	if Input.is_action_just_released("shoot_right"):
+		stop_using_weapon(HandToUse.RIGHT)
 	
 	lineMouseAim.points[1] = get_global_mouse_position() - rb.global_position
 	aimPoint = lineMouseAim.points[1]
@@ -67,6 +71,12 @@ func using_weapon(hand: HandToUse):
 		if hand != curWeaponIndex:
 			swap_weapons()
 		weapons[hand].use_weapon()
+	pass
+	
+func stop_using_weapon(hand: HandToUse):
+	if not weapons[hand] == null:
+		if weapons[hand].inUse:
+			weapons[hand].quit_use_weapon()
 	pass
 	
 func swap_weapons():

@@ -11,6 +11,7 @@ func _ready():
 	SWING_ARC_ANGLE = 180
 	BASE_DURATION = 0.5
 	
+	EQUIP_ANGLE = 45
 	STORE_ANGLE = -45
 	
 	collider = $collider
