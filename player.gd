@@ -40,9 +40,9 @@ func _ready():
 	
 	
 	#debug variables
-	weapons.append(handInner.get_node("Sceptre"))
+	weapons.append(handInner.get_child(1))
 	weapons[0].equip()
-	weapons.append(back.get_node("pistol"))
+	weapons.append(back.get_child(0))
 	weapons[1].unequip()
 	
 	pass
