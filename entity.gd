@@ -56,7 +56,7 @@ var statusEffects: Array[StatusEffect]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rb = $rb
-	anim = $rb/animation
+	anim = $rb/body/animation
 	health = STARTING_HEALTH
 	set_default_stats()
 	pass # Replace with function body.
@@ -135,9 +135,9 @@ func apply_knockback(amount: int, direction: Vector2):
 func set_direction(dir: Direction):
 	facingDirection = dir
 	if dir == Direction.LEFT:
-		anim.flip_h = false
+		pass
 	if dir == Direction.RIGHT:
-		anim.flip_h = true
+		pass
 		
 func global_position():
 	return rb.global_position

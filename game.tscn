@@ -1,9 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=12 format=3 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="PackedScene" uid="uid://c4kk5p1t6j1lv" path="res://player.tscn" id="1_1hkuo"]
 [ext_resource type="Script" path="res://game_manager.gd" id="1_ovs6s"]
 [ext_resource type="Script" path="res://game_camera.gd" id="2_o58vj"]
-[ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://zombie.tscn" id="3_ufxfv"]
+[ext_resource type="Texture2D" uid="uid://34ifiyns02ns" path="res://testsprite.png" id="4_faj7f"]
+[ext_resource type="Script" path="res://testflip.gd" id="5_x1dfm"]
+
+[sub_resource type="Theme" id="Theme_brhd3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y80rq"]
+atlas = ExtResource("4_faj7f")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtxol"]
+atlas = ExtResource("4_faj7f")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y55h1"]
+atlas = ExtResource("4_faj7f")
+region = Rect2(0, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr17u"]
+atlas = ExtResource("4_faj7f")
+region = Rect2(20, 20, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s5v7n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y80rq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtxol")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y55h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr17u")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 10.0
+}]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ovs6s")
@@ -18,17 +62,55 @@ script = ExtResource("2_o58vj")
 
 [node name="Control" type="Control" parent="Camera2D"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -80.0
+offset_right = 140.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="text" type="RichTextLabel" parent="Camera2D/Control"]
-layout_mode = 0
-offset_left = 35.0
-offset_top = 55.0
-offset_right = 145.0
-offset_bottom = 81.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -27.0
+offset_right = 99.0
+offset_bottom = 27.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(-1, 1)
+theme = SubResource("Theme_brhd3")
+theme_override_font_sizes/normal_font_size = 0
 text = "yuh"
+fit_content = true
+scroll_active = false
 
-[node name="zombie" parent="." instance=ExtResource("3_ufxfv")]
-position = Vector2(54.355, 0)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -5
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_s5v7n")
+animation = &"Walk"
+script = ExtResource("5_x1dfm")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://testsprite.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "eb96187a9cd2bf6dbc2c9b006d77a684"
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": false,
+"slice_section": false
+}

@@ -7,10 +7,12 @@ var lineMouseAim : Line2D
 var aimPoint : Vector2
 var arm : Node2D
 var hand : Node2D
+var handInner : Node2D
 var back : Node2D
+var body : Node2D
 
 @export var DASH_SPEED := 125
-@export var HAND_DISTANCE: float = 0
+@export var HAND_DISTANCE: float = 10
 @export var ARM_OFFSET: Vector2
 
 @export var weapons: Array[Weapon]
@@ -25,19 +27,20 @@ func _ready():
 	BASE_MOVEMENT_ACCELERATION = 500
 	BASE_MOVEMENT_MAX_SPEED = 100
 	
-	lineMouseAim = $"rb/debug/aimline"
+	lineMouseAim = $"rb/body/debug/aimline"
 	lineMouseAim.add_point(Vector2.ZERO)
 	lineMouseAim.add_point(Vector2.ZERO)
 	
 	anim.play("idle")
 	
-	arm = $rb/arm
-	ARM_OFFSET = arm.position
-	hand = $rb/arm/hand
-	back = $rb/back
+	hand = $rb/body/hand
+	handInner = hand.get_node("inner")
+	back = $rb/body/back
+	body = $rb/body
+	
 	
 	#debug variables
-	weapons.append(hand.get_node("Spear"))
+	weapons.append(hand.get_node("Sceptre"))
 	weapons.append(back.get_node("pistol"))
 	
 	pass
@@ -80,7 +83,7 @@ func stop_using_weapon(hand: HandToUse):
 	pass
 	
 func swap_weapons():
-	var handWeapon: Weapon = hand.get_child(0)
+	var handWeapon: Weapon = handInner.get_child(1)
 	var backWeapon: Weapon = back.get_child(0)
 	
 	if backWeapon != null:
@@ -96,9 +99,22 @@ func swap_weapons():
 	
 func _physics_process(delta):
 	super._physics_process(delta)
-	arm.look_at(get_global_mouse_position())
-	arm.rotate(-(PI/2))
-	#arm.position = Vector2.RIGHT.rotated(arm.rotation)
+	hand.look_at(get_global_mouse_position())
+	hand.global_position = hand.global_position.lerp(rb.global_position + hand.transform.x * min(HAND_DISTANCE, (get_global_mouse_position() - rb.global_position).length()), 0.9)
+	hand.rotate(-(PI/2))
+	if hand.global_position.x > rb.global_position.x:
+		anim.flip_h = false
+		back.scale.y = 1
+		back.rotation = 0
+		handInner.scale.y = 1
+		handInner.rotation = 0
+	else:
+		anim.flip_h = true
+		back.scale.y = -1
+		back.rotation = -PI
+		handInner.scale.y = -1
+		handInner.rotation = -PI
+		
 	pass
 	
 func get_input_vector():

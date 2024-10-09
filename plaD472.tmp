@@ -91,6 +91,44 @@ animations = [{
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_c34vk")
+DASH_SPEED = null
+HAND_DISTANCE = null
+ARM_OFFSET = null
+curWeaponIndex = null
+BASE_ATTACK_DAMAGE = null
+BASE_ATTACK_COOLDOWN = null
+BASE_ATTACK_SPEED = null
+BASE_ATTACK_DURATION = null
+BASE_ATTACK_SIZE = null
+BASE_ATTACK_KNOCKBACK = null
+BASE_ATTACK_RANGE = null
+BASE_MOVEMENT_MAX_SPEED = null
+BASE_MOVEMENT_ACCELERATION = null
+BASE_DECCELERATION = null
+BASE_DASH_SPEED = null
+BASE_SIZE = null
+attack_damage = null
+attack_cooldown = null
+attack_speed = null
+attack_duration = null
+attack_size = null
+attack_knockback = null
+attack_range = null
+movement_max_speed = null
+movement_acceleration = null
+movement_decceleration = null
+dash_speed = null
+size = null
+MAX_COLLISIONS = null
+inputVector = null
+velocity = null
+facingDirection = null
+canWalk = null
+USES_DEFAULT_MOVEMENT = null
+USES_DEFAULT_ANIMATIONS = null
+MIN_SPEED_TO_ANIM = null
+STARTING_HEALTH = null
+health = null
 
 [node name="rb" type="CharacterBody2D" parent="."]
 collision_layer = 2

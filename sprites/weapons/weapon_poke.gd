@@ -6,10 +6,10 @@ class_name PokeWeapon
 
 @export var BASE_POKE_LENGTH: float = 20
 @export var BASE_PULLBACK_LENGTH: float = 20
-@export var BASE_PULLBACK_TIME: float = 0.25
-@export var BASE_POKE_TIME: float = 0.25
+@export var BASE_PULLBACK_TIME: float = 3
+@export var BASE_POKE_TIME: float = 3
 
-@export var poke_length: float = 20
+@export var poke_length: float = 40
 @export var pullback_length: float = 20
 @export var pullback_time: float = 0.25
 @export var poke_time: float = 0.25
@@ -18,6 +18,7 @@ class_name PokeWeapon
 
 @export var pullingBack: bool = false
 @export var pulledBack: bool = false
+@export var stabbing: bool = false
 @export var pokeTimer: float = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +27,8 @@ func _ready():
 	area.connect("body_entered", hit_entity)
 	hitbox = area.get_node("shape")
 	hitbox.disabled = true
+	weaponType = WeaponType.Poke
+	STORE_ANGLE = -45
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,20 +39,29 @@ func _physics_process(delta):
 	super._physics_process(delta)
 	if inUse:
 		if pullingBack || pulledBack:
-			if pokeTimer < pullback_time:
-				position.x = NEUTRAL_POSITION + ((pokeTimer/pullback_time) * (NEUTRAL_POSITION - pullback_length)) 
+			if not pulledBack:
+				if pokeTimer < pullback_time:
+					position.y = NEUTRAL_POSITION + ((pokeTimer/pullback_time) * (NEUTRAL_POSITION - pullback_length)) 
+					pokeTimer += delta
+				else:
+					pulled_back()
+			else:
+				position.y = -pullback_length
+		else:
+			if stabbing:
+				if pokeTimer < poke_time:
+					position.y = (NEUTRAL_POSITION - pullback_length) + ((pokeTimer/poke_time) * (poke_length + pullback_length)) 
+					pokeTimer += delta
+				else:
+					stab_over()
+	else:
+		if position.y > NEUTRAL_POSITION:
+			if pokeTimer < poke_time:
+				position.y = (NEUTRAL_POSITION + poke_length) + ((pokeTimer/poke_time) * (-poke_length)) 
 				pokeTimer += delta
 			else:
-				if not pulledBack:
-					pulled_back()
-				position.x = -pullback_length
-		else:
-			if pokeTimer < poke_time:
-				position.x = (NEUTRAL_POSITION - pullback_length) + ((pokeTimer/poke_time) * (poke_length + pullback_length)) 
-			else:
-				position.x = -pullback_length
-	else:
-		position = position.lerp(Vector2(NEUTRAL_POSITION, 0), 0.5 * delta)
+				position.y = NEUTRAL_POSITION
+		position = position.lerp(Vector2(0, NEUTRAL_POSITION), 0.99 * delta)
 		pass
 	pass
 
@@ -72,15 +84,24 @@ func pull_back():
 func pulled_back():
 	pullingBack = false
 	pulledBack = true
+	pokeTimer = 0
 	pass
 	
 func start_stab():
 	pullingBack = false
 	pulledBack = false
+	stabbing = true
+	pokeTimer = 0
+	hitbox.disabled = false
 	pass
 	
 func stab_over():
 	end_use_weapon()
+	pullingBack = false
+	pulledBack = false
+	stabbing = false
+	pokeTimer = 0
+	hitbox.disabled = true
 	pass
 	
 func end_use_weapon():
@@ -112,7 +133,7 @@ func hit_entity(body: Node2D):
 	
 func apply_attack(entity: Entity):
 	super.apply_attack(entity)
-	entity.hurt(damage, knockback, Vector2.RIGHT.rotated(global_rotation))
+	entity.hurt(damage, knockback, Vector2.RIGHT.rotated(global_rotation- deg_to_rad(90)))
 	pass
 	
 func unequip():

@@ -9,6 +9,7 @@ extends Camera2D
 func _ready():
 	target = get_tree().get_nodes_in_group("player")[0]
 	debug1 = $Control/text
+	
 	pass # Replace with function body.
 
 
@@ -18,4 +19,7 @@ func _process(delta):
 		var rb = target.get_node_or_null("rb")
 		if rb != null:
 			position = rb.position + tOffset
+		var body: Node2D = target.get_node_or_null("rb/body")
+		if body != null:
+			debug1.text = "body scale:"+str(body.scale.x)+"\n"
 	pass

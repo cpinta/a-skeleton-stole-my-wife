@@ -25,6 +25,7 @@ func _ready():
 	area.connect("body_entered", hit_entity)
 	hitbox = area.get_node("shape")
 	hitbox.disabled = true
+	weaponType = WeaponType.Swing
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
