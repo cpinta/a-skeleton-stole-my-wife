@@ -19,7 +19,7 @@ func _process(delta):
 		var rb = target.get_node_or_null("rb")
 		if rb != null:
 			position = rb.position + tOffset
-		var body: Node2D = target.get_node_or_null("rb/body")
-		if body != null:
-			debug1.text = "body scale:"+str(body.scale.x)+"\n"
+		var sceptre: Node2D = target.get_node_or_null("rb/body/hand/inner/Sceptre")
+		if sceptre != null:
+			debug1.text = "body scale:"+str(rad_to_deg(sceptre.global_rotation - deg_to_rad(90 * sceptre.global_scale.y)))+"\n"
 	pass

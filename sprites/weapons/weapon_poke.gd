@@ -133,7 +133,7 @@ func hit_entity(body: Node2D):
 	
 func apply_attack(entity: Entity):
 	super.apply_attack(entity)
-	entity.hurt(damage, knockback, Vector2.RIGHT.rotated(global_rotation- deg_to_rad(90)))
+	entity.hurt(damage, knockback, Vector2.RIGHT.rotated(global_rotation - deg_to_rad(180 * global_scale.y)))
 	pass
 	
 func unequip():

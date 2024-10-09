@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=13 format=3 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="PackedScene" uid="uid://c4kk5p1t6j1lv" path="res://player.tscn" id="1_1hkuo"]
 [ext_resource type="Script" path="res://game_manager.gd" id="1_ovs6s"]
 [ext_resource type="Script" path="res://game_camera.gd" id="2_o58vj"]
 [ext_resource type="Texture2D" uid="uid://34ifiyns02ns" path="res://testsprite.png" id="4_faj7f"]
 [ext_resource type="Script" path="res://testflip.gd" id="5_x1dfm"]
+[ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://zombie.tscn" id="6_xu21l"]
 
 [sub_resource type="Theme" id="Theme_brhd3"]
 
@@ -114,3 +115,5 @@ metadata/_aseprite_wizard_interface_config_ = {
 "output_section": false,
 "slice_section": false
 }
+
+[node name="zombie" parent="." instance=ExtResource("6_xu21l")]
