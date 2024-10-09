@@ -16,7 +16,7 @@ var body : Node2D
 @export var ARM_OFFSET: Vector2
 
 @export var weapons: Array[Weapon]
-@export var curWeaponIndex: int = 0
+@export var currentHand: HandToUse = HandToUse.LEFT
 
 
 # Called when the node enters the scene tree for the first time.
@@ -40,8 +40,10 @@ func _ready():
 	
 	
 	#debug variables
-	weapons.append(hand.get_node("Sceptre"))
+	weapons.append(handInner.get_node("Sceptre"))
+	weapons[0].equip()
 	weapons.append(back.get_node("pistol"))
+	weapons[1].unequip()
 	
 	pass
 
@@ -53,30 +55,31 @@ func _process(delta):
 	if Input.is_action_pressed("jump"):
 		pass
 	if Input.is_action_just_pressed("dash"):
-		velocity = inputVector * DASH_SPEED
+		dash()
 		pass
 	if Input.is_action_just_pressed("shoot_left"):
-		using_weapon(HandToUse.LEFT)
+		use_weapon(HandToUse.LEFT)
 	if Input.is_action_just_released("shoot_left"):
-		stop_using_weapon(HandToUse.LEFT)
+		stop_use_weapon(HandToUse.LEFT)
 	if Input.is_action_just_pressed("shoot_right"):
-		using_weapon(HandToUse.RIGHT)
+		use_weapon(HandToUse.RIGHT)
 	if Input.is_action_just_released("shoot_right"):
-		stop_using_weapon(HandToUse.RIGHT)
+		stop_use_weapon(HandToUse.RIGHT)
 	
 	lineMouseAim.points[1] = get_global_mouse_position() - rb.global_position
 	aimPoint = lineMouseAim.points[1]
 	
 	pass
 	
-func using_weapon(hand: HandToUse):
-	if not weapons[hand] == null:
-		if hand != curWeaponIndex:
-			swap_weapons()
-		weapons[hand].use_weapon()
-	pass
+func use_weapon(hand: HandToUse):
+	if not weapons[currentHand].inUse:
+		if not weapons[hand] == null:
+			if hand != currentHand:
+				swap_weapons()
+			weapons[hand].use_weapon()
+		pass
 	
-func stop_using_weapon(hand: HandToUse):
+func stop_use_weapon(hand: HandToUse):
 	if not weapons[hand] == null:
 		if weapons[hand].inUse:
 			weapons[hand].quit_use_weapon()
@@ -87,15 +90,16 @@ func swap_weapons():
 	var backWeapon: Weapon = back.get_child(0)
 	
 	if backWeapon != null:
-		backWeapon.reparent(hand)
+		backWeapon.reparent(handInner)
 		backWeapon.equip()
-		pass
 	if handWeapon != null:
 		handWeapon.reparent(back)
 		handWeapon.unequip()
-		pass
 		
-	curWeaponIndex = HandToUse.RIGHT if curWeaponIndex == HandToUse.LEFT else HandToUse.LEFT
+	currentHand = HandToUse.RIGHT if currentHand == HandToUse.LEFT else HandToUse.LEFT
+	
+func dash():
+	velocity = inputVector * DASH_SPEED
 	
 func _physics_process(delta):
 	super._physics_process(delta)
