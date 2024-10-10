@@ -22,7 +22,7 @@ func _ready():
 	INHAND_ANGLE = SWING_START_ANGLE
 	
 	area = $"collider"
-	area.connect("body_entered", hit_entity)
+	area.connect("area_entered", hit_entity)
 	hitbox = area.get_node("shape")
 	hitbox.disabled = true
 	weaponType = WeaponType.Swing

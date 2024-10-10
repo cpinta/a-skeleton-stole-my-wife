@@ -24,11 +24,10 @@ class_name PokeWeapon
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	area = $"collider"
-	area.connect("body_entered", hit_entity)
+	area.connect("area_entered", hit_entity)
 	hitbox = area.get_node("shape")
 	hitbox.disabled = true
 	weaponType = WeaponType.Poke
-	STORE_ANGLE = -45
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -69,6 +68,9 @@ func use_weapon():
 	var willPullback: bool = false
 	if not inUse:
 		willPullback = true
+		stabbing = false
+		pullingBack = false
+		pulledBack = false
 	super.use_weapon()
 	if willPullback:
 		pull_back()
@@ -133,7 +135,7 @@ func hit_entity(body: Node2D):
 	
 func apply_attack(entity: Entity):
 	super.apply_attack(entity)
-	entity.hurt(damage, knockback, Vector2.RIGHT.rotated(global_rotation - deg_to_rad(180 * global_scale.y)))
+	entity.hurt(damage, knockback, Vector2.RIGHT.rotated(global_rotation - deg_to_rad(45 * global_scale.y)))
 	pass
 	
 func unequip():

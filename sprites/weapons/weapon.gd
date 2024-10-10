@@ -97,7 +97,7 @@ func drop():
 	pass
 	
 func hit_entity(body: Node2D):
-	var parent = body.get_parent()
+	var parent = body.get_parent().get_parent().get_parent()
 	print("hit:",parent.name)
 	if parent != null:
 		if parent is Entity:

@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ctp3dgro7fn3t"
+path="res://.godot/imported/cornstalk.aseprite-ceff919fb7a7b104b4c763f585d9c73c.res"
+
+[deps]
+
+source_file="res://sprites/weapons/cornstalk.aseprite"
+dest_files=["res://.godot/imported/cornstalk.aseprite-ceff919fb7a7b104b4c763f585d9c73c.res"]
+
+[params]
+

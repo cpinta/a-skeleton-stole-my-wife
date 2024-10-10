@@ -4,62 +4,62 @@
 [ext_resource type="Texture2D" uid="uid://cvpsamv0hafnm" path="res://sprites/characters/guy3.png" id="2_jos7r"]
 [ext_resource type="Texture2D" uid="uid://cypilpykkmbyk" path="res://sprites/characters/arm.png" id="3_s1pg7"]
 [ext_resource type="PackedScene" uid="uid://cpm6nu6nagl0n" path="res://sprites/weapons/wp_pistol.tscn" id="5_jwjfw"]
-[ext_resource type="PackedScene" uid="uid://x6tfnv57sf3g" path="res://sprites/weapons/wp_scythe.tscn" id="5_oxovn"]
+[ext_resource type="PackedScene" uid="uid://e18okywm4qom" path="res://sprites/weapons/wp_corn_stalk.tscn" id="5_wkrfm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1tys6"]
 radius = 4.80645
 height = 38.7097
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e4d2n"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mobik"]
 atlas = ExtResource("2_jos7r")
-region = Rect2(0, 0, 43, 32)
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0aoea"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1rmr"]
 atlas = ExtResource("2_jos7r")
-region = Rect2(43, 0, 43, 32)
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eji7x"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8fxd"]
 atlas = ExtResource("2_jos7r")
-region = Rect2(86, 0, 43, 32)
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fgflo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoopi"]
 atlas = ExtResource("2_jos7r")
-region = Rect2(0, 32, 43, 32)
+region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qrf2k"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkx83"]
 atlas = ExtResource("2_jos7r")
-region = Rect2(43, 32, 43, 32)
+region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s3fjq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkyob"]
 atlas = ExtResource("2_jos7r")
-region = Rect2(86, 32, 43, 32)
+region = Rect2(64, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u2wsm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfskx"]
 atlas = ExtResource("2_jos7r")
-region = Rect2(0, 64, 43, 32)
+region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d0xls"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp3fg"]
 atlas = ExtResource("2_jos7r")
-region = Rect2(43, 64, 43, 32)
+region = Rect2(32, 64, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jyhpg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5ocl"]
 atlas = ExtResource("2_jos7r")
-region = Rect2(86, 64, 43, 32)
+region = Rect2(64, 64, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vhtu6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_t1qtv"]
 animations = [{
 "frames": [{
 "duration": 3.0,
-"texture": SubResource("AtlasTexture_e4d2n")
+"texture": SubResource("AtlasTexture_mobik")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0aoea")
+"texture": SubResource("AtlasTexture_e1rmr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eji7x")
+"texture": SubResource("AtlasTexture_v8fxd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0aoea")
+"texture": SubResource("AtlasTexture_e1rmr")
 }],
 "loop": true,
 "name": &"idle",
@@ -67,28 +67,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fgflo")
+"texture": SubResource("AtlasTexture_qoopi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qrf2k")
+"texture": SubResource("AtlasTexture_hkx83")
 }, {
 "duration": 1.25,
-"texture": SubResource("AtlasTexture_s3fjq")
+"texture": SubResource("AtlasTexture_xkyob")
 }, {
 "duration": 1.25,
-"texture": SubResource("AtlasTexture_u2wsm")
+"texture": SubResource("AtlasTexture_rfskx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fgflo")
+"texture": SubResource("AtlasTexture_qoopi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qrf2k")
+"texture": SubResource("AtlasTexture_hkx83")
 }, {
 "duration": 1.25,
-"texture": SubResource("AtlasTexture_d0xls")
+"texture": SubResource("AtlasTexture_wp3fg")
 }, {
 "duration": 1.25,
-"texture": SubResource("AtlasTexture_jyhpg")
+"texture": SubResource("AtlasTexture_s5ocl")
 }],
 "loop": true,
 "name": &"walk",
@@ -96,7 +96,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksnnh"]
-size = Vector2(6, 13)
+size = Vector2(6, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10i2n"]
 atlas = ExtResource("3_s1pg7")
@@ -121,9 +121,9 @@ collision_layer = 2
 collision_mask = 5
 
 [node name="collider" type="CollisionShape2D" parent="rb"]
-position = Vector2(0, 7)
+position = Vector2(0, -1)
 rotation = 1.5708
-scale = Vector2(0.155, 0.155)
+scale = Vector2(0.2, 0.2)
 shape = SubResource("CapsuleShape2D_1tys6")
 
 [node name="face" type="Node2D" parent="rb"]
@@ -132,8 +132,9 @@ shape = SubResource("CapsuleShape2D_1tys6")
 
 [node name="animation" type="AnimatedSprite2D" parent="rb/body"]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_vhtu6")
-animation = &"walk"
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_t1qtv")
+animation = &"idle"
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
@@ -148,24 +149,25 @@ metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "slice_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "ebf6f468266317005f6ad84fa9601f2c"
+metadata/_aseprite_wizard_source_file_hash_ = "ebb0c6b0ab65c2a60dd6b623a42e98ce"
 
 [node name="hurtbox" type="Area2D" parent="rb/body"]
 collision_layer = 2
 collision_mask = 12
 
 [node name="shape" type="CollisionShape2D" parent="rb/body/hurtbox"]
-position = Vector2(0, -0.5)
+position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_ksnnh")
 
 [node name="back" type="Node2D" parent="rb/body"]
 z_index = -1
+position = Vector2(0, -13)
 rotation = 0.785398
 
 [node name="pistol" parent="rb/body/back" instance=ExtResource("5_jwjfw")]
 
 [node name="hand" type="Node2D" parent="rb/body"]
-position = Vector2(-2, 3)
+position = Vector2(-4.5, -6)
 
 [node name="inner" type="Node2D" parent="rb/body/hand"]
 
@@ -189,9 +191,10 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "76cf3ea04cfa0b7271752777e79b9c8d"
 
-[node name="Scythe" parent="rb/body/hand/inner" instance=ExtResource("5_oxovn")]
+[node name="Corn Stalk" parent="rb/body/hand/inner" instance=ExtResource("5_wkrfm")]
 
 [node name="debug" type="Node2D" parent="rb/body"]
+position = Vector2(-3.5, -5.5)
 
 [node name="aimline" type="Line2D" parent="rb/body/debug"]
 width = 0.1

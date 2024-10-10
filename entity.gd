@@ -35,11 +35,9 @@ var col : CollisionShape2D
 @export var dash_speed: float = 1
 @export var size: float = 1
 
-@export var POST_HIT_INVINCIBILITY_TIME: float = 0.5
+@export var POST_HIT_INVINCIBILITY_TIME: float = 0.1
 @export var isHittable = true
 @export var flickersWhenNotHittable = true
-
-
 
 @export var MAX_COLLISIONS := 6
 

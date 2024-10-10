@@ -13,6 +13,7 @@ var body : Node2D
 
 @export var DASH_SPEED := 125
 @export var HAND_DISTANCE: float = 10
+@export var HAND_HEIGHT: float = 12
 @export var ARM_OFFSET: Vector2
 
 @export var weapons: Array[Weapon]
@@ -109,7 +110,7 @@ func dash():
 func _physics_process(delta):
 	super._physics_process(delta)
 	hand.look_at(get_global_mouse_position())
-	hand.global_position = hand.global_position.lerp(rb.global_position + hand.transform.x * min(HAND_DISTANCE, (get_global_mouse_position() - rb.global_position).length()), 0.9)
+	hand.global_position = hand.global_position.lerp(rb.global_position - Vector2(0, HAND_HEIGHT) + hand.transform.x * min(HAND_DISTANCE, (get_global_mouse_position() - rb.global_position).length()), 0.9)
 	hand.rotate(-(PI/2))
 	if hand.global_position.x > rb.global_position.x:
 		anim.flip_h = false

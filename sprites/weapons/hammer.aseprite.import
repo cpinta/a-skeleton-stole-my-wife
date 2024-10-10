@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dn2plnip8wkgq"
+path="res://.godot/imported/hammer.aseprite-187f2194c960e6749b989dc41afdf6e1.res"
+
+[deps]
+
+source_file="res://sprites/weapons/hammer.aseprite"
+dest_files=["res://.godot/imported/hammer.aseprite-187f2194c960e6749b989dc41afdf6e1.res"]
+
+[params]
+

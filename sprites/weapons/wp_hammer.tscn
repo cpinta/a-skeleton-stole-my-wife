@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://w6kon6yb3cg5"]
+
+[ext_resource type="Script" path="res://sprites/weapons/wp_hammer.gd" id="1_57ot1"]
+[ext_resource type="Texture2D" uid="uid://clbomh2obro85" path="res://sprites/weapons/hammer.png" id="2_hh37m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xfqr"]
+size = Vector2(24.4444, 18.5793)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2klcn"]
+atlas = ExtResource("2_hh37m")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7g3nn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2klcn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Hammer" type="Node2D"]
+rotation = 0.785398
+script = ExtResource("1_57ot1")
+
+[node name="collider" type="Area2D" parent="."]
+rotation = 0.785398
+scale = Vector2(0.45, 0.865)
+collision_layer = 16
+collision_mask = 4
+
+[node name="shape" type="CollisionShape2D" parent="collider"]
+position = Vector2(-3.33333, -9.20748)
+shape = SubResource("RectangleShape2D_1xfqr")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(15, -15)
+sprite_frames = SubResource("SpriteFrames_7g3nn")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/weapons",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/weapons/hammer.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "69307a84bf192b0826e3c3e50ee4967a"
+
+[connection signal="area_entered" from="collider" to="." method="_on_collider_area_entered"]
