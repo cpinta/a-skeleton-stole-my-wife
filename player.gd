@@ -69,6 +69,11 @@ func _process(delta):
 	lineMouseAim.points[1] = get_global_mouse_position() - rb.global_position
 	aimPoint = lineMouseAim.points[1]
 	
+	if velocity.length() > 0.1:
+		anim.play("walk")
+	else:
+		anim.play("idle")
+	
 	pass
 	
 func use_weapon(hand: HandToUse):

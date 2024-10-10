@@ -91,7 +91,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jyhpg")
 }],
 "loop": true,
-"name": &"walking",
+"name": &"walk",
 "speed": 10.0
 }]
 
@@ -130,9 +130,8 @@ shape = SubResource("CapsuleShape2D_1tys6")
 
 [node name="animation" type="AnimatedSprite2D" parent="rb/body"]
 texture_filter = 1
-scale = Vector2(0.65, 0.65)
 sprite_frames = SubResource("SpriteFrames_vhtu6")
-animation = &"idle"
+animation = &"walk"
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
@@ -165,7 +164,6 @@ rotation = 0.785398
 
 [node name="hand" type="Node2D" parent="rb/body"]
 position = Vector2(-2, 3)
-scale = Vector2(0.5, 0.5)
 
 [node name="inner" type="Node2D" parent="rb/body/hand"]
 

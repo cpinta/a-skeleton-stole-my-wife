@@ -1,25 +1,25 @@
 [gd_scene load_steps=6 format=3 uid="uid://s276nehy2o24"]
 
 [ext_resource type="Script" path="res://sprites/weapons/pistol_bullet.gd" id="1_db873"]
-[ext_resource type="Texture2D" uid="uid://dnsbpk07v8d4i" path="res://sprites/testcube.png" id="1_takhx"]
+[ext_resource type="Texture2D" uid="uid://pcblg8cck13i" path="res://sprites/weapons/pistol_bullet.png" id="2_d7dhs"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1r1ee"]
-atlas = ExtResource("1_takhx")
-region = Rect2(0, 0, 20, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2ala"]
+atlas = ExtResource("2_d7dhs")
+region = Rect2(0, 0, 4, 4)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7muah"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_hxdgl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1r1ee")
+"texture": SubResource("AtlasTexture_k2ala")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"default",
 "speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqtf5"]
-size = Vector2(5, 3)
+size = Vector2(3, 2)
 
 [node name="pistolbullet" type="Node2D"]
 script = ExtResource("1_db873")
@@ -29,26 +29,25 @@ weaponType = 2
 
 [node name="animator" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(0.225, 0.125)
-sprite_frames = SubResource("SpriteFrames_7muah")
-animation = &"idle"
+sprite_frames = SubResource("SpriteFrames_hxdgl")
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
-"o_folder": "res://sprites",
+"o_folder": "res://sprites/weapons",
 "o_name": "",
 "only_visible": false,
 "slice": "",
-"source": "res://sprites/testcube.aseprite"
+"source": "res://sprites/weapons/pistol_bullet.aseprite"
 }
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "cda7b55acf449e77978a6b9d4097d12a"
+metadata/_aseprite_wizard_source_file_hash_ = "fce553524316901d5afdc0482caefcad"
 
 [node name="collider" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 13
 
 [node name="shape" type="CollisionShape2D" parent="collider"]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_lqtf5")

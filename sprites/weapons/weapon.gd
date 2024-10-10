@@ -32,6 +32,7 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var onCooldown := false
 
 @export var collider: CollisionObject2D
+@export var anim: AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

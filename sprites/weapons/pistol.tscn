@@ -1,21 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpm6nu6nagl0n"]
+[gd_scene load_steps=8 format=3 uid="uid://cpm6nu6nagl0n"]
 
 [ext_resource type="Script" path="res://sprites/weapons/pistol.gd" id="1_47drg"]
-[ext_resource type="Texture2D" uid="uid://cmecsyfnckr56" path="res://sprites/weapons/testcube.png" id="1_maew8"]
+[ext_resource type="Texture2D" uid="uid://dmg0wrbm8064r" path="res://sprites/weapons/pistol.png" id="2_bpf0p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mk5ea"]
-atlas = ExtResource("1_maew8")
-region = Rect2(0, 0, 20, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhc7g"]
+atlas = ExtResource("2_bpf0p")
+region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dogwh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ougch"]
+atlas = ExtResource("2_bpf0p")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch4k2"]
+atlas = ExtResource("2_bpf0p")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl7dp"]
+atlas = ExtResource("2_bpf0p")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iw2uf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mk5ea")
+"texture": SubResource("AtlasTexture_fhc7g")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ougch")
+}],
+"loop": true,
+"name": &"reload",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.33333,
+"texture": SubResource("AtlasTexture_ch4k2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl7dp")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ougch")
+}, {
+"duration": 1.33333,
+"texture": SubResource("AtlasTexture_fhc7g")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 14.0
 }]
 
 [node name="pistol" type="Node2D" node_paths=PackedStringArray("shootPoint")]
@@ -27,20 +64,22 @@ weaponType = 2
 
 [node name="animator" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(2, -0.75)
-scale = Vector2(0.2, 0.125)
-sprite_frames = SubResource("SpriteFrames_dogwh")
+position = Vector2(3, -1)
+sprite_frames = SubResource("SpriteFrames_iw2uf")
 animation = &"idle"
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
-"o_folder": "",
+"o_folder": "res://sprites/weapons",
 "o_name": "",
 "only_visible": false,
 "slice": "",
-"source": "res://sprites/testcube.aseprite"
+"source": "res://sprites/weapons/pistol.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "cda7b55acf449e77978a6b9d4097d12a"
+metadata/_aseprite_wizard_source_file_hash_ = "263e4a53b69c80eb21cdf65a22c55079"
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
 
 [node name="shoot_point" type="Node2D" parent="."]
-position = Vector2(4, -1)
+position = Vector2(5, -2)
