@@ -37,6 +37,7 @@ var col : CollisionShape2D
 
 @export var POST_HIT_INVINCIBILITY_TIME: float = 0.5
 @export var isHittable = true
+@export var flickersWhenNotHittable = true
 
 
 
@@ -72,6 +73,8 @@ func _process(delta):
 				anim.play("walk")
 			else:
 				anim.play("idle")
+	if not isHittable and flickersWhenNotHittable:
+		anim.visible = not anim.visible
 	pass
 
 func _physics_process(delta):
@@ -128,7 +131,7 @@ func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2
 	else:
 		apply_knockback(knock_amount, knock_direction)
 		if apply_post_hit_invinc:
-			add_status_effect(SE_MovementSlow.new(self, POST_HIT_INVINCIBILITY_TIME))
+			add_status_effect(SE_Invincibility.new(self, POST_HIT_INVINCIBILITY_TIME))
 			isHittable = true
 			
 	pass
@@ -156,6 +159,7 @@ func apply_effects(delta):
 	for effect in statusEffects:
 		var timeLeft: float = effect.apply(delta)
 		if timeLeft < 0:
+			effect.was_removed()
 			statusEffects.erase(effect)
 		pass
 	pass
