@@ -1,42 +1,54 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckys7dwiljknx"]
+[gd_scene load_steps=14 format=3 uid="uid://ckys7dwiljknx"]
 
 [ext_resource type="Script" path="res://zombie.gd" id="1_gt8ip"]
-[ext_resource type="Texture2D" uid="uid://ccw6m5sql0ccu" path="res://sprites/zombie.png" id="2_irl54"]
+[ext_resource type="Texture2D" uid="uid://b70nmmoco05dq" path="res://sprites/enemies/zombie.png" id="2_bdsqg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yx6s8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1b3xj"]
-atlas = ExtResource("2_irl54")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ca5q"]
+atlas = ExtResource("2_bdsqg")
+region = Rect2(16, 54, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t8p28"]
-atlas = ExtResource("2_irl54")
-region = Rect2(32, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fsld"]
+atlas = ExtResource("2_bdsqg")
+region = Rect2(32, 54, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ydm2"]
-atlas = ExtResource("2_irl54")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_je8hx"]
+atlas = ExtResource("2_bdsqg")
+region = Rect2(0, 0, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qbcn3"]
-atlas = ExtResource("2_irl54")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_51rko"]
+atlas = ExtResource("2_bdsqg")
+region = Rect2(16, 0, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ff65f"]
-atlas = ExtResource("2_irl54")
-region = Rect2(0, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mb2fm"]
+atlas = ExtResource("2_bdsqg")
+region = Rect2(32, 0, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p88rf"]
-atlas = ExtResource("2_irl54")
-region = Rect2(16, 16, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eat5"]
+atlas = ExtResource("2_bdsqg")
+region = Rect2(0, 27, 16, 27)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8du4b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_t86uv"]
+atlas = ExtResource("2_bdsqg")
+region = Rect2(16, 27, 16, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdfj1"]
+atlas = ExtResource("2_bdsqg")
+region = Rect2(32, 27, 16, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cytp3"]
+atlas = ExtResource("2_bdsqg")
+region = Rect2(0, 54, 16, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oia30"]
 animations = [{
 "frames": [{
 "duration": 2.16667,
-"texture": SubResource("AtlasTexture_1b3xj")
+"texture": SubResource("AtlasTexture_5ca5q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t8p28")
+"texture": SubResource("AtlasTexture_4fsld")
 }],
 "loop": true,
 "name": &"idle",
@@ -44,19 +56,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.2,
-"texture": SubResource("AtlasTexture_1b3xj")
+"texture": SubResource("AtlasTexture_je8hx")
 }, {
 "duration": 1.6,
-"texture": SubResource("AtlasTexture_5ydm2")
+"texture": SubResource("AtlasTexture_51rko")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qbcn3")
+"texture": SubResource("AtlasTexture_mb2fm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ff65f")
+"texture": SubResource("AtlasTexture_0eat5")
 }, {
 "duration": 1.2,
-"texture": SubResource("AtlasTexture_p88rf")
+"texture": SubResource("AtlasTexture_t86uv")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_hdfj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cytp3")
 }],
 "loop": true,
 "name": &"walk",
@@ -81,21 +99,20 @@ shape = SubResource("CircleShape2D_yx6s8")
 
 [node name="animation" type="AnimatedSprite2D" parent="rb/body"]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_8du4b")
+sprite_frames = SubResource("SpriteFrames_oia30")
 animation = &"walk"
-frame_progress = 0.326707
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
-"o_folder": "res://sprites",
+"o_folder": "res://sprites/enemies",
 "o_name": "",
 "only_visible": false,
 "slice": "",
-"source": "res://sprites/zombie.aseprite"
+"source": "res://sprites/enemies/zombie.aseprite"
 }
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true,
 "output_section": true,
 "slice_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "1433bd8ce6d0e0ede427aebc6a79c57c"
+metadata/_aseprite_wizard_source_file_hash_ = "1ddf54168473744d4ab5c97998cd9fd9"
