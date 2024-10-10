@@ -126,6 +126,8 @@ rotation = 1.5708
 scale = Vector2(0.155, 0.155)
 shape = SubResource("CapsuleShape2D_1tys6")
 
+[node name="face" type="Node2D" parent="rb"]
+
 [node name="body" type="Node2D" parent="rb"]
 
 [node name="animation" type="AnimatedSprite2D" parent="rb/body"]

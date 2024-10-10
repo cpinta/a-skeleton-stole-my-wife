@@ -21,6 +21,6 @@ func apply_attack(entity: Entity):
 	super.apply_attack(entity)
 	
 	entity.hurt(BASE_DAMAGE, 0, Vector2.ZERO)
-	entity.add_status_effect(SE_MovementSlow.new(0.5, 0.5))
+	entity.add_status_effect(SE_MovementSlow.new(entity, 0.5, 0.5))
 	self.queue_free()
 	pass

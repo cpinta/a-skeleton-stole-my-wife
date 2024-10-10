@@ -5,7 +5,10 @@ class_name StatusEffect
 @export var TIME_APPLIED :float = 1
 @export var timeLeft :float = 1
 
-func _init(time=TIME_APPLIED):
+var target: Entity
+
+func _init(entity: Entity, time=TIME_APPLIED):
+	target = entity
 	TIME_APPLIED = time
 	pass
 
@@ -13,10 +16,12 @@ func _init(time=TIME_APPLIED):
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func apply(delta, entity: Entity):
+func apply(delta):
 	return 0
+	
+func was_removed():
+	pass

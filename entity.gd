@@ -35,6 +35,9 @@ var col : CollisionShape2D
 @export var dash_speed: float = 1
 @export var size: float = 1
 
+@export var POST_HIT_INVINCIBILITY_TIME: float = 0.5
+@export var isHittable = true
+
 
 
 @export var MAX_COLLISIONS := 6
@@ -116,12 +119,18 @@ func attack_enemy(entity: Entity, damage: int, knock_amount: int = 0, knock_dire
 	entity.hurt(damage, knock_amount, knock_direction)
 	pass
 
-func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2.ZERO):
+func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2.ZERO, apply_post_hit_invinc: bool = true):
+	if not isHittable:
+		return
 	health -= damage
 	if health < 1:
 		was_killed()
 	else:
 		apply_knockback(knock_amount, knock_direction)
+		if apply_post_hit_invinc:
+			add_status_effect(SE_MovementSlow.new(self, POST_HIT_INVINCIBILITY_TIME))
+			isHittable = true
+			
 	pass
 	
 func was_killed():
@@ -145,7 +154,7 @@ func global_position():
 func apply_effects(delta):
 	set_default_stats()
 	for effect in statusEffects:
-		var timeLeft: float = effect.apply(delta, self)
+		var timeLeft: float = effect.apply(delta)
 		if timeLeft < 0:
 			statusEffects.erase(effect)
 		pass
