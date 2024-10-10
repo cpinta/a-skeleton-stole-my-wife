@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bp0ah35c447mj"]
 
-[ext_resource type="Script" path="res://sprites/weapons/spectre.gd" id="1_xhvt7"]
+[ext_resource type="Script" path="res://sprites/weapons/wp_spectre.gd" id="1_xhvt7"]
 [ext_resource type="Texture2D" uid="uid://cmecsyfnckr56" path="res://sprites/weapons/testcube.png" id="2_xk31s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xfqr"]

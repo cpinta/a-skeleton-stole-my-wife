@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://player.gd" id="1_c34vk"]
 [ext_resource type="Texture2D" uid="uid://cvpsamv0hafnm" path="res://sprites/characters/guy3.png" id="2_jos7r"]
 [ext_resource type="Texture2D" uid="uid://cypilpykkmbyk" path="res://sprites/characters/arm.png" id="3_s1pg7"]
-[ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://sprites/weapons/sledgehammer.tscn" id="5_5i6oj"]
-[ext_resource type="PackedScene" uid="uid://cpm6nu6nagl0n" path="res://sprites/weapons/pistol.tscn" id="5_jwjfw"]
+[ext_resource type="PackedScene" uid="uid://cpm6nu6nagl0n" path="res://sprites/weapons/wp_pistol.tscn" id="5_jwjfw"]
+[ext_resource type="PackedScene" uid="uid://x6tfnv57sf3g" path="res://sprites/weapons/wp_scythe.tscn" id="5_oxovn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1tys6"]
 radius = 4.80645
@@ -189,7 +189,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "76cf3ea04cfa0b7271752777e79b9c8d"
 
-[node name="Sledgehammer" parent="rb/body/hand/inner" instance=ExtResource("5_5i6oj")]
+[node name="Scythe" parent="rb/body/hand/inner" instance=ExtResource("5_oxovn")]
 
 [node name="debug" type="Node2D" parent="rb/body"]
 

@@ -5,7 +5,7 @@ class_name Pistol
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
-	projectile = load("res://sprites/weapons/pistolbullet.tscn")
+	projectile = load("res://sprites/weapons/wp_pistolbullet.tscn")
 	anim = get_node("animator")
 	anim.play("idle")
 	

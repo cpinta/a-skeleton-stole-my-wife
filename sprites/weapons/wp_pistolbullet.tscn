@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://s276nehy2o24"]
 
-[ext_resource type="Script" path="res://sprites/weapons/pistol_bullet.gd" id="1_db873"]
-[ext_resource type="Texture2D" uid="uid://pcblg8cck13i" path="res://sprites/weapons/pistol_bullet.png" id="2_d7dhs"]
+[ext_resource type="Script" path="res://sprites/weapons/wp_pistol_bullet.gd" id="1_ysus5"]
+[ext_resource type="Texture2D" uid="uid://pcblg8cck13i" path="res://sprites/weapons/pistol_bullet.png" id="2_1ud11"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k2ala"]
-atlas = ExtResource("2_d7dhs")
+atlas = ExtResource("2_1ud11")
 region = Rect2(0, 0, 4, 4)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hxdgl"]
@@ -22,7 +22,7 @@ animations = [{
 size = Vector2(3, 2)
 
 [node name="pistolbullet" type="Node2D"]
-script = ExtResource("1_db873")
+script = ExtResource("1_ysus5")
 weaponName = "Pistol Bullet"
 description = "POW, u dun got shot pardner"
 weaponType = 2

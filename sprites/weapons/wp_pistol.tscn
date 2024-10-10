@@ -1,22 +1,22 @@
 [gd_scene load_steps=8 format=3 uid="uid://cpm6nu6nagl0n"]
 
-[ext_resource type="Script" path="res://sprites/weapons/pistol.gd" id="1_47drg"]
-[ext_resource type="Texture2D" uid="uid://dmg0wrbm8064r" path="res://sprites/weapons/pistol.png" id="2_bpf0p"]
+[ext_resource type="Script" path="res://sprites/weapons/wp_pistol.gd" id="1_dfehn"]
+[ext_resource type="Texture2D" uid="uid://dmg0wrbm8064r" path="res://sprites/weapons/pistol.png" id="2_itmp7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fhc7g"]
-atlas = ExtResource("2_bpf0p")
+atlas = ExtResource("2_itmp7")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ougch"]
-atlas = ExtResource("2_bpf0p")
+atlas = ExtResource("2_itmp7")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ch4k2"]
-atlas = ExtResource("2_bpf0p")
+atlas = ExtResource("2_itmp7")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pl7dp"]
-atlas = ExtResource("2_bpf0p")
+atlas = ExtResource("2_itmp7")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iw2uf"]
@@ -56,7 +56,7 @@ animations = [{
 }]
 
 [node name="pistol" type="Node2D" node_paths=PackedStringArray("shootPoint")]
-script = ExtResource("1_47drg")
+script = ExtResource("1_dfehn")
 shootPoint = NodePath("shoot_point")
 weaponName = "Pistol"
 description = "PEW PEW!"

@@ -8,7 +8,7 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var weaponType : WeaponType
 @export var ownerEntity : Entity
 @export var BASE_DAMAGE := 1
-@export var BASE_COOLDOWN: float = 3
+@export var BASE_COOLDOWN: float = 1
 @export var BASE_ATTACKSPEED: float = 3
 @export var BASE_DURATION: float = 1
 @export var BASE_SIZE: float = 1
@@ -27,6 +27,8 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var size: float = 1
 @export var knockback: float = 1
 @export var range: float = 1
+
+@export var cooldownTimer: float = 0
 
 @export var inUse := false
 @export var onCooldown := false
@@ -47,15 +49,16 @@ func _process(delta):
 
 func _physics_process(delta):
 	if onCooldown:
-		if(cooldown > 0):
-			cooldown -= delta
+		if(cooldownTimer > 0):
+			cooldownTimer -= delta
 		else:
 			cooldown_over()
 	super._physics_process(delta)
 	pass
 
 func use_weapon():
-	inUse = true
+	if not onCooldown:
+		inUse = true
 	pass
 
 func cooldown_over():
@@ -65,7 +68,7 @@ func cooldown_over():
 func end_use_weapon():
 	inUse = false
 	onCooldown = true
-	cooldown = BASE_COOLDOWN
+	cooldownTimer = BASE_COOLDOWN
 	pass
 	
 func quit_use_weapon():
