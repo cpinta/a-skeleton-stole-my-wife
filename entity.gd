@@ -55,6 +55,9 @@ var col : CollisionShape2D
 
 var statusEffects: Array[StatusEffect]
 
+var items: Array[Item]
+@export var weapons: Array[Weapon]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rb = $rb
@@ -181,4 +184,8 @@ func set_default_stats():
 func add_status_effect(effect: StatusEffect):
 	statusEffects.append(effect)
 	apply_effects(0)
+	pass
+	
+func pickup(item: Item):
+	item.pickup(self)
 	pass

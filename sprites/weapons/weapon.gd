@@ -1,4 +1,4 @@
-extends Element
+extends Item
 class_name Weapon
 
 enum WeaponType {Swing, Poke, Projectile}
@@ -6,7 +6,6 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var weaponName := "Weapon"
 @export var description := "this is a weapon"
 @export var weaponType : WeaponType
-@export var ownerEntity : Entity
 @export var BASE_DAMAGE := 1
 @export var BASE_COOLDOWN: float = 1
 @export var BASE_ATTACKSPEED: float = 3
@@ -17,7 +16,6 @@ enum WeaponType {Swing, Poke, Projectile}
 
 @export var IS_QUITTABLE: bool = false
 
-@export var STORE_ANGLE: int = 0
 @export var EQUIP_ANGLE: int = 0
 
 @export var damage := 1
@@ -33,7 +31,6 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var inUse := false
 @export var onCooldown := false
 
-@export var collider: CollisionObject2D
 @export var anim: AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
@@ -88,14 +85,6 @@ func unequip():
 	position = Vector2.ZERO
 	pass
 	
-func pickup(entity : Entity):
-	ownerEntity = entity
-	pass
-	
-func drop():
-	ownerEntity = null
-	pass
-	
 func hit_entity(body: Node2D):
 	var parent = body.get_parent().get_parent().get_parent()
 	print("hit:",parent.name)
@@ -126,4 +115,9 @@ func apply_stats():
 		size *= ownerEntity.attack_size
 		knockback *= ownerEntity.attack_knockback
 		range *= ownerEntity.attack_range
+	pass
+	
+func pickup(entity : Entity):
+	super.pickup(entity)
+	equip()
 	pass

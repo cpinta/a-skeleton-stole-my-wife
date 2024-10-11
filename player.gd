@@ -11,13 +11,16 @@ var handInner : Node2D
 var back : Node2D
 var body : Node2D
 
+var pickupArea: Area2D
+
 @export var DASH_SPEED := 125
 @export var HAND_DISTANCE: float = 10
 @export var HAND_HEIGHT: float = 12
 @export var ARM_OFFSET: Vector2
 
-@export var weapons: Array[Weapon]
 @export var currentHand: HandToUse = HandToUse.LEFT
+
+@export var availablePickups: Array[Item]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -34,17 +37,14 @@ func _ready():
 	
 	anim.play("idle")
 	
-	hand = $rb/body/hand
-	handInner = hand.get_node("inner")
-	back = $rb/body/back
 	body = $rb/body
+	hand = body.get_node("hand")
+	handInner = hand.get_node("inner")
+	back = body.get_node("back")
 	
-	
-	#debug variables
-	weapons.append(handInner.get_child(1))
-	weapons[0].equip()
-	weapons.append(back.get_child(0))
-	weapons[1].unequip()
+	pickupArea = body.get_node("pickup")
+	pickupArea.connect("body_entered", entered_pickup_area)
+	pickupArea.connect("body_exited", exited_pickup_area)
 	
 	pass
 
@@ -66,6 +66,8 @@ func _process(delta):
 		use_weapon(HandToUse.RIGHT)
 	if Input.is_action_just_released("shoot_right"):
 		stop_use_weapon(HandToUse.RIGHT)
+	if Input.is_action_just_released("interact"):
+		interact()
 	
 	lineMouseAim.points[1] = get_global_mouse_position() - rb.global_position
 	aimPoint = lineMouseAim.points[1]
@@ -137,3 +139,50 @@ func get_input_vector():
 		inputVector.y += 1
 	if Input.is_action_pressed("down"):
 		inputVector.y -= 1
+		
+func interact():
+	if availablePickups.size() > 0:
+		var shortestDistance: float = 0
+		var closestItem: Item = availablePickups[0]
+		for item in availablePickups:
+			var itemDistance = (position - item.position).length
+			if itemDistance > shortestDistance:
+				shortestDistance = itemDistance
+				closestItem = item
+			pass
+		if closestItem is Weapon:
+			if weapons.size() < 2:
+				
+			else:
+				
+		pickup(closestItem)
+		
+	pass
+	
+func drop_weapon(weapon: Weapon):
+	
+	pass
+
+func equip_weapon(weapon: Weapon, slot: HandToUse):
+	
+	pass
+
+func entered_pickup_area(node: Node2D):
+	var parent = node.get_parent()
+	print("entered pickup:",parent.name)
+	if parent != null:
+		if parent is Item:
+			var item = parent as Item
+			if not availablePickups.has(item):
+				availablePickups.append(item)
+	pass
+	
+func exited_pickup_area(node: Node2D):
+	var parent = node.get_parent()
+	print("exited pickup:",parent.name)
+	if parent != null:
+		if parent is Item:
+			var item = parent as Item
+			if availablePickups.has(item):
+				availablePickups.erase(item)
+	pass

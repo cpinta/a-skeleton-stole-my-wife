@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c4kk5p1t6j1lv"]
+[gd_scene load_steps=22 format=3 uid="uid://c4kk5p1t6j1lv"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_c34vk"]
 [ext_resource type="Texture2D" uid="uid://cvpsamv0hafnm" path="res://sprites/characters/guy3.png" id="2_jos7r"]
@@ -96,6 +96,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rk2fh"]
+radius = 25.0799
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ksnnh"]
 size = Vector2(6, 22)
 
@@ -116,6 +119,48 @@ animations = [{
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_c34vk")
+DASH_SPEED = null
+HAND_DISTANCE = null
+HAND_HEIGHT = null
+ARM_OFFSET = null
+currentHand = null
+BASE_ATTACK_DAMAGE = null
+BASE_ATTACK_COOLDOWN = null
+BASE_ATTACK_SPEED = null
+BASE_ATTACK_DURATION = null
+BASE_ATTACK_SIZE = null
+BASE_ATTACK_KNOCKBACK = null
+BASE_ATTACK_RANGE = null
+BASE_MOVEMENT_MAX_SPEED = null
+BASE_MOVEMENT_ACCELERATION = null
+BASE_DECCELERATION = null
+BASE_DASH_SPEED = null
+BASE_SIZE = null
+attack_damage = null
+attack_cooldown = null
+attack_speed = null
+attack_duration = null
+attack_size = null
+attack_knockback = null
+attack_range = null
+movement_max_speed = null
+movement_acceleration = null
+movement_decceleration = null
+dash_speed = null
+size = null
+POST_HIT_INVINCIBILITY_TIME = null
+isHittable = null
+flickersWhenNotHittable = null
+MAX_COLLISIONS = null
+inputVector = null
+velocity = null
+facingDirection = null
+canWalk = null
+USES_DEFAULT_MOVEMENT = null
+USES_DEFAULT_ANIMATIONS = null
+MIN_SPEED_TO_ANIM = null
+STARTING_HEALTH = null
+health = null
 
 [node name="rb" type="CharacterBody2D" parent="."]
 collision_layer = 2
@@ -151,6 +196,11 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": true
 }
 metadata/_aseprite_wizard_source_file_hash_ = "a11a66f467ebddcaa513bef321456456"
+
+[node name="pickup" type="Area2D" parent="rb/body"]
+
+[node name="shape" type="CollisionShape2D" parent="rb/body/pickup"]
+shape = SubResource("CircleShape2D_rk2fh")
 
 [node name="hurtbox" type="Area2D" parent="rb/body"]
 collision_layer = 2
