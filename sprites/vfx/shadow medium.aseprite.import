@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cwf2hl45iid5f"
+path="res://.godot/imported/shadow medium.aseprite-b1802b120ad6bbc72f9651173553c34b.res"
+
+[deps]
+
+source_file="res://sprites/vfx/shadow medium.aseprite"
+dest_files=["res://.godot/imported/shadow medium.aseprite-b1802b120ad6bbc72f9651173553c34b.res"]
+
+[params]
+

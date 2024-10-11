@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dex2wfeyb6dia"
+path="res://.godot/imported/graveyard tiles.aseprite-bf6d4c96b3af2cf3a5b075469fe7f0ab.res"
+
+[deps]
+
+source_file="res://sprites/tiles/graveyard tiles.aseprite"
+dest_files=["res://.godot/imported/graveyard tiles.aseprite-bf6d4c96b3af2cf3a5b075469fe7f0ab.res"]
+
+[params]
+

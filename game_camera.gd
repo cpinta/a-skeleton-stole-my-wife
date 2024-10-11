@@ -5,6 +5,10 @@ extends Camera2D
 
 @export var debug1: RichTextLabel
 
+@export var includeMouseMovement: bool = true
+@export var MAX_MOUSE_DISTANCE: float = 20
+@export var MOUSE_LERP: float = 0.1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	target = get_tree().get_nodes_in_group("player")[0]
@@ -18,8 +22,6 @@ func _process(delta):
 	if target != null:
 		var rb = target.get_node_or_null("rb")
 		if rb != null:
-			position = rb.position + tOffset
-		var sceptre: Node2D = target.get_node_or_null("rb/body/hand/inner/Sceptre")
-		if sceptre != null:
-			debug1.text = "body scale:"+str(rad_to_deg(sceptre.global_rotation - deg_to_rad(90 * sceptre.global_scale.y)))+"\n"
+			global_position = global_position.lerp(rb.global_position + tOffset + ((get_global_mouse_position() - rb.global_position).normalized() * MAX_MOUSE_DISTANCE), MOUSE_LERP)
+		debug1.text = "mouse vector:"+str(((get_global_mouse_position() - rb.global_position) * MAX_MOUSE_DISTANCE))+"\n"
 	pass

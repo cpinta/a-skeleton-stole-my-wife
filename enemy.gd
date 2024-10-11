@@ -22,6 +22,8 @@ func _ready():
 	
 	BASE_MOVEMENT_ACCELERATION = 500
 	BASE_MOVEMENT_MAX_SPEED = 10
+	
+	facingDirection = Direction.LEFT
 	check_direction()
 	
 	pass # Replace with function body.
