@@ -33,8 +33,7 @@ use_texture_padding = false
 5:3/0 = 0
 7:3/0 = 0
 1:2/0 = 0
-1:2/0/z_index = 2
-1:2/0/y_sort_origin = 5
+1:2/0/z_index = 2000
 1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_mpmmr"]

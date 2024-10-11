@@ -7,7 +7,7 @@ class_name Projectile
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	area = $"collider"
-	area.connect("body_entered", hit_entity)
+	area.connect("area_entered", hit_entity)
 	hitbox = area.get_node("shape")
 	pass # Replace with function body.
 

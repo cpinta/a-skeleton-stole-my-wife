@@ -7,7 +7,8 @@ extends Camera2D
 
 @export var includeMouseMovement: bool = true
 @export var MAX_MOUSE_DISTANCE: float = 20
-@export var MOUSE_LERP: float = 0.1
+@export var MOUSE_DISTANCE_MULTIPLIER: float = 0.2
+@export var MOUSE_LERP: float = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +23,7 @@ func _process(delta):
 	if target != null:
 		var rb = target.get_node_or_null("rb")
 		if rb != null:
-			global_position = global_position.lerp(rb.global_position + tOffset + ((get_global_mouse_position() - rb.global_position).normalized() * MAX_MOUSE_DISTANCE), MOUSE_LERP)
+			var mouseVector: Vector2 = get_global_mouse_position() - rb.global_position;
+			global_position = global_position.lerp(rb.global_position + tOffset + (mouseVector.normalized() * mouseVector.length() * MOUSE_DISTANCE_MULTIPLIER), MOUSE_LERP)
 		debug1.text = "mouse vector:"+str(((get_global_mouse_position() - rb.global_position) * MAX_MOUSE_DISTANCE))+"\n"
 	pass

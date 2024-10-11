@@ -3,7 +3,7 @@ class_name PistolBullet
 
 
 @export var SLOW_TIME: float = 0.5
-@export var SLOW_MULTIPLIER: float = 0.5
+@export var SLOW_MULTIPLIER: float = 0.1
 
 
 # Called when the node enters the scene tree for the first time.

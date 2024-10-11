@@ -7,7 +7,6 @@ var currentSpeedLimit = 25
 var MAX_SLOWDOWN_RATE = 10
 var MAX_ACCELERATION = 100
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
 	if inSchoolZone:
@@ -20,12 +19,12 @@ func _process(delta):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	weaponName = "Corn Stalk"
-	description = "Stalk up or stalk out."
+	weaponName = "Sceptre"
+	description = "Poke! Poke! Poke!"
 	BASE_DAMAGE = 0
-	BASE_KNOCKBACK = 75
-	BASE_DURATION = 0.25
-	BASE_COOLDOWN = 0.1
+	BASE_KNOCKBACK = 150
+	BASE_DURATION = 0.5
+	BASE_COOLDOWN = 0.25
 	
 	EQUIP_ANGLE = 180
 	STORE_ANGLE = -45
