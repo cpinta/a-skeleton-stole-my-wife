@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://x6tfnv57sf3g"]
+[gd_scene load_steps=9 format=3 uid="uid://x6tfnv57sf3g"]
 
 [ext_resource type="Script" path="res://sprites/weapons/wp_scythe.gd" id="1_bjuds"]
 [ext_resource type="Texture2D" uid="uid://clolpu2e1akg" path="res://sprites/weapons/scythe2.png" id="2_crhpm"]
@@ -26,6 +26,9 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8f2jl"]
+size = Vector2(23.5, 29.2109)
 
 [node name="Scythe" type="Node2D"]
 rotation = 0.785398
@@ -70,5 +73,15 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": true
 }
 metadata/_aseprite_wizard_source_file_hash_ = "4d67793315aa8bd4332b25a12c1541af"
+
+[node name="pickup" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="shape" type="CollisionShape2D" parent="pickup"]
+position = Vector2(16.0121, -2.93064)
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_8f2jl")
 
 [connection signal="area_entered" from="collider" to="." method="_on_collider_area_entered"]

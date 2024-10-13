@@ -23,10 +23,10 @@ class_name PokeWeapon
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	area = $"collider"
 	area.connect("area_entered", hit_entity)
 	hitbox = area.get_node("shape")
-	hitbox.disabled = true
 	weaponType = WeaponType.Poke
 	pass # Replace with function body.
 

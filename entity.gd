@@ -6,6 +6,7 @@ enum Direction {LEFT = -1, RIGHT = 1}
 var anim : AnimatedSprite2D
 var rb : CharacterBody2D
 var col : CollisionShape2D
+var body : Node2D
 
 @export var BASE_ATTACK_DAMAGE: float = 1
 @export var BASE_ATTACK_COOLDOWN: float = 1
@@ -60,9 +61,12 @@ var items: Array[Item]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	rb = $rb
-	anim = $rb/body/animation
+	rb = get_node("rb")
+	body = rb.get_node("body")
+	anim = body.get_node("animation")
 	health = STARTING_HEALTH
+	weapons.append(null)
+	weapons.append(null)
 	set_default_stats()
 	pass # Replace with function body.
 
@@ -189,3 +193,18 @@ func add_status_effect(effect: StatusEffect):
 func pickup(item: Item):
 	item.pickup(self)
 	pass
+
+func get_weapon_count():
+	var count: int = 0
+	if(weapons[0] != null):
+		count += 1
+	if(weapons[1] != null):
+		count += 1
+	return count
+	
+func get_first_open_weapon_slot():
+	if(weapons[0] != null):
+		return 0
+	if(weapons[1] != null):
+		return 1
+	return -1

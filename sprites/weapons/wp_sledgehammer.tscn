@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://chfidnfkpiklh"]
+[gd_scene load_steps=7 format=3 uid="uid://chfidnfkpiklh"]
 
 [ext_resource type="Script" path="res://sprites/weapons/wp_sledgehammer.gd" id="1_gkpol"]
 [ext_resource type="Texture2D" uid="uid://hd4u8682poyl" path="res://sprites/weapons/sledge2.png" id="2_1chq2"]
@@ -20,6 +20,9 @@ animations = [{
 "name": &"default",
 "speed": 10.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywm7m"]
+size = Vector2(10, 26)
 
 [node name="Sledgehammer" type="Node2D"]
 rotation = 0.785398
@@ -55,5 +58,15 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": true
 }
 metadata/_aseprite_wizard_source_file_hash_ = "eaf834180aa7da270025579cb045fab0"
+
+[node name="pickup" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="shape" type="CollisionShape2D" parent="pickup"]
+position = Vector2(8.48528, -8.48528)
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_ywm7m")
 
 [connection signal="area_entered" from="collider" to="." method="_on_collider_area_entered"]

@@ -9,7 +9,6 @@ var arm : Node2D
 var hand : Node2D
 var handInner : Node2D
 var back : Node2D
-var body : Node2D
 
 var pickupArea: Area2D
 
@@ -31,20 +30,21 @@ func _ready():
 	BASE_MOVEMENT_ACCELERATION = 500
 	BASE_MOVEMENT_MAX_SPEED = 100
 	
-	lineMouseAim = $"rb/body/debug/aimline"
-	lineMouseAim.add_point(Vector2.ZERO)
-	lineMouseAim.add_point(Vector2.ZERO)
-	
 	anim.play("idle")
 	
-	body = $rb/body
 	hand = body.get_node("hand")
 	handInner = hand.get_node("inner")
 	back = body.get_node("back")
 	
 	pickupArea = body.get_node("pickup")
-	pickupArea.connect("body_entered", entered_pickup_area)
-	pickupArea.connect("body_exited", exited_pickup_area)
+	pickupArea.connect("area_entered", entered_pickup_area)
+	pickupArea.connect("area_exited", exited_pickup_area)
+	
+	
+	lineMouseAim = body.get_node("debug/aimline")
+	lineMouseAim.add_point(Vector2.ZERO)
+	lineMouseAim.add_point(Vector2.ZERO)
+	
 	
 	pass
 
@@ -80,12 +80,12 @@ func _process(delta):
 	pass
 	
 func use_weapon(hand: HandToUse):
-	if not weapons[currentHand].inUse:
+	if weapons.size() > hand:
 		if not weapons[hand] == null:
-			if hand != currentHand:
-				swap_weapons()
-			weapons[hand].use_weapon()
-		pass
+			if not weapons[currentHand].inUse:
+				if hand != currentHand:
+					swap_weapons()
+				weapons[hand].use_weapon()
 	
 func stop_use_weapon(hand: HandToUse):
 	if not weapons[hand] == null:
@@ -145,26 +145,44 @@ func interact():
 		var shortestDistance: float = 0
 		var closestItem: Item = availablePickups[0]
 		for item in availablePickups:
-			var itemDistance = (position - item.position).length
+			var itemDistance = rb.global_position.distance_to(item.global_position)
 			if itemDistance > shortestDistance:
 				shortestDistance = itemDistance
 				closestItem = item
 			pass
 		if closestItem is Weapon:
 			if weapons.size() < 2:
-				
+				pickup(closestItem)
+				drop_weapon(weapons[currentHand])
+				equip_weapon(closestItem)
 			else:
+				pickup(closestItem)
+				equip_weapon(closestItem)
 				
-		pickup(closestItem)
 		
 	pass
 	
 func drop_weapon(weapon: Weapon):
-	
+	if weapons.has(weapon):
+		weapons.erase(weapon)
 	pass
 
-func equip_weapon(weapon: Weapon, slot: HandToUse):
-	
+func equip_weapon(weapon: Weapon):
+	if weapons.size() == 0:
+		weapon.reparent(handInner, false)
+		weapons.append(weapon)
+		weapons[0].equip()
+		weapons[0].equip()
+		currentHand = HandToUse.LEFT
+	elif weapons.size() == 1:
+		swap_weapons()
+		weapon.reparent(handInner, false)
+		weapons[get_first_open_weapon_slot()].equip()
+	elif weapons.size() == 2:
+		drop_weapon(weapons[currentHand])
+		weapons[currentHand] = weapon
+		weapon.reparent(handInner, false)
+		weapons[currentHand].equip()
 	pass
 
 func entered_pickup_area(node: Node2D):

@@ -16,6 +16,7 @@ class_name SwingWeapon
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	SWING_START_ANGLE = FRONT_FACING_ANGLE - (SWING_ARC_ANGLE/2)
 	SWING_END_ANGLE = FRONT_FACING_ANGLE + (SWING_ARC_ANGLE/2)
 	rotation_degrees = FRONT_FACING_ANGLE
@@ -24,7 +25,6 @@ func _ready():
 	area = $"collider"
 	area.connect("area_entered", hit_entity)
 	hitbox = area.get_node("shape")
-	hitbox.disabled = true
 	weaponType = WeaponType.Swing
 	pass # Replace with function body.
 

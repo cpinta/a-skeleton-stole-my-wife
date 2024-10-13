@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpm6nu6nagl0n"]
+[gd_scene load_steps=9 format=3 uid="uid://cpm6nu6nagl0n"]
 
 [ext_resource type="Script" path="res://sprites/weapons/wp_pistol.gd" id="1_dfehn"]
 [ext_resource type="Texture2D" uid="uid://dmg0wrbm8064r" path="res://sprites/weapons/pistol.png" id="2_itmp7"]
@@ -55,6 +55,9 @@ animations = [{
 "speed": 14.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k58v"]
+size = Vector2(8, 5)
+
 [node name="pistol" type="Node2D" node_paths=PackedStringArray("shootPoint")]
 script = ExtResource("1_dfehn")
 shootPoint = NodePath("shoot_point")
@@ -83,3 +86,12 @@ metadata/_aseprite_wizard_interface_config_ = {
 
 [node name="shoot_point" type="Node2D" parent="."]
 position = Vector2(5, -2)
+
+[node name="pickup" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="shape" type="CollisionShape2D" parent="pickup"]
+position = Vector2(1, -0.5)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_1k58v")

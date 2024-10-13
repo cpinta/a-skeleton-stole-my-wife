@@ -35,6 +35,7 @@ enum WeaponType {Swing, Poke, Projectile}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	pass # Replace with function body.
 
 
@@ -120,4 +121,8 @@ func apply_stats():
 func pickup(entity : Entity):
 	super.pickup(entity)
 	equip()
+	pass
+	
+func drop():
+	super.drop()
 	pass

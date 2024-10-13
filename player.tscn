@@ -1,10 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://c4kk5p1t6j1lv"]
+[gd_scene load_steps=20 format=3 uid="uid://c4kk5p1t6j1lv"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_c34vk"]
 [ext_resource type="Texture2D" uid="uid://cvpsamv0hafnm" path="res://sprites/characters/guy3.png" id="2_jos7r"]
 [ext_resource type="Texture2D" uid="uid://cypilpykkmbyk" path="res://sprites/characters/arm.png" id="3_s1pg7"]
-[ext_resource type="PackedScene" uid="uid://cpm6nu6nagl0n" path="res://sprites/weapons/wp_pistol.tscn" id="5_jwjfw"]
-[ext_resource type="PackedScene" uid="uid://e18okywm4qom" path="res://sprites/weapons/wp_corn_stalk.tscn" id="5_wkrfm"]
 [ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="6_310wt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1tys6"]
@@ -117,54 +115,10 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" groups=["player"]]
 script = ExtResource("1_c34vk")
-DASH_SPEED = null
-HAND_DISTANCE = null
-HAND_HEIGHT = null
-ARM_OFFSET = null
-currentHand = null
-BASE_ATTACK_DAMAGE = null
-BASE_ATTACK_COOLDOWN = null
-BASE_ATTACK_SPEED = null
-BASE_ATTACK_DURATION = null
-BASE_ATTACK_SIZE = null
-BASE_ATTACK_KNOCKBACK = null
-BASE_ATTACK_RANGE = null
-BASE_MOVEMENT_MAX_SPEED = null
-BASE_MOVEMENT_ACCELERATION = null
-BASE_DECCELERATION = null
-BASE_DASH_SPEED = null
-BASE_SIZE = null
-attack_damage = null
-attack_cooldown = null
-attack_speed = null
-attack_duration = null
-attack_size = null
-attack_knockback = null
-attack_range = null
-movement_max_speed = null
-movement_acceleration = null
-movement_decceleration = null
-dash_speed = null
-size = null
-POST_HIT_INVINCIBILITY_TIME = null
-isHittable = null
-flickersWhenNotHittable = null
-MAX_COLLISIONS = null
-inputVector = null
-velocity = null
-facingDirection = null
-canWalk = null
-USES_DEFAULT_MOVEMENT = null
-USES_DEFAULT_ANIMATIONS = null
-MIN_SPEED_TO_ANIM = null
-STARTING_HEALTH = null
-health = null
 
 [node name="rb" type="CharacterBody2D" parent="."]
-collision_layer = 2
-collision_mask = 5
 
 [node name="collider" type="CollisionShape2D" parent="rb"]
 position = Vector2(1, -0.035)
@@ -198,6 +152,8 @@ metadata/_aseprite_wizard_interface_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "a11a66f467ebddcaa513bef321456456"
 
 [node name="pickup" type="Area2D" parent="rb/body"]
+collision_layer = 0
+collision_mask = 32
 
 [node name="shape" type="CollisionShape2D" parent="rb/body/pickup"]
 shape = SubResource("CircleShape2D_rk2fh")
@@ -214,8 +170,6 @@ shape = SubResource("RectangleShape2D_ksnnh")
 z_index = -1
 position = Vector2(0, -13)
 rotation = 0.785398
-
-[node name="pistol" parent="rb/body/back" instance=ExtResource("5_jwjfw")]
 
 [node name="hand" type="Node2D" parent="rb/body"]
 position = Vector2(-4.5, -6)
@@ -241,8 +195,6 @@ metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true
 }
 metadata/_aseprite_wizard_source_file_hash_ = "76cf3ea04cfa0b7271752777e79b9c8d"
-
-[node name="Corn Stalk" parent="rb/body/hand/inner" instance=ExtResource("5_wkrfm")]
 
 [node name="debug" type="Node2D" parent="rb/body"]
 position = Vector2(-3.5, -5.5)

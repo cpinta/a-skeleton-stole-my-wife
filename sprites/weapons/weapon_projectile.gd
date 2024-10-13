@@ -12,6 +12,7 @@ class_name ProjecteWeapon
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	IS_QUITTABLE = true
 	bulletsInClip = BASE_CLIP_SIZE
 	
@@ -74,10 +75,5 @@ func reload():
 	pass
 
 func hit_entity(body: Node2D):
-	var parent = body.get_parent()
-	print("hit:",parent.name)
-	if parent != null:
-		if parent is Entity:
-			var entity = parent as Entity
-			entity.hurt(BASE_DAMAGE, BASE_KNOCKBACK, Vector2.RIGHT.rotated(global_rotation))
+	super.hit_entity(body)
 	pass
