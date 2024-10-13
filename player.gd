@@ -44,8 +44,6 @@ func _ready():
 	lineMouseAim = body.get_node("debug/aimline")
 	lineMouseAim.add_point(Vector2.ZERO)
 	lineMouseAim.add_point(Vector2.ZERO)
-	
-	
 	pass
 
 
@@ -68,6 +66,8 @@ func _process(delta):
 		stop_use_weapon(HandToUse.RIGHT)
 	if Input.is_action_just_released("interact"):
 		interact()
+	if Input.is_action_just_released("drop"):
+		drop_key()
 	
 	lineMouseAim.points[1] = get_global_mouse_position() - rb.global_position
 	aimPoint = lineMouseAim.points[1]
@@ -158,28 +158,31 @@ func interact():
 			else:
 				pickup(closestItem)
 				equip_weapon(closestItem)
-				
-		
+	pass
+	
+func drop_key():
+	if weapons[currentHand] != null:
+		drop_weapon(weapons[currentHand])
 	pass
 	
 func drop_weapon(weapon: Weapon):
-	if weapons.has(weapon):
-		weapons.erase(weapon)
+	var index = weapons.find(weapon)
+	if index != -1:
+		weapon.drop()
+		weapon.reparent(self.owner, true)
+		weapons[index] = null
 	pass
 
 func equip_weapon(weapon: Weapon):
-	if weapons.size() == 0:
-		weapon.reparent(handInner, false)
-		weapons.append(weapon)
-		weapons[0].equip()
-		weapons[0].equip()
-		currentHand = HandToUse.LEFT
-	elif weapons.size() == 1:
-		swap_weapons()
-		weapon.reparent(handInner, false)
-		weapons[get_first_open_weapon_slot()].equip()
-	elif weapons.size() == 2:
+	var index = get_first_open_weapon_slot()
+	if index == -1:
 		drop_weapon(weapons[currentHand])
+		weapons[currentHand] = weapon
+		weapon.reparent(handInner, false)
+		weapons[currentHand].equip()
+	else:
+		if weapons[currentHand] != null:
+			swap_weapons()
 		weapons[currentHand] = weapon
 		weapon.reparent(handInner, false)
 		weapons[currentHand].equip()

@@ -58,6 +58,7 @@ var statusEffects: Array[StatusEffect]
 
 var items: Array[Item]
 @export var weapons: Array[Weapon]
+@export var MAX_WEAPON_COUNT: int = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -203,8 +204,8 @@ func get_weapon_count():
 	return count
 	
 func get_first_open_weapon_slot():
-	if(weapons[0] != null):
+	if(weapons[0] == null):
 		return 0
-	if(weapons[1] != null):
+	if(weapons[1] == null):
 		return 1
 	return -1
