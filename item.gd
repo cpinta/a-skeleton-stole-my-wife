@@ -40,13 +40,13 @@ func _physics_process(delta):
 		else:
 			height = 0
 			
-		if abs(rotation_degrees - STORE_ANGLE) < 10:
-			rotation_degrees = STORE_ANGLE
-		else:
-			if rotation_degrees > STORE_ANGLE:
-				rotation_degrees += delta * 50
-			else:
-				rotation_degrees -= delta * 50
+		#if abs(rotation_degrees - STORE_ANGLE) < 5:
+			#rotation_degrees = STORE_ANGLE
+		#else:
+			#if rotation_degrees > STORE_ANGLE:
+				#rotation_degrees -= delta * 50
+			#else:
+				#rotation_degrees += delta * 50
 		
 	pass
 	
@@ -67,7 +67,9 @@ func drop(height: float):
 	pickupBox.disabled = false
 	load_shadow()
 	self.height = height
-	scale.y = 1
-	rotation = 0
+	global_position.y += height
+	rotation_degrees = STORE_ANGLE
+	#scale.y = 1
+	#rotation = 0
 	
 	pass

@@ -168,11 +168,10 @@ func drop_key():
 func drop_weapon(weapon: Weapon):
 	var index = weapons.find(weapon)
 	if index != -1:
-		weapon.drop(ITEM_DROP_HEIGHT)
+		print(weapon.global_position.y," ",rb.global_position.y," ", abs(weapon.global_position.y - rb.global_position.y))
 		weapon.reparent(self.owner, true)
-		print(weapon.global_position.y," ",rb.global_position.y)
-		weapon.height = weapon.global_position.y + rb.global_position.y
-		weapon.global_position = Vector2(weapon.global_position.x, rb.global_position.y)
+		weapon.drop(abs(weapon.global_position.y - rb.global_position.y))
+		#weapon.global_position = Vector2(weapon.global_position.x, rb.global_position.y)
 
 		weapons[index] = null
 	pass
