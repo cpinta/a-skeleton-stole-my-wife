@@ -59,6 +59,7 @@ var statusEffects: Array[StatusEffect]
 var items: Array[Item]
 @export var weapons: Array[Weapon]
 @export var MAX_WEAPON_COUNT: int = 2
+@export var ITEM_DROP_HEIGHT: float = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -6,7 +6,8 @@ class_name Pistol
 func _ready():
 	super._ready()
 	projectile = load("res://sprites/weapons/wp_pistolbullet.tscn")
-	anim = get_node("animator")
+	anim = get_node("animation")
+	animGroundHeight = anim.position.y
 	anim.play("idle")
 	
 	IS_CONTINUOUS = false

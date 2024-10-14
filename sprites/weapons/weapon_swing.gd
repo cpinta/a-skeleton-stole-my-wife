@@ -19,7 +19,7 @@ func _ready():
 	super._ready()
 	SWING_START_ANGLE = FRONT_FACING_ANGLE - (SWING_ARC_ANGLE/2)
 	SWING_END_ANGLE = FRONT_FACING_ANGLE + (SWING_ARC_ANGLE/2)
-	rotation_degrees = FRONT_FACING_ANGLE
+	rotation_degrees = STORE_ANGLE
 	INHAND_ANGLE = SWING_START_ANGLE
 	
 	area = $"collider"

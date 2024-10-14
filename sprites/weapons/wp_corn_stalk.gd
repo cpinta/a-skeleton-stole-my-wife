@@ -15,6 +15,8 @@ func _ready():
 	
 	anim = $animation
 	collider = $collider
+	anim = get_node("animation")
+	animGroundHeight = anim.position.y
 	
 	super._ready()
 	pass # Replace with function body.

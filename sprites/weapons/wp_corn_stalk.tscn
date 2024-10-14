@@ -78,7 +78,6 @@ collision_mask = 0
 [node name="shape" type="CollisionShape2D" parent="pickup"]
 position = Vector2(10.1039, -10.1039)
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_mrykl")
 
 [connection signal="area_entered" from="collider" to="." method="_on_collider_area_entered"]

@@ -31,8 +31,6 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var inUse := false
 @export var onCooldown := false
 
-@export var anim: AnimatedSprite2D
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
@@ -123,6 +121,6 @@ func pickup(entity : Entity):
 	equip()
 	pass
 	
-func drop():
-	super.drop()
+func drop(height: float):
+	super.drop(height)
 	pass

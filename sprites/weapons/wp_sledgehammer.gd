@@ -14,6 +14,7 @@ func _ready():
 	STORE_ANGLE = -45
 	
 	collider = $collider
+	anim = get_node("animator")
 	
 	super._ready()
 	pass # Replace with function body.

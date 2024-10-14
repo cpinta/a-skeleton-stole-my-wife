@@ -6,7 +6,6 @@ class_name Enemy
 @export var player : Player
 @export var target : Entity
 @export var FOLLOWS_PLAYER := true
-@export var body : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
