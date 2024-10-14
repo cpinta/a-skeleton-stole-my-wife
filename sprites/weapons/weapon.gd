@@ -13,10 +13,12 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var BASE_SIZE: float = 1
 @export var BASE_KNOCKBACK: float = 1
 @export var BASE_RANGE: float = 1
+@export var BASE_AMMO_COUNT: int = 1
 
 @export var IS_QUITTABLE: bool = false
 
 @export var EQUIP_ANGLE: int = 0
+@export var EQUIP_OFFSET: Vector2 = Vector2.ZERO
 
 @export var damage := 1
 @export var cooldown: float = 3
@@ -25,11 +27,14 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var size: float = 1
 @export var knockback: float = 1
 @export var range: float = 1
+@export var ammoCount: int = 1
+@export var currentAmmoCount: int = 1
 
 @export var cooldownTimer: float = 0
 
 @export var inUse := false
 @export var onCooldown := false
+@export var isEquipped := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,7 +58,7 @@ func _physics_process(delta):
 	pass
 
 func use_weapon():
-	if not onCooldown:
+	if not onCooldown or inUse:
 		inUse = true
 	pass
 
@@ -75,13 +80,15 @@ func quit_use_weapon():
 #called when weapon is put in players hand
 func equip():
 	rotation_degrees = EQUIP_ANGLE
-	position = Vector2.ZERO
+	position = EQUIP_OFFSET
+	isEquipped = true
 	pass
 
 #called when weapon is put on players back
 func unequip():
 	rotation_degrees = STORE_ANGLE
 	position = Vector2.ZERO
+	isEquipped = false
 	pass
 	
 func hit_entity(body: Node2D):
@@ -105,6 +112,7 @@ func apply_stats():
 	size = BASE_SIZE
 	knockback = BASE_KNOCKBACK
 	range = BASE_RANGE
+	ammoCount = BASE_AMMO_COUNT
 	
 	if ownerEntity != null:
 		damage *= ownerEntity.attack_damage

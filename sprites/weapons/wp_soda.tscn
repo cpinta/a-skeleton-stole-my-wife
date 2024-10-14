@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpta3slp6vtcu"]
+
+[ext_resource type="Script" path="res://sprites/weapons/wp_soda.gd" id="1_1p2ry"]
+[ext_resource type="Texture2D" uid="uid://dudkad25g3hhl" path="res://sprites/weapons/soda can.png" id="2_x58iv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4t4v"]
+atlas = ExtResource("2_x58iv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8k1g"]
+atlas = ExtResource("2_x58iv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_622ri"]
+atlas = ExtResource("2_x58iv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggvof"]
+atlas = ExtResource("2_x58iv")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pyti"]
+atlas = ExtResource("2_x58iv")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_03on2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4t4v")
+}],
+"loop": true,
+"name": &"back",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8k1g")
+}],
+"loop": true,
+"name": &"ground",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8k1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_622ri")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggvof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pyti")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k58v"]
+size = Vector2(4, 7)
+
+[node name="soda" type="Node2D"]
+script = ExtResource("1_1p2ry")
+
+[node name="collider" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="shape" type="CollisionPolygon2D" parent="collider"]
+polygon = PackedVector2Array(11, -33, 31, -33, 33, -14, 4, -6)
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(15, -16)
+sprite_frames = SubResource("SpriteFrames_03on2")
+animation = &"idle"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/weapons",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/weapons/soda can.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "6a63f73d6b9d8c7b70329888608aa57c"
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
+
+[node name="shoot_point" type="Node2D" parent="."]
+position = Vector2(4, -6)
+
+[node name="pickup" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="shape" type="CollisionShape2D" parent="pickup"]
+position = Vector2(1, -3.5)
+shape = SubResource("RectangleShape2D_1k58v")

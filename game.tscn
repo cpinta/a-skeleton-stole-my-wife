@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=4 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=12 format=4 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="PackedScene" uid="uid://c4kk5p1t6j1lv" path="res://player.tscn" id="1_1hkuo"]
 [ext_resource type="Script" path="res://game_manager.gd" id="1_ovs6s"]
 [ext_resource type="Script" path="res://game_camera.gd" id="2_o58vj"]
 [ext_resource type="PackedScene" uid="uid://w6kon6yb3cg5" path="res://sprites/weapons/wp_hammer.tscn" id="6_oy2fu"]
 [ext_resource type="PackedScene" uid="uid://bh3wpumymvs44" path="res://shadow.tscn" id="6_upjnh"]
+[ext_resource type="PackedScene" uid="uid://dpta3slp6vtcu" path="res://sprites/weapons/wp_soda.tscn" id="7_a7fk2"]
 [ext_resource type="Texture2D" uid="uid://c7l0h5y10r535" path="res://sprites/tiles/wedding tiles.png" id="7_hngwb"]
+[ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://zombie.tscn" id="8_lt6k4"]
 
 [sub_resource type="Theme" id="Theme_brhd3"]
 
@@ -112,3 +114,8 @@ navigation_enabled = false
 position = Vector2(-94, -30)
 
 [node name="shadow" parent="." instance=ExtResource("6_upjnh")]
+
+[node name="soda" parent="." instance=ExtResource("7_a7fk2")]
+
+[node name="zombie" parent="." instance=ExtResource("8_lt6k4")]
+position = Vector2(88, -1)

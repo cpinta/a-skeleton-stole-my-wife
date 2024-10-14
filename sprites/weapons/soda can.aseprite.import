@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b7nwn4q5km5xu"
+path="res://.godot/imported/soda can.aseprite-1d08292081a24b8ec778d91522f3243b.res"
+
+[deps]
+
+source_file="res://sprites/weapons/soda can.aseprite"
+dest_files=["res://.godot/imported/soda can.aseprite-1d08292081a24b8ec778d91522f3243b.res"]
+
+[params]
+

@@ -25,5 +25,9 @@ func _process(delta):
 		if rb != null:
 			var mouseVector: Vector2 = get_global_mouse_position() - rb.global_position;
 			global_position = global_position.lerp(rb.global_position + tOffset + (mouseVector.normalized() * mouseVector.length() * MOUSE_DISTANCE_MULTIPLIER), MOUSE_LERP)
-		debug1.text = "mouse vector:"+str(((get_global_mouse_position() - rb.global_position) * MAX_MOUSE_DISTANCE))+"\n"
+		
+			var soda = rb.get_node_or_null("body/hand/inner/soda")
+			if soda != null:
+				debug1.text = "sodaTime:"+str(soda.curShootTime)+"\n"
+				debug1.text += "sodaInUse:"+str(soda.inUse)
 	pass
