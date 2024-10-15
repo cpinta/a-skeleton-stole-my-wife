@@ -31,13 +31,15 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	if FOLLOWS_PLAYER:
-		inputVector = (target.global_position() - global_position()).normalized()
-		inputVector = -Vector2(inputVector.x, inputVector.y)
+		set_inputVector_toward_target()
 		check_direction()
 	pass
 
 func _physics_process(delta):
 	super._physics_process(delta)
+	if isInAir:
+		#dont hit player if high up
+		pass
 	pass
 	
 func check_direction():
@@ -46,6 +48,10 @@ func check_direction():
 		
 	elif facingDirection == Direction.RIGHT && inputVector.x < 0:
 		set_direction(Direction.LEFT)
+		
+func set_inputVector_toward_target():
+	inputVector = (target.global_position() - global_position()).normalized()
+	inputVector = -Vector2(inputVector.x, inputVector.y)
 		
 func set_direction(dir: Direction):
 	super.set_direction(dir)

@@ -11,8 +11,6 @@ class_name Item
 @export var pickupArea: Area2D
 @export var pickupBox: CollisionShape2D
 
-@export var anim: AnimatedSprite2D
-@export var animGroundHeight: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,15 +28,9 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
+	super._physics_process(delta)
 	if not pickedUp:	
-		anim.position = Vector2(anim.position.x, animGroundHeight - height)
-		
-		if height > 0:
-			if DOES_HEIGHT_USE_GRAVITY:
-				heightFallSpeed += delta * HEIGHT_FALL_ACCELERATION
-				height -= delta * heightFallSpeed
-		else:
-			height = 0
+		isAffectedByHeight = true
 			
 		#if abs(rotation_degrees - STORE_ANGLE) < 5:
 			#rotation_degrees = STORE_ANGLE

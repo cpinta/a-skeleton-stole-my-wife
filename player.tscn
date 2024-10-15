@@ -119,6 +119,7 @@ animations = [{
 script = ExtResource("1_c34vk")
 
 [node name="rb" type="CharacterBody2D" parent="."]
+collision_layer = 2
 
 [node name="collider" type="CollisionShape2D" parent="rb"]
 position = Vector2(1, -0.035)

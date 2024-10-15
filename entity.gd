@@ -3,7 +3,6 @@ class_name Entity
 
 enum Direction {LEFT = -1, RIGHT = 1}
 
-var anim : AnimatedSprite2D
 var rb : CharacterBody2D
 var col : CollisionShape2D
 var body : Node2D
@@ -61,6 +60,9 @@ var items: Array[Item]
 @export var MAX_WEAPON_COUNT: int = 2
 @export var ITEM_DROP_HEIGHT: float = 5
 
+@export var animWalkName: String = "walk"
+@export var animIdleName: String = "idle"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rb = get_node("rb")
@@ -77,14 +79,15 @@ func _process(delta):
 	if USES_DEFAULT_ANIMATIONS:
 		if canWalk:
 			if velocity.length() > MIN_SPEED_TO_ANIM:
-				anim.play("walk")
+				anim.play(animWalkName)
 			else:
-				anim.play("idle")
+				anim.play(animIdleName)
 	if not isHittable and flickersWhenNotHittable:
 		anim.visible = not anim.visible
 	pass
 
 func _physics_process(delta):
+	super._physics_process(delta)
 	if statusEffects.size() > 0:
 		apply_effects(delta)
 	else:

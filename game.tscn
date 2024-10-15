@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bh3wpumymvs44" path="res://shadow.tscn" id="6_upjnh"]
 [ext_resource type="PackedScene" uid="uid://dpta3slp6vtcu" path="res://sprites/weapons/wp_soda.tscn" id="7_a7fk2"]
 [ext_resource type="Texture2D" uid="uid://c7l0h5y10r535" path="res://sprites/tiles/wedding tiles.png" id="7_hngwb"]
-[ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://zombie.tscn" id="8_lt6k4"]
+[ext_resource type="PackedScene" uid="uid://cw36fdm5jl1nv" path="res://sprites/enemies/slime.tscn" id="9_qupqd"]
 
 [sub_resource type="Theme" id="Theme_brhd3"]
 
@@ -117,5 +117,5 @@ position = Vector2(-94, -30)
 
 [node name="soda" parent="." instance=ExtResource("7_a7fk2")]
 
-[node name="zombie" parent="." instance=ExtResource("8_lt6k4")]
-position = Vector2(88, -1)
+[node name="slime" parent="." instance=ExtResource("9_qupqd")]
+position = Vector2(71, -22)

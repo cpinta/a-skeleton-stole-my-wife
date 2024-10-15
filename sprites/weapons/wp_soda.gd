@@ -11,6 +11,7 @@ class_name Soda
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	weaponName = "13 Pack of Soda"
 	description = "The only baker's dozen I care about."
 	BASE_DAMAGE = 0
@@ -20,7 +21,6 @@ func _ready():
 	currentAmmoCount = BASE_AMMO_COUNT
 	
 	collider = $collider
-	anim = get_node("animation")
 	anim.play("ground")
 	
 	area = $"collider"
@@ -29,12 +29,10 @@ func _ready():
 	hitbox.disabled = true
 	
 	IS_QUITTABLE = false
-	animGroundHeight = anim.position.y
 	
 	EQUIP_ANGLE = 90
 	EQUIP_OFFSET = -Vector2.ONE * 2
 	
-	super._ready()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,0 +1,127 @@
+[gd_scene load_steps=10 format=3 uid="uid://cw36fdm5jl1nv"]
+
+[ext_resource type="Texture2D" uid="uid://sbjf8u1a0wjh" path="res://sprites/enemies/blue slime.png" id="1_jkyu0"]
+[ext_resource type="Script" path="res://sprites/enemies/slime.gd" id="1_qkhdp"]
+[ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="2_g7e2i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e7wec"]
+radius = 5.0
+height = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypxhr"]
+atlas = ExtResource("1_jkyu0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guecb"]
+atlas = ExtResource("1_jkyu0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0kn6"]
+atlas = ExtResource("1_jkyu0")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ppok"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypxhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guecb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypxhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0kn6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guecb")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0kn6")
+}],
+"loop": true,
+"name": &"land",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb5xc"]
+size = Vector2(14, 10)
+
+[node name="slime" type="Node2D"]
+script = ExtResource("1_qkhdp")
+
+[node name="rb" type="CharacterBody2D" parent="."]
+collision_layer = 4
+collision_mask = 7
+
+[node name="collider" type="CollisionShape2D" parent="rb"]
+position = Vector2(-5.96046e-08, 4.76837e-07)
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CapsuleShape2D_e7wec")
+
+[node name="body" type="Node2D" parent="rb"]
+
+[node name="animation" type="AnimatedSprite2D" parent="rb/body"]
+texture_filter = 1
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_1ppok")
+animation = &"idle"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/enemies",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/enemies/blue slime.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "3bdafada09db8f1ea381b1add2b1b7e3"
+
+[node name="hurtbox" type="Area2D" parent="rb/body"]
+collision_layer = 4
+collision_mask = 16
+
+[node name="shape" type="CollisionShape2D" parent="rb/body/hurtbox"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_hb5xc")
+
+[node name="shadow" type="Sprite2D" parent="rb/body"]
+modulate = Color(1, 1, 1, 0.537255)
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 0.5)
+texture = ExtResource("2_g7e2i")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/vfx",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://sprites/vfx/shadow medium.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "1543c1ff04c12f3ace724b29a33ea866"

@@ -31,7 +31,6 @@ func _ready():
 	
 	collider = $collider
 	anim = $animation
-	animGroundHeight = anim.position.y
 	
 	super._ready()
 	pass # Replace with function body.
