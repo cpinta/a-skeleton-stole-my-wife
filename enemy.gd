@@ -10,7 +10,6 @@ class_name Enemy
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
-	rb.collision_mask = 3
 	
 	player = get_tree().get_nodes_in_group("player")[0]
 	
