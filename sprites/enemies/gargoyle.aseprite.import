@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cl54db047ne8d"
+path="res://.godot/imported/gargoyle.aseprite-50446a05409a9e889b20996519446382.res"
+
+[deps]
+
+source_file="res://sprites/enemies/gargoyle.aseprite"
+dest_files=["res://.godot/imported/gargoyle.aseprite-50446a05409a9e889b20996519446382.res"]
+
+[params]
+

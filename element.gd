@@ -7,11 +7,15 @@ class_name Element
 var shadowPrefab: PackedScene
 var shadow: Shadow
 
+# the altitude of the entity
 var height: float = 0
 var heightOnGround: bool = true
 var wasJustOffGround: bool = false
 var INAIR_HEIGHT: float = 25
 var isInAir: bool = false
+
+# the height of the entity itself
+var entity_height: float = 25
 
 var heightVerticalSpeed: float = 0
 var DOES_HEIGHT_USE_GRAVITY: bool = true
@@ -28,6 +32,7 @@ func _ready():
 		if anim == null:
 			print("ERROR: "+name+" couldn't find animator")
 	animGroundHeight = anim.position.y
+	
 	pass # Replace with function body.
 
 

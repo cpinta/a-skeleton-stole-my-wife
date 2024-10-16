@@ -25,8 +25,6 @@ var pickupArea: Area2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
-	rb.collision_mask = 3
-	
 	BASE_MOVEMENT_ACCELERATION = 500
 	BASE_MOVEMENT_MAX_SPEED = 100
 	
@@ -44,6 +42,8 @@ func _ready():
 	lineMouseAim = body.get_node("debug/aimline")
 	lineMouseAim.add_point(Vector2.ZERO)
 	lineMouseAim.add_point(Vector2.ZERO)
+	
+	entity_height = 25
 	pass
 
 
