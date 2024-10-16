@@ -35,8 +35,14 @@ func _process(delta):
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	if isInAir:
+	if height > 25:
 		#dont hit player if high up
+		rb.collision_layer = 0b001000
+		rb.collision_mask = 0b001001
+		pass
+	else:
+		rb.collision_layer = 0b0000100
+		rb.collision_mask = 0b000111
 		pass
 	pass
 	

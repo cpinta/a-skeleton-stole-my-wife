@@ -109,26 +109,23 @@ func _physics_process(delta):
 
 func collide(delta: float):
 	var collision_count := 0
-	var collision: KinematicCollision2D = rb.move_and_collide(-Vector2(velocity.x, velocity.y) * delta)
+	var collision = rb.move_and_collide(-Vector2(velocity.x, velocity.y) * delta)
 	while collision and collision_count < MAX_COLLISIONS:
 		var collider = collision.get_collider()
-		var normal = collision.get_normal()
-		var remainder = collision.get_remainder()
-		var angle = collision.get_angle()
 		
-		if collider.get_parent() is Entity:
-			var entity = collider.get_parent() as Entity
-			var test = entity.height
-			if height + entity_height < entity.height or height > entity.height + entity_height:
-				break
-				pass
-			pass
-		
-		velocity = Vector2(velocity.x + (-1 * abs(normal.x) * velocity.x), velocity.y + (-1 * abs(normal.y) * velocity.y))
-		remainder = Vector2(remainder.x + (-1 * abs(normal.x) * remainder.x), remainder.y + (-1 * abs(normal.y) * remainder.y))
-		
-		collision_count += 1
-		collision = rb.move_and_collide(remainder)
+		if collider is Player:
+			#collider.hit(DAMAGE)
+			#queue.free()
+			break
+		else:
+			var normal = collision.get_normal()
+			var remainder = collision.get_remainder()
+			var angle = collision.get_angle()
+			velocity = Vector2(velocity.x + (-1 * abs(normal.x) * velocity.x), velocity.y + (-1 * abs(normal.y) * velocity.y))
+			remainder = Vector2(remainder.x + (-1 * abs(normal.x) * remainder.x), remainder.y + (-1 * abs(normal.y) * remainder.y))
+			
+			collision_count += 1
+			collision = rb.move_and_collide(remainder)
 	pass
 	
 func attack_enemy(entity: Entity, damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2.ZERO):
