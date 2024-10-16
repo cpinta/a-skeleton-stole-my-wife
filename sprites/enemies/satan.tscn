@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://byhlmvlump0td"]
+
+[ext_resource type="Script" path="res://satan.gd" id="1_6bb12"]
+[ext_resource type="Texture2D" uid="uid://cec153votr10b" path="res://sprites/enemies/soyjack satan.png" id="1_ku38u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybwgt"]
+atlas = ExtResource("1_ku38u")
+region = Rect2(0, 64, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndoua"]
+atlas = ExtResource("1_ku38u")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io0tq"]
+atlas = ExtResource("1_ku38u")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hpf7n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybwgt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndoua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io0tq")
+}],
+"loop": true,
+"name": &"pointing",
+"speed": 10.0
+}]
+
+[node name="satan" type="Control"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -3.82001
+offset_right = 23.0
+offset_bottom = -3.82001
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_6bb12")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_hpf7n")
+animation = &"pointing"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/enemies",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/enemies/soyjack satan.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "0b8c7b32bc7b6fc7a0634a53f6fc2835"

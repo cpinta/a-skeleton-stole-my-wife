@@ -201,7 +201,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "76cf3ea04cfa0b7271752777e79b9c8d"
 position = Vector2(-3.5, -5.5)
 
 [node name="aimline" type="Line2D" parent="rb/body/debug"]
-width = 0.1
+width = 1.0
 
 [node name="shadow" type="Sprite2D" parent="rb/body"]
 modulate = Color(1, 1, 1, 0.537255)

@@ -14,7 +14,7 @@ func _ready():
 	FOLLOWS_PLAYER = false
 	USES_DEFAULT_ANIMATIONS = false
 	isAffectedByHeight = true
-	BASE_MOVEMENT_MAX_SPEED = 50
+	BASE_MOVEMENT_MAX_SPEED = 40
 	HEIGHT_VERTICAL_DECCERLERATION = 20
 
 	anim.play("idle")

@@ -13,7 +13,7 @@ extends Camera2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	target = get_tree().get_nodes_in_group("player")[0]
-	debug1 = $Control/text
+	#debug1 = $Control/text
 	
 	pass # Replace with function body.
 
@@ -25,9 +25,4 @@ func _process(delta):
 		if rb != null:
 			var mouseVector: Vector2 = get_global_mouse_position() - rb.global_position;
 			global_position = global_position.lerp(rb.global_position + tOffset + (mouseVector.normalized() * mouseVector.length() * MOUSE_DISTANCE_MULTIPLIER), MOUSE_LERP)
-		
-			var slime = owner.get_node_or_null("slime")
-			if slime != null:
-				debug1.text = "slime height:"+str(slime.height)+"\n"
-				#debug1.text += "sodaInUse:"+str(slime.inUse)
 	pass

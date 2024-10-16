@@ -25,7 +25,6 @@ animations = [{
 size = Vector2(11, 16.4218)
 
 [node name="Hammer" type="Node2D"]
-rotation = 0.785398
 script = ExtResource("1_57ot1")
 
 [node name="collider" type="Area2D" parent="."]

@@ -11,10 +11,10 @@ func _ready():
 	BASE_DURATION = 0.5
 	
 	EQUIP_ANGLE = 45
-	STORE_ANGLE = -45
+	STORE_ANGLE = 0
 	
 	collider = $collider
-	anim = get_node("animator")
+	anim = get_node("animation")
 	
 	super._ready()
 	pass # Replace with function body.

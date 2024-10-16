@@ -61,7 +61,7 @@ func drop(height: float):
 	self.height = height
 	global_position.y += height
 	rotation_degrees = STORE_ANGLE
-	#scale.y = 1
+	scale.y = 1
 	#rotation = 0
 	
 	pass
