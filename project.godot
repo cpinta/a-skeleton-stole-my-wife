@@ -92,6 +92,7 @@ drop={
 2d_physics/layer_4="flying_enemies"
 2d_physics/layer_5="weapons"
 2d_physics/layer_6="items"
+2d_physics/layer_7="flying_weapons"
 
 [rendering]
 

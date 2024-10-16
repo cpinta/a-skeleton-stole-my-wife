@@ -2,10 +2,13 @@ extends Entity
 class_name Enemy
 
 @export var DAMAGE := 1
+@export var DAMAGES_ON_CONTACT: bool = false
 
 @export var player : Player
 @export var target : Entity
 @export var FOLLOWS_PLAYER := true
+
+@export var hurtbox : Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +16,7 @@ func _ready():
 	player = get_tree().get_nodes_in_group("player")[0]
 	
 	body = $"rb/body"
+	hurtbox = body.get_node_or_null("hurtbox")
 	
 	if FOLLOWS_PLAYER:
 		target = player
@@ -35,14 +39,21 @@ func _process(delta):
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	if height > 25:
+	if height > 25: #if flying
 		#dont hit player if high up
-		rb.collision_layer = 0b001000
-		rb.collision_mask = 0b001001
+		rb.collision_layer = 0b0001000
+		rb.collision_mask = 0b1001001
+		if hurtbox != null:
+			hurtbox.collision_layer = 0b0001000
+			hurtbox.collision_mask = 0b1001001
 		pass
-	else:
-		rb.collision_layer = 0b0000100
-		rb.collision_mask = 0b000111
+	else: #if on ground
+		rb.collision_layer = 0b00000100
+		rb.collision_mask = 0b0000111
+		if hurtbox != null:
+			hurtbox.collision_layer = 0b00000100
+			hurtbox.collision_mask = 0b0000111
+		pass
 		pass
 	pass
 	

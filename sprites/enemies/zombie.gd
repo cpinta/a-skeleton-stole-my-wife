@@ -6,7 +6,7 @@ func _ready():
 	super._ready()
 	FOLLOWS_PLAYER = true
 	
-	BASE_MOVEMENT_MAX_SPEED = 1
+	BASE_MOVEMENT_MAX_SPEED = 10
 	
 	pass # Replace with function body.
 
