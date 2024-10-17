@@ -144,6 +144,7 @@ shape = SubResource("RectangleShape2D_8vvcv")
 modulate = Color(1, 1, 1, 0.537255)
 z_index = -1
 texture_filter = 1
+position = Vector2(0, 0.5)
 texture = ExtResource("3_htpn1")
 metadata/_aseprite_wizard_config_ = {
 "i_mode": 1,

@@ -9,6 +9,12 @@ var arm : Node2D
 var hand : Node2D
 var handInner : Node2D
 var back : Node2D
+var face : Node2D
+
+var faceAnim: AnimatedSprite2D 
+var FACE_ORIGIN: Vector2
+var FACE_ANIM_MAX_FACE_DIST: float = 1.1
+var FACE_ANIM_MAX_MOUSE_DIST: float = 50
 
 var pickupArea: Area2D
 
@@ -33,6 +39,9 @@ func _ready():
 	hand = body.get_node("hand")
 	handInner = hand.get_node("inner")
 	back = body.get_node("back")
+	face = body.get_node("face")
+	faceAnim = face.get_node("animation")
+	FACE_ORIGIN = face.position
 	
 	pickupArea = body.get_node("pickup")
 	pickupArea.connect("area_entered", entered_pickup_area)
@@ -76,7 +85,8 @@ func _process(delta):
 		anim.play("walk")
 	else:
 		anim.play("idle")
-	
+		
+	face_anim_process()
 	pass
 	
 func use_weapon(hand: HandToUse):
@@ -209,4 +219,17 @@ func exited_pickup_area(node: Node2D):
 			var item = parent as Item
 			if availablePickups.has(item):
 				availablePickups.erase(item)
+	pass
+
+func face_anim_process():
+	#sync faceAnim with anim
+	faceAnim.play(anim.animation)
+	faceAnim.set_frame_and_progress(anim.get_frame(), 0)
+	faceAnim.flip_h = anim.flip_h
+	
+	var mouseDist: float = get_global_mouse_position().distance_to(body.global_position + FACE_ORIGIN)
+	var faceAnimVector: Vector2 = (get_global_mouse_position() - FACE_ORIGIN).normalized() * (FACE_ANIM_MAX_FACE_DIST * min(mouseDist, FACE_ANIM_MAX_MOUSE_DIST)/FACE_ANIM_MAX_MOUSE_DIST)
+	
+	face.position = Vector2(FACE_ORIGIN.x * face.global_scale.y, FACE_ORIGIN.y) + faceAnimVector 
+	print(min(mouseDist, FACE_ANIM_MAX_MOUSE_DIST)/FACE_ANIM_MAX_MOUSE_DIST)
 	pass

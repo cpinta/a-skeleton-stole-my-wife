@@ -1,13 +1,87 @@
-[gd_scene load_steps=20 format=3 uid="uid://c4kk5p1t6j1lv"]
+[gd_scene load_steps=28 format=3 uid="uid://c4kk5p1t6j1lv"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_c34vk"]
 [ext_resource type="Texture2D" uid="uid://cvpsamv0hafnm" path="res://sprites/characters/guy3.png" id="2_jos7r"]
+[ext_resource type="Texture2D" uid="uid://dvduyqprk2016" path="res://guy2 face.png" id="2_woule"]
 [ext_resource type="Texture2D" uid="uid://cypilpykkmbyk" path="res://sprites/characters/arm.png" id="3_s1pg7"]
 [ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="6_310wt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1tys6"]
 radius = 5.175
 height = 21.4286
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2010"]
+atlas = ExtResource("2_woule")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5lwa"]
+atlas = ExtResource("2_woule")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7f22"]
+atlas = ExtResource("2_woule")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwx4n"]
+atlas = ExtResource("2_woule")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf4wc"]
+atlas = ExtResource("2_woule")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_url6u"]
+atlas = ExtResource("2_woule")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gfkwf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2010")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5lwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7f22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5lwa")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2010")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwx4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qf4wc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_url6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2010")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wwx4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qf4wc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_url6u")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 20.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45ssn"]
 atlas = ExtResource("2_jos7r")
@@ -127,9 +201,27 @@ rotation = 1.5708
 scale = Vector2(0.28, 0.37)
 shape = SubResource("CapsuleShape2D_1tys6")
 
-[node name="face" type="Node2D" parent="rb"]
-
 [node name="body" type="Node2D" parent="rb"]
+
+[node name="face" type="Node2D" parent="rb/body"]
+position = Vector2(2, -18)
+
+[node name="animation" type="AnimatedSprite2D" parent="rb/body/face"]
+z_index = 1
+texture_filter = 1
+position = Vector2(-2, 6)
+sprite_frames = SubResource("SpriteFrames_gfkwf")
+animation = &"idle"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/characters/guy2 face.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "4f1f3c50c5a402597f90d8dadf05ba30"
 
 [node name="animation" type="AnimatedSprite2D" parent="rb/body"]
 texture_filter = 1
@@ -173,13 +265,14 @@ position = Vector2(0, -13)
 rotation = 0.785398
 
 [node name="hand" type="Node2D" parent="rb/body"]
+z_index = 2
 position = Vector2(-4.5, -6)
 
 [node name="inner" type="Node2D" parent="rb/body/hand"]
 
 [node name="animation" type="AnimatedSprite2D" parent="rb/body/hand/inner"]
 texture_filter = 1
-position = Vector2(0, -6)
+position = Vector2(0.5, -6)
 sprite_frames = SubResource("SpriteFrames_30vey")
 animation = &"idle"
 metadata/_aseprite_wizard_config_ = {
@@ -207,7 +300,7 @@ width = 1.0
 modulate = Color(1, 1, 1, 0.537255)
 z_index = -1
 texture_filter = 1
-position = Vector2(1, 0)
+position = Vector2(1, 0.5)
 texture = ExtResource("6_310wt")
 metadata/_aseprite_wizard_config_ = {
 "i_mode": 1,

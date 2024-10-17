@@ -1,0 +1,257 @@
+[gd_scene load_steps=29 format=4 uid="uid://uc3l8elxyv5m"]
+
+[ext_resource type="Script" path="res://game_manager.gd" id="1_kpyy7"]
+[ext_resource type="Script" path="res://game_camera.gd" id="2_dj5lk"]
+[ext_resource type="PackedScene" uid="uid://c4kk5p1t6j1lv" path="res://player.tscn" id="3_tneht"]
+[ext_resource type="Texture2D" uid="uid://c7l0h5y10r535" path="res://sprites/tiles/wedding tiles.png" id="4_brx0y"]
+[ext_resource type="PackedScene" uid="uid://w6kon6yb3cg5" path="res://sprites/weapons/wp_hammer.tscn" id="5_pr2kt"]
+[ext_resource type="PackedScene" uid="uid://bh3wpumymvs44" path="res://shadow.tscn" id="6_sebca"]
+[ext_resource type="PackedScene" uid="uid://dpta3slp6vtcu" path="res://sprites/weapons/wp_soda.tscn" id="7_gjowv"]
+[ext_resource type="PackedScene" uid="uid://cw36fdm5jl1nv" path="res://sprites/enemies/slime.tscn" id="8_vnaxg"]
+[ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://sprites/enemies/zombie.tscn" id="9_coxei"]
+[ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://sprites/weapons/wp_sledgehammer.tscn" id="10_ut01r"]
+[ext_resource type="Script" path="res://sprites/weapons/gargoyle.gd" id="11_aak2c"]
+[ext_resource type="Texture2D" uid="uid://b70nmmoco05dq" path="res://sprites/enemies/zombie.png" id="12_ed6y5"]
+[ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="13_qpdv3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfguo"]
+resource_name = "Wedding"
+texture = ExtResource("4_brx0y")
+use_texture_padding = false
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0 = 0
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+7:3/0 = 0
+1:2/0 = 0
+1:2/0/z_index = 2000
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_mpmmr"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_bfguo")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k0yc0"]
+radius = 5.0
+height = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk2ao"]
+atlas = ExtResource("12_ed6y5")
+region = Rect2(0, 54, 16, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb003"]
+atlas = ExtResource("12_ed6y5")
+region = Rect2(16, 54, 16, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ir2v"]
+atlas = ExtResource("12_ed6y5")
+region = Rect2(0, 0, 16, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hj64"]
+atlas = ExtResource("12_ed6y5")
+region = Rect2(16, 0, 16, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61blu"]
+atlas = ExtResource("12_ed6y5")
+region = Rect2(32, 0, 16, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adch2"]
+atlas = ExtResource("12_ed6y5")
+region = Rect2(48, 0, 16, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qq4no"]
+atlas = ExtResource("12_ed6y5")
+region = Rect2(0, 27, 16, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cogrs"]
+atlas = ExtResource("12_ed6y5")
+region = Rect2(16, 27, 16, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_libeq"]
+atlas = ExtResource("12_ed6y5")
+region = Rect2(32, 27, 16, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsf7f"]
+atlas = ExtResource("12_ed6y5")
+region = Rect2(48, 27, 16, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_egjkd"]
+animations = [{
+"frames": [{
+"duration": 2.16667,
+"texture": SubResource("AtlasTexture_wk2ao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb003")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_2ir2v")
+}, {
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_3hj64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61blu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adch2")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_qq4no")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_cogrs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_libeq")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_tsf7f")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vvcv"]
+size = Vector2(11, 18)
+
+[node name="WeddingHall" type="Node2D"]
+script = ExtResource("1_kpyy7")
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+z_as_relative = false
+y_sort_enabled = true
+script = ExtResource("2_dj5lk")
+
+[node name="Player" parent="." instance=ExtResource("3_tneht")]
+
+[node name="tiles walls" type="TileMapLayer" parent="."]
+show_behind_parent = true
+visibility_layer = 512
+z_index = -1
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD6//n/AAACAAEAAAD7//n/AAACAAEAAAD8//n/AAACAAEAAAD9//n/AAACAAEAAAD+//n/AAACAAEAAAD///n/AAACAAEAAAAAAPn/AAACAAEAAAABAPn/AAACAAEAAAACAPn/AAACAAEAAAADAPn/AAACAAEAAAAEAPn/AAACAAEAAAAFAPn/AAACAAEAAAAGAPn/AAACAAEAAAAHAPn/AAACAAEAAAD5//n/AAACAAEAAAD4//n/AAACAAEAAAD3//n/AAABAAEAAAD3//r/AAACAAIAAAD4//r/AAACAAIAAAD5//r/AAACAAIAAAD6//r/AAACAAIAAAD7//r/AAACAAIAAAD8//r/AAACAAIAAAD9//r/AAACAAIAAAD+//r/AAACAAIAAAD///r/AAACAAIAAAAAAPr/AAACAAIAAAABAPr/AAACAAIAAAACAPr/AAACAAIAAAADAPr/AAACAAIAAAAEAPr/AAACAAIAAAAFAPr/AAACAAIAAAAGAPr/AAACAAIAAAAHAPr/AAACAAIAAAAHAPv/AAACAAIAAAAGAPv/AAACAAIAAAAFAPv/AAACAAIAAAAEAPv/AAACAAIAAAADAPv/AAACAAIAAAACAPv/AAACAAIAAAABAPv/AAACAAIAAAAAAPv/AAACAAIAAAD///v/AAACAAIAAAD+//v/AAACAAIAAAD9//v/AAACAAIAAAD8//v/AAACAAIAAAD7//v/AAACAAIAAAD6//v/AAACAAIAAAD5//v/AAACAAIAAAD4//v/AAACAAIAAAD3//v/AAACAAIAAAD3//z/AAACAAMAAAD4//z/AAACAAMAAAD5//z/AAACAAMAAAD6//z/AAACAAMAAAD7//z/AAACAAMAAAD8//z/AAACAAMAAAD9//z/AAACAAMAAAD+//z/AAACAAMAAAD///z/AAACAAMAAAAAAPz/AAACAAMAAAABAPz/AAACAAMAAAACAPz/AAACAAMAAAADAPz/AAACAAMAAAAEAPz/AAACAAMAAAAFAPz/AAACAAMAAAAGAPz/AAACAAMAAAAHAPz/AAACAAMAAAD2//n/AAABAAIAAAD2//r/AAABAAIAAAD2//v/AAABAAIAAAD2//z/AAABAAIAAAD2//3/AAABAAIAAAD2//7/AAABAAIAAAD2////AAABAAIAAAD2/wAAAAABAAIAAAD2/wEAAAABAAIAAAD2/wIAAAABAAIAAAAIAPn/AAABAAIAADAIAPr/AAABAAIAADAIAPv/AAABAAIAADAIAPz/AAABAAIAADAIAP3/AAABAAIAADAIAP7/AAABAAIAADAIAP//AAABAAIAADAIAAAAAAABAAIAADAIAAEAAAABAAIAADAIAAIAAAABAAIAADA=")
+tile_set = SubResource("TileSet_mpmmr")
+
+[node name="tiles walls2" type="TileMapLayer" parent="tiles walls"]
+visibility_layer = 512
+z_index = 1
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD6//n/AAACAAEAAAD7//n/AAACAAEAAAD8//n/AAACAAEAAAD9//n/AAACAAEAAAD+//n/AAACAAEAAAD///n/AAACAAEAAAAAAPn/AAACAAEAAAABAPn/AAACAAEAAAACAPn/AAACAAEAAAADAPn/AAACAAEAAAAEAPn/AAACAAEAAAAFAPn/AAACAAEAAAAGAPn/AAACAAEAAAAHAPn/AAACAAEAAAD5//n/AAACAAEAAAD4//n/AAACAAEAAAD3//n/AAABAAEAAAD3//r/AAACAAIAAAD3//v/AAACAAIAAAD3//z/AAACAAMAAAD4//r/AAACAAIAAAD4//v/AAADAAIAAAD4//z/AAADAAMAAAD5//r/AAACAAIAAAD5//v/AAACAAIAAAD5//z/AAACAAMAAAD6//r/AAACAAIAAAD6//v/AAAFAAIAAAD6//z/AAAFAAMAAAD7//r/AAACAAIAAAD7//v/AAACAAIAAAD7//z/AAACAAMAAAD8//r/AAACAAIAAAD8//v/AAADAAIAAAD8//z/AAADAAMAAAD9//r/AAACAAIAAAD9//v/AAACAAIAAAD9//z/AAACAAMAAAD+//r/AAACAAIAAAD+//v/AAAFAAIAAAD+//z/AAAFAAMAAAD///r/AAACAAIAAAD///v/AAACAAIAAAD///z/AAACAAMAAAAAAPr/AAACAAIAAAAAAPv/AAADAAIAAAAAAPz/AAADAAMAAAABAPr/AAACAAIAAAABAPv/AAACAAIAAAABAPz/AAACAAMAAAACAPr/AAACAAIAAAACAPv/AAAEAAIAAAACAPz/AAAEAAMAAAADAPr/AAACAAIAAAADAPv/AAACAAIAAAADAPz/AAACAAMAAAAEAPr/AAACAAIAAAAEAPv/AAADAAIAAAAEAPz/AAADAAMAAAAFAPr/AAACAAIAAAAFAPv/AAACAAIAAAAFAPz/AAACAAMAAAAGAPr/AAACAAIAAAAGAPv/AAAFAAIAAAAGAPz/AAAFAAMAAAAHAPr/AAACAAIAAAAHAPv/AAACAAIAAAAHAPz/AAACAAMAAAA=")
+tile_set = SubResource("TileSet_mpmmr")
+
+[node name="tiles floor" type="TileMapLayer" parent="."]
+show_behind_parent = true
+visibility_layer = 512
+z_index = -1000
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD3//3/AAAHAAMAAAD4//3/AAAHAAMAAAD5//3/AAAHAAMAAAD6//3/AAAHAAMAAAD7//3/AAAHAAMAAAD8//3/AAAHAAMAAAD9//3/AAAHAAMAAAD+//3/AAAHAAMAAAD///3/AAAHAAMAAAAAAP3/AAAHAAMAAAABAP3/AAAHAAMAAAACAP3/AAAHAAMAAAADAP3/AAAHAAMAAAAEAP3/AAAHAAMAAAAFAP3/AAAHAAMAAAAGAP3/AAAHAAMAAAAHAP3/AAAHAAMAAAAHAP7/AAAHAAMAAAAGAP7/AAAHAAMAAAAFAP7/AAAHAAMAAAAEAP7/AAAHAAMAAAADAP7/AAAHAAMAAAACAP7/AAAHAAMAAAABAP7/AAAHAAMAAAAAAP7/AAAHAAMAAAD6//7/AAAHAAMAAAD5//7/AAAHAAMAAAD4//7/AAAHAAMAAAD3//7/AAAHAAMAAAD7//7/AAAHAAMAAAD8//7/AAAHAAMAAAD9//7/AAAHAAMAAAD+//7/AAAHAAMAAAD///7/AAAHAAMAAAD8////AAAHAAMAAAD7////AAAHAAMAAAD6////AAAHAAMAAAD4////AAAHAAMAAAD3////AAAHAAMAAAD3/wAAAAAHAAMAAAD4/wEAAAAHAAMAAAD4/wIAAAAHAAMAAAD5/wIAAAAHAAMAAAD5/wEAAAAHAAMAAAD5/wAAAAAHAAMAAAD4/wAAAAAHAAMAAAD3/wEAAAAHAAMAAAD3/wIAAAAHAAMAAAD5////AAAHAAMAAAD6/wIAAAAHAAMAAAD6/wEAAAAHAAMAAAD7/wEAAAAHAAMAAAD7/wAAAAAHAAMAAAD7/wIAAAAHAAMAAAD8/wIAAAAHAAMAAAD8/wEAAAAHAAMAAAD8/wAAAAAHAAMAAAD6/wAAAAAHAAMAAAD9/wEAAAAHAAMAAAD9/wAAAAAHAAMAAAD+/wAAAAAHAAMAAAD9////AAAHAAMAAAD9/wIAAAAHAAMAAAD+/wIAAAAHAAMAAAD+/wEAAAAHAAMAAAD//wEAAAAHAAMAAAD//wAAAAAHAAMAAAD/////AAAHAAMAAAD+////AAAHAAMAAAD//wIAAAAHAAMAAAAAAAIAAAAHAAMAAAAAAAEAAAAHAAMAAAABAAEAAAAHAAMAAAABAAAAAAAHAAMAAAAAAAAAAAAHAAMAAAABAAIAAAAHAAMAAAABAP//AAAHAAMAAAAAAP//AAAHAAMAAAACAAEAAAAHAAMAAAADAAEAAAAHAAMAAAADAAAAAAAHAAMAAAADAP//AAAHAAMAAAACAP//AAAHAAMAAAACAAAAAAAHAAMAAAACAAIAAAAHAAMAAAADAAIAAAAHAAMAAAAEAAEAAAAHAAMAAAAEAAAAAAAHAAMAAAAEAP//AAAHAAMAAAAFAAEAAAAHAAMAAAAFAAAAAAAHAAMAAAAFAP//AAAHAAMAAAAEAAIAAAAHAAMAAAAFAAIAAAAHAAMAAAAGAAIAAAAHAAMAAAAGAAEAAAAHAAMAAAAGAAAAAAAHAAMAAAAGAP//AAAHAAMAAAAHAAIAAAAHAAMAAAAHAP//AAAHAAMAAAAHAAAAAAAHAAMAAAAHAAEAAAAHAAMAAAA=")
+tile_set = SubResource("TileSet_mpmmr")
+collision_enabled = false
+navigation_enabled = false
+
+[node name="Hammer" parent="." instance=ExtResource("5_pr2kt")]
+position = Vector2(-94, -30)
+
+[node name="shadow" parent="." instance=ExtResource("6_sebca")]
+
+[node name="soda" parent="." instance=ExtResource("7_gjowv")]
+
+[node name="slime" parent="." instance=ExtResource("8_vnaxg")]
+position = Vector2(71, -22)
+
+[node name="zombie" parent="." instance=ExtResource("9_coxei")]
+position = Vector2(39, -12)
+
+[node name="Sledgehammer" parent="." instance=ExtResource("10_ut01r")]
+position = Vector2(-63, -29)
+
+[node name="gargoyle" type="Node2D" parent="." groups=["enemies"]]
+editor_description = "dis da player
+"
+position = Vector2(78, -24)
+script = ExtResource("11_aak2c")
+
+[node name="rb" type="CharacterBody2D" parent="gargoyle"]
+collision_layer = 4
+collision_mask = 7
+
+[node name="collider" type="CollisionShape2D" parent="gargoyle/rb"]
+position = Vector2(-5.96046e-08, 4.76837e-07)
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CapsuleShape2D_k0yc0")
+
+[node name="body" type="Node2D" parent="gargoyle/rb"]
+
+[node name="animation" type="AnimatedSprite2D" parent="gargoyle/rb/body"]
+texture_filter = 1
+position = Vector2(0, -13.5)
+sprite_frames = SubResource("SpriteFrames_egjkd")
+animation = &"walk"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/enemies",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/enemies/zombie.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "8d842c3b9686aa7bd0f5f48399c424dc"
+
+[node name="hurtbox" type="Area2D" parent="gargoyle/rb/body"]
+collision_layer = 4
+collision_mask = 16
+
+[node name="shape" type="CollisionShape2D" parent="gargoyle/rb/body/hurtbox"]
+position = Vector2(0.5, -9)
+shape = SubResource("RectangleShape2D_8vvcv")
+
+[node name="shadow" type="Sprite2D" parent="gargoyle/rb/body"]
+modulate = Color(1, 1, 1, 0.537255)
+z_index = -1
+texture_filter = 1
+texture = ExtResource("13_qpdv3")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/vfx",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://sprites/vfx/shadow medium.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "1543c1ff04c12f3ace724b29a33ea866"

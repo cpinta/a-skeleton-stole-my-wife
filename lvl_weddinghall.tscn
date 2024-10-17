@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=23 format=4 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_kpyy7"]
 [ext_resource type="Script" path="res://game_camera.gd" id="2_dj5lk"]
@@ -10,6 +10,65 @@
 [ext_resource type="PackedScene" uid="uid://cw36fdm5jl1nv" path="res://sprites/enemies/slime.tscn" id="8_vnaxg"]
 [ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://sprites/enemies/zombie.tscn" id="9_coxei"]
 [ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://sprites/weapons/wp_sledgehammer.tscn" id="10_ut01r"]
+[ext_resource type="Script" path="res://sprites/weapons/gargoyle.gd" id="11_aak2c"]
+[ext_resource type="Texture2D" uid="uid://dib1h1icw1sat" path="res://sprites/enemies/gargoyle.png" id="12_00rs2"]
+[ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="13_qpdv3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k0yc0"]
+radius = 5.0
+height = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojc8p"]
+atlas = ExtResource("12_00rs2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fnl1"]
+atlas = ExtResource("12_00rs2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isg5w"]
+atlas = ExtResource("12_00rs2")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g66n6"]
+atlas = ExtResource("12_00rs2")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_feyuf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojc8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fnl1")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isg5w")
+}],
+"loop": true,
+"name": &"stone",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g66n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isg5w")
+}],
+"loop": true,
+"name": &"transform",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vvcv"]
+size = Vector2(11, 18)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfguo"]
 resource_name = "Wedding"
@@ -44,19 +103,105 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_bfguo")
 
 [node name="WeddingHall" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_kpyy7")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
-z_as_relative = false
-y_sort_enabled = true
 script = ExtResource("2_dj5lk")
 
 [node name="Player" parent="." instance=ExtResource("3_tneht")]
+position = Vector2(-31.565, 0)
+
+[node name="Hammer" parent="." instance=ExtResource("5_pr2kt")]
+position = Vector2(-94, -30)
+
+[node name="shadow" parent="." instance=ExtResource("6_sebca")]
+
+[node name="soda" parent="." instance=ExtResource("7_gjowv")]
+
+[node name="slime" parent="." instance=ExtResource("8_vnaxg")]
+position = Vector2(71, -22)
+
+[node name="zombie" parent="." instance=ExtResource("9_coxei")]
+position = Vector2(39, -12)
+
+[node name="Sledgehammer" parent="." instance=ExtResource("10_ut01r")]
+position = Vector2(-63, -29)
+
+[node name="gargoyle" type="Node2D" parent="." groups=["enemies"]]
+editor_description = "dis da player
+"
+position = Vector2(78, -24)
+script = ExtResource("11_aak2c")
+
+[node name="rb" type="CharacterBody2D" parent="gargoyle"]
+collision_layer = 4
+collision_mask = 7
+
+[node name="collider" type="CollisionShape2D" parent="gargoyle/rb"]
+position = Vector2(-5.96046e-08, 4.76837e-07)
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CapsuleShape2D_k0yc0")
+
+[node name="body" type="Node2D" parent="gargoyle/rb"]
+
+[node name="animation" type="AnimatedSprite2D" parent="gargoyle/rb/body"]
+texture_filter = 1
+position = Vector2(0, -13.5)
+sprite_frames = SubResource("SpriteFrames_feyuf")
+animation = &"fly"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/enemies",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/enemies/gargoyle.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "4abe245d285df028ec3e1bbda32b8947"
+
+[node name="hurtbox" type="Area2D" parent="gargoyle/rb/body"]
+collision_layer = 4
+collision_mask = 16
+
+[node name="shape" type="CollisionShape2D" parent="gargoyle/rb/body/hurtbox"]
+position = Vector2(0.5, -9)
+shape = SubResource("RectangleShape2D_8vvcv")
+
+[node name="shadow" type="Sprite2D" parent="gargoyle/rb/body"]
+modulate = Color(1, 1, 1, 0.537255)
+z_index = -1
+texture_filter = 1
+position = Vector2(0, -0.5)
+texture = ExtResource("13_qpdv3")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/vfx",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://sprites/vfx/shadow medium.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "1543c1ff04c12f3ace724b29a33ea866"
 
 [node name="tiles walls" type="TileMapLayer" parent="."]
 show_behind_parent = true
 visibility_layer = 512
-z_index = -1
+z_index = -1000
 texture_filter = 1
 tile_map_data = PackedByteArray("AAD6//n/AAACAAEAAAD7//n/AAACAAEAAAD8//n/AAACAAEAAAD9//n/AAACAAEAAAD+//n/AAACAAEAAAD///n/AAACAAEAAAAAAPn/AAACAAEAAAABAPn/AAACAAEAAAACAPn/AAACAAEAAAADAPn/AAACAAEAAAAEAPn/AAACAAEAAAAFAPn/AAACAAEAAAAGAPn/AAACAAEAAAAHAPn/AAACAAEAAAD5//n/AAACAAEAAAD4//n/AAACAAEAAAD3//n/AAABAAEAAAD3//r/AAACAAIAAAD4//r/AAACAAIAAAD5//r/AAACAAIAAAD6//r/AAACAAIAAAD7//r/AAACAAIAAAD8//r/AAACAAIAAAD9//r/AAACAAIAAAD+//r/AAACAAIAAAD///r/AAACAAIAAAAAAPr/AAACAAIAAAABAPr/AAACAAIAAAACAPr/AAACAAIAAAADAPr/AAACAAIAAAAEAPr/AAACAAIAAAAFAPr/AAACAAIAAAAGAPr/AAACAAIAAAAHAPr/AAACAAIAAAAHAPv/AAACAAIAAAAGAPv/AAACAAIAAAAFAPv/AAACAAIAAAAEAPv/AAACAAIAAAADAPv/AAACAAIAAAACAPv/AAACAAIAAAABAPv/AAACAAIAAAAAAPv/AAACAAIAAAD///v/AAACAAIAAAD+//v/AAACAAIAAAD9//v/AAACAAIAAAD8//v/AAACAAIAAAD7//v/AAACAAIAAAD6//v/AAACAAIAAAD5//v/AAACAAIAAAD4//v/AAACAAIAAAD3//v/AAACAAIAAAD3//z/AAACAAMAAAD4//z/AAACAAMAAAD5//z/AAACAAMAAAD6//z/AAACAAMAAAD7//z/AAACAAMAAAD8//z/AAACAAMAAAD9//z/AAACAAMAAAD+//z/AAACAAMAAAD///z/AAACAAMAAAAAAPz/AAACAAMAAAABAPz/AAACAAMAAAACAPz/AAACAAMAAAADAPz/AAACAAMAAAAEAPz/AAACAAMAAAAFAPz/AAACAAMAAAAGAPz/AAACAAMAAAAHAPz/AAACAAMAAAD2//n/AAABAAIAAAD2//r/AAABAAIAAAD2//v/AAABAAIAAAD2//z/AAABAAIAAAD2//3/AAABAAIAAAD2//7/AAABAAIAAAD2////AAABAAIAAAD2/wAAAAABAAIAAAD2/wEAAAABAAIAAAD2/wIAAAABAAIAAAAIAPn/AAABAAIAADAIAPr/AAABAAIAADAIAPv/AAABAAIAADAIAPz/AAABAAIAADAIAP3/AAABAAIAADAIAP7/AAABAAIAADAIAP//AAABAAIAADAIAAAAAAABAAIAADAIAAEAAAABAAIAADAIAAIAAAABAAIAADA=")
 tile_set = SubResource("TileSet_mpmmr")
@@ -77,19 +222,3 @@ tile_map_data = PackedByteArray("AAD3//3/AAAHAAMAAAD4//3/AAAHAAMAAAD5//3/AAAHAAM
 tile_set = SubResource("TileSet_mpmmr")
 collision_enabled = false
 navigation_enabled = false
-
-[node name="Hammer" parent="." instance=ExtResource("5_pr2kt")]
-position = Vector2(-94, -30)
-
-[node name="shadow" parent="." instance=ExtResource("6_sebca")]
-
-[node name="soda" parent="." instance=ExtResource("7_gjowv")]
-
-[node name="slime" parent="." instance=ExtResource("8_vnaxg")]
-position = Vector2(71, -22)
-
-[node name="zombie" parent="." instance=ExtResource("9_coxei")]
-position = Vector2(39, -12)
-
-[node name="Sledgehammer" parent="." instance=ExtResource("10_ut01r")]
-position = Vector2(-63, -29)

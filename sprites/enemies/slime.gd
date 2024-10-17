@@ -1,4 +1,5 @@
 extends Enemy
+class_name Slime
 
 var IDLE_TIME: float = 0.5
 var idle_timer: float = 0
