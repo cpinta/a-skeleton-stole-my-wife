@@ -13,7 +13,7 @@ var face : Node2D
 
 var faceAnim: AnimatedSprite2D 
 var FACE_ORIGIN: Vector2
-var FACE_ANIM_MAX_FACE_DIST: float = 1.1
+var FACE_ANIM_MAX_FACE_DIST: float = 1
 var FACE_ANIM_MAX_MOUSE_DIST: float = 50
 
 var pickupArea: Area2D
@@ -33,6 +33,7 @@ func _ready():
 	super._ready()
 	BASE_MOVEMENT_ACCELERATION = 500
 	BASE_MOVEMENT_MAX_SPEED = 100
+	#USES_DEFAULT_ANIMATIONS = true
 	
 	anim.play("idle")
 	
@@ -52,12 +53,13 @@ func _ready():
 	lineMouseAim.add_point(Vector2.ZERO)
 	lineMouseAim.add_point(Vector2.ZERO)
 	
-	entity_height = 25
+	elementHeight.entity_height = 25
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	super._process(delta)
 	get_input_vector()
 	
 	if Input.is_action_pressed("jump"):
@@ -81,7 +83,7 @@ func _process(delta):
 	lineMouseAim.points[1] = get_global_mouse_position() - rb.global_position
 	aimPoint = lineMouseAim.points[1]
 	
-	if velocity.length() > 0.1:
+	if entityVelocity.length() > 0.1:
 		anim.play("walk")
 	else:
 		anim.play("idle")
@@ -117,26 +119,17 @@ func swap_weapons():
 	currentHand = HandToUse.RIGHT if currentHand == HandToUse.LEFT else HandToUse.LEFT
 	
 func dash():
-	velocity = inputVector * DASH_SPEED
+	entityVelocity = inputVector * DASH_SPEED
 	
 func _physics_process(delta):
 	super._physics_process(delta)
 	hand.look_at(get_global_mouse_position())
 	hand.global_position = hand.global_position.lerp(rb.global_position - Vector2(0, HAND_HEIGHT) + hand.transform.x * min(HAND_DISTANCE, (get_global_mouse_position() - rb.global_position).length()), 0.9)
 	hand.rotate(-(PI/2))
-	if hand.global_position.x > rb.global_position.x:
-		anim.flip_h = false
-		back.scale.y = 1
-		back.rotation = 0
-		handInner.scale.y = 1
-		handInner.rotation = 0
+	if hand.global_position.x > global_position.x:
+		set_direction(Direction.RIGHT)
 	else:
-		anim.flip_h = true
-		back.scale.y = -1
-		back.rotation = -PI
-		handInner.scale.y = -1
-		handInner.rotation = -PI
-		
+		set_direction(Direction.LEFT)
 	pass
 	
 func get_input_vector():
@@ -221,6 +214,23 @@ func exited_pickup_area(node: Node2D):
 				availablePickups.erase(item)
 	pass
 
+func set_direction(dir: Direction):
+	facingDirection = dir
+	if dir == Direction.LEFT:
+		anim.flip_h = true
+		back.scale.y = -1
+		back.rotation = -PI
+		handInner.scale.y = -1
+		handInner.rotation = -PI
+		pass
+	if dir == Direction.RIGHT:
+		anim.flip_h = false
+		back.scale.y = 1
+		back.rotation = 0
+		handInner.scale.y = 1
+		handInner.rotation = 0
+		pass
+
 func face_anim_process():
 	#sync faceAnim with anim
 	faceAnim.play(anim.animation)
@@ -230,6 +240,7 @@ func face_anim_process():
 	var mouseDist: float = get_global_mouse_position().distance_to(body.global_position + FACE_ORIGIN)
 	var faceAnimVector: Vector2 = (get_global_mouse_position() - FACE_ORIGIN).normalized() * (FACE_ANIM_MAX_FACE_DIST * min(mouseDist, FACE_ANIM_MAX_MOUSE_DIST)/FACE_ANIM_MAX_MOUSE_DIST)
 	
-	face.position = Vector2(FACE_ORIGIN.x * face.global_scale.y, FACE_ORIGIN.y) + faceAnimVector 
-	print(min(mouseDist, FACE_ANIM_MAX_MOUSE_DIST)/FACE_ANIM_MAX_MOUSE_DIST)
+	var xoffset: int = 1 if facingDirection == Direction.RIGHT else 0
+	face.position = Vector2(FACE_ORIGIN.x + (facingDirection * xoffset), FACE_ORIGIN.y) + faceAnimVector 
+	print(str(Vector2(FACE_ORIGIN.x + (facingDirection * xoffset), FACE_ORIGIN.y) + faceAnimVector)+" bruh "+str(faceAnimVector))
 	pass

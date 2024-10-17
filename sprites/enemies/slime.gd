@@ -14,9 +14,9 @@ func _ready():
 	super._ready()
 	FOLLOWS_PLAYER = false
 	USES_DEFAULT_ANIMATIONS = false
-	isAffectedByHeight = true
+	elementHeight.isAffectedByHeight = true
 	BASE_MOVEMENT_MAX_SPEED = 30
-	HEIGHT_VERTICAL_DECCERLERATION = 20
+	elementHeight.HEIGHT_VERTICAL_DECCERLERATION = 20
 
 	anim.play("idle")
 	anim.connect("animation_finished", anim_done)
@@ -30,9 +30,9 @@ func _process(delta):
 	
 func _physics_process(delta):
 	super._physics_process(delta)
-	if wasJustOffGround:
+	if elementHeight.wasJustOffGround:
 		land()
-	if heightOnGround:
+	if elementHeight.heightOnGround:
 		if land_timer < LAND_TIME:
 			land_timer += delta
 		else:
@@ -45,7 +45,7 @@ func _physics_process(delta):
 	pass
 
 func jump():
-	heightVerticalSpeed = JUMP_HEIGHT
+	elementHeight.heightVerticalSpeed = JUMP_HEIGHT
 	velocity = velocity.normalized() * movement_max_speed
 	set_inputVector_toward_target()
 	anim.play("jump")

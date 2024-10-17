@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://ckys7dwiljknx"]
+[gd_scene load_steps=18 format=3 uid="uid://ckys7dwiljknx"]
 
 [ext_resource type="Script" path="res://sprites/enemies/zombie.gd" id="1_gt8ip"]
 [ext_resource type="Texture2D" uid="uid://b70nmmoco05dq" path="res://sprites/enemies/zombie.png" id="2_bdsqg"]
+[ext_resource type="Script" path="res://element_height.gd" id="3_1gwnw"]
 [ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="3_htpn1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k0yc0"]
@@ -94,28 +95,25 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vvcv"]
 size = Vector2(11, 18)
 
-[node name="zombie" type="Node2D" groups=["enemies"]]
-editor_description = "dis da player
-"
-script = ExtResource("1_gt8ip")
-
-[node name="rb" type="CharacterBody2D" parent="."]
+[node name="zombie" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 7
+script = ExtResource("1_gt8ip")
 
-[node name="collider" type="CollisionShape2D" parent="rb"]
+[node name="collider" type="CollisionShape2D" parent="."]
 position = Vector2(-5.96046e-08, 4.76837e-07)
 rotation = 1.5708
 scale = Vector2(0.2, 0.2)
 shape = SubResource("CapsuleShape2D_k0yc0")
 
-[node name="body" type="Node2D" parent="rb"]
+[node name="body" type="Node2D" parent="."]
 
-[node name="animation" type="AnimatedSprite2D" parent="rb/body"]
+[node name="animation" type="AnimatedSprite2D" parent="body"]
 texture_filter = 1
 position = Vector2(0, -13.5)
 sprite_frames = SubResource("SpriteFrames_egjkd")
 animation = &"walk"
+script = ExtResource("3_1gwnw")
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
@@ -132,15 +130,15 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "8d842c3b9686aa7bd0f5f48399c424dc"
 
-[node name="hurtbox" type="Area2D" parent="rb/body"]
+[node name="hurtbox" type="Area2D" parent="body"]
 collision_layer = 4
 collision_mask = 16
 
-[node name="shape" type="CollisionShape2D" parent="rb/body/hurtbox"]
+[node name="shape" type="CollisionShape2D" parent="body/hurtbox"]
 position = Vector2(0.5, -9)
 shape = SubResource("RectangleShape2D_8vvcv")
 
-[node name="shadow" type="Sprite2D" parent="rb/body"]
+[node name="shadow" type="Sprite2D" parent="body"]
 modulate = Color(1, 1, 1, 0.537255)
 z_index = -1
 texture_filter = 1

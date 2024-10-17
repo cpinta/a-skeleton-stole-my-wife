@@ -1,5 +1,5 @@
-extends Node2D
-class_name Element
+extends AnimatedSprite2D
+class_name HeightElement
 
 @export var anim: AnimatedSprite2D
 @export var animGroundHeight: float = 0
@@ -28,10 +28,14 @@ func _ready():
 	shadowPrefab = load("res://shadow.tscn")
 	anim = get_node_or_null("animation")
 	if anim == null:
-		anim = get_node_or_null("rb/body/animation")
+		anim = get_node_or_null("body/animation")
 		if anim == null:
-			print("ERROR: "+name+" couldn't find animator")
-	animGroundHeight = anim.position.y
+			anim = self
+			if anim == null:
+				print("ERROR: "+name+" couldn't find animator")
+	
+	if anim != null:
+		animGroundHeight = anim.position.y
 	
 	pass # Replace with function body.
 

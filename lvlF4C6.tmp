@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=7 format=4 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_kpyy7"]
 [ext_resource type="Script" path="res://game_camera.gd" id="2_dj5lk"]
 [ext_resource type="PackedScene" uid="uid://c4kk5p1t6j1lv" path="res://player.tscn" id="3_tneht"]
 [ext_resource type="Texture2D" uid="uid://c7l0h5y10r535" path="res://sprites/tiles/wedding tiles.png" id="4_brx0y"]
-[ext_resource type="PackedScene" uid="uid://cw36fdm5jl1nv" path="res://sprites/enemies/slime.tscn" id="8_vnaxg"]
-[ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://sprites/enemies/zombie.tscn" id="9_coxei"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfguo"]
 resource_name = "Wedding"
@@ -47,7 +45,6 @@ script = ExtResource("1_kpyy7")
 script = ExtResource("2_dj5lk")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("3_tneht")]
-z_as_relative = false
 position = Vector2(-31.565, 0)
 
 [node name="tiles walls" type="TileMapLayer" parent="."]
@@ -74,11 +71,3 @@ tile_map_data = PackedByteArray("AAD3//3/AAAHAAMAAAD4//3/AAAHAAMAAAD5//3/AAAHAAM
 tile_set = SubResource("TileSet_mpmmr")
 collision_enabled = false
 navigation_enabled = false
-
-[node name="zombie" parent="." instance=ExtResource("9_coxei")]
-position = Vector2(39, -14)
-
-[node name="slime" parent="." instance=ExtResource("8_vnaxg")]
-position = Vector2(-87, -26)
-
-[editable path="Player"]

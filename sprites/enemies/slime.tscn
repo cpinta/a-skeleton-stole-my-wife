@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cw36fdm5jl1nv"]
+[gd_scene load_steps=11 format=3 uid="uid://cw36fdm5jl1nv"]
 
 [ext_resource type="Texture2D" uid="uid://sbjf8u1a0wjh" path="res://sprites/enemies/blue slime.png" id="1_jkyu0"]
 [ext_resource type="Script" path="res://sprites/enemies/slime.gd" id="1_qkhdp"]
 [ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="2_g7e2i"]
+[ext_resource type="Script" path="res://element_height.gd" id="3_w5sam"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e7wec"]
 radius = 5.0
@@ -59,26 +60,25 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hb5xc"]
 size = Vector2(14, 10)
 
-[node name="slime" type="Node2D"]
-script = ExtResource("1_qkhdp")
-
-[node name="rb" type="CharacterBody2D" parent="."]
+[node name="slime" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 5
+script = ExtResource("1_qkhdp")
 
-[node name="collider" type="CollisionShape2D" parent="rb"]
+[node name="collider" type="CollisionShape2D" parent="."]
 position = Vector2(-5.96046e-08, 4.76837e-07)
 rotation = 1.5708
 scale = Vector2(0.2, 0.2)
 shape = SubResource("CapsuleShape2D_e7wec")
 
-[node name="body" type="Node2D" parent="rb"]
+[node name="body" type="Node2D" parent="."]
 
-[node name="animation" type="AnimatedSprite2D" parent="rb/body"]
+[node name="animation" type="AnimatedSprite2D" parent="body"]
 texture_filter = 1
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_1ppok")
 animation = &"idle"
+script = ExtResource("3_w5sam")
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
@@ -95,15 +95,15 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "3bdafada09db8f1ea381b1add2b1b7e3"
 
-[node name="hurtbox" type="Area2D" parent="rb/body"]
+[node name="hurtbox" type="Area2D" parent="body"]
 collision_layer = 4
 collision_mask = 16
 
-[node name="shape" type="CollisionShape2D" parent="rb/body/hurtbox"]
+[node name="shape" type="CollisionShape2D" parent="body/hurtbox"]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_hb5xc")
 
-[node name="shadow" type="Sprite2D" parent="rb/body"]
+[node name="shadow" type="Sprite2D" parent="body"]
 modulate = Color(1, 1, 1, 0.537255)
 z_index = -1
 texture_filter = 1

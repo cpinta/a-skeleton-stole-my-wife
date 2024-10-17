@@ -15,7 +15,7 @@ func _ready():
 	super._ready()
 	player = get_tree().get_nodes_in_group("player")[0]
 	
-	body = $"rb/body"
+	body = $"body"
 	hurtbox = body.get_node_or_null("hurtbox")
 	
 	if FOLLOWS_PLAYER:
@@ -39,7 +39,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	super._physics_process(delta)
-	if height > 25: #if flying
+	if elementHeight.height > 25: #if flying
 		#dont hit player if high up
 		rb.collision_layer = 0b0001000
 		rb.collision_mask = 0b1001001
@@ -65,7 +65,7 @@ func check_direction():
 		set_direction(Direction.LEFT)
 		
 func set_inputVector_toward_target():
-	inputVector = (target.global_position() - global_position()).normalized()
+	inputVector = (target.global_position - global_position).normalized()
 	inputVector = -Vector2(inputVector.x, inputVector.y)
 		
 func set_direction(dir: Direction):

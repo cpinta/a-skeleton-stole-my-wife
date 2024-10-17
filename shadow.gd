@@ -1,7 +1,7 @@
 extends Sprite2D
 class_name Shadow
 
-var element: Element
+var element: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,5 +16,5 @@ func _process(delta):
 		queue_free()
 	pass
 
-func setup(element: Element):
+func setup(element: Node2D):
 	self.element = element

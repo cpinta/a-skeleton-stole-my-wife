@@ -1,11 +1,13 @@
-extends Element
+extends CharacterBody2D
 class_name Entity
 
 enum Direction {LEFT = -1, RIGHT = 1}
 
 var rb : CharacterBody2D
+var anim : AnimatedSprite2D
 var col : CollisionShape2D
 var body : Node2D
+var elementHeight: HeightElement
 
 @export var BASE_ATTACK_DAMAGE: float = 1
 @export var BASE_ATTACK_COOLDOWN: float = 1
@@ -42,7 +44,7 @@ var body : Node2D
 @export var MAX_COLLISIONS := 6
 
 @export var inputVector := Vector2.ZERO
-@export var velocity := Vector2.ZERO
+@export var entityVelocity := Vector2.ZERO
 @export var facingDirection := Direction.RIGHT	#The direction the entity's sprite is facing: left or right. Set using set_direction
 @export var canWalk := true
 
@@ -65,9 +67,10 @@ var items: Array[Item]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	rb = get_node("rb")
-	body = rb.get_node("body")
+	rb = self
+	body = $body
 	anim = body.get_node("animation")
+	elementHeight = anim
 	health = STARTING_HEALTH
 	weapons.append(null)
 	weapons.append(null)
@@ -78,7 +81,7 @@ func _ready():
 func _process(delta):
 	if USES_DEFAULT_ANIMATIONS:
 		if canWalk:
-			if velocity.length() > MIN_SPEED_TO_ANIM:
+			if entityVelocity.length() > MIN_SPEED_TO_ANIM:
 				anim.play(animWalkName)
 			else:
 				anim.play(animIdleName)
@@ -87,29 +90,28 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	super._physics_process(delta)
 	if statusEffects.size() > 0:
 		apply_effects(delta)
 	else:
 		set_default_stats()
 	if USES_DEFAULT_MOVEMENT:
 		collide(delta)
-		if velocity.length() > movement_max_speed:
-			velocity = velocity * (0.99)
+		if entityVelocity.length() > movement_max_speed:
+			entityVelocity = entityVelocity * (0.99)
 		
-		if velocity.length() > 0:
-			var diff = velocity.length() - (movement_decceleration * delta)
+		if entityVelocity.length() > 0:
+			var diff = entityVelocity.length() - (movement_decceleration * delta)
 			if diff > 0:
-				velocity = (diff) * velocity.normalized()
+				entityVelocity = (diff) * entityVelocity.normalized()
 			else:
-				velocity = Vector2.ZERO
+				entityVelocity = Vector2.ZERO
 		
-		if not velocity.length() > movement_max_speed:
-			velocity += inputVector * movement_acceleration * delta
+		if not entityVelocity.length() > movement_max_speed:
+			entityVelocity += inputVector * movement_acceleration * delta
 
 func collide(delta: float):
 	var collision_count := 0
-	var collision = rb.move_and_collide(-Vector2(velocity.x, velocity.y) * delta)
+	var collision = move_and_collide(-Vector2(entityVelocity.x, entityVelocity.y) * delta)
 	while collision and collision_count < MAX_COLLISIONS:
 		var collider = collision.get_collider()
 		var entity = collider.get_parent()
@@ -125,7 +127,7 @@ func collide(delta: float):
 		var normal = collision.get_normal()
 		var remainder = collision.get_remainder()
 		var angle = collision.get_angle()
-		velocity = Vector2(velocity.x + (-1 * abs(normal.x) * velocity.x), velocity.y + (-1 * abs(normal.y) * velocity.y))
+		entityVelocity = Vector2(entityVelocity.x + (-1 * abs(normal.x) * entityVelocity.x), entityVelocity.y + (-1 * abs(normal.y) * entityVelocity.y))
 		remainder = Vector2(remainder.x + (-1 * abs(normal.x) * remainder.x), remainder.y + (-1 * abs(normal.y) * remainder.y))
 		
 		collision_count += 1
@@ -155,7 +157,7 @@ func was_killed():
 	pass
 	
 func apply_knockback(amount: int, direction: Vector2):
-	velocity = -amount * direction
+	entityVelocity = -amount * direction
 	pass
 	
 func set_direction(dir: Direction):
@@ -164,9 +166,6 @@ func set_direction(dir: Direction):
 		pass
 	if dir == Direction.RIGHT:
 		pass
-		
-func global_position():
-	return rb.global_position
 
 func apply_effects(delta):
 	set_default_stats()
