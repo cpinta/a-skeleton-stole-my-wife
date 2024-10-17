@@ -21,8 +21,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if target != null:
-		var rb = target.get_node_or_null("rb")
-		if rb != null:
-			var mouseVector: Vector2 = get_global_mouse_position() - rb.global_position;
-			global_position = global_position.lerp(rb.global_position + tOffset + (mouseVector.normalized() * mouseVector.length() * MOUSE_DISTANCE_MULTIPLIER), MOUSE_LERP)
+		var mouseVector: Vector2 = get_global_mouse_position() - target.global_position;
+		global_position = global_position.lerp(target.global_position + tOffset + (mouseVector.normalized() * mouseVector.length() * MOUSE_DISTANCE_MULTIPLIER), MOUSE_LERP)
 	pass

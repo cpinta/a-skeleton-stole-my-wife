@@ -18,15 +18,15 @@ func _ready():
 	super._ready()
 	FOLLOWS_PLAYER = true
 	USES_DEFAULT_ANIMATIONS = false
-	isAffectedByHeight = true
-	DOES_HEIGHT_USE_GRAVITY = false
+	elementHeight.isAffectedByHeight = true
+	elementHeight.DOES_HEIGHT_USE_GRAVITY = false
 	
 	
 	BASE_MOVEMENT_MAX_SPEED = 30
 	BASE_MOVEMENT_ACCELERATION = 10
 	
 	
-	height = 75
+	elementHeight.height = 75
 
 	anim.play("fly")
 	#anim.connect("animation_finished", anim_done)
@@ -44,9 +44,9 @@ func _physics_process(delta):
 		GargoyleState.FLYING:
 			anim.play("fly")
 			if anim.get_frame() == 0:
-				height -= delta * FLY_BOB_SPEED
+				elementHeight.height -= delta * FLY_BOB_SPEED
 			else:
-				height += delta * FLY_BOB_SPEED
+				elementHeight.height += delta * FLY_BOB_SPEED
 			pass
 		GargoyleState.TURNING_TO_STONE:
 			anim.play("transform")
