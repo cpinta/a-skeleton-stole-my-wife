@@ -3,12 +3,18 @@ class_name Enemy
 
 @export var DAMAGE := 1
 @export var DAMAGES_ON_CONTACT: bool = false
+@export var ONLY_DAMAGES_PLAYER: bool = true
 
 @export var player : Player
 @export var target : Entity
 @export var FOLLOWS_PLAYER := true
+@export var FLIP_TOWARD_PLAYER := true
+
+@export var HAS_TURNING_RADIUS : bool = false
+@export var turning_radius: float = 0
 
 @export var hurtbox : Area2D
+@export var hurtboxShape : CollisionShape2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,6 +23,9 @@ func _ready():
 	
 	body = $"body"
 	hurtbox = body.get_node_or_null("hurtbox")
+	if hurtbox != null:
+		hurtbox.connect("area_entered", _collided_with_something)
+		hurtboxShape = hurtbox.get_node_or_null("shape")
 	
 	if FOLLOWS_PLAYER:
 		target = player
@@ -27,13 +36,14 @@ func _ready():
 	facingDirection = Direction.LEFT
 	check_direction()
 	
+	
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
 	if FOLLOWS_PLAYER:
-		set_inputVector_toward_target()
+		set_inputVector_toward_target(delta)
 		check_direction()
 	pass
 
@@ -58,14 +68,19 @@ func _physics_process(delta):
 	pass
 	
 func check_direction():
-	if facingDirection == Direction.LEFT && inputVector.x > 0:
-		set_direction(Direction.RIGHT)
+	if FLIP_TOWARD_PLAYER:
+		if facingDirection == Direction.LEFT && inputVector.x > 0:
+			set_direction(Direction.RIGHT)
+		elif facingDirection == Direction.RIGHT && inputVector.x < 0:
+			set_direction(Direction.LEFT)
 		
-	elif facingDirection == Direction.RIGHT && inputVector.x < 0:
-		set_direction(Direction.LEFT)
-		
-func set_inputVector_toward_target():
-	inputVector = (target.global_position - global_position).normalized()
+func set_inputVector_toward_target(delta):
+	var targetVector = (target.global_position - global_position).normalized()
+	if not HAS_TURNING_RADIUS:
+		inputVector = targetVector
+	else:
+		inputVector =  inputVector.lerp(targetVector, turning_radius * delta)
+		print(inputVector)
 	inputVector = -Vector2(inputVector.x, inputVector.y)
 		
 func set_direction(dir: Direction):
@@ -78,4 +93,13 @@ func set_direction(dir: Direction):
 		#anim.flip_h = true
 		body.scale.y = -1
 		body.rotation = -PI
+	pass
+
+func _collided_with_something(area: Area2D):
+	if DAMAGES_ON_CONTACT:
+		if area.name == "hurtbox":
+			var entity = area.get_parent().get_parent() as Entity
+			if entity != null:
+				if (ONLY_DAMAGES_PLAYER and entity is Player) or not ONLY_DAMAGES_PLAYER:
+					apply_attack_to_entity(entity)
 	pass

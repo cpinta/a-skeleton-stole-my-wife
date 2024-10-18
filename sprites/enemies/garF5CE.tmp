@@ -53,13 +53,13 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k06t0")
 }],
-"loop": false,
+"loop": true,
 "name": &"transform",
 "speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vvcv"]
-size = Vector2(32, 32)
+size = Vector2(11, 18)
 
 [node name="gargoyle" type="CharacterBody2D"]
 collision_layer = 4
@@ -78,7 +78,7 @@ shape = SubResource("CapsuleShape2D_k0yc0")
 texture_filter = 1
 position = Vector2(0, -13.5)
 sprite_frames = SubResource("SpriteFrames_163ff")
-animation = &"transform"
+animation = &"fly"
 script = ExtResource("3_a6gqw")
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
@@ -101,7 +101,7 @@ collision_layer = 4
 collision_mask = 16
 
 [node name="shape" type="CollisionShape2D" parent="body/hurtbox"]
-position = Vector2(0, -14)
+position = Vector2(0.5, -9)
 shape = SubResource("RectangleShape2D_8vvcv")
 
 [node name="shadow" type="Sprite2D" parent="body"]

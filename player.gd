@@ -242,5 +242,5 @@ func face_anim_process():
 	
 	var xoffset: int = 1 if facingDirection == Direction.RIGHT else 0
 	face.position = Vector2(FACE_ORIGIN.x + (facingDirection * xoffset), FACE_ORIGIN.y) + faceAnimVector 
-	print(str(Vector2(FACE_ORIGIN.x + (facingDirection * xoffset), FACE_ORIGIN.y) + faceAnimVector)+" bruh "+str(faceAnimVector))
+	#print(str(Vector2(FACE_ORIGIN.x + (facingDirection * xoffset), FACE_ORIGIN.y) + faceAnimVector)+" bruh "+str(faceAnimVector))
 	pass

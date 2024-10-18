@@ -4,6 +4,7 @@ class_name StatusEffect
 @export var description := "this effects you in someway"
 @export var TIME_APPLIED :float = 1
 @export var timeLeft :float = 1
+@export var DOES_TIME_STACK: bool = false	#not functional yet
 
 var target: Entity
 

@@ -37,6 +37,7 @@ var elementHeight: HeightElement
 @export var dash_speed: float = 1
 @export var size: float = 1
 
+@export var BASE_APPLY_POST_HIT_INVINC: bool = true
 @export var POST_HIT_INVINCIBILITY_TIME: float = 0.1
 @export var isHittable = true
 @export var flickersWhenNotHittable = true
@@ -47,6 +48,8 @@ var elementHeight: HeightElement
 @export var entityVelocity := Vector2.ZERO
 @export var facingDirection := Direction.RIGHT	#The direction the entity's sprite is facing: left or right. Set using set_direction
 @export var canWalk := true
+@export var BASE_CAN_MOVE := true
+@export var canMove := true
 
 @export var USES_DEFAULT_MOVEMENT := true
 @export var USES_DEFAULT_ANIMATIONS := true
@@ -56,6 +59,7 @@ var elementHeight: HeightElement
 @export var health : int
 
 var statusEffects: Array[StatusEffect]
+var attack_statusEffects: Array[StatusEffect]
 
 var items: Array[Item]
 @export var weapons: Array[Weapon]
@@ -107,7 +111,7 @@ func _physics_process(delta):
 				entityVelocity = Vector2.ZERO
 		
 		if not entityVelocity.length() > movement_max_speed:
-			entityVelocity += inputVector * movement_acceleration * delta
+			entityVelocity += (inputVector * int(canMove)) * movement_acceleration * delta
 
 func collide(delta: float):
 	var collision_count := 0
@@ -134,11 +138,13 @@ func collide(delta: float):
 		collision = rb.move_and_collide(remainder)
 	pass
 	
-func attack_enemy(entity: Entity, damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2.ZERO):
-	entity.hurt(damage, knock_amount, knock_direction)
+func apply_attack_to_entity(entity: Entity):
+	for effect in attack_statusEffects:
+		effect.target = entity
+	entity.hurt(attack_damage, attack_knockback, (entity.global_position - global_position).normalized(), BASE_APPLY_POST_HIT_INVINC, attack_statusEffects)
 	pass
 
-func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2.ZERO, apply_post_hit_invinc: bool = true):
+func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2.ZERO, apply_post_hit_invinc: bool = true, statusEffects: Array[StatusEffect] = []):
 	if not isHittable:
 		return
 	health -= damage
@@ -149,6 +155,8 @@ func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2
 		if apply_post_hit_invinc:
 			add_status_effect(SE_Invincibility.new(self, POST_HIT_INVINCIBILITY_TIME))
 			isHittable = true
+		if statusEffects.size() > 0:
+			add_status_effects(statusEffects)
 			
 	pass
 	
@@ -170,7 +178,7 @@ func set_direction(dir: Direction):
 func apply_effects(delta):
 	set_default_stats()
 	for effect in statusEffects:
-		var timeLeft: float = effect.apply(delta)
+		var timeLeft: float = await effect.apply(delta)
 		if timeLeft < 0:
 			effect.was_removed()
 			statusEffects.erase(effect)
@@ -183,6 +191,7 @@ func set_default_stats():
 	movement_decceleration = BASE_DECCELERATION
 	dash_speed = BASE_DASH_SPEED
 	size = BASE_SIZE
+	canMove = BASE_CAN_MOVE
 	
 	attack_damage = BASE_ATTACK_DAMAGE
 	attack_cooldown = BASE_ATTACK_COOLDOWN
@@ -195,6 +204,11 @@ func set_default_stats():
 
 func add_status_effect(effect: StatusEffect):
 	statusEffects.append(effect)
+	apply_effects(0)
+	pass
+	
+func add_status_effects(effects: Array[StatusEffect]):
+	statusEffects.append_array(effects)
 	apply_effects(0)
 	pass
 	

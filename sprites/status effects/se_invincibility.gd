@@ -1,6 +1,8 @@
 extends StatusEffect
 class_name SE_Invincibility
 
+
+#SE_Invincibility.new(self, POST_HIT_INVINCIBILITY_TIME)
 func _init(entity: Entity, time=TIME_APPLIED):
 	super._init(entity, time)
 	statusName = "Invincibility"
