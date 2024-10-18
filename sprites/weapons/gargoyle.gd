@@ -38,6 +38,7 @@ func _ready():
 	USES_DEFAULT_ANIMATIONS = false
 	elementHeight.isAffectedByHeight = true
 	elementHeight.DOES_HEIGHT_USE_GRAVITY = false
+	DAMAGE_APPLIES_HITSTUN = true
 	
 	BASE_MOVEMENT_MAX_SPEED = 300
 	BASE_MOVEMENT_ACCELERATION = 500
@@ -166,11 +167,6 @@ func anim_done():
 		_:
 			pass
 	pass
-
-func apply_attack_to_entity(entity: Entity):
-	attack_statusEffects = [SE_Hitstun.new(entity, attack_duration)]
-	super.apply_attack_to_entity(entity)
-	
 
 func _on_collider_area_entered(area):
 	pass # Replace with function body.

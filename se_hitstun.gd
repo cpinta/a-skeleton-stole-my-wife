@@ -11,10 +11,11 @@ func _init(entity: Entity, time=TIME_APPLIED):
 	pass
 
 func apply(delta):
+	print(str(Time.get_ticks_msec())," applying hitstun ",TIME_APPLIED)
 	Engine.time_scale = TIME_SCALE
 	await target.get_tree().create_timer(TIME_APPLIED, true, false, true).timeout
 	Engine.time_scale = 1
-	return 0
+	return -1
 
 func was_removed():
 	super.was_removed()

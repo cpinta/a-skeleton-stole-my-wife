@@ -16,6 +16,7 @@ var elementHeight: HeightElement
 @export var BASE_ATTACK_SIZE: float = 1
 @export var BASE_ATTACK_KNOCKBACK: float = 1
 @export var BASE_ATTACK_RANGE: float = 1
+@export var BASE_ATTACK_HITSTUN: float = 0.25
 
 @export var BASE_MOVEMENT_MAX_SPEED: float = 100
 @export var BASE_MOVEMENT_ACCELERATION: float = 250
@@ -30,6 +31,7 @@ var elementHeight: HeightElement
 @export var attack_size: float = 1
 @export var attack_knockback: float = 1
 @export var attack_range: float = 1
+@export var attack_hitstun: float = 0.1
 
 @export var movement_max_speed: float = 1
 @export var movement_acceleration: float = 1
@@ -127,7 +129,6 @@ func collide(delta: float):
 			if self is Player:
 				if enemy.DAMAGES_ON_CONTACT:
 					enemy.attack_enemy(self, enemy.attack_damage, enemy.attack_knockback, self.global_position - enemy.global_position)
-			pass
 		var normal = collision.get_normal()
 		var remainder = collision.get_remainder()
 		var angle = collision.get_angle()
@@ -157,7 +158,6 @@ func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2
 			isHittable = true
 		if statusEffects.size() > 0:
 			add_status_effects(statusEffects)
-			
 	pass
 	
 func was_killed():
@@ -200,6 +200,7 @@ func set_default_stats():
 	attack_size = BASE_ATTACK_SIZE
 	attack_knockback = BASE_ATTACK_KNOCKBACK
 	attack_range = BASE_ATTACK_RANGE
+	attack_hitstun = BASE_ATTACK_HITSTUN
 	pass
 
 func add_status_effect(effect: StatusEffect):

@@ -5,10 +5,15 @@ class_name Enemy
 @export var DAMAGES_ON_CONTACT: bool = false
 @export var ONLY_DAMAGES_PLAYER: bool = true
 
+@export var DAMAGE_APPLIES_HITSTUN: bool = true
+@export var HITSUN_SCALES_W_DAMAGE: bool = false
+@export var DAMAGE_HITSTUN_MULTIPLIER: float = 0.25
+
 @export var player : Player
 @export var target : Entity
 @export var FOLLOWS_PLAYER := true
 @export var FLIP_TOWARD_PLAYER := true
+@export var ATTACKS_HAVE_HITSTUN := true
 
 @export var HAS_TURNING_RADIUS : bool = false
 @export var turning_radius: float = 0
@@ -27,8 +32,10 @@ func _ready():
 		hurtbox.connect("area_entered", _collided_with_something)
 		hurtboxShape = hurtbox.get_node_or_null("shape")
 	
-	if FOLLOWS_PLAYER:
-		target = player
+	target = player
+	
+	
+	BASE_ATTACK_KNOCKBACK = 100
 	
 	BASE_MOVEMENT_ACCELERATION = 500
 	BASE_MOVEMENT_MAX_SPEED = 10
@@ -42,6 +49,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
+	if not check_for_target_or_player():
+		return
 	if FOLLOWS_PLAYER:
 		set_inputVector_toward_target(delta)
 		check_direction()
@@ -49,6 +58,8 @@ func _process(delta):
 
 func _physics_process(delta):
 	super._physics_process(delta)
+	if not check_for_target_or_player():
+		return
 	if elementHeight.height > 25: #if flying
 		#dont hit player if high up
 		rb.collision_layer = 0b0001000
@@ -75,6 +86,8 @@ func check_direction():
 			set_direction(Direction.LEFT)
 		
 func set_inputVector_toward_target(delta):
+	if target == null:
+		return
 	var targetVector = (target.global_position - global_position).normalized()
 	if not HAS_TURNING_RADIUS:
 		inputVector = targetVector
@@ -102,4 +115,23 @@ func _collided_with_something(area: Area2D):
 			if entity != null:
 				if (ONLY_DAMAGES_PLAYER and entity is Player) or not ONLY_DAMAGES_PLAYER:
 					apply_attack_to_entity(entity)
+	pass
+
+func apply_attack_to_entity(entity: Entity):
+	if DAMAGE_APPLIES_HITSTUN:
+		attack_statusEffects = [SE_Hitstun.new(entity, attack_hitstun + (DAMAGE_HITSTUN_MULTIPLIER * attack_damage * int(HITSUN_SCALES_W_DAMAGE)))]
+	super.apply_attack_to_entity(entity)
+	pass
+
+func check_for_target_or_player():
+	if target == null:
+		if player == null:
+			if get_tree().get_node_count_in_group("player") > 0:
+				player = get_tree().get_nodes_in_group("player")[0]
+				target = player
+			else:
+				return false
+		else:
+			target = player
+	return true
 	pass

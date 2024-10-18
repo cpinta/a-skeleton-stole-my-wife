@@ -19,7 +19,7 @@ var entity_height: float = 25
 
 var heightVerticalSpeed: float = 0
 var DOES_HEIGHT_USE_GRAVITY: bool = true
-var HEIGHT_VERTICAL_DECCERLERATION: float = 10
+var GRAVITY: float = 50
 var isAffectedByHeight: bool = false
 
 
@@ -49,7 +49,7 @@ func _physics_process(delta):
 	if isAffectedByHeight:
 		if not height < 0:
 			if DOES_HEIGHT_USE_GRAVITY:
-				heightVerticalSpeed -= delta * HEIGHT_VERTICAL_DECCERLERATION
+				heightVerticalSpeed -= delta * GRAVITY
 				height += delta * heightVerticalSpeed
 			if height > INAIR_HEIGHT:
 				isInAir = true

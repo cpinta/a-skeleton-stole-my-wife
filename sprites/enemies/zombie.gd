@@ -7,6 +7,7 @@ func _ready():
 	FOLLOWS_PLAYER = true
 	
 	BASE_MOVEMENT_MAX_SPEED = 10
+	DAMAGES_ON_CONTACT = true
 	
 	pass # Replace with function body.
 

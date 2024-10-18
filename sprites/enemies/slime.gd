@@ -13,10 +13,11 @@ var JUMP_HEIGHT: float = 50
 func _ready():
 	super._ready()
 	FOLLOWS_PLAYER = false
+	DAMAGES_ON_CONTACT = false
 	USES_DEFAULT_ANIMATIONS = false
 	elementHeight.isAffectedByHeight = true
 	BASE_MOVEMENT_MAX_SPEED = 30
-	elementHeight.HEIGHT_VERTICAL_DECCERLERATION = 20
+	#elementHeight.GRAVITY = 20
 
 	anim.play("idle")
 	anim.connect("animation_finished", anim_done)
@@ -49,6 +50,7 @@ func jump():
 	velocity = velocity.normalized() * movement_max_speed
 	set_inputVector_toward_target(1)
 	anim.play("jump")
+	DAMAGES_ON_CONTACT = true
 	pass
 
 func anim_done(animName: String):
@@ -60,3 +62,4 @@ func land():
 	idle_timer = 0
 	land_timer = 0
 	anim.play("land")
+	DAMAGES_ON_CONTACT = false
