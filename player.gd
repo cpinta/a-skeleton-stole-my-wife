@@ -32,7 +32,7 @@ var pickupArea: Area2D
 func _ready():
 	super._ready()
 	BASE_MOVEMENT_ACCELERATION = 500
-	BASE_MOVEMENT_MAX_SPEED = 100
+	BASE_MOVEMENT_MAX_SPEED = 60
 	#USES_DEFAULT_ANIMATIONS = true
 	
 	anim.play("idle")

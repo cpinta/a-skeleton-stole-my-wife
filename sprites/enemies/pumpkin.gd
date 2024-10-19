@@ -1,13 +1,13 @@
 extends Enemy
-class_name Slime
+class_name Pumpkin
 
-var IDLE_TIME: float = 0.5
+var IDLE_TIME: float = 0.2
 var idle_timer: float = 0
 
-var LAND_TIME: float = 0.25
+var LAND_TIME: float = 0.1
 var land_timer: float = 0
 
-var JUMP_HEIGHT: float = 50
+var JUMP_HEIGHT: float = 15
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,7 +16,7 @@ func _ready():
 	DAMAGES_ON_CONTACT = false
 	USES_DEFAULT_ANIMATIONS = false
 	elementHeight.isAffectedByHeight = true
-	BASE_MOVEMENT_MAX_SPEED = 40
+	BASE_MOVEMENT_MAX_SPEED = 15
 	#elementHeight.GRAVITY = 20
 
 	anim.play("idle")

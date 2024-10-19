@@ -58,7 +58,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hb5xc"]
-size = Vector2(14, 10)
+size = Vector2(14, 5)
 
 [node name="slime" type="CharacterBody2D"]
 collision_layer = 4
@@ -100,7 +100,7 @@ collision_layer = 4
 collision_mask = 16
 
 [node name="shape" type="CollisionShape2D" parent="body/hurtbox"]
-position = Vector2(0, -4)
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_hb5xc")
 
 [node name="shadow" type="Sprite2D" parent="body"]
