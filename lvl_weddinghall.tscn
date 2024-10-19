@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=4 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=12 format=4 uid="uid://uc3l8elxyv5m"]
 
-[ext_resource type="Script" path="res://game_manager.gd" id="1_kpyy7"]
 [ext_resource type="Script" path="res://game_camera.gd" id="2_dj5lk"]
 [ext_resource type="PackedScene" uid="uid://c4kk5p1t6j1lv" path="res://player.tscn" id="3_tneht"]
 [ext_resource type="Texture2D" uid="uid://c7l0h5y10r535" path="res://sprites/tiles/wedding tiles.png" id="4_brx0y"]
@@ -43,9 +42,8 @@ use_texture_padding = false
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_bfguo")
 
-[node name="WeddingHall" type="Node2D"]
+[node name="WeddingHall" type="Node2D" groups=["level"]]
 y_sort_enabled = true
-script = ExtResource("1_kpyy7")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 script = ExtResource("2_dj5lk")

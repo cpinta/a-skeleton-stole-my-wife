@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dw1krpea5qnq1"
+path="res://.godot/imported/outside tiles.aseprite-5eae583260af15b7b82dfe7c8b8b3356.res"
+
+[deps]
+
+source_file="res://sprites/tiles/outside tiles.aseprite"
+dest_files=["res://.godot/imported/outside tiles.aseprite-5eae583260af15b7b82dfe7c8b8b3356.res"]
+
+[params]
+

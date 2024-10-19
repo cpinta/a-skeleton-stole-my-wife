@@ -29,6 +29,7 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
 player="player group"
 enemies="these are enemies"
+level=""
 
 [input]
 
