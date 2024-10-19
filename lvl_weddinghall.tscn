@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=4 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=13 format=4 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_kpyy7"]
 [ext_resource type="Script" path="res://game_camera.gd" id="2_dj5lk"]
 [ext_resource type="PackedScene" uid="uid://c4kk5p1t6j1lv" path="res://player.tscn" id="3_tneht"]
 [ext_resource type="Texture2D" uid="uid://c7l0h5y10r535" path="res://sprites/tiles/wedding tiles.png" id="4_brx0y"]
+[ext_resource type="PackedScene" uid="uid://cfmv0sp277qld" path="res://sprites/enemies/ghost.tscn" id="5_q0k0n"]
 [ext_resource type="PackedScene" uid="uid://p3d7wilhn5kb" path="res://sprites/enemies/pumpkin.tscn" id="8_botum"]
 [ext_resource type="PackedScene" uid="uid://cw36fdm5jl1nv" path="res://sprites/enemies/slime.tscn" id="8_vnaxg"]
 [ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://sprites/enemies/zombie.tscn" id="9_coxei"]
+[ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://sprites/weapons/wp_sledgehammer.tscn" id="9_rh5a7"]
 [ext_resource type="PackedScene" uid="uid://con4cpwqfoe6d" path="res://sprites/enemies/gargoyle.tscn" id="10_nxnuf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfguo"]
@@ -77,6 +79,8 @@ tile_set = SubResource("TileSet_mpmmr")
 collision_enabled = false
 navigation_enabled = false
 
+[node name="ghost" parent="." instance=ExtResource("5_q0k0n")]
+
 [node name="zombie" parent="." instance=ExtResource("9_coxei")]
 position = Vector2(39, -14)
 
@@ -84,9 +88,12 @@ position = Vector2(39, -14)
 position = Vector2(-87, -26)
 
 [node name="gargoyle" parent="." instance=ExtResource("10_nxnuf")]
-position = Vector2(108, -10)
+position = Vector2(109, -32)
 
 [node name="pumpkin" parent="." instance=ExtResource("8_botum")]
-position = Vector2(95, 35)
+position = Vector2(108, -3)
+
+[node name="Sledgehammer" parent="." instance=ExtResource("9_rh5a7")]
+position = Vector2(-119, 28)
 
 [editable path="Player"]

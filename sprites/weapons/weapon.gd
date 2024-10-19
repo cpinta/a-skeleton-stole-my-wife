@@ -32,6 +32,8 @@ enum WeaponType {Swing, Poke, Projectile}
 
 @export var cooldownTimer: float = 0
 
+var onHitEffects: Array[StatusEffect]
+
 @export var inUse := false
 @export var onCooldown := false
 @export var isEquipped := false
@@ -92,7 +94,7 @@ func unequip():
 	pass
 	
 func hit_entity(body: Node2D):
-	var parent = body.get_parent().get_parent().get_parent()
+	var parent = body.get_parent().get_parent()
 	print("hit:",parent.name)
 	if parent != null:
 		if parent is Entity:
@@ -102,7 +104,12 @@ func hit_entity(body: Node2D):
 	
 func apply_attack(entity: Entity):
 	apply_stats()
+	update_effects(entity)
 	pass
+	
+func update_effects(entity: Entity):
+	for effect in onHitEffects:
+		effect.target = entity
 	
 func apply_stats():
 	damage = BASE_DAMAGE

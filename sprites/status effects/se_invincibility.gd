@@ -16,6 +16,7 @@ func apply(delta):
 
 func was_removed():
 	super.was_removed()
-	target.isHittable = true
-	target.anim.visible = true
+	if target != null:
+		target.isHittable = true
+		target.anim.visible = true
 	pass

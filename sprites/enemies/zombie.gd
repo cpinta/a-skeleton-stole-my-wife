@@ -3,6 +3,7 @@ class_name Zombie
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	STARTING_HEALTH = 12
 	super._ready()
 	FOLLOWS_PLAYER = true
 	

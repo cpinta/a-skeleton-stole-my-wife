@@ -12,6 +12,8 @@ class_name SwingWeapon
 @export var SWING_START_ANGLE: float
 @export var SWING_END_ANGLE: float
 
+@export var HITSTUN_AMOUNT: float = 0.1
+
 @export var curSwingTime: float = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -28,6 +30,8 @@ func _ready():
 	weaponType = WeaponType.Swing
 	
 	hitbox.disabled = true
+	
+	onHitEffects.append(SE_Hitstun.new(null, HITSTUN_AMOUNT))
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -69,7 +73,7 @@ func hit_entity(body: Node2D):
 	
 func apply_attack(entity: Entity):
 	super.apply_attack(entity)
-	entity.hurt(damage, knockback, Vector2.RIGHT.rotated(global_rotation - deg_to_rad(45 * global_scale.y)))
+	entity.hurt(damage, knockback, Vector2.RIGHT.rotated(global_rotation - deg_to_rad(45 * global_scale.y)), true, onHitEffects)
 	pass
 	
 func unequip():

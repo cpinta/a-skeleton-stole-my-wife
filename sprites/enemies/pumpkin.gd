@@ -11,6 +11,7 @@ var JUMP_HEIGHT: float = 15
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	STARTING_HEALTH = 8
 	super._ready()
 	FOLLOWS_PLAYER = false
 	DAMAGES_ON_CONTACT = false
@@ -53,8 +54,8 @@ func jump():
 	DAMAGES_ON_CONTACT = true
 	pass
 
-func anim_done(animName: String):
-	if animName == "land":
+func anim_done():
+	if anim.animation.get_basename() == "land":
 		anim.play("idle")
 
 func land():

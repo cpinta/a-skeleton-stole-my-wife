@@ -5,10 +5,12 @@ class_name Sledgehammer
 func _ready():
 	weaponName = "Sledgehammer"
 	description = "A hammer. Used for sledging"
-	BASE_DAMAGE = 0
+	BASE_DAMAGE = 4
 	BASE_KNOCKBACK = 150
 	SWING_ARC_ANGLE = 180
-	BASE_DURATION = 0.5
+	BASE_DURATION = 1
+	
+	HITSTUN_AMOUNT = 0.2
 	
 	EQUIP_ANGLE = 45
 	STORE_ANGLE = 0

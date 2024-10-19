@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://qbxysfd0w4bq"
+path="res://.godot/imported/pekin.ase-cf6689b13b759f0604d626ec9abe6988.res"
+
+[deps]
+
+source_file="res://sprites/enemies/pekin.ase"
+dest_files=["res://.godot/imported/pekin.ase-cf6689b13b759f0604d626ec9abe6988.res"]
+
+[params]
+
