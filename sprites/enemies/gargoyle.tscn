@@ -59,7 +59,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vvcv"]
-size = Vector2(32, 32)
+size = Vector2(19, 15)
 
 [node name="gargoyle" type="CharacterBody2D"]
 collision_layer = 4
@@ -101,7 +101,7 @@ collision_layer = 4
 collision_mask = 16
 
 [node name="shape" type="CollisionShape2D" parent="body/hurtbox"]
-position = Vector2(0, -14)
+position = Vector2(-1.5, -1.5)
 shape = SubResource("RectangleShape2D_8vvcv")
 
 [node name="shadow" type="Sprite2D" parent="body"]
