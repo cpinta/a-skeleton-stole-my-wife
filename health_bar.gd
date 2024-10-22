@@ -8,6 +8,8 @@ var target: Entity
 var target_value: float = 0
 var firstFrameAfterHit: bool = false
 
+var DONT_SHOW_UNTIL_FIRST_HIT: bool = false
+
 var type: HealthBarType
 
 var lbl: Label
@@ -33,6 +35,8 @@ func _process(delta):
 			max_value += diff
 			change_size(max_value)
 		if value != target.health:
+			if DONT_SHOW_UNTIL_FIRST_HIT and not visible:
+				visible = true
 			if not firstFrameAfterHit:
 				var diff: float = sign(target.health - value) * BAR_CHANGE_AMOUNT * delta
 				value += diff
@@ -60,14 +64,18 @@ func _process(delta):
 func setup(newTarget: Entity, type: HealthBarType):
 	target = newTarget
 	max_value = target.STARTING_HEALTH
+	value = target.health
 	self.type = type
 	match type:
 		HealthBarType.MINI:
 			change_size(max_value)
+			DONT_SHOW_UNTIL_FIRST_HIT = true
 			pass
 		HealthBarType.MAIN:
 			size = Vector2(100, 12)
+			DONT_SHOW_UNTIL_FIRST_HIT = false
 			pass
+	visible = not DONT_SHOW_UNTIL_FIRST_HIT
 			
 func change_size(newSize: int):
 	match type:

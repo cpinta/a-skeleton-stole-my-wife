@@ -31,5 +31,4 @@ script = ExtResource("3_yqsv7")
 
 [node name="ProgressBar" parent="Control/player health" instance=ExtResource("4_nuc83")]
 layout_mode = 0
-offset_right = 100.0
 offset_bottom = 12.0
