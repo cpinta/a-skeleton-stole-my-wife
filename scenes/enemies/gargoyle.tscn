@@ -1,0 +1,128 @@
+[gd_scene load_steps=12 format=3 uid="uid://con4cpwqfoe6d"]
+
+[ext_resource type="Script" path="res://scripts/enemies/gargoyle.gd" id="1_x15us"]
+[ext_resource type="Texture2D" uid="uid://dib1h1icw1sat" path="res://sprites/enemies/gargoyle.png" id="2_fp81q"]
+[ext_resource type="Script" path="res://scripts/element_height.gd" id="3_a6gqw"]
+[ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="3_yrfuo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k0yc0"]
+radius = 5.0
+height = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t44sm"]
+atlas = ExtResource("2_fp81q")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jnc3"]
+atlas = ExtResource("2_fp81q")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k06t0"]
+atlas = ExtResource("2_fp81q")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5ipc"]
+atlas = ExtResource("2_fp81q")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_163ff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t44sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jnc3")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k06t0")
+}],
+"loop": true,
+"name": &"stone",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5ipc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k06t0")
+}],
+"loop": false,
+"name": &"transform",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vvcv"]
+size = Vector2(19, 15)
+
+[node name="gargoyle" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_x15us")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2(-5.96046e-08, 4.76837e-07)
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CapsuleShape2D_k0yc0")
+
+[node name="body" type="Node2D" parent="."]
+
+[node name="animation" type="AnimatedSprite2D" parent="body"]
+texture_filter = 1
+position = Vector2(0, -13.5)
+sprite_frames = SubResource("SpriteFrames_163ff")
+animation = &"transform"
+script = ExtResource("3_a6gqw")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/enemies",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/enemies/gargoyle.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "53ef868cdfa596103b6c456572d04f6b"
+
+[node name="hurtbox" type="Area2D" parent="body"]
+collision_layer = 4
+collision_mask = 16
+
+[node name="shape" type="CollisionShape2D" parent="body/hurtbox"]
+position = Vector2(-1.5, -1.5)
+shape = SubResource("RectangleShape2D_8vvcv")
+
+[node name="shadow" type="Sprite2D" parent="body"]
+modulate = Color(1, 1, 1, 0.537255)
+z_index = -1
+texture_filter = 1
+position = Vector2(0, -0.5)
+texture = ExtResource("3_yrfuo")
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/vfx",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://sprites/vfx/shadow medium.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "1543c1ff04c12f3ace724b29a33ea866"

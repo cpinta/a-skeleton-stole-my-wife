@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Spoopy"
-run/main_scene="res://game.tscn"
+run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,27 @@ window/stretch/mode="viewport"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://scenes/": "pink",
+"res://scenes/enemies/": "red",
+"res://scenes/levels/": "orange",
+"res://scenes/ui/": "yellow",
+"res://scenes/weapons/": "green",
+"res://scripts/": "purple",
+"res://scripts/enemies/": "red",
+"res://scripts/levels/": "orange",
+"res://scripts/status effects/": "blue",
+"res://scripts/ui/": "yellow",
+"res://scripts/weapons/": "green",
+"res://sprites/": "teal",
+"res://sprites/enemies/": "red",
+"res://sprites/ui/": "yellow",
+"res://sprites/weapons/": "green"
+}
 
 [global_group]
 

@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://chfidnfkpiklh"]
+
+[ext_resource type="Script" path="res://scripts/weapons/wp_sledgehammer.gd" id="1_lo1e4"]
+[ext_resource type="Texture2D" uid="uid://hd4u8682poyl" path="res://sprites/weapons/sledge2.png" id="2_hk1h8"]
+[ext_resource type="Script" path="res://scripts/element_height.gd" id="3_pvsp7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xfqr"]
+size = Vector2(20, 27.7457)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giobj"]
+atlas = ExtResource("2_hk1h8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1cbd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giobj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywm7m"]
+size = Vector2(10, 26)
+
+[node name="Sledgehammer" type="Node2D"]
+script = ExtResource("1_lo1e4")
+description = "A hammer. Used for sledging"
+
+[node name="collider" type="Area2D" parent="."]
+rotation = 0.785398
+scale = Vector2(0.45, 0.865)
+collision_layer = 16
+collision_mask = 4
+
+[node name="shape" type="CollisionShape2D" parent="collider"]
+position = Vector2(1.60644e-05, -13.7907)
+shape = SubResource("RectangleShape2D_1xfqr")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(15, -15)
+sprite_frames = SubResource("SpriteFrames_h1cbd")
+script = ExtResource("3_pvsp7")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/weapons",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/weapons/sledge2.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "eaf834180aa7da270025579cb045fab0"
+
+[node name="pickup" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="shape" type="CollisionShape2D" parent="pickup"]
+position = Vector2(8.48528, -8.48528)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_ywm7m")
+
+[connection signal="area_entered" from="collider" to="." method="_on_collider_area_entered"]

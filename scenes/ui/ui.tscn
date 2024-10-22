@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dclrvv5xwjxvx"]
+
+[ext_resource type="Script" path="res://scripts/ui/ui.gd" id="1_epvr3"]
+[ext_resource type="PackedScene" uid="uid://byhlmvlump0td" path="res://scenes/enemies/satan.tscn" id="2_2by4y"]
+[ext_resource type="Script" path="res://scripts/ui/player_health.gd" id="3_yqsv7"]
+[ext_resource type="PackedScene" uid="uid://ciocx6wvwso6i" path="res://scenes/ui/health_bar.tscn" id="4_nuc83"]
+
+[node name="UI" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_epvr3")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="satan" parent="Control" instance=ExtResource("2_2by4y")]
+layout_mode = 1
+
+[node name="player health" type="Control" parent="Control"]
+clip_contents = true
+anchors_preset = 0
+offset_right = 116.0
+offset_bottom = 42.0
+script = ExtResource("3_yqsv7")
+
+[node name="ProgressBar" parent="Control/player health" instance=ExtResource("4_nuc83")]
+layout_mode = 0
+offset_bottom = 12.0
