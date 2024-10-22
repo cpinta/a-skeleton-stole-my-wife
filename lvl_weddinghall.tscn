@@ -172,21 +172,24 @@ tile_set = SubResource("TileSet_mpmmr")
 collision_enabled = false
 navigation_enabled = false
 
-[node name="ghost" parent="." instance=ExtResource("5_q0k0n")]
-
-[node name="zombie" parent="." instance=ExtResource("9_coxei")]
-position = Vector2(39, -14)
-
-[node name="slime" parent="." instance=ExtResource("8_vnaxg")]
-position = Vector2(-87, -26)
-
-[node name="gargoyle" parent="." instance=ExtResource("10_nxnuf")]
-position = Vector2(109, -32)
-
-[node name="pumpkin" parent="." instance=ExtResource("8_botum")]
-position = Vector2(108, -3)
-
 [node name="Sledgehammer" parent="." instance=ExtResource("9_rh5a7")]
 position = Vector2(-119, 28)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(23, 130)
+
+[node name="ghost" parent="Node2D" instance=ExtResource("5_q0k0n")]
+
+[node name="zombie" parent="Node2D" instance=ExtResource("9_coxei")]
+position = Vector2(39, -14)
+
+[node name="slime" parent="Node2D" instance=ExtResource("8_vnaxg")]
+position = Vector2(-87, -26)
+
+[node name="gargoyle" parent="Node2D" instance=ExtResource("10_nxnuf")]
+position = Vector2(109, -32)
+
+[node name="pumpkin" parent="Node2D" instance=ExtResource("8_botum")]
+position = Vector2(108, -3)
 
 [editable path="Player"]

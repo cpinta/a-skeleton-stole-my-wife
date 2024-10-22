@@ -12,6 +12,7 @@ var JUMP_HEIGHT: float = 15
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	STARTING_HEALTH = 8
+	BASE_ATTACK_DAMAGE = 4
 	super._ready()
 	FOLLOWS_PLAYER = false
 	DAMAGES_ON_CONTACT = false

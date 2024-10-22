@@ -30,9 +30,11 @@ var pickupArea: Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	STARTING_HEALTH = 20
 	super._ready()
 	BASE_MOVEMENT_ACCELERATION = 500
 	BASE_MOVEMENT_MAX_SPEED = 60
+	
 	#USES_DEFAULT_ANIMATIONS = true
 	
 	anim.play("idle")

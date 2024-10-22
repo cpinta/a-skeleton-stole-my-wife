@@ -33,6 +33,7 @@ var escapeVector: Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	STARTING_HEALTH = 14
+	BASE_ATTACK_DAMAGE = 5
 	super._ready()
 	FOLLOWS_PLAYER = true
 	FLIP_TOWARD_PLAYER = true
@@ -83,6 +84,8 @@ func _process(delta):
 	
 func _physics_process(delta):
 	super._physics_process(delta)
+	if target == null:
+		change_state(GargoyleState.POST_STONE_FLY)
 	match state:
 		GargoyleState.FLYING:
 			set_inputVector_toward_target(delta)
