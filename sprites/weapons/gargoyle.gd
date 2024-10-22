@@ -34,6 +34,7 @@ var escapeVector: Vector2
 func _ready():
 	STARTING_HEALTH = 14
 	BASE_ATTACK_DAMAGE = 5
+	NEVER_SHOW_HEALTH_BAR = true
 	super._ready()
 	FOLLOWS_PLAYER = true
 	FLIP_TOWARD_PLAYER = true
@@ -41,6 +42,7 @@ func _ready():
 	elementHeight.isAffectedByHeight = true
 	elementHeight.DOES_HEIGHT_USE_GRAVITY = false
 	DAMAGE_APPLIES_HITSTUN = true
+	
 	
 	BASE_MOVEMENT_MAX_SPEED = 300
 	BASE_MOVEMENT_ACCELERATION = 500

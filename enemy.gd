@@ -5,6 +5,8 @@ class_name Enemy
 @export var DAMAGES_ON_CONTACT: bool = false
 @export var ONLY_DAMAGES_PLAYER: bool = true
 
+@export var NEVER_SHOW_HEALTH_BAR: bool = false
+
 @export var DAMAGE_APPLIES_HITSTUN: bool = true
 @export var HITSUN_SCALES_W_DAMAGE: bool = false
 @export var DAMAGE_HITSTUN_MULTIPLIER: float = 0.25
@@ -43,6 +45,11 @@ func _ready():
 	facingDirection = Direction.LEFT
 	check_direction()
 	
+	if not NEVER_SHOW_HEALTH_BAR:
+		var healthbar = load("res://sprites/ui/health_bar.tscn").instantiate()
+		self.add_child(healthbar)
+		healthbar.setup(self, UI_HealthBar.HealthBarType.MINI)
+		pass
 	
 	pass # Replace with function body.
 

@@ -1,16 +1,21 @@
 extends ProgressBar
 class_name UI_HealthBar
 
+enum HealthBarType {MINI=0, MAIN=1}
+
 var BAR_CHANGE_AMOUNT: float = 10
 var target: Entity
 var target_value: float = 0
 var firstFrameAfterHit: bool = false
+
+var type: HealthBarType
 
 var lbl: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	target = get_tree().get_nodes_in_group("player")[0]
+	type = HealthBarType.MAIN
 	max_value = target.health
 	value = target.health
 	target_value = value
@@ -26,6 +31,7 @@ func _process(delta):
 		if max_value != target.STARTING_HEALTH:
 			var diff: float = sign(target.health - value) * BAR_CHANGE_AMOUNT * delta
 			max_value += diff
+			change_size(max_value)
 		if value != target.health:
 			if not firstFrameAfterHit:
 				var diff: float = sign(target.health - value) * BAR_CHANGE_AMOUNT * delta
@@ -41,9 +47,31 @@ func _process(delta):
 		if value > 0:
 			var diff: float = -1 * BAR_CHANGE_AMOUNT * delta
 			value += diff
-			
-	lbl.text = str(target_value)+"/"+str(max_value)
+	
+	match type:
+		HealthBarType.MINI:
+			lbl.text = ""
+			pass
+		HealthBarType.MAIN:
+			lbl.text = str(target_value)+"/"+str(max_value)
+			pass
 	pass
 
-func setup(maxHealth: int):
-	self.maxHealth = maxHealth
+func setup(newTarget: Entity, type: HealthBarType):
+	target = newTarget
+	max_value = target.STARTING_HEALTH
+	self.type = type
+	match type:
+		HealthBarType.MINI:
+			change_size(max_value)
+			pass
+		HealthBarType.MAIN:
+			size = Vector2(100, 12)
+			pass
+			
+func change_size(newSize: int):
+	match type:
+		HealthBarType.MINI:
+			size = Vector2(newSize, 2)
+			position = Vector2(-size.x/2, 3)
+	
