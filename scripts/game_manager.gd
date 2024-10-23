@@ -15,6 +15,14 @@ var titleScreen: TitleScreen
 
 var state: GameState
 
+@onready var dict_entites = {\
+	"Zombie": load("res://scenes/enemies/zombie.tscn"), \
+	"Slime": load("res://scenes/enemies/slime.tscn"),\
+	"Pumpkin": load("res://scenes/enemies/pumpkin.tscn"),\
+	"Ghost": load("res://scenes/enemies/ghost.tscn"),\
+	"Gargoyle": load("res://scenes/enemies/gargoyle.tscn"),\
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	lvlScenes.append("res://scenes/levels/lvl_weddinghall.tscn")
@@ -24,6 +32,7 @@ func _ready():
 	gameUIScene = load("res://scenes/ui/ui.tscn")
 	titleScreenScene = load("res://scenes/ui/title_screen.tscn")
 	load_title_screen()
+	
 	pass # Replace with function body.
 
 
