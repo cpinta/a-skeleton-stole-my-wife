@@ -16,10 +16,11 @@ var lbl: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	target = get_tree().get_nodes_in_group("player")[0]
+	if get_tree().get_node_count_in_group("player") > 0:
+		target = get_tree().get_nodes_in_group("player")[0]
+		max_value = target.health
+		value = target.health
 	type = HealthBarType.MAIN
-	max_value = target.health
-	value = target.health
 	target_value = value
 	
 	lbl = $num

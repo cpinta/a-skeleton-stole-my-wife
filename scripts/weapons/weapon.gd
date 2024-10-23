@@ -38,7 +38,7 @@ var onHitEffects: Array[StatusEffect]
 @export var onCooldown := false
 @export var isEquipped := false
 
-signal attack_hit(entityHealth: int)
+signal attack_hit(value: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

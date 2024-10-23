@@ -24,8 +24,8 @@ func _physics_process(delta):
 func apply_attack(entity: Entity):
 	super.apply_attack(entity)
 	
-	if entity.hurt(BASE_DAMAGE, 0, Vector2.ZERO):
-		attack_hit.emit(entity.STARTING_HEALTH)
+	if entity.hurt(damage, 0, Vector2.ZERO):
+		attack_hit.emit(damage)
 	entity.add_status_effect(SE_MovementSlow.new(entity, SLOW_TIME, SLOW_MULTIPLIER))
 	self.queue_free()
 	pass

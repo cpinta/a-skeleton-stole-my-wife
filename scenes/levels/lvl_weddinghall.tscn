@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=19 format=4 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_p1rca"]
 [ext_resource type="Script" path="res://scripts/game_camera.gd" id="2_dj5lk"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://scenes/weapons/wp_sledgehammer.tscn" id="9_rh5a7"]
 [ext_resource type="PackedScene" uid="uid://con4cpwqfoe6d" path="res://scenes/enemies/gargoyle.tscn" id="10_nxnuf"]
 [ext_resource type="PackedScene" uid="uid://dxv6vkvxip33p" path="res://scenes/objects/Entity_Spawnpoint.tscn" id="13_j6ktd"]
+[ext_resource type="PackedScene" uid="uid://cpm6nu6nagl0n" path="res://scenes/weapons/wp_pistol.tscn" id="14_e607k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mwk4r"]
 texture = ExtResource("4_brx0y")
@@ -197,5 +198,8 @@ position = Vector2(108, -3)
 
 [node name="EntitySpawnpoint" parent="." instance=ExtResource("13_j6ktd")]
 position = Vector2(120, -1)
+
+[node name="pistol" parent="." instance=ExtResource("14_e607k")]
+position = Vector2(-93, -13)
 
 [editable path="Player"]

@@ -154,15 +154,15 @@ func apply_attack_to_entity(entity: Entity):
 		add_combo(entity.STARTING_HEALTH)
 	pass
 	
-func add_combo(entityHealth: int):
+func add_combo(value: int):
 	if combo != null:
 		combo.add()
-		calculate_score_addition(entityHealth)
+		calculate_score_addition(value)
 		pass
 	pass
 	
-func calculate_score_addition(entityHealth):
-	var scoreAdd = entityHealth * combo.get_multiplier()
+func calculate_score_addition(value):
+	var scoreAdd = value * combo.get_multiplier()
 	score += scoreAdd
 	pass
 

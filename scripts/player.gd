@@ -108,8 +108,12 @@ func stop_use_weapon(hand: HandToUse):
 	pass
 	
 func swap_weapons():
-	var handWeapon: Weapon = handInner.get_child(1)
-	var backWeapon: Weapon = back.get_child(0)
+	var handWeapon: Weapon
+	var backWeapon: Weapon
+	if handInner.get_child_count() > 1:
+		handWeapon= handInner.get_child(1)
+	if back.get_child_count() > 0:
+		backWeapon= back.get_child(0)
 	
 	if backWeapon != null:
 		backWeapon.reparent(handInner)

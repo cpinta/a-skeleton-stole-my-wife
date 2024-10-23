@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpm6nu6nagl0n"]
+[gd_scene load_steps=10 format=3 uid="uid://cpm6nu6nagl0n"]
 
 [ext_resource type="Script" path="res://scripts/weapons/wp_pistol.gd" id="1_dfehn"]
 [ext_resource type="Texture2D" uid="uid://dmg0wrbm8064r" path="res://sprites/weapons/pistol.png" id="2_itmp7"]
+[ext_resource type="Script" path="res://scripts/element_height.gd" id="3_hoi6n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fhc7g"]
 atlas = ExtResource("2_itmp7")
@@ -70,6 +71,7 @@ texture_filter = 1
 position = Vector2(3, -1)
 sprite_frames = SubResource("SpriteFrames_iw2uf")
 animation = &"idle"
+script = ExtResource("3_hoi6n")
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
