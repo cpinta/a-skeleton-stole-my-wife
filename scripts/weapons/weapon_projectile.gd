@@ -57,7 +57,7 @@ func shoot():
 	apply_stats()
 	currentAmmoCount -= 1
 	var proj: Projectile = projectile.instantiate()
-	get_tree().root.add_child(proj)
+	Game.add_child(proj)
 	proj.global_position = shootPoint.global_position
 	proj.global_rotation = shootPoint.global_rotation
 	proj.setup(ownerEntity, attackspeed, damage)

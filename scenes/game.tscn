@@ -1,18 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ba0opygbucnrv"]
+[gd_scene load_steps=2 format=3 uid="uid://ba0opygbucnrv"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fogtl"]
-[ext_resource type="PackedScene" uid="uid://uc3l8elxyv5m" path="res://scenes/levels/lvl_weddinghall.tscn" id="2_vqde5"]
-[ext_resource type="Script" path="res://scripts/levels/level.gd" id="3_jnr1q"]
-[ext_resource type="PackedScene" uid="uid://dclrvv5xwjxvx" path="res://scenes/ui/ui.tscn" id="4_o2ut0"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_fogtl")
-
-[node name="TitleScreen" type="Node2D" parent="."]
-
-[node name="WeddingHall" parent="." instance=ExtResource("2_vqde5")]
-position = Vector2(160, 90)
-script = ExtResource("3_jnr1q")
-
-[node name="UI" parent="." instance=ExtResource("4_o2ut0")]
-follow_viewport_enabled = false

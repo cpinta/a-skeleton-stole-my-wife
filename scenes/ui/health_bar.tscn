@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciocx6wvwso6i"]
+[gd_scene load_steps=5 format=3 uid="uid://ciocx6wvwso6i"]
 
 [ext_resource type="Script" path="res://scripts/ui/health_bar.gd" id="1_qcw25"]
 
@@ -7,6 +7,8 @@ bg_color = Color(0.522158, 0, 0.110189, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cg3xk"]
 bg_color = Color(1, 0.268321, 0.604777, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_iodxf"]
 
 [node name="Health Bar" type="ProgressBar"]
 offset_right = 100.0
@@ -27,6 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_iodxf")
 theme_override_font_sizes/font_size = 8
 text = "10 / 20"
 horizontal_alignment = 1

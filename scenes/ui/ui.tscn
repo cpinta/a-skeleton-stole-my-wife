@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://ciocx6wvwso6i" path="res://scenes/ui/health_bar.tscn" id="4_nuc83"]
 
 [node name="UI" type="CanvasLayer"]
-follow_viewport_enabled = true
 script = ExtResource("1_epvr3")
 
 [node name="Control" type="Control" parent="."]

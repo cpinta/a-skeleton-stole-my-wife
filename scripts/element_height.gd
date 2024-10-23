@@ -74,7 +74,7 @@ func _physics_process(delta):
 func load_shadow():
 	shadow = shadowPrefab.instantiate()
 	shadow.setup(self)
-	get_tree().root.add_child.call_deferred(shadow)
+	Game.add_child.call_deferred(shadow)
 	pass
 	
 func unload_shadow():

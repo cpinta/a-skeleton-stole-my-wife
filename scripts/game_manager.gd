@@ -7,7 +7,11 @@ var lvlScenes: Array[String]
 var currentLvl: Level
 var currentLvlIndex
 
-#@onready var gameUI: UI = load()
+@export var gameUIScene: PackedScene
+var gameUI: UI
+
+@export var titleScreenScene: PackedScene
+var titleScreen: TitleScreen
 
 var state: GameState
 
@@ -16,6 +20,10 @@ func _ready():
 	lvlScenes.append("res://scenes/levels/lvl_weddinghall.tscn")
 	currentLvlIndex = 0
 	state = GameState.TITLE_SCREEN
+	
+	gameUIScene = load("res://scenes/ui/ui.tscn")
+	titleScreenScene = load("res://scenes/ui/title_screen.tscn")
+	load_title_screen()
 	pass # Replace with function body.
 
 
@@ -24,8 +32,20 @@ func _process(delta):
 	match state:
 		GameState.TITLE_SCREEN:
 			if Input.is_action_just_released("ui_accept"):
-				start_game_transition()
+				start_game()
+				change_state(GameState.PLAYING)
 				pass
+			pass
+		GameState.PLAYING:
+			pass
+		GameState.PAUSED:
+			pass
+	pass
+	
+func change_state(state: GameState):
+	self.state = state
+	match state:
+		GameState.TITLE_SCREEN:
 			pass
 		GameState.PLAYING:
 			pass
@@ -37,6 +57,7 @@ func start_game_transition():
 	pass
 	
 func start_game():
+	unload_title_screen()
 	load_level(currentLvlIndex)
 	pass
 	
@@ -51,6 +72,8 @@ func load_next_level():
 	
 #game is over
 func end_game():
+	if gameUI != null:
+		gameUI.queue_free()
 	pass
 
 func load_level(index: int):
@@ -59,7 +82,27 @@ func load_level(index: int):
 	var levelScene: PackedScene = load(lvlScenes[index])
 	if currentLvl != null:
 		currentLvl.queue_free()
-	currentLvl = levelScene.instantiate()
+	currentLvl = levelScene.instantiate() as Level
+	print(levelScene.resource_name)
+	self.add_child(currentLvl)
 	currentLvlIndex = index
+	if gameUI == null:
+		gameUI = gameUIScene.instantiate() as UI
+		self.add_child(gameUI)
 	return true
+	pass
+	
+func load_title_screen():
+	if titleScreen != null:
+		print("WARNING: Tried loading title screen but its already loaded")
+		return
+	titleScreen = titleScreenScene.instantiate()
+	self.add_child(titleScreen)
+	pass
+	
+func unload_title_screen():
+	if titleScreen == null:
+		print("WARNING: Tried UNloading title screen but its already not loaded")
+		return
+	titleScreen.queue_free()
 	pass

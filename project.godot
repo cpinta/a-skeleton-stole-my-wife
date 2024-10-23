@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Spoopy"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/root.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Game="*res://scenes/game.tscn"
 
 [display]
 
@@ -51,6 +55,7 @@ folder_colors={
 player="player group"
 enemies="these are enemies"
 level=""
+game=""
 
 [input]
 
