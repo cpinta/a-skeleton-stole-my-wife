@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c4kk5p1t6j1lv"]
+[gd_scene load_steps=30 format=3 uid="uid://c4kk5p1t6j1lv"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ulkm2"]
 [ext_resource type="Texture2D" uid="uid://cvpsamv0hafnm" path="res://sprites/characters/guy3.png" id="2_kfqv3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dvduyqprk2016" path="res://guy2 face.png" id="4_lrblj"]
 [ext_resource type="Texture2D" uid="uid://cypilpykkmbyk" path="res://sprites/characters/arm.png" id="5_udd1e"]
 [ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="6_wqpxq"]
+[ext_resource type="Script" path="res://scripts/combo.gd" id="7_t4s4h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1tys6"]
 radius = 5.175
@@ -316,3 +317,6 @@ metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true
 }
 metadata/_aseprite_wizard_source_file_hash_ = "1543c1ff04c12f3ace724b29a33ea866"
+
+[node name="combo" type="Node2D" parent="."]
+script = ExtResource("7_t4s4h")

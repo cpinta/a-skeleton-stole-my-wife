@@ -59,6 +59,7 @@ var elementHeight: HeightElement
 
 @export var STARTING_HEALTH : int = 5
 @export var health : int
+@export var wasKilledLastFrame: bool = false
 
 var statusEffects: Array[StatusEffect]
 var attack_statusEffects: Array[StatusEffect]
@@ -71,6 +72,9 @@ var items: Array[Item]
 @export var animWalkName: String = "walk"
 @export var animIdleName: String = "idle"
 
+@export var score: int = 0
+@export var combo: EntityCombo
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rb = self
@@ -81,10 +85,14 @@ func _ready():
 	weapons.append(null)
 	weapons.append(null)
 	set_default_stats()
+	
+	combo = get_node_or_null("combo")
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if wasKilledLastFrame:
+		was_killed()
 	if USES_DEFAULT_ANIMATIONS:
 		if canWalk:
 			if entityVelocity.length() > MIN_SPEED_TO_ANIM:
@@ -142,15 +150,32 @@ func collide(delta: float):
 func apply_attack_to_entity(entity: Entity):
 	for effect in attack_statusEffects:
 		effect.target = entity
-	entity.hurt(attack_damage, attack_knockback, (entity.global_position - global_position).normalized(), BASE_APPLY_POST_HIT_INVINC, attack_statusEffects)
+	if entity.hurt(attack_damage, attack_knockback, (entity.global_position - global_position).normalized(), BASE_APPLY_POST_HIT_INVINC, attack_statusEffects):
+		add_combo(entity.STARTING_HEALTH)
+	pass
+	
+func add_combo(entityHealth: int):
+	if combo != null:
+		combo.add()
+		calculate_score_addition(entityHealth)
+		pass
+	pass
+	
+func calculate_score_addition(entityHealth):
+	var scoreAdd = entityHealth * combo.get_multiplier()
+	score += scoreAdd
 	pass
 
 func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2.ZERO, apply_post_hit_invinc: bool = true, statusEffects: Array[StatusEffect] = []):
 	if not isHittable:
-		return
+		return false
 	health -= damage
+	if combo != null:
+		combo.drop()
 	if health < 1:
-		was_killed()
+		wasKilledLastFrame = true
+		if statusEffects.size() > 0:
+			add_status_effects(statusEffects)
 	else:
 		apply_knockback(knock_amount, knock_direction)
 		if apply_post_hit_invinc:
@@ -158,9 +183,11 @@ func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2
 			isHittable = true
 		if statusEffects.size() > 0:
 			add_status_effects(statusEffects)
+	return true
 	pass
 	
 func was_killed():
+	apply_effects(0)
 	queue_free()
 	pass
 	

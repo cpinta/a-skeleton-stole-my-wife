@@ -26,7 +26,8 @@ class_name Enemy
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
-	player = get_tree().get_nodes_in_group("player")[0]
+	if get_tree().get_node_count_in_group("player") > 0:
+		player = get_tree().get_nodes_in_group("player")[0]
 	
 	body = $"body"
 	hurtbox = body.get_node_or_null("hurtbox")

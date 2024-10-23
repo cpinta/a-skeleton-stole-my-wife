@@ -23,6 +23,8 @@ var state: GameState
 	"Gargoyle": load("res://scenes/enemies/gargoyle.tscn"),\
 }
 
+var player: Player
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	lvlScenes.append("res://scenes/levels/lvl_weddinghall.tscn")
@@ -38,6 +40,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if player == null:
+		if get_tree().get_node_count_in_group("player") > 0:
+			player = get_tree().get_nodes_in_group("player")[0]
+		pass
 	match state:
 		GameState.TITLE_SCREEN:
 			if Input.is_action_just_released("ui_accept"):

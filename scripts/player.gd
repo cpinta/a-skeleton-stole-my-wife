@@ -174,6 +174,9 @@ func drop_weapon(weapon: Weapon):
 	var index = weapons.find(weapon)
 	if index != -1:
 		print(weapon.global_position.y," ",rb.global_position.y," ", abs(weapon.global_position.y - rb.global_position.y))
+		if weapon.attack_hit.is_connected(add_combo):
+			weapon.attack_hit.disconnect(add_combo)
+			pass
 		weapon.reparent(self.owner, true)
 		weapon.drop(abs(weapon.global_position.y - rb.global_position.y))
 		#weapon.global_position = Vector2(weapon.global_position.x, rb.global_position.y)
@@ -194,6 +197,9 @@ func equip_weapon(weapon: Weapon):
 		weapons[currentHand] = weapon
 		weapon.reparent(handInner, false)
 		weapons[currentHand].equip()
+	if not weapon.attack_hit.is_connected(add_combo):
+		weapon.attack_hit.connect(add_combo)
+		pass
 	pass
 
 func entered_pickup_area(node: Node2D):
