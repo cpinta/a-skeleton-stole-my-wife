@@ -40,7 +40,7 @@ var elementHeight: HeightElement
 @export var size: float = 1
 
 @export var BASE_APPLY_POST_HIT_INVINC: bool = true
-@export var POST_HIT_INVINCIBILITY_TIME: float = 0.1
+@export var POST_HIT_INVINCIBILITY_TIME: float = 0.25
 @export var isHittable = true
 @export var flickersWhenNotHittable = true
 
@@ -151,15 +151,16 @@ func apply_attack_to_entity(entity: Entity):
 	for effect in attack_statusEffects:
 		effect.target = entity
 	if entity.hurt(attack_damage, attack_knockback, (entity.global_position - global_position).normalized(), BASE_APPLY_POST_HIT_INVINC, attack_statusEffects):
-		add_combo(entity.STARTING_HEALTH)
+		our_attack_did_hit(entity, entity.wasKilledLastFrame, attack_damage)
 	pass
 	
-func add_combo(value: int):
-	if combo != null:
-		combo.add()
-		calculate_score_addition(value)
+func our_attack_did_hit(entityHit:Entity, wasEntityKilled:bool, damageDealt: int):
+	if wasEntityKilled:
+		if combo != null:
+			combo.add()
+			calculate_score_addition(damageDealt)
+			pass
 		pass
-	pass
 	
 func calculate_score_addition(value):
 	var scoreAdd = value * combo.get_multiplier()

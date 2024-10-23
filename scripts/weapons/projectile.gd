@@ -21,8 +21,8 @@ func _physics_process(delta):
 	pass
 	
 func setup(owner: Entity, speed: float, damage: float):
-	self.attackspeed = speed
-	self.damage = damage
+	self.BASE_ATTACKSPEED = speed
+	self.BASE_DAMAGE = damage
 	pass
 	
 func apply_attack(entity: Entity):

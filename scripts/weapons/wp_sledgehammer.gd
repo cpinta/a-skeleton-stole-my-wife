@@ -13,7 +13,7 @@ func _ready():
 	HITSTUN_AMOUNT = 0.2
 	
 	EQUIP_ANGLE = 45
-	STORE_ANGLE = 0
+	STORE_ANGLE = -90
 	
 	collider = $collider
 	anim = get_node("animation")

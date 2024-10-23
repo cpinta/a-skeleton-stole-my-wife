@@ -178,8 +178,8 @@ func drop_weapon(weapon: Weapon):
 	var index = weapons.find(weapon)
 	if index != -1:
 		print(weapon.global_position.y," ",rb.global_position.y," ", abs(weapon.global_position.y - rb.global_position.y))
-		if weapon.attack_hit.is_connected(add_combo):
-			weapon.attack_hit.disconnect(add_combo)
+		if weapon.attack_hit.is_connected(our_attack_did_hit):
+			weapon.attack_hit.disconnect(our_attack_did_hit)
 			pass
 		weapon.reparent(self.owner, true)
 		weapon.drop(abs(weapon.global_position.y - rb.global_position.y))
@@ -201,8 +201,8 @@ func equip_weapon(weapon: Weapon):
 		weapons[currentHand] = weapon
 		weapon.reparent(handInner, false)
 		weapons[currentHand].equip()
-	if not weapon.attack_hit.is_connected(add_combo):
-		weapon.attack_hit.connect(add_combo)
+	if not weapon.attack_hit.is_connected(our_attack_did_hit):
+		weapon.attack_hit.connect(our_attack_did_hit)
 		pass
 	pass
 

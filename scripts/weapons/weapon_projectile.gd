@@ -10,7 +10,6 @@ class_name ProjecteWeapon
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	BASE_AMMO_COUNT = 10
 	super._ready()
 	IS_QUITTABLE = true
 	currentAmmoCount = BASE_AMMO_COUNT
@@ -62,6 +61,7 @@ func shoot():
 	proj.global_position = shootPoint.global_position
 	proj.global_rotation = shootPoint.global_rotation
 	proj.setup(ownerEntity, attackspeed, damage)
+	proj.attack_hit.connect(ownerEntity.our_attack_did_hit)
 	pass
 	
 func cooldown_over():

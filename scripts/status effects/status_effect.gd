@@ -11,6 +11,7 @@ var target: Entity
 func _init(entity: Entity, time=TIME_APPLIED):
 	target = entity
 	TIME_APPLIED = time
+	timeLeft = TIME_APPLIED
 	pass
 
 # Called when the node enters the scene tree for the first time.
