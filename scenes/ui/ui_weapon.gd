@@ -5,6 +5,8 @@ var CenterPos: Control
 var WeaponScene: Weapon
 var lblWeapon: Label
 
+var cooldownProgress: UI_Cooldown
+
 @export var playerWeaponIndex: int
 
 # Called when the node enters the scene tree for the first time.
@@ -13,11 +15,13 @@ func _ready():
 	CenterPos = get_node("Center")
 	lblWeapon = get_node("Name")
 	lblWeapon.text = ""
+	cooldownProgress = $UpperPart/CooldownProgress
+	cooldownProgress.setup(playerWeaponIndex)
 	
 	if playerWeaponIndex == 0:
-		$"control icon/control icon".texture = load("res://scenes/ui/mouse_left_click.png")
+		$"UpperPart/input icon/sprite".texture = load("res://scenes/ui/mouse_left_click.png")
 	elif playerWeaponIndex == 1:
-		$"control icon/control icon".texture = load("res://scenes/ui/mouse_right_click.png")
+		$"UpperPart/input icon/sprite".texture = load("res://scenes/ui/mouse_right_click.png")
 	pass # Replace with function body.
 
 func _process(delta):

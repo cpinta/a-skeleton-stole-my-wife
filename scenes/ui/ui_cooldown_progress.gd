@@ -1,7 +1,7 @@
 extends TextureProgressBar
 class_name UI_Cooldown
 
-var target: Weapon
+var playerWeaponIndex: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,6 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var target = Game.player.weapons[playerWeaponIndex]
 	if target != null:
 		if target.onCooldown:
 			visible = true
@@ -20,5 +21,5 @@ func _process(delta):
 			visible = false
 		pass
 
-func setup(newTarget: Weapon):
-	target = newTarget
+func setup(newIndex: int):
+	playerWeaponIndex = newIndex
