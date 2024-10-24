@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://yqoqrg7qlsx2"
+path="res://.godot/imported/mouse_left_click.aseprite-88a704c7988c5c3010ac73815025fd25.res"
+
+[deps]
+
+source_file="res://sprites/ui/mouse_left_click.aseprite"
+dest_files=["res://.godot/imported/mouse_left_click.aseprite-88a704c7988c5c3010ac73815025fd25.res"]
+
+[params]
+

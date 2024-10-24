@@ -9,6 +9,7 @@ bg_color = Color(0.522158, 0, 0.110189, 1)
 bg_color = Color(1, 0.268321, 0.604777, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_iodxf"]
+subpixel_positioning = 0
 
 [node name="Health Bar" type="ProgressBar"]
 offset_right = 100.0

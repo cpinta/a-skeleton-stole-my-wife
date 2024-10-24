@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d3bjty7trf0ck"
+path="res://.godot/imported/mouse_right_click.aseprite-e1dd2ef410c2735617781e8623c7b2d7.res"
+
+[deps]
+
+source_file="res://sprites/ui/mouse_right_click.aseprite"
+dest_files=["res://.godot/imported/mouse_right_click.aseprite-e1dd2ef410c2735617781e8623c7b2d7.res"]
+
+[params]
+
