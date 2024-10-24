@@ -180,6 +180,8 @@ func drop_weapon(weapon: Weapon):
 		if weapon.attack_hit.is_connected(our_attack_did_hit):
 			weapon.attack_hit.disconnect(our_attack_did_hit)
 			pass
+		if weapon.inUse:
+			weapon.end_use_weapon()
 		weapon.reparent(self.owner, true)
 		weapon.drop(abs(weapon.global_position.y - global_position.y))
 		#weapon.global_position = Vector2(weapon.global_position.x, global_position.y)

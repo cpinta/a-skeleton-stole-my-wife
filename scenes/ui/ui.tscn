@@ -91,14 +91,5 @@ offset_left = 64.0
 offset_right = 124.0
 playerWeaponIndex = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/Control/bottom left/item display"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -14.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="satan" parent="Control" instance=ExtResource("2_2by4y")]
 layout_mode = 1
