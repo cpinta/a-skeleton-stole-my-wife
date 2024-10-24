@@ -5,10 +5,15 @@ class_name Pistol
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	BASE_AMMO_COUNT = 10
+	START_DROPPED = false
 	super._ready()
 	projectile = load("res://scenes/weapons/wp_pistolbullet.tscn")
 	anim = get_node("animation")
 	anim.play("idle")
+	
+	
+	elementHeight.SHADOW_USES_PARENT_ORIGIN = true
+	drop(5)
 	
 	IS_CONTINUOUS = false
 	EQUIP_ANGLE = 90

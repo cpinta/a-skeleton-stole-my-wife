@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy7x48mumedja"]
+
+[ext_resource type="Script" path="res://scenes/ui/ui_buttonhint.gd" id="1_so3ki"]
+[ext_resource type="Texture2D" uid="uid://dj2v87fvhvgiq" path="res://scenes/ui/key.png" id="3_imnpu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6ko7"]
+atlas = ExtResource("3_imnpu")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_co4gc"]
+atlas = ExtResource("3_imnpu")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p1mmr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6ko7")
+}],
+"loop": true,
+"name": &"pressed",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_co4gc")
+}],
+"loop": true,
+"name": &"unpressed",
+"speed": 10.0
+}]
+
+[node name="ui_buttonhint" type="Node2D"]
+z_index = 4096
+z_as_relative = false
+script = ExtResource("1_so3ki")
+
+[node name="char" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(0, -1)
+offset = Vector2(0, 0.5)
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://sprites/ui/chars/char_E.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "884facd0c327e3327d9b127593003a5d"
+
+[node name="key" type="AnimatedSprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_p1mmr")
+animation = &"pressed"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/ui/key.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "8659ed17add15f683e3e183cad00edf3"

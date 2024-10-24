@@ -11,6 +11,7 @@ func _ready():
 	BASE_DURATION = 1
 	
 	HITSTUN_AMOUNT = 0.2
+	START_DROPPED = false
 	
 	EQUIP_ANGLE = 45
 	STORE_ANGLE = -90
@@ -19,6 +20,8 @@ func _ready():
 	anim = get_node("animation")
 	
 	super._ready()
+	elementHeight.SHADOW_USES_PARENT_ORIGIN = true
+	drop(5)
 	pass # Replace with function body.
 
 

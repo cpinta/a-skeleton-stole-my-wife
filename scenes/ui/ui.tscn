@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dclrvv5xwjxvx"]
+[gd_scene load_steps=9 format=3 uid="uid://dclrvv5xwjxvx"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="1_epvr3"]
 [ext_resource type="PackedScene" uid="uid://byhlmvlump0td" path="res://scenes/enemies/satan.tscn" id="2_2by4y"]
 [ext_resource type="Script" path="res://scripts/ui/player_health.gd" id="3_yqsv7"]
 [ext_resource type="PackedScene" uid="uid://c7uja6ddq5jyf" path="res://scenes/ui/combo_ui.tscn" id="4_0ocu0"]
 [ext_resource type="PackedScene" uid="uid://ciocx6wvwso6i" path="res://scenes/ui/health_bar.tscn" id="4_nuc83"]
-[ext_resource type="PackedScene" uid="uid://bxf3tx4t3bknh" path="res://scenes/ui/item_display_ui.tscn" id="5_42l55"]
+[ext_resource type="Script" path="res://scenes/ui/ui_item_display.gd" id="5_t8brj"]
+[ext_resource type="PackedScene" uid="uid://du7w4l4f4thq0" path="res://scenes/ui/ui_weapon.tscn" id="6_pcuxs"]
+[ext_resource type="PackedScene" uid="uid://dy7x48mumedja" path="res://scenes/ui/ui_buttonhint.tscn" id="8_c53qo"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_epvr3")
@@ -69,9 +71,40 @@ offset_top = -90.0
 offset_right = 160.0
 grow_vertical = 0
 
-[node name="item display" parent="Control/MarginContainer/Control/bottom left" instance=ExtResource("5_42l55")]
+[node name="item display" type="Control" parent="Control/MarginContainer/Control/bottom left"]
 layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -45.0
 offset_right = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("5_t8brj")
+
+[node name="Weapon 0" parent="Control/MarginContainer/Control/bottom left/item display" instance=ExtResource("6_pcuxs")]
+layout_mode = 2
+offset_right = 60.0
+offset_bottom = 45.0
+
+[node name="Weapon 1" parent="Control/MarginContainer/Control/bottom left/item display" instance=ExtResource("6_pcuxs")]
+layout_mode = 2
+offset_left = 64.0
+offset_right = 124.0
+offset_bottom = 45.0
+playerWeaponIndex = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/Control/bottom left/item display"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="satan" parent="Control" instance=ExtResource("2_2by4y")]
 layout_mode = 1
+
+[node name="ui_buttonhint" parent="Control" instance=ExtResource("8_c53qo")]

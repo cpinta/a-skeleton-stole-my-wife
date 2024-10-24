@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=18 format=4 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_p1rca"]
 [ext_resource type="Script" path="res://scripts/game_camera.gd" id="2_dj5lk"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://scenes/enemies/zombie.tscn" id="9_coxei"]
 [ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://scenes/weapons/wp_sledgehammer.tscn" id="9_rh5a7"]
 [ext_resource type="PackedScene" uid="uid://con4cpwqfoe6d" path="res://scenes/enemies/gargoyle.tscn" id="10_nxnuf"]
-[ext_resource type="PackedScene" uid="uid://dxv6vkvxip33p" path="res://scenes/objects/Entity_Spawnpoint.tscn" id="13_j6ktd"]
 [ext_resource type="PackedScene" uid="uid://cpm6nu6nagl0n" path="res://scenes/weapons/wp_pistol.tscn" id="14_e607k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mwk4r"]
@@ -176,11 +175,14 @@ tile_set = SubResource("TileSet_mpmmr")
 collision_enabled = false
 navigation_enabled = false
 
+[node name="Sledgehammer2" parent="." instance=ExtResource("9_rh5a7")]
+position = Vector2(-91, 29)
+
 [node name="Sledgehammer" parent="." instance=ExtResource("9_rh5a7")]
 position = Vector2(-119, 28)
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(23, 130)
+position = Vector2(23000, 130000)
 
 [node name="ghost" parent="Node2D" instance=ExtResource("5_q0k0n")]
 
@@ -195,9 +197,6 @@ position = Vector2(109, -32)
 
 [node name="pumpkin" parent="Node2D" instance=ExtResource("8_botum")]
 position = Vector2(108, -3)
-
-[node name="EntitySpawnpoint" parent="." instance=ExtResource("13_j6ktd")]
-position = Vector2(120, -1)
 
 [node name="pistol" parent="." instance=ExtResource("14_e607k")]
 position = Vector2(-93, -13)

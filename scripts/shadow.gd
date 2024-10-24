@@ -11,7 +11,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if element != null:
-		global_position = element.global_position
+		global_position = element.global_position.ceil()
 	else:
 		queue_free()
 	pass

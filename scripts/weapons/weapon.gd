@@ -73,7 +73,7 @@ func cooldown_over():
 func end_use_weapon():
 	inUse = false
 	onCooldown = true
-	cooldownTimer = BASE_COOLDOWN
+	cooldownTimer = cooldown
 	pass
 	
 func quit_use_weapon():

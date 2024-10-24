@@ -8,12 +8,16 @@ class_name Item
 @export var onGround: bool = false
 @export var pickedUp: bool = false
 
+@export var START_DROPPED: bool = true
 
 @export var STORE_ANGLE: int = 0
 
 @export var pickupArea: Area2D
 @export var pickupBox: CollisionShape2D
 
+@export var USE_PICKUP_KEY: bool = true
+@export var pickupKey: UI_ButtonHint
+@export var pickupKeyVOffset: int = -12
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,13 +26,25 @@ func _ready():
 	pickupArea = $"pickup"
 	pickupBox = pickupArea.get_node("shape")
 	
-	drop(5)
+	if START_DROPPED:
+		drop(5)
+	
+	if USE_PICKUP_KEY:
+		var pickupKeyScene: PackedScene = load("res://scenes/ui/ui_buttonhint.tscn")
+		pickupKey = pickupKeyScene.instantiate() as UI_ButtonHint
+		add_child(pickupKey)
+		pickupKey.setup("interact")
+		pickupKey.visible = false		
+		
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if onGround:
 		rotation_degrees = STORE_ANGLE
+	
+	if pickupKey != null:
+		pickupKey.global_position = Vector2(global_position.x, global_position.y - pickupKeyVOffset)
 	pass
 	
 func _physics_process(delta):
@@ -50,6 +66,7 @@ func on_ground():
 	pass
 
 func pickup(entity : Entity):
+	pickupKey.visible = false
 	ownerEntity = entity
 	pickedUp = true
 	pickupBox.disabled = true
@@ -68,3 +85,12 @@ func drop(height: float):
 	#rotation = 0
 	
 	pass
+
+func is_closest_item():
+	if USE_PICKUP_KEY:
+		if pickupKey != null:
+			pickupKey.visible = true
+	
+func not_closest_item():
+	if pickupKey != null:
+		pickupKey.visible = false

@@ -6,6 +6,9 @@ class_name HeightElement
 
 var shadowPrefab: PackedScene
 var shadow: Shadow
+var shadowOffset: Vector2 = Vector2.ZERO
+# true = shadow uses the origin of the HeightElement node, false = shadow uses the origin of the HeightElement node's parent
+var SHADOW_USES_PARENT_ORIGIN: bool = false
 
 # the altitude of the entity
 var height: float = 0
@@ -73,7 +76,10 @@ func _physics_process(delta):
 
 func load_shadow():
 	shadow = shadowPrefab.instantiate()
-	shadow.setup(self)
+	var origin: Node2D = self
+	if SHADOW_USES_PARENT_ORIGIN:
+		origin = owner
+	shadow.setup(origin)
 	Game.add_child.call_deferred(shadow)
 	pass
 	

@@ -26,6 +26,7 @@ var pickupArea: Area2D
 @export var currentHand: HandToUse = HandToUse.LEFT
 
 @export var availablePickups: Array[Item]
+@export var closestPickup: Item
 
 
 # Called when the node enters the scene tree for the first time.
@@ -82,7 +83,7 @@ func _process(delta):
 	if Input.is_action_just_released("drop"):
 		drop_key()
 	
-	lineMouseAim.points[1] = get_global_mouse_position() - rb.global_position
+	lineMouseAim.points[1] = get_global_mouse_position() - global_position
 	aimPoint = lineMouseAim.points[1]
 	
 	if entityVelocity.length() > 0.1:
@@ -90,17 +91,22 @@ func _process(delta):
 	else:
 		anim.play("idle")
 		
+	find_closest_pickup_item()
+		
 	face_anim_process()
 	pass
 	
 func use_weapon(hand: HandToUse):
-	if weapons.size() > hand:
-		if not weapons[hand] == null:
+	if weapons[hand] != null:
+		if weapons[currentHand] != null:
 			if not weapons[currentHand].inUse:
 				if hand != currentHand:
 					swap_weapons()
 				weapons[hand].use_weapon()
-	
+		else:
+			swap_weapons()
+			weapons[hand].use_weapon()
+				
 func stop_use_weapon(hand: HandToUse):
 	if not weapons[hand] == null:
 		if weapons[hand].inUse:
@@ -130,7 +136,7 @@ func dash():
 func _physics_process(delta):
 	super._physics_process(delta)
 	hand.look_at(get_global_mouse_position())
-	hand.global_position = hand.global_position.lerp(rb.global_position - Vector2(0, HAND_HEIGHT) + hand.transform.x * min(HAND_DISTANCE, (get_global_mouse_position() - rb.global_position).length()), 0.9)
+	hand.global_position = hand.global_position.lerp(global_position - Vector2(0, HAND_HEIGHT) + hand.transform.x * min(HAND_DISTANCE, (get_global_mouse_position() - global_position).length()), 0.9)
 	hand.rotate(-(PI/2))
 	if hand.global_position.x > global_position.x:
 		set_direction(Direction.RIGHT)
@@ -151,39 +157,32 @@ func get_input_vector():
 		
 func interact():
 	if availablePickups.size() > 0:
-		var shortestDistance: float = 0
-		var closestItem: Item = availablePickups[0]
-		for item in availablePickups:
-			var itemDistance = rb.global_position.distance_to(item.global_position)
-			if itemDistance > shortestDistance:
-				shortestDistance = itemDistance
-				closestItem = item
-			pass
-		if closestItem is Weapon:
+		if closestPickup is Weapon:
 			if weapons.size() < 2:
-				pickup(closestItem)
+				pickup(closestPickup)
 				drop_weapon(weapons[currentHand])
-				equip_weapon(closestItem)
+				equip_weapon(closestPickup)
 			else:
-				pickup(closestItem)
-				equip_weapon(closestItem)
+				pickup(closestPickup)
+				equip_weapon(closestPickup)
 	pass
 	
 func drop_key():
 	if weapons[currentHand] != null:
-		drop_weapon(weapons[currentHand])
+		if not weapons[currentHand].inUse:
+			drop_weapon(weapons[currentHand])
 	pass
 	
 func drop_weapon(weapon: Weapon):
 	var index = weapons.find(weapon)
 	if index != -1:
-		print(weapon.global_position.y," ",rb.global_position.y," ", abs(weapon.global_position.y - rb.global_position.y))
+		print(weapon.global_position.y," ",global_position.y," ", abs(weapon.global_position.y - global_position.y))
 		if weapon.attack_hit.is_connected(our_attack_did_hit):
 			weapon.attack_hit.disconnect(our_attack_did_hit)
 			pass
 		weapon.reparent(self.owner, true)
-		weapon.drop(abs(weapon.global_position.y - rb.global_position.y))
-		#weapon.global_position = Vector2(weapon.global_position.x, rb.global_position.y)
+		weapon.drop(abs(weapon.global_position.y - global_position.y))
+		#weapon.global_position = Vector2(weapon.global_position.x, global_position.y)
 
 		weapons[index] = null
 	pass
@@ -214,6 +213,30 @@ func entered_pickup_area(node: Node2D):
 			var item = parent as Item
 			if not availablePickups.has(item):
 				availablePickups.append(item)
+				find_closest_pickup_item()
+	pass
+	
+func find_closest_pickup_item():
+	if availablePickups.size() > 1:
+		var shortestDistance: float = 999999
+		var closestItem: Item = null
+		for pickup in availablePickups:
+			var itemDistance = global_position.distance_to(pickup.global_position)
+			if itemDistance < shortestDistance:
+				shortestDistance = itemDistance
+				closestItem = pickup
+			pass
+		set_item_as_closest_pickup(closestItem)
+	elif availablePickups.size() == 1:
+		set_item_as_closest_pickup(availablePickups[0])
+	else:
+		closestPickup = null
+
+func set_item_as_closest_pickup(item: Item):
+	if closestPickup != null:
+		closestPickup.not_closest_item()
+	closestPickup = item
+	closestPickup.is_closest_item()
 	pass
 	
 func exited_pickup_area(node: Node2D):
@@ -223,7 +246,10 @@ func exited_pickup_area(node: Node2D):
 		if parent is Item:
 			var item = parent as Item
 			if availablePickups.has(item):
+				item.not_closest_item()
 				availablePickups.erase(item)
+				if closestPickup == item:
+					find_closest_pickup_item()
 	pass
 
 func set_direction(dir: Direction):

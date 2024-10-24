@@ -21,6 +21,7 @@ var STONE_ON_GROUND_TIME: float = 3
 var STONE_FALL_SPEED: float = 200
 
 var FLYING_AWAY_DISTANCE: float = 300
+var FlyingAwayFromPoint: Vector2
 
 var dirVector: Vector2 = Vector2.ZERO
 
@@ -128,7 +129,7 @@ func _physics_process(delta):
 			if elementHeight.height < FLY_HEIGHT:
 				elementHeight.height += delta * STONE_FALL_SPEED
 			inputVector = escapeVector
-			if global_position.distance_to(target.global_position) > FLYING_AWAY_DISTANCE:
+			if global_position.distance_to(FlyingAwayFromPoint) > FLYING_AWAY_DISTANCE:
 				queue_free()
 			pass
 	pass
@@ -159,6 +160,10 @@ func change_state(newState: GargoyleState):
 		GargoyleState.POST_STONE_FLY:
 			FOLLOWS_PLAYER = false
 			escapeVector = Vector2.RIGHT.rotated(randf_range(0, 2*PI))
+			if target != null:
+				FlyingAwayFromPoint = target.global_position
+			else:
+				FlyingAwayFromPoint = self.global_position
 			inputVector = escapeVector
 			check_direction()
 			pass
