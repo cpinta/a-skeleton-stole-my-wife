@@ -11,15 +11,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var target = Game.player.weapons[playerWeaponIndex]
-	if target != null:
-		if target.onCooldown:
-			visible = true
-			max_value = target.cooldown
-			value = target.cooldownTimer
-		else:
-			visible = false
-		pass
+	if Game.player != null:
+		var target = Game.player.weapons[playerWeaponIndex]
+		if target != null:
+			if target.onCooldown:
+				visible = true
+				max_value = target.cooldown
+				value = target.cooldownTimer
+			else:
+				visible = false
+			pass
 
 func setup(newIndex: int):
 	playerWeaponIndex = newIndex

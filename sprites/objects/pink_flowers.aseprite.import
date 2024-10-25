@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dcuimsngbscjg"
+path="res://.godot/imported/pink_flowers.aseprite-1a74e5a54f9ff4c78614e63207edb4bc.res"
+
+[deps]
+
+source_file="res://sprites/objects/pink_flowers.aseprite"
+dest_files=["res://.godot/imported/pink_flowers.aseprite-1a74e5a54f9ff4c78614e63207edb4bc.res"]
+
+[params]
+

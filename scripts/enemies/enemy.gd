@@ -23,6 +23,8 @@ class_name Enemy
 @export var hurtbox : Area2D
 @export var hurtboxShape : CollisionShape2D
 
+var navAgent: NavigationAgent2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
@@ -51,7 +53,14 @@ func _ready():
 		self.add_child(healthbar)
 		healthbar.setup(self, UI_HealthBar.HealthBarType.MINI)
 		pass
+		
+	navAgent = get_node_or_null("navAgent")
 	
+	if navAgent != null:
+		navAgent.path_desired_distance = 4
+		navAgent.target_desired_distance = 0
+		await get_tree().physics_frame
+		navAgent.target_position = player.global_position
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,12 +69,17 @@ func _process(delta):
 	if not check_for_target_or_player():
 		return
 	if FOLLOWS_PLAYER:
-		set_inputVector_toward_target(delta)
+		if navAgent != null:
+			navAgent.target_position = target.global_position
+			inputVector = -global_position.direction_to(navAgent.get_next_path_position())
+		else:
+			set_inputVector_toward_target(delta)
 		check_direction()
 	pass
 
 func _physics_process(delta):
 	super._physics_process(delta)
+	
 	if not check_for_target_or_player():
 		return
 	if elementHeight.height > 25: #if flying

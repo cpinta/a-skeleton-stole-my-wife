@@ -3,7 +3,6 @@ class_name Player
 
 enum HandToUse {LEFT = 0, RIGHT = 1}
 
-var lineMouseAim : Line2D
 var aimPoint : Vector2
 var arm : Node2D
 var hand : Node2D
@@ -52,11 +51,6 @@ func _ready():
 	pickupArea.connect("area_entered", entered_pickup_area)
 	pickupArea.connect("area_exited", exited_pickup_area)
 	
-	
-	lineMouseAim = body.get_node("debug/aimline")
-	lineMouseAim.add_point(Vector2.ZERO)
-	lineMouseAim.add_point(Vector2.ZERO)
-	
 	elementHeight.entity_height = 25
 	pass
 
@@ -83,9 +77,6 @@ func _process(delta):
 		interact()
 	if Input.is_action_just_released("drop"):
 		drop_key()
-	
-	lineMouseAim.points[1] = get_global_mouse_position() - global_position
-	aimPoint = lineMouseAim.points[1]
 	
 	if entityVelocity.length() > 0.1:
 		anim.play("walk")
@@ -139,7 +130,6 @@ func _physics_process(delta):
 	hand.position = back.position
 	hand.look_at(get_global_mouse_position())
 	var handDistance: float = min(HAND_MAX_DISTANCE, (get_global_mouse_position() - global_position).length())
-	handDistance = HAND_MAX_DISTANCE
 	hand.global_position = hand.global_position.lerp(global_position - Vector2(0, HAND_HEIGHT) + hand.transform.x * handDistance, 1)
 	hand.rotate(-(PI/2))
 	if hand.global_position.x > global_position.x:

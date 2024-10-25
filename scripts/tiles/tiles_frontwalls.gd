@@ -49,7 +49,6 @@ func _process(delta):
 			else:
 				wall.isInFront = false
 			if wall.lowy > targetPos.y - yrange:
-				#print(wall.lowy," ",wall.highy," ",targetPos.y)
 				wall.setAll(0.3)
 			else:
 				wall.setAll(1)
@@ -60,9 +59,11 @@ func _process(delta):
 				closestWall = wall
 				pass
 		if closestWall.isInFront:
-			z_index = frontZ
+			#z_index = frontZ
+			pass
 		else:
-			z_index = backZ
+			#z_index = backZ
+			pass
 		notify_runtime_tile_data_update()
 		#for coord in coords:
 			#if coord.y <= targetPos.y + yrange:

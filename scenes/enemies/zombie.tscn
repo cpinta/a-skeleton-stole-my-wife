@@ -9,54 +9,54 @@
 radius = 5.0
 height = 40.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wk2ao"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbna6"]
 atlas = ExtResource("2_bdsqg")
 region = Rect2(0, 54, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pb003"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xllji"]
 atlas = ExtResource("2_bdsqg")
 region = Rect2(16, 54, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ir2v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4ye5"]
 atlas = ExtResource("2_bdsqg")
 region = Rect2(0, 0, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3hj64"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_eww0t"]
 atlas = ExtResource("2_bdsqg")
 region = Rect2(16, 0, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_61blu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uigev"]
 atlas = ExtResource("2_bdsqg")
 region = Rect2(32, 0, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_adch2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uiyyu"]
 atlas = ExtResource("2_bdsqg")
 region = Rect2(48, 0, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qq4no"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nfb2"]
 atlas = ExtResource("2_bdsqg")
 region = Rect2(0, 27, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cogrs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d48gd"]
 atlas = ExtResource("2_bdsqg")
 region = Rect2(16, 27, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_libeq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg560"]
 atlas = ExtResource("2_bdsqg")
 region = Rect2(32, 27, 16, 27)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tsf7f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkxrx"]
 atlas = ExtResource("2_bdsqg")
 region = Rect2(48, 27, 16, 27)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_egjkd"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_vnaae"]
 animations = [{
 "frames": [{
 "duration": 2.16667,
-"texture": SubResource("AtlasTexture_wk2ao")
+"texture": SubResource("AtlasTexture_bbna6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pb003")
+"texture": SubResource("AtlasTexture_xllji")
 }],
 "loop": true,
 "name": &"idle",
@@ -64,28 +64,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.2,
-"texture": SubResource("AtlasTexture_2ir2v")
+"texture": SubResource("AtlasTexture_n4ye5")
 }, {
 "duration": 1.6,
-"texture": SubResource("AtlasTexture_3hj64")
+"texture": SubResource("AtlasTexture_eww0t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_61blu")
+"texture": SubResource("AtlasTexture_uigev")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_adch2")
+"texture": SubResource("AtlasTexture_uiyyu")
 }, {
 "duration": 1.2,
-"texture": SubResource("AtlasTexture_qq4no")
+"texture": SubResource("AtlasTexture_2nfb2")
 }, {
 "duration": 1.2,
-"texture": SubResource("AtlasTexture_cogrs")
+"texture": SubResource("AtlasTexture_d48gd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_libeq")
+"texture": SubResource("AtlasTexture_lg560")
 }, {
 "duration": 1.2,
-"texture": SubResource("AtlasTexture_tsf7f")
+"texture": SubResource("AtlasTexture_wkxrx")
 }],
 "loop": true,
 "name": &"walk",
@@ -100,6 +100,8 @@ collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_gt8ip")
 
+[node name="navAgent" type="NavigationAgent2D" parent="."]
+
 [node name="collider" type="CollisionShape2D" parent="."]
 position = Vector2(-5.96046e-08, 4.76837e-07)
 rotation = 1.5708
@@ -111,7 +113,7 @@ shape = SubResource("CapsuleShape2D_k0yc0")
 [node name="animation" type="AnimatedSprite2D" parent="body"]
 texture_filter = 1
 position = Vector2(0, -13.5)
-sprite_frames = SubResource("SpriteFrames_egjkd")
+sprite_frames = SubResource("SpriteFrames_vnaae")
 animation = &"walk"
 script = ExtResource("3_1gwnw")
 metadata/_aseprite_wizard_config_ = {
@@ -128,7 +130,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true,
 "slice_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "8d842c3b9686aa7bd0f5f48399c424dc"
+metadata/_aseprite_wizard_source_file_hash_ = "6f1cb1408833fd63f644321541e86833"
 
 [node name="hurtbox" type="Area2D" parent="body"]
 collision_layer = 4
