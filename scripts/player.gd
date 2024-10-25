@@ -25,8 +25,8 @@ var pickupArea: Area2D
 
 @export var currentHand: HandToUse = HandToUse.LEFT
 
-@export var availablePickups: Array[Item]
-@export var closestPickup: Item
+@export var availableInteractables: Array[Interactable]
+@export var closestInteract: Interactable
 
 
 # Called when the node enters the scene tree for the first time.
@@ -48,8 +48,8 @@ func _ready():
 	FACE_ORIGIN = face.position
 	
 	pickupArea = body.get_node("pickup")
-	pickupArea.connect("area_entered", entered_pickup_area)
-	pickupArea.connect("area_exited", exited_pickup_area)
+	pickupArea.connect("area_entered", entered_interact_area)
+	pickupArea.connect("area_exited", exited_interact_area)
 	
 	elementHeight.entity_height = 25
 	pass
@@ -83,7 +83,7 @@ func _process(delta):
 	else:
 		anim.play("idle")
 		
-	find_closest_pickup_item()
+	find_closest_interact()
 		
 	face_anim_process()
 	pass
@@ -150,15 +150,17 @@ func get_input_vector():
 		inputVector.y -= 1
 		
 func interact():
-	if availablePickups.size() > 0:
-		if closestPickup is Weapon:
+	if availableInteractables.size() > 0:
+		if closestInteract is Weapon:
 			if weapons.size() < 2:
-				pickup(closestPickup)
+				pickup(closestInteract)
 				drop_weapon(weapons[currentHand])
-				equip_weapon(closestPickup)
+				equip_weapon(closestInteract)
 			else:
-				pickup(closestPickup)
-				equip_weapon(closestPickup)
+				pickup(closestInteract)
+				equip_weapon(closestInteract)
+		else:
+			closestInteract.try_interact(self)
 	pass
 	
 func drop_key():
@@ -201,51 +203,51 @@ func equip_weapon(weapon: Weapon):
 		pass
 	pass
 
-func entered_pickup_area(node: Node2D):
+func entered_interact_area(node: Node2D):
 	var parent = node.get_parent()
-	print("entered pickup:",parent.name)
+	print("entered interact:",parent.name)
 	if parent != null:
-		if parent is Item:
-			var item = parent as Item
-			if not availablePickups.has(item):
-				availablePickups.append(item)
-				find_closest_pickup_item()
+		if parent is Interactable:
+			var interact = parent as Interactable
+			if not availableInteractables.has(interact):
+				availableInteractables.append(interact)
+				find_closest_interact()
 	pass
 	
-func find_closest_pickup_item():
-	if availablePickups.size() > 1:
+func exited_interact_area(node: Node2D):
+	var parent = node.get_parent()
+	print("exited interact:",parent.name)
+	if parent != null:
+		if parent is Interactable:
+			var interact = parent as Interactable
+			if availableInteractables.has(interact):
+				interact.not_closest_interact()
+				availableInteractables.erase(interact)
+				if closestInteract == interact:
+					find_closest_interact()
+	pass
+	
+func find_closest_interact():
+	if availableInteractables.size() > 1:
 		var shortestDistance: float = 999999
-		var closestItem: Item = null
-		for pickup in availablePickups:
-			var itemDistance = global_position.distance_to(pickup.global_position)
-			if itemDistance < shortestDistance:
-				shortestDistance = itemDistance
-				closestItem = pickup
+		var closestInteract: Interactable = null
+		for pickup in availableInteractables:
+			var interactDistance = global_position.distance_to(pickup.global_position)
+			if interactDistance < shortestDistance:
+				shortestDistance = interactDistance
+				closestInteract = pickup
 			pass
-		set_item_as_closest_pickup(closestItem)
-	elif availablePickups.size() == 1:
-		set_item_as_closest_pickup(availablePickups[0])
+		set_as_closest_interact(closestInteract)
+	elif availableInteractables.size() == 1:
+		set_as_closest_interact(availableInteractables[0])
 	else:
-		closestPickup = null
+		closestInteract = null
 
-func set_item_as_closest_pickup(item: Item):
-	if closestPickup != null:
-		closestPickup.not_closest_item()
-	closestPickup = item
-	closestPickup.is_closest_item()
-	pass
-	
-func exited_pickup_area(node: Node2D):
-	var parent = node.get_parent()
-	print("exited pickup:",parent.name)
-	if parent != null:
-		if parent is Item:
-			var item = parent as Item
-			if availablePickups.has(item):
-				item.not_closest_item()
-				availablePickups.erase(item)
-				if closestPickup == item:
-					find_closest_pickup_item()
+func set_as_closest_interact(interact: Interactable):
+	if closestInteract != null:
+		closestInteract.not_closest_interact()
+	closestInteract = interact
+	closestInteract.is_closest_interact()
 	pass
 
 func set_direction(dir: Direction):

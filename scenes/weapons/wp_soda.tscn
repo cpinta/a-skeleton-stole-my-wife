@@ -99,10 +99,10 @@ metadata/_aseprite_wizard_interface_config_ = {
 [node name="shoot_point" type="Node2D" parent="."]
 position = Vector2(4, -6)
 
-[node name="pickup" type="Area2D" parent="."]
+[node name="interact" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 0
 
-[node name="shape" type="CollisionShape2D" parent="pickup"]
+[node name="shape" type="CollisionShape2D" parent="interact"]
 position = Vector2(1, -3.5)
 shape = SubResource("RectangleShape2D_1k58v")

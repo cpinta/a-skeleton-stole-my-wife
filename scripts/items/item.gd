@@ -1,4 +1,4 @@
-extends Node2D
+extends Interactable
 class_name Item
 
 @export var ownerEntity: Entity
@@ -12,39 +12,22 @@ class_name Item
 
 @export var STORE_ANGLE: int = 0
 
-@export var pickupArea: Area2D
-@export var pickupBox: CollisionShape2D
-
-@export var USE_PICKUP_KEY: bool = true
-@export var pickupKey: UI_ButtonHint
-@export var pickupKeyVOffset: int = -12
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()
 	elementHeight = $animation
-	
-	pickupArea = $"pickup"
-	pickupBox = pickupArea.get_node("shape")
 	
 	if START_DROPPED:
 		drop(5)
-	
-	if USE_PICKUP_KEY:
-		var pickupKeyScene: PackedScene = load("res://scenes/ui/ui_buttonhint.tscn")
-		pickupKey = pickupKeyScene.instantiate() as UI_ButtonHint
-		add_child(pickupKey)
-		pickupKey.setup("interact")
-		pickupKey.visible = false		
 		
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	super._process(delta)
 	if onGround:
 		rotation_degrees = STORE_ANGLE
 	
-	if pickupKey != null:
-		pickupKey.global_position = Vector2(global_position.x, global_position.y - pickupKeyVOffset)
 	pass
 	
 func _physics_process(delta):
@@ -66,31 +49,20 @@ func on_ground():
 	pass
 
 func pickup(entity : Entity):
-	pickupKey.visible = false
+	disable_interact()
 	ownerEntity = entity
 	pickedUp = true
-	pickupBox.disabled = true
 	elementHeight.unload_shadow()
 	pass
 	
 func drop(height: float):
+	enable_interact()
 	ownerEntity = null
 	pickedUp = false
-	pickupBox.disabled = false
 	elementHeight.load_shadow()
 	elementHeight.height = height
 	global_position.y += height
 	rotation_degrees = STORE_ANGLE
 	scale.y = 1
 	#rotation = 0
-	
 	pass
-
-func is_closest_item():
-	if USE_PICKUP_KEY:
-		if pickupKey != null:
-			pickupKey.visible = true
-	
-func not_closest_item():
-	if pickupKey != null:
-		pickupKey.visible = false

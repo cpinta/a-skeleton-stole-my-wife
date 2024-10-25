@@ -22,7 +22,7 @@ var entity_height: float = 25
 
 var heightVerticalSpeed: float = 0
 var DOES_HEIGHT_USE_GRAVITY: bool = true
-var GRAVITY: float = 50
+var GRAVITY: float = 70
 var isAffectedByHeight: bool = false
 
 

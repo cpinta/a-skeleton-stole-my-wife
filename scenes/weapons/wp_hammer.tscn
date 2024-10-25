@@ -26,43 +26,6 @@ size = Vector2(11, 16.4218)
 
 [node name="Hammer" type="Node2D"]
 script = ExtResource("1_hekcw")
-FRONT_FACING_ANGLE = null
-INHAND_ANGLE = null
-SWING_ARC_ANGLE = null
-SWING_START_ANGLE = null
-SWING_END_ANGLE = null
-HITSTUN_AMOUNT = null
-curSwingTime = null
-weaponName = null
-description = null
-weaponType = null
-BASE_DAMAGE = null
-BASE_COOLDOWN = null
-BASE_ATTACKSPEED = null
-BASE_DURATION = null
-BASE_SIZE = null
-BASE_KNOCKBACK = null
-BASE_RANGE = null
-BASE_AMMO_COUNT = null
-IS_QUITTABLE = null
-EQUIP_ANGLE = null
-EQUIP_OFFSET = null
-damage = null
-cooldown = null
-attackspeed = null
-duration = null
-size = null
-knockback = null
-range = null
-ammoCount = null
-currentAmmoCount = null
-cooldownTimer = null
-inUse = null
-onCooldown = null
-isEquipped = null
-onGround = null
-pickedUp = null
-STORE_ANGLE = null
 
 [node name="collider" type="Area2D" parent="."]
 rotation = 0.785398
@@ -94,10 +57,10 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "69307a84bf192b0826e3c3e50ee4967a"
 
-[node name="pickup" type="Area2D" parent="."]
+[node name="interact" type="Area2D" parent="."]
 collision_layer = 32
 
-[node name="shape" type="CollisionShape2D" parent="pickup"]
+[node name="shape" type="CollisionShape2D" parent="interact"]
 position = Vector2(4.44708, -6.5684)
 rotation = 0.785398
 shape = SubResource("RectangleShape2D_6fft2")

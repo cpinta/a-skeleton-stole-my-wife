@@ -12,7 +12,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if target != null:
-		lblScore.text = "score\n"
+		lblScore.text = "monster aura\n"
 		lblScore.text += str(Game.player.score)
 	else:
 		target = Game.player

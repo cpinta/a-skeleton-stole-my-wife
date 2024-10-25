@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=29 format=4 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_p1rca"]
 [ext_resource type="Script" path="res://scripts/game_camera.gd" id="2_dj5lk"]
@@ -7,9 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://d34rckikrmdqc" path="res://sprites/tiles/outside tiles.png" id="4_x8hy5"]
 [ext_resource type="Texture2D" uid="uid://dy5f1qkfmkqyw" path="res://sprites/tiles/graveyard tiles.png" id="5_co3eo"]
 [ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://scenes/enemies/zombie.tscn" id="9_coxei"]
-[ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://scenes/weapons/wp_sledgehammer.tscn" id="9_rh5a7"]
 [ext_resource type="PackedScene" uid="uid://dxv6vkvxip33p" path="res://scenes/objects/Entity_Spawnpoint.tscn" id="11_t5gi1"]
-[ext_resource type="PackedScene" uid="uid://cpm6nu6nagl0n" path="res://scenes/weapons/wp_pistol.tscn" id="14_e607k"]
+[ext_resource type="PackedScene" uid="uid://d0d5s433erqlk" path="res://scenes/objects/item_chest.tscn" id="12_b8klk"]
 [ext_resource type="Script" path="res://scripts/tiles/tiles_frontwalls.gd" id="14_eqiqy"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hm222"]
@@ -298,15 +297,6 @@ z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-31, 19)
 
-[node name="Sledgehammer2" parent="." instance=ExtResource("9_rh5a7")]
-position = Vector2(-91, 29)
-
-[node name="Sledgehammer" parent="." instance=ExtResource("9_rh5a7")]
-position = Vector2(-119, 28)
-
-[node name="pistol" parent="." instance=ExtResource("14_e607k")]
-position = Vector2(-93, -13)
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 y_sort_enabled = true
 navigation_polygon = SubResource("NavigationPolygon_hm222")
@@ -380,6 +370,8 @@ spawnPool = Array[String](["Zombie"])
 spawnWeights = Array[int]([0])
 SPAWN_TIME_MIN = 5.0
 SPAWNS_SCALE_W_TIME = false
+
+[node name="ItemChest" parent="." instance=ExtResource("12_b8klk")]
 
 [editable path="Player"]
 [editable path="zombie"]

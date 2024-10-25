@@ -60,11 +60,11 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "eaf834180aa7da270025579cb045fab0"
 
-[node name="pickup" type="Area2D" parent="."]
+[node name="interact" type="Area2D" parent="."]
 collision_layer = 32
 collision_mask = 0
 
-[node name="shape" type="CollisionShape2D" parent="pickup"]
+[node name="shape" type="CollisionShape2D" parent="interact"]
 position = Vector2(8.48528, -8.48528)
 rotation = 0.785398
 shape = SubResource("RectangleShape2D_ywm7m")

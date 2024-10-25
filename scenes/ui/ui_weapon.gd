@@ -39,8 +39,8 @@ func _process(delta):
 		if wp_name != "":
 			WeaponScene = Game.player.weapons[playerWeaponIndex].duplicate()
 			WeaponScene.elementHeight.DOES_HEIGHT_USE_GRAVITY = false
-			WeaponScene.USE_PICKUP_KEY = false
-			WeaponScene.pickupKey.queue_free()
+			WeaponScene.USE_INTERACT_KEY = false
+			WeaponScene.interactKey.queue_free()
 			CenterPos.add_child(WeaponScene)
 			WeaponScene.elementHeight.unload_shadow()
 			lblWeapon.text = wp_name
