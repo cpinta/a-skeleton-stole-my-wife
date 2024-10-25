@@ -13,5 +13,7 @@ func _ready():
 func _process(delta):
 	if target != null:
 		lblScore.text = "score\n"
-		lblScore.text = str(Game.player.score)
+		lblScore.text += str(Game.player.score)
+	else:
+		target = Game.player
 	pass

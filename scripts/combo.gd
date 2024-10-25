@@ -30,5 +30,5 @@ func drop():
 	comboCount = 0
 	comboTimer = 0
 	
-func get_multiplier():
-	return COMBO_SCORE_MULTIPLIER_ADDITION * comboCount
+func apply_multiplier(value: float):
+	return value * (1 + COMBO_SCORE_MULTIPLIER_ADDITION * comboCount)

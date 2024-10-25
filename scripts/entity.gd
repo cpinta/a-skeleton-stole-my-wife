@@ -163,7 +163,7 @@ func our_attack_did_hit(entityHit:Entity, wasEntityKilled:bool, damageDealt: int
 		pass
 	
 func calculate_score_addition(value):
-	var scoreAdd = value * combo.get_multiplier()
+	var scoreAdd = combo.apply_multiplier(value)
 	score += scoreAdd
 	pass
 
