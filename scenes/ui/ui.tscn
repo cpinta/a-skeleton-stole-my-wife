@@ -1,13 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://dclrvv5xwjxvx"]
+[gd_scene load_steps=12 format=3 uid="uid://dclrvv5xwjxvx"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="1_epvr3"]
 [ext_resource type="PackedScene" uid="uid://byhlmvlump0td" path="res://scenes/enemies/satan.tscn" id="2_2by4y"]
 [ext_resource type="Script" path="res://scripts/ui/player_health.gd" id="3_yqsv7"]
 [ext_resource type="PackedScene" uid="uid://c7uja6ddq5jyf" path="res://scenes/ui/combo_ui.tscn" id="4_0ocu0"]
 [ext_resource type="PackedScene" uid="uid://ciocx6wvwso6i" path="res://scenes/ui/health_bar.tscn" id="4_nuc83"]
+[ext_resource type="Script" path="res://scenes/ui/ui_score_counter.gd" id="4_x403p"]
 [ext_resource type="Script" path="res://scenes/ui/ui_item_display.gd" id="5_t8brj"]
 [ext_resource type="PackedScene" uid="uid://du7w4l4f4thq0" path="res://scenes/ui/ui_weapon.tscn" id="6_pcuxs"]
 [ext_resource type="Script" path="res://scripts/ui/ui_center_text.gd" id="7_ok86e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y06y7"]
+line_spacing = -3.0
+font_size = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_1uraj"]
 font_size = 14
@@ -64,6 +69,28 @@ offset_left = -165.0
 offset_right = -5.0
 offset_bottom = 90.0
 grow_horizontal = 0
+
+[node name="score counter" type="Control" parent="Control/MarginContainer/Control/top right"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -91.0
+offset_bottom = 48.0
+grow_horizontal = 0
+script = ExtResource("4_x403p")
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Control/top right/score counter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "monster aura
+100000"
+label_settings = SubResource("LabelSettings_y06y7")
+horizontal_alignment = 2
 
 [node name="combo ui" parent="Control/MarginContainer/Control/top right" instance=ExtResource("4_0ocu0")]
 layout_mode = 1
