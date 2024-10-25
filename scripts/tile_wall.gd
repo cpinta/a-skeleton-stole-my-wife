@@ -4,6 +4,8 @@ var highy = 0
 var lowy = 0
 var cells = {}
 
+var isInFront: bool = false
+
 func add_cell(cell: Vector2i):
 	if not cells.has(cell):
 		if cells.size() == 0:

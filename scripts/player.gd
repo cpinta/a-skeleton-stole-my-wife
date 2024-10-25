@@ -19,7 +19,8 @@ var FACE_ANIM_MAX_MOUSE_DIST: float = 50
 var pickupArea: Area2D
 
 @export var DASH_SPEED := 125
-@export var HAND_DISTANCE: float = 10
+@export var HAND_MAX_DISTANCE: float = 10
+@export var HAND_ORIGIN: Vector2
 @export var HAND_HEIGHT: float = 12
 @export var ARM_OFFSET: Vector2
 
@@ -135,8 +136,11 @@ func dash():
 	
 func _physics_process(delta):
 	super._physics_process(delta)
+	hand.position = back.position
 	hand.look_at(get_global_mouse_position())
-	hand.global_position = hand.global_position.lerp(global_position - Vector2(0, HAND_HEIGHT) + hand.transform.x * min(HAND_DISTANCE, (get_global_mouse_position() - global_position).length()), 0.9)
+	var handDistance: float = min(HAND_MAX_DISTANCE, (get_global_mouse_position() - global_position).length())
+	handDistance = HAND_MAX_DISTANCE
+	hand.global_position = hand.global_position.lerp(global_position - Vector2(0, HAND_HEIGHT) + hand.transform.x * handDistance, 1)
 	hand.rotate(-(PI/2))
 	if hand.global_position.x > global_position.x:
 		set_direction(Direction.RIGHT)

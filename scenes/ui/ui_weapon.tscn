@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://du7w4l4f4thq0"]
+[gd_scene load_steps=5 format=3 uid="uid://du7w4l4f4thq0"]
 
 [ext_resource type="Texture2D" uid="uid://dbobwelpunrqr" path="res://scenes/ui/mouse_left_click.png" id="1_gr8vs"]
 [ext_resource type="Script" path="res://scenes/ui/ui_weapon.gd" id="1_lp4wg"]
 [ext_resource type="Texture2D" uid="uid://dmf6h63gjshoc" path="res://sprites/ui/ui_donut.png" id="2_uxa2r"]
 [ext_resource type="Script" path="res://scenes/ui/ui_cooldown_progress.gd" id="3_0kjap"]
-[ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://scenes/weapons/wp_sledgehammer.tscn" id="3_an3ks"]
 
 [node name="Weapon 0" type="Control"]
 layout_mode = 3
@@ -86,8 +85,6 @@ offset_top = -21.0
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="Sledgehammer" parent="Center" instance=ExtResource("3_an3ks")]
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 1
