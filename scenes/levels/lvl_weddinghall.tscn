@@ -1,7 +1,6 @@
-[gd_scene load_steps=29 format=4 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=28 format=4 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_p1rca"]
-[ext_resource type="PackedScene" uid="uid://c4kk5p1t6j1lv" path="res://scenes/player.tscn" id="3_tneht"]
 [ext_resource type="Texture2D" uid="uid://c7l0h5y10r535" path="res://sprites/tiles/wedding tiles.png" id="4_brx0y"]
 [ext_resource type="Texture2D" uid="uid://d34rckikrmdqc" path="res://sprites/tiles/outside tiles.png" id="4_x8hy5"]
 [ext_resource type="Texture2D" uid="uid://dy5f1qkfmkqyw" path="res://sprites/tiles/graveyard tiles.png" id="5_co3eo"]
@@ -289,10 +288,8 @@ pattern_0 = SubResource("TileMapPattern_xe80q")
 y_sort_enabled = true
 script = ExtResource("1_p1rca")
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("3_tneht")]
-z_as_relative = false
-y_sort_enabled = true
-position = Vector2(-31, 19)
+[node name="PlayerSpawn" type="Node2D" parent="." groups=["playerspawn"]]
+position = Vector2(-16, 28)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 y_sort_enabled = true
@@ -373,5 +370,4 @@ SPAWNS_SCALE_W_TIME = false
 [node name="Sledgehammer" parent="." instance=ExtResource("11_reqit")]
 position = Vector2(-96, 13)
 
-[editable path="Player"]
 [editable path="zombie"]

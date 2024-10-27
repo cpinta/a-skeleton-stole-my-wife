@@ -60,7 +60,8 @@ func _ready():
 		navAgent.path_desired_distance = 4
 		navAgent.target_desired_distance = 0
 		await get_tree().physics_frame
-		navAgent.target_position = player.global_position
+		if player != null:
+			navAgent.target_position = player.global_position
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

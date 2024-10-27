@@ -58,6 +58,7 @@ enemies="these are enemies"
 level=""
 game=""
 camera=""
+playerspawn=""
 
 [input]
 

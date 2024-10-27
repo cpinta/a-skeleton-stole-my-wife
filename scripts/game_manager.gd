@@ -28,6 +28,7 @@ var state: GameState
 }
 
 var player: Player
+var playerScene: PackedScene
 var camera: GameCamera
 
 var SCREEN_RESOLUTION: Vector2 = Vector2(320, 180)
@@ -43,6 +44,7 @@ func _ready():
 	gameUIScene = load("res://scenes/ui/ui.tscn")
 	titleScreenScene = load("res://scenes/ui/title_screen.tscn")
 	deathScreenScene = load("res://scenes/ui/death_screen.tscn")
+	playerScene = load("res://scenes/player.tscn")
 	load_screen(GameScreen.TITLE)
 	
 	pass # Replace with function body.
@@ -90,6 +92,7 @@ func start_game_transition():
 func start_game():
 	unload_screen(GameScreen.TITLE)
 	load_level(currentLvlIndex)
+	load_game_ui()
 	pass
 	
 func load_next_level():
@@ -117,8 +120,19 @@ func load_level(index: int):
 	print(levelScene.resource_name)
 	self.add_child(currentLvl)
 	currentLvlIndex = index
+	
+	if player == null:
+		load_player()
+	player.global_position = get_tree().get_nodes_in_group("playerspawn")[0].global_position
+	
 	return true
 	pass
+	
+func load_player():
+	player = playerScene.instantiate() as Player
+	self.add_child(player)
+	player.justDied.connect(load_death_screen)
+	pass	
 	
 func load_game_ui():
 	if gameUI == null:
@@ -132,6 +146,9 @@ func unload_game_ui():
 	pass
 	
 func load_death_screen():
+	if gameUI != null:
+		unload_game_ui()
+	
 	player.reparent(get_tree().root)
 	player.global_position = Vector2.ZERO
 	camera.includeMouseMovement = false
@@ -147,9 +164,15 @@ func load_death_screen():
 	pass
 	
 func try_again():
+	unload_screen(GameScreen.DEATH)
+	load_level(currentLvlIndex)
+	load_game_ui()
+	camera.includeMouseMovement = true
+	player.allowInput = true
 	pass
 	
 func quit():
+	get_tree().quit()
 	pass
 
 func load_screen(screenType: GameScreen):
