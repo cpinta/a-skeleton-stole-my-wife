@@ -1,7 +1,8 @@
 extends Node
 class_name GM
 
-enum GameState {TITLE_SCREEN=0, PLAYING=1, PAUSED=2}
+enum GameState {TITLE_SCREEN=0, PLAYING=1, PAUSED=2, DEAD=3}
+enum GameScreen {TITLE, DEATH}
 
 var lvlScenes: Array[String]
 var currentLvl: Level
@@ -12,6 +13,9 @@ var gameUI: UI
 
 @export var titleScreenScene: PackedScene
 var titleScreen: TitleScreen
+
+@export var deathScreenScene: PackedScene
+var deathScreen: DeathScreen
 
 var state: GameState
 
@@ -24,6 +28,9 @@ var state: GameState
 }
 
 var player: Player
+var camera: GameCamera
+
+var SCREEN_RESOLUTION: Vector2 = Vector2(320, 180)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,9 +38,12 @@ func _ready():
 	currentLvlIndex = 0
 	state = GameState.TITLE_SCREEN
 	
+	camera = get_tree().get_nodes_in_group("camera")[0]
+	
 	gameUIScene = load("res://scenes/ui/ui.tscn")
 	titleScreenScene = load("res://scenes/ui/title_screen.tscn")
-	load_title_screen()
+	deathScreenScene = load("res://scenes/ui/death_screen.tscn")
+	load_screen(GameScreen.TITLE)
 	
 	pass # Replace with function body.
 
@@ -43,6 +53,7 @@ func _process(delta):
 	if player == null:
 		if get_tree().get_node_count_in_group("player") > 0:
 			player = get_tree().get_nodes_in_group("player")[0]
+			player.justDied.connect(load_death_screen)
 		pass
 	match state:
 		GameState.TITLE_SCREEN:
@@ -61,10 +72,15 @@ func change_state(state: GameState):
 	self.state = state
 	match state:
 		GameState.TITLE_SCREEN:
+			camera.includeMouseMovement = true
 			pass
 		GameState.PLAYING:
+			camera.includeMouseMovement = true
 			pass
 		GameState.PAUSED:
+			pass
+		GameState.DEAD:
+			camera.includeMouseMovement = false
 			pass
 	pass
 	
@@ -72,7 +88,7 @@ func start_game_transition():
 	pass
 	
 func start_game():
-	unload_title_screen()
+	unload_screen(GameScreen.TITLE)
 	load_level(currentLvlIndex)
 	pass
 	
@@ -101,23 +117,76 @@ func load_level(index: int):
 	print(levelScene.resource_name)
 	self.add_child(currentLvl)
 	currentLvlIndex = index
-	if gameUI == null:
-		gameUI = gameUIScene.instantiate() as UI
-		self.add_child(gameUI)
 	return true
 	pass
 	
-func load_title_screen():
-	if titleScreen != null:
-		print("WARNING: Tried loading title screen but its already loaded")
-		return
-	titleScreen = titleScreenScene.instantiate()
-	self.add_child(titleScreen)
+func load_game_ui():
+	if gameUI == null:
+		gameUI = gameUIScene.instantiate() as UI
+		self.add_child(gameUI)
 	pass
 	
-func unload_title_screen():
-	if titleScreen == null:
-		print("WARNING: Tried UNloading title screen but its already not loaded")
+func unload_game_ui():
+	if gameUI != null:
+		gameUI.queue_free()
+	pass
+	
+func load_death_screen():
+	player.reparent(get_tree().root)
+	player.global_position = Vector2.ZERO
+	camera.includeMouseMovement = false
+	currentLvl.queue_free()
+	load_screen(GameScreen.DEATH)
+	deathScreen.reparent(camera)
+	deathScreen.position = -SCREEN_RESOLUTION/2
+	camera.targetOffset = Vector2(0, -20)
+	
+	deathScreen.tryagain.connect(try_again)
+	deathScreen.quitgame.connect(quit)
+	
+	pass
+	
+func try_again():
+	pass
+	
+func quit():
+	pass
+
+func load_screen(screenType: GameScreen):
+	var screen
+	var screenScene
+	match screenType:
+		GameScreen.TITLE:
+			screen = titleScreen
+			screenScene = titleScreenScene
+		GameScreen.DEATH:
+			screen = deathScreen
+			screenScene = deathScreenScene
+			
+	if screen != null:
+		print("WARNING: Tried loading "+str(screenType)+" but its already loaded")
 		return
-	titleScreen.queue_free()
+	screen = screenScene.instantiate()
+	self.add_child(screen)
+	
+	match screenType:
+		GameScreen.TITLE:
+			titleScreen = screen
+		GameScreen.DEATH:
+			deathScreen = screen
+	pass
+	
+func unload_screen(screenType: GameScreen):
+	var screen
+	var screenScene
+	match screenType:
+		GameScreen.TITLE:
+			screen = titleScreen
+		GameScreen.DEATH:
+			screen = deathScreen
+			
+	if screen == null:
+		print("WARNING: Tried UNloading "+str(screenType)+" but its already not loaded")
+		return
+	screen.queue_free()
 	pass

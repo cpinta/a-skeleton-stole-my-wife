@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v72cmhox5bd7"
-path="res://.godot/imported/item_chest.png-c6236cbcb6be057807d46d4e3bdc6007.ctex"
+uid="uid://dsvadlpg8glel"
+path="res://.godot/imported/grim.png-0f13d938a0b44c3e6484250c935166ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/levels/item_chest.png"
-dest_files=["res://.godot/imported/item_chest.png-c6236cbcb6be057807d46d4e3bdc6007.ctex"]
+source_file="res://sprites/characters/grim.png"
+dest_files=["res://.godot/imported/grim.png-0f13d938a0b44c3e6484250c935166ab.ctex"]
 
 [params]
 

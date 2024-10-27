@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cteldfqrxoory"
+path="res://.godot/imported/grim.aseprite-b88b210b63ec0973ed1d378092be98d0.res"
+
+[deps]
+
+source_file="res://sprites/characters/grim.aseprite"
+dest_files=["res://.godot/imported/grim.aseprite-b88b210b63ec0973ed1d378092be98d0.res"]
+
+[params]
+

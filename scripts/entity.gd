@@ -60,6 +60,7 @@ var elementHeight: HeightElement
 @export var STARTING_HEALTH : int = 5
 @export var health : int
 @export var wasKilledLastFrame: bool = false
+@export var isDead: bool = false
 
 var statusEffects: Array[StatusEffect]
 var attack_statusEffects: Array[StatusEffect]
@@ -91,7 +92,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if wasKilledLastFrame:
+	if wasKilledLastFrame and not isDead:
 		was_killed()
 	if USES_DEFAULT_ANIMATIONS:
 		if canWalk:
@@ -189,6 +190,7 @@ func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2
 	
 func was_killed():
 	apply_effects(0)
+	isDead = true
 	queue_free()
 	pass
 	

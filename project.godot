@@ -57,6 +57,7 @@ player="player group"
 enemies="these are enemies"
 level=""
 game=""
+camera=""
 
 [input]
 

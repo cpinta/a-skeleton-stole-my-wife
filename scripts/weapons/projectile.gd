@@ -27,4 +27,9 @@ func setup(owner: Entity, speed: float, damage: float):
 	
 func apply_attack(entity: Entity):
 	super.apply_attack(entity)
+	var entityTop: float = entity.elementHeight.height + entity.elementHeight.entity_height
+	var entityBottom: float = entity.elementHeight.entity_height
+	if not (entityBottom < elementHeight.height and elementHeight.height < entityTop):
+		return
+		pass
 	pass

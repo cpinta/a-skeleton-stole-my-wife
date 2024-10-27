@@ -28,10 +28,13 @@ var pickupArea: Area2D
 @export var availableInteractables: Array[Interactable]
 @export var closestInteract: Interactable
 
+@export var allowInput: bool = true
+
+signal justDied
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	STARTING_HEALTH = 20
+	STARTING_HEALTH = 1
 	super._ready()
 	BASE_MOVEMENT_ACCELERATION = 500
 	BASE_MOVEMENT_MAX_SPEED = 60
@@ -58,25 +61,26 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
-	get_input_vector()
-	
-	if Input.is_action_pressed("jump"):
-		pass
-	if Input.is_action_just_pressed("dash"):
-		dash()
-		pass
-	if Input.is_action_just_pressed("shoot_left"):
-		use_weapon(HandToUse.LEFT)
-	if Input.is_action_just_released("shoot_left"):
-		stop_use_weapon(HandToUse.LEFT)
-	if Input.is_action_just_pressed("shoot_right"):
-		use_weapon(HandToUse.RIGHT)
-	if Input.is_action_just_released("shoot_right"):
-		stop_use_weapon(HandToUse.RIGHT)
-	if Input.is_action_just_released("interact"):
-		interact()
-	if Input.is_action_just_released("drop"):
-		drop_key()
+	if allowInput:
+		get_input_vector()
+		
+		if Input.is_action_pressed("jump"):
+			pass
+		if Input.is_action_just_pressed("dash"):
+			dash()
+			pass
+		if Input.is_action_just_pressed("shoot_left"):
+			use_weapon(HandToUse.LEFT)
+		if Input.is_action_just_released("shoot_left"):
+			stop_use_weapon(HandToUse.LEFT)
+		if Input.is_action_just_pressed("shoot_right"):
+			use_weapon(HandToUse.RIGHT)
+		if Input.is_action_just_released("shoot_right"):
+			stop_use_weapon(HandToUse.RIGHT)
+		if Input.is_action_just_released("interact"):
+			interact()
+		if Input.is_action_just_released("drop"):
+			drop_key()
 	
 	if entityVelocity.length() > 0.1:
 		anim.play("walk")
@@ -266,6 +270,13 @@ func set_direction(dir: Direction):
 		handInner.scale.y = 1
 		handInner.rotation = 0
 		pass
+
+func was_killed():
+	apply_effects(0)
+	isDead = true
+	allowInput = false
+	inputVector = Vector2.ZERO
+	justDied.emit()
 
 func face_anim_process():
 	#sync faceAnim with anim
