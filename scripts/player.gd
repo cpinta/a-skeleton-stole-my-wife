@@ -2,6 +2,9 @@ extends Entity
 class_name Player
 
 enum HandToUse {LEFT = 0, RIGHT = 1}
+enum Gender {HOMIE=0, HOMETTE=1}
+
+var gender : Gender
 
 var aimPoint : Vector2
 var arm : Node2D

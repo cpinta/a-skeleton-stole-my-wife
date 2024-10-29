@@ -1,21 +1,26 @@
 extends Node
 class_name GM
 
-enum GameState {TITLE_SCREEN=0, PLAYING=1, PAUSED=2, DEAD=3}
-enum GameScreen {TITLE, DEATH}
+enum GameState {TITLE_SCREEN=0, INTRO_CUTSCENE=4, PLAYING=1, PAUSED=2, DEAD=3}
+enum GameScreen {TITLE, INTRO_CUTSCENE, DEATH}
+
+var chosenGender: Player.Gender
 
 var lvlScenes: Array[String]
 var currentLvl: Level
 var currentLvlIndex
 
-@export var gameUIScene: PackedScene
+var gameUIScene: PackedScene
 var gameUI: UI
 
-@export var titleScreenScene: PackedScene
+var titleScreenScene: PackedScene
 var titleScreen: TitleScreen
 
-@export var deathScreenScene: PackedScene
+var deathScreenScene: PackedScene
 var deathScreen: DeathScreen
+
+var introCutsceneScene: PackedScene
+var introCutscene: Intro_Cutscene
 
 var state: GameState
 
@@ -45,10 +50,22 @@ func _ready():
 	titleScreenScene = load("res://scenes/ui/title_screen.tscn")
 	deathScreenScene = load("res://scenes/ui/death_screen.tscn")
 	playerScene = load("res://scenes/player.tscn")
+	introCutsceneScene = load("res://scenes/intro_cutscene.tscn")
+	
 	load_screen(GameScreen.TITLE)
 	
 	pass # Replace with function body.
 
+func start_intro():
+	change_state(GameState.INTRO_CUTSCENE)
+	load_screen(GameScreen.INTRO_CUTSCENE)
+	introCutscene.introDone.connect(finish_intro)
+	pass
+
+func finish_intro():
+	unload_screen(GameScreen.INTRO_CUTSCENE)
+	start_game()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -60,8 +77,13 @@ func _process(delta):
 	match state:
 		GameState.TITLE_SCREEN:
 			if Input.is_action_just_released("ui_accept"):
-				start_game()
-				change_state(GameState.PLAYING)
+				unload_screen(GameScreen.TITLE)
+				start_intro()
+				pass
+			pass
+		GameState.INTRO_CUTSCENE:
+			if Input.is_action_just_released("ui_accept"):
+				finish_intro()
 				pass
 			pass
 		GameState.PLAYING:
@@ -91,6 +113,7 @@ func start_game_transition():
 	
 func start_game():
 	unload_screen(GameScreen.TITLE)
+	change_state(GameState.PLAYING)
 	load_level(currentLvlIndex)
 	load_game_ui()
 	pass
@@ -185,6 +208,9 @@ func load_screen(screenType: GameScreen):
 		GameScreen.DEATH:
 			screen = deathScreen
 			screenScene = deathScreenScene
+		GameScreen.INTRO_CUTSCENE:
+			screen = introCutscene
+			screenScene = introCutsceneScene
 			
 	if screen != null:
 		print("WARNING: Tried loading "+str(screenType)+" but its already loaded")
@@ -197,6 +223,8 @@ func load_screen(screenType: GameScreen):
 			titleScreen = screen
 		GameScreen.DEATH:
 			deathScreen = screen
+		GameScreen.INTRO_CUTSCENE:
+			introCutscene = screen
 	pass
 	
 func unload_screen(screenType: GameScreen):
@@ -207,6 +235,8 @@ func unload_screen(screenType: GameScreen):
 			screen = titleScreen
 		GameScreen.DEATH:
 			screen = deathScreen
+		GameScreen.INTRO_CUTSCENE:
+			screen = introCutscene
 			
 	if screen == null:
 		print("WARNING: Tried UNloading "+str(screenType)+" but its already not loaded")

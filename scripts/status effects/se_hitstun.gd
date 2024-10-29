@@ -11,7 +11,6 @@ func _init(entity: Entity, time=TIME_APPLIED):
 	pass
 
 func apply(delta):
-	#print(str(Time.get_ticks_msec())," applying hitstun ",TIME_APPLIED)
 	Engine.time_scale = TIME_SCALE
 	await Game.get_tree().create_timer(TIME_APPLIED, true, false, true).timeout
 	Engine.time_scale = 1

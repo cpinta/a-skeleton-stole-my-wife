@@ -27,7 +27,7 @@ weaponName = "Pistol Bullet"
 description = "POW, u dun got shot pardner"
 weaponType = 2
 
-[node name="animator" type="AnimatedSprite2D" parent="."]
+[node name="animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hxdgl")
 metadata/_aseprite_wizard_config_ = {
