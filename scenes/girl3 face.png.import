@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbobwelpunrqr"
-path="res://.godot/imported/mouse_left_click.png-df7907e7292631a40d867e5023f71122.ctex"
+uid="uid://btwv1enxxpimw"
+path="res://.godot/imported/girl3 face.png-924fbf7b60d4e75e9feb2997bbf1c386.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/ui/mouse_left_click.png"
-dest_files=["res://.godot/imported/mouse_left_click.png-df7907e7292631a40d867e5023f71122.ctex"]
+source_file="res://scenes/girl3 face.png"
+dest_files=["res://.godot/imported/girl3 face.png-924fbf7b60d4e75e9feb2997bbf1c386.ctex"]
 
 [params]
 

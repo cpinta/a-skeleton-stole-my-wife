@@ -44,13 +44,24 @@ func _ready():
 	
 	#USES_DEFAULT_ANIMATIONS = true
 	
-	anim.play("idle")
-	
 	hand = body.get_node("hand")
 	handInner = hand.get_node("inner")
 	back = body.get_node("back")
 	face = body.get_node("face")
-	faceAnim = face.get_node("animation")
+	
+	if gender == Gender.HOMIE:
+		anim = body.get_node("animationm")
+		faceAnim = face.get_node("animationm")
+		$body/animationf.visible = false
+		$body/face/animationf.visible = false
+	else:
+		anim = body.get_node("animationf")
+		faceAnim = face.get_node("animationf")
+		$body/animationm.visible = false
+		$body/face/animationm.visible = false
+	elementHeight = anim
+	anim.play("idle")
+	
 	FACE_ORIGIN = face.position
 	
 	pickupArea = body.get_node("pickup")
@@ -280,6 +291,15 @@ func was_killed():
 	allowInput = false
 	inputVector = Vector2.ZERO
 	justDied.emit()
+
+func set_gender(gender:Gender):
+	if gender == Gender.HOMIE:
+		
+		pass
+	else:
+		
+		pass
+	pass
 
 func face_anim_process():
 	#sync faceAnim with anim

@@ -1,8 +1,8 @@
 [remap]
 
-importer="aseprite_wizard.plugin.noop"
-type="PackedDataContainer"
-uid="uid://bb32vkpvuc04y"
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://b21ll5eqvxljc"
 path="res://.godot/imported/guy3.aseprite-bd1f0171a32e0aaa169e38be0983fd5c.res"
 
 [deps]
@@ -12,3 +12,7 @@ dest_files=["res://.godot/imported/guy3.aseprite-bd1f0171a32e0aaa169e38be0983fd5
 
 [params]
 
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ihbewqgxv6ak"
-path="res://.godot/imported/sledge2.png-b3ec1370f77c9c421da65d8c93c94023.ctex"
+uid="uid://bk6chyrbw7kou"
+path="res://.godot/imported/girl head.png-5585f9d05ec996a1082457aeee01a565.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/ui/sledge2.png"
-dest_files=["res://.godot/imported/sledge2.png-b3ec1370f77c9c421da65d8c93c94023.ctex"]
+source_file="res://sprites/characters/girl head.png"
+dest_files=["res://.godot/imported/girl head.png-5585f9d05ec996a1082457aeee01a565.ctex"]
 
 [params]
 

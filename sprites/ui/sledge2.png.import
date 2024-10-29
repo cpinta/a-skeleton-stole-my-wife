@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dto4m3y0q6wmx"
-path="res://.godot/imported/guy3.png-c1da9438f4a95104c549166fd281667c.ctex"
+uid="uid://ihbewqgxv6ak"
+path="res://.godot/imported/sledge2.png-f562130e39733655542d178eb43750c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/guy3.png"
-dest_files=["res://.godot/imported/guy3.png-c1da9438f4a95104c549166fd281667c.ctex"]
+source_file="res://sprites/ui/sledge2.png"
+dest_files=["res://.godot/imported/sledge2.png-f562130e39733655542d178eb43750c8.ctex"]
 
 [params]
 

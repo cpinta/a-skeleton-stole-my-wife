@@ -86,6 +86,8 @@ func _ready():
 	
 	currentFrame = 0
 	
+	gender = Game.chosenGender
+	
 	play_intro()
 	pass
 	

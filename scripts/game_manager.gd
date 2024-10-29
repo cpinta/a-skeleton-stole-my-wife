@@ -1,8 +1,8 @@
 extends Node
 class_name GM
 
-enum GameState {TITLE_SCREEN=0, INTRO_CUTSCENE=4, PLAYING=1, PAUSED=2, DEAD=3}
-enum GameScreen {TITLE, INTRO_CUTSCENE, DEATH}
+enum GameState {TITLE_SCREEN=0, INTRO_CUTSCENE=4, GENDER_SELECT=5, PLAYING=1, PAUSED=2, DEAD=3}
+enum GameScreen {TITLE, INTRO_CUTSCENE, GENDER_SELECT, DEATH}
 
 var chosenGender: Player.Gender
 
@@ -21,6 +21,9 @@ var deathScreen: DeathScreen
 
 var introCutsceneScene: PackedScene
 var introCutscene: Intro_Cutscene
+
+var genderSelectScreenScene: PackedScene
+var genderSelectScreen: GenderSelectScreen
 
 var state: GameState
 
@@ -51,11 +54,21 @@ func _ready():
 	deathScreenScene = load("res://scenes/ui/death_screen.tscn")
 	playerScene = load("res://scenes/player.tscn")
 	introCutsceneScene = load("res://scenes/intro_cutscene.tscn")
+	genderSelectScreenScene = load("res://scenes/ui/gender_select_screen.tscn")
 	
 	load_screen(GameScreen.TITLE)
 	
 	pass # Replace with function body.
 
+func start_gender_select():
+	load_screen(GameScreen.GENDER_SELECT)
+	genderSelectScreen.selectionDone.connect(gender_select_ended)
+	
+	
+func gender_select_ended():
+	start_intro()
+	
+	
 func start_intro():
 	change_state(GameState.INTRO_CUTSCENE)
 	load_screen(GameScreen.INTRO_CUTSCENE)
@@ -65,6 +78,10 @@ func start_intro():
 func finish_intro():
 	unload_screen(GameScreen.INTRO_CUTSCENE)
 	start_game()
+	pass
+	
+func set_gender(gender: Player.Gender):
+	chosenGender = gender
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -78,7 +95,7 @@ func _process(delta):
 		GameState.TITLE_SCREEN:
 			if Input.is_action_just_released("ui_accept"):
 				unload_screen(GameScreen.TITLE)
-				start_intro()
+				start_gender_select()
 				pass
 			pass
 		GameState.INTRO_CUTSCENE:
@@ -153,6 +170,7 @@ func load_level(index: int):
 	
 func load_player():
 	player = playerScene.instantiate() as Player
+	player.gender = chosenGender
 	self.add_child(player)
 	player.justDied.connect(load_death_screen)
 	pass	
@@ -211,6 +229,9 @@ func load_screen(screenType: GameScreen):
 		GameScreen.INTRO_CUTSCENE:
 			screen = introCutscene
 			screenScene = introCutsceneScene
+		GameScreen.GENDER_SELECT:
+			screen = genderSelectScreen
+			screenScene = genderSelectScreenScene
 			
 	if screen != null:
 		print("WARNING: Tried loading "+str(screenType)+" but its already loaded")
@@ -225,6 +246,8 @@ func load_screen(screenType: GameScreen):
 			deathScreen = screen
 		GameScreen.INTRO_CUTSCENE:
 			introCutscene = screen
+		GameScreen.GENDER_SELECT:
+			genderSelectScreen = screen
 	pass
 	
 func unload_screen(screenType: GameScreen):
@@ -237,6 +260,8 @@ func unload_screen(screenType: GameScreen):
 			screen = deathScreen
 		GameScreen.INTRO_CUTSCENE:
 			screen = introCutscene
+		GameScreen.GENDER_SELECT:
+			screen = genderSelectScreen
 			
 	if screen == null:
 		print("WARNING: Tried UNloading "+str(screenType)+" but its already not loaded")

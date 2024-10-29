@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
 
+[aseprite]
+
+import/import_plugin/default_automatic_importer="SpriteFrames"
+
 [autoload]
 
 Game="*res://scenes/game.tscn"

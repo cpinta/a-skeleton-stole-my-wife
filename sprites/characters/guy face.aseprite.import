@@ -1,0 +1,18 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://db32fvvmuvm2t"
+path="res://.godot/imported/guy face.aseprite-ebeab18d6ce10327bbd37ac30b6b9a5c.res"
+
+[deps]
+
+source_file="res://sprites/characters/guy face.aseprite"
+dest_files=["res://.godot/imported/guy face.aseprite-ebeab18d6ce10327bbd37ac30b6b9a5c.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"

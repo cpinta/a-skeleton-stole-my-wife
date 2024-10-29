@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://scripts/ui/player_health.gd" id="3_yqsv7"]
 [ext_resource type="PackedScene" uid="uid://c7uja6ddq5jyf" path="res://scenes/ui/combo_ui.tscn" id="4_0ocu0"]
 [ext_resource type="PackedScene" uid="uid://ciocx6wvwso6i" path="res://scenes/ui/health_bar.tscn" id="4_nuc83"]
-[ext_resource type="Script" path="res://scenes/ui/ui_score_counter.gd" id="4_x403p"]
-[ext_resource type="Script" path="res://scenes/ui/ui_item_display.gd" id="5_t8brj"]
+[ext_resource type="Script" path="res://scripts/ui/ui_score_counter.gd" id="4_x403p"]
+[ext_resource type="Script" path="res://scripts/ui/ui_item_display.gd" id="5_t8brj"]
 [ext_resource type="PackedScene" uid="uid://du7w4l4f4thq0" path="res://scenes/ui/ui_weapon.tscn" id="6_pcuxs"]
 [ext_resource type="Script" path="res://scripts/ui/ui_center_text.gd" id="7_ok86e"]
 

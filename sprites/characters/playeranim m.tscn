@@ -1,0 +1,111 @@
+[gd_scene load_steps=13 format=3 uid="uid://cc0p5wkv31ig4"]
+
+[ext_resource type="Texture2D" uid="uid://dto4m3y0q6wmx" path="res://sprites/characters/guy3.png" id="1_kt55o"]
+[ext_resource type="Script" path="res://scripts/element_height.gd" id="2_eivjn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wd1o"]
+atlas = ExtResource("1_kt55o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2am8x"]
+atlas = ExtResource("1_kt55o")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drfv3"]
+atlas = ExtResource("1_kt55o")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7hnh"]
+atlas = ExtResource("1_kt55o")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2rrs"]
+atlas = ExtResource("1_kt55o")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oekn2"]
+atlas = ExtResource("1_kt55o")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1jni"]
+atlas = ExtResource("1_kt55o")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5pmw"]
+atlas = ExtResource("1_kt55o")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ds1t"]
+atlas = ExtResource("1_kt55o")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0jutq"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_7wd1o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2am8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drfv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2am8x")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7hnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2rrs")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_oekn2")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_d1jni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7hnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2rrs")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_w5pmw")
+}, {
+"duration": 1.25,
+"texture": SubResource("AtlasTexture_1ds1t")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="animation" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_0jutq")
+animation = &"walk"
+script = ExtResource("2_eivjn")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/characters",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/characters/guy3.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "252d8b647078815961f054db4955f1c0"

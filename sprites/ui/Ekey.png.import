@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://grp1l5x65myc"
-path="res://.godot/imported/Ekey.png-9575bdcf16eec14b7bae0111122e160a.ctex"
+path="res://.godot/imported/Ekey.png-86c0151fe83cbd45377c43701c437f1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/ui/Ekey.png"
-dest_files=["res://.godot/imported/Ekey.png-9575bdcf16eec14b7bae0111122e160a.ctex"]
+source_file="res://sprites/ui/Ekey.png"
+dest_files=["res://.godot/imported/Ekey.png-86c0151fe83cbd45377c43701c437f1f.ctex"]
 
 [params]
 
