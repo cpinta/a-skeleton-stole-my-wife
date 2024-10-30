@@ -6,25 +6,25 @@
 [ext_resource type="Texture2D" uid="uid://uro8f6v2b1el" path="res://sprites/items/boots.png" id="2_bosx0"]
 [ext_resource type="Texture2D" uid="uid://7dk5vd3ynu6h" path="res://sprites/items/gloves.png" id="3_hw0d6"]
 [ext_resource type="Script" path="res://scenes/ui/pastor_item_button.gd" id="5_r7w7q"]
-[ext_resource type="Texture2D" uid="uid://nwkkpuxms0ay" path="res://sprites/characters/pastor.png" id="5_t35hq"]
+[ext_resource type="Texture2D" uid="uid://05sk27fscscq" path="res://sprites/characters/pastor.png" id="5_t35hq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_omc2e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gatve"]
 atlas = ExtResource("5_t35hq")
 region = Rect2(320, 0, 320, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_88y5w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_waa35"]
 atlas = ExtResource("5_t35hq")
 region = Rect2(0, 180, 320, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xf6qq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln425"]
 atlas = ExtResource("5_t35hq")
 region = Rect2(0, 0, 320, 180)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ia3cn"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8jcar"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_omc2e")
+"texture": SubResource("AtlasTexture_gatve")
 }],
 "loop": true,
 "name": &"idle",
@@ -32,10 +32,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_omc2e")
+"texture": SubResource("AtlasTexture_gatve")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_88y5w")
+"texture": SubResource("AtlasTexture_waa35")
 }],
 "loop": true,
 "name": &"talk",
@@ -43,7 +43,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xf6qq")
+"texture": SubResource("AtlasTexture_ln425")
 }],
 "loop": true,
 "name": &"unlit",
@@ -180,6 +180,7 @@ animations = [{
 }]
 
 [node name="pastorscreen" type="Control"]
+z_index = 20
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -196,7 +197,7 @@ script = ExtResource("1_fhajn")
 [node name="pastor" type="AnimatedSprite2D" parent="."]
 z_index = 2
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_ia3cn")
+sprite_frames = SubResource("SpriteFrames_8jcar")
 animation = &"idle"
 offset = Vector2(160, 90)
 metadata/_aseprite_wizard_config_ = {
@@ -211,7 +212,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true
 }
-metadata/_aseprite_wizard_source_file_hash_ = "ccc91d87b9bd459c75e0c812d1cb5efc"
+metadata/_aseprite_wizard_source_file_hash_ = "0324dd38f24cab7022e7e32cce4958d1"
 
 [node name="back color" type="ColorRect" parent="."]
 layout_mode = 1
@@ -220,7 +221,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.254902)
+color = Color(0, 0, 0, 0.439216)
 
 [node name="textbox" type="ColorRect" parent="."]
 z_index = 1

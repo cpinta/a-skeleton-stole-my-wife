@@ -32,6 +32,8 @@ var started: bool = false
 
 var isTutorialFinished: bool = false
 
+signal gone
+
 func _ready():
 	animPastor = $pastor
 	animPastor.position.x = PASTOR_START_X
@@ -131,6 +133,7 @@ func _process(delta):
 			if animPastor.position.x > PASTOR_START_X:
 				animPastor.position.x -= PASTOR_SLIDEIN_SPEED * delta
 			else:
+				gone.emit()
 				queue_free()
 	
 		

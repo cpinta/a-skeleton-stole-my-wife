@@ -2,7 +2,7 @@ extends Node
 class_name GM
 
 enum GameState {TITLE_SCREEN=0, INTRO_CUTSCENE=4, GENDER_SELECT=5, PLAYING=1, PAUSED=2, DEAD=3}
-enum GameScreen {TITLE, INTRO_CUTSCENE, GENDER_SELECT, DEATH}
+enum GameScreen {TITLE, INTRO_CUTSCENE, GENDER_SELECT, PASTOR, DEATH}
 
 var chosenGender: Player.Gender
 
@@ -10,20 +10,25 @@ var lvlScenes: Array[String]
 var currentLvl: Level
 var currentLvlIndex
 
+
+var screenScenes = { \
+GameScreen.TITLE:PackedScene, \
+GameScreen.DEATH:PackedScene, \
+GameScreen.INTRO_CUTSCENE:PackedScene, \
+GameScreen.GENDER_SELECT:PackedScene, \
+GameScreen.PASTOR:PackedScene}
+
+var screens = { \
+GameScreen.TITLE:null, \
+GameScreen.DEATH:null, \
+GameScreen.INTRO_CUTSCENE:null, \
+GameScreen.GENDER_SELECT:null, \
+GameScreen.PASTOR:null}
+
 var gameUIScene: PackedScene
 var gameUI: UI
 
-var titleScreenScene: PackedScene
-var titleScreen: TitleScreen
-
-var deathScreenScene: PackedScene
-var deathScreen: DeathScreen
-
-var introCutsceneScene: PackedScene
-var introCutscene: Intro_Cutscene
-
-var genderSelectScreenScene: PackedScene
-var genderSelectScreen: GenderSelectScreen
+var timesPastorVisited: int = 0
 
 var state: GameState
 
@@ -49,20 +54,21 @@ func _ready():
 	
 	camera = get_tree().get_nodes_in_group("camera")[0]
 	
-	gameUIScene = load("res://scenes/ui/ui.tscn")
-	titleScreenScene = load("res://scenes/ui/title_screen.tscn")
-	deathScreenScene = load("res://scenes/ui/death_screen.tscn")
 	playerScene = load("res://scenes/player.tscn")
-	introCutsceneScene = load("res://scenes/intro_cutscene.tscn")
-	genderSelectScreenScene = load("res://scenes/ui/gender_select_screen.tscn")
+	gameUIScene = load("res://scenes/ui/ui.tscn")
 	
-	#load_screen(GameScreen.TITLE)
+	screenScenes[GameScreen.TITLE] = load("res://scenes/ui/title_screen.tscn")
+	screenScenes[GameScreen.DEATH] = load("res://scenes/ui/death_screen.tscn")
+	screenScenes[GameScreen.INTRO_CUTSCENE] = load("res://scenes/intro_cutscene.tscn")
+	screenScenes[GameScreen.GENDER_SELECT] = load("res://scenes/ui/gender_select_screen.tscn")
+	screenScenes[GameScreen.PASTOR] = load("res://scenes/ui/pastorscreen.tscn")
+	start_intro()
 	
 	pass # Replace with function body.
 
 func start_gender_select():
 	load_screen(GameScreen.GENDER_SELECT)
-	genderSelectScreen.selectionDone.connect(gender_select_ended)
+	screens[GameScreen.GENDER_SELECT].selectionDone.connect(gender_select_ended)
 	
 	
 func gender_select_ended():
@@ -71,12 +77,12 @@ func gender_select_ended():
 	
 func start_intro():
 	change_state(GameState.INTRO_CUTSCENE)
-	load_screen(GameScreen.INTRO_CUTSCENE)
-	introCutscene.introDone.connect(finish_intro)
+	load_screen(GameScreen.INTRO_CUTSCENE) #SCREEN
+	screens[GameScreen.INTRO_CUTSCENE].introDone.connect(finish_intro)
 	pass
 
 func finish_intro():
-	unload_screen(GameScreen.INTRO_CUTSCENE)
+	unload_screen(GameScreen.INTRO_CUTSCENE) #SCREEN
 	start_game()
 	pass
 	
@@ -94,7 +100,7 @@ func _process(delta):
 	match state:
 		GameState.TITLE_SCREEN:
 			if Input.is_action_just_released("ui_accept"):
-				unload_screen(GameScreen.TITLE)
+				unload_screen(GameScreen.TITLE) #SCREEN
 				start_gender_select()
 				pass
 			pass
@@ -129,10 +135,41 @@ func start_game_transition():
 	pass
 	
 func start_game():
-	unload_screen(GameScreen.TITLE)
+	unload_all_screens() #SCREEN
 	change_state(GameState.PLAYING)
 	load_level(currentLvlIndex)
 	load_game_ui()
+	show_pastor(PastorScreen.PastorState.INTRO, true)
+	pass
+	
+func freeze_enemies():
+	if get_tree().get_node_count_in_group("enemies") > 0:
+		var enemies = get_tree().get_nodes_in_group("enemies")
+		for enemy in enemies:
+			enemy.canMove = false
+	pass
+
+func unfreeze_enemies():
+	if get_tree().get_node_count_in_group("enemies") > 0:
+		var enemies = get_tree().get_nodes_in_group("enemies")
+		for enemy in enemies:
+			enemy.canMove = false
+	pass
+	
+func show_pastor(pstate: PastorScreen.PastorState = PastorScreen.PastorState.SHOWING_ITEMS, hasTutorial: bool = false):
+	load_screen(GameScreen.PASTOR) #SCREEN
+	screens[GameScreen.PASTOR].setup(pstate, hasTutorial)
+	screens[GameScreen.PASTOR].reparent(camera, false)
+	screens[GameScreen.PASTOR].position = -SCREEN_RESOLUTION/2
+	player.allowInput = false
+	timesPastorVisited += 1
+	screens[GameScreen.PASTOR].gone.connect(pastor_done)
+	freeze_enemies()
+	pass
+	
+func pastor_done():
+	player.allowInput = true
+	unfreeze_enemies()
 	pass
 	
 func load_next_level():
@@ -189,25 +226,30 @@ func unload_game_ui():
 	pass
 	
 func load_death_screen():
-	if gameUI != null:
-		unload_game_ui()
+	unload_all_screens()
 	
 	player.reparent(get_tree().root)
 	player.global_position = Vector2.ZERO
 	camera.includeMouseMovement = false
 	currentLvl.queue_free()
-	load_screen(GameScreen.DEATH)
-	deathScreen.reparent(camera)
-	deathScreen.position = -SCREEN_RESOLUTION/2
+	load_screen(GameScreen.DEATH) #SCREEN
+	screens[GameScreen.DEATH].reparent(camera)
+	screens[GameScreen.DEATH].position = -SCREEN_RESOLUTION/2
 	camera.targetOffset = Vector2(0, -20)
 	
-	deathScreen.tryagain.connect(try_again)
-	deathScreen.quitgame.connect(quit)
+	screens[GameScreen.DEATH].tryagain.connect(try_again)
+	screens[GameScreen.DEATH].quitgame.connect(quit)
 	
 	pass
 	
+func unload_all_screens():
+	unload_game_ui()
+	for key in screens:
+		if screens[key] != null:
+			screens[key].queue_free()
+
 func try_again():
-	unload_screen(GameScreen.DEATH)
+	unload_all_screens() #SCREEN
 	load_level(currentLvlIndex)
 	load_game_ui()
 	camera.includeMouseMovement = true
@@ -219,54 +261,16 @@ func quit():
 	pass
 
 func load_screen(screenType: GameScreen):
-	var screen
-	var screenScene
-	match screenType:
-		GameScreen.TITLE:
-			screen = titleScreen
-			screenScene = titleScreenScene
-		GameScreen.DEATH:
-			screen = deathScreen
-			screenScene = deathScreenScene
-		GameScreen.INTRO_CUTSCENE:
-			screen = introCutscene
-			screenScene = introCutsceneScene
-		GameScreen.GENDER_SELECT:
-			screen = genderSelectScreen
-			screenScene = genderSelectScreenScene
-			
-	if screen != null:
+	if screens[screenType] != null:
 		print("WARNING: Tried loading "+str(screenType)+" but its already loaded")
 		return
-	screen = screenScene.instantiate()
-	self.add_child(screen)
-	
-	match screenType:
-		GameScreen.TITLE:
-			titleScreen = screen
-		GameScreen.DEATH:
-			deathScreen = screen
-		GameScreen.INTRO_CUTSCENE:
-			introCutscene = screen
-		GameScreen.GENDER_SELECT:
-			genderSelectScreen = screen
+	screens[screenType] = screenScenes[screenType].instantiate()
+	self.add_child(screens[screenType])
 	pass
 	
 func unload_screen(screenType: GameScreen):
-	var screen
-	var screenScene
-	match screenType:
-		GameScreen.TITLE:
-			screen = titleScreen
-		GameScreen.DEATH:
-			screen = deathScreen
-		GameScreen.INTRO_CUTSCENE:
-			screen = introCutscene
-		GameScreen.GENDER_SELECT:
-			screen = genderSelectScreen
-			
-	if screen == null:
+	if screens[screenType] == null:
 		print("WARNING: Tried UNloading "+str(screenType)+" but its already not loaded")
 		return
-	screen.queue_free()
+	screens[screenType].queue_free()
 	pass

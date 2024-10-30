@@ -1,12 +1,10 @@
-[gd_scene load_steps=30 format=4 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=28 format=4 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_p1rca"]
 [ext_resource type="Texture2D" uid="uid://c7l0h5y10r535" path="res://sprites/tiles/wedding tiles.png" id="4_brx0y"]
 [ext_resource type="Texture2D" uid="uid://d34rckikrmdqc" path="res://sprites/tiles/outside tiles.png" id="4_x8hy5"]
 [ext_resource type="Texture2D" uid="uid://dy5f1qkfmkqyw" path="res://sprites/tiles/graveyard tiles.png" id="5_co3eo"]
 [ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://scenes/enemies/zombie.tscn" id="9_coxei"]
-[ext_resource type="PackedScene" uid="uid://doctxyxjfrpjl" path="res://scenes/ui/pastorscreen.tscn" id="10_yulop"]
-[ext_resource type="Script" path="res://scripts/ui/pastorscreen.gd" id="11_db76j"]
 [ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://scenes/weapons/wp_sledgehammer.tscn" id="11_reqit"]
 [ext_resource type="PackedScene" uid="uid://dxv6vkvxip33p" path="res://scenes/objects/Entity_Spawnpoint.tscn" id="11_t5gi1"]
 [ext_resource type="PackedScene" uid="uid://d0d5s433erqlk" path="res://scenes/objects/item_chest.tscn" id="12_b8klk"]
@@ -382,8 +380,5 @@ polygon = PackedVector2Array(-161, -86.025, 112, -85.025, 115, 108.975, -163, 10
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Haze/Polygon2D/StaticBody2D"]
 polygon = PackedVector2Array(-160, -85.025, 112, -85.025, 113, 105.975, -160, 104.975)
-
-[node name="pastorscreen" parent="." instance=ExtResource("10_yulop")]
-script = ExtResource("11_db76j")
 
 [editable path="zombie"]
