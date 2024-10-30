@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://w6kon6yb3cg5"]
+[gd_scene load_steps=8 format=3 uid="uid://w6kon6yb3cg5"]
 
 [ext_resource type="Script" path="res://scripts/weapons/wp_hammer.gd" id="1_hekcw"]
 [ext_resource type="Texture2D" uid="uid://clbomh2obro85" path="res://sprites/weapons/hammer.png" id="2_cixg6"]
+[ext_resource type="Script" path="res://scripts/element_height.gd" id="3_sy6as"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xfqr"]
 size = Vector2(24.4444, 18.5793)
@@ -41,6 +42,7 @@ shape = SubResource("RectangleShape2D_1xfqr")
 texture_filter = 1
 position = Vector2(15, -15)
 sprite_frames = SubResource("SpriteFrames_7g3nn")
+script = ExtResource("3_sy6as")
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",

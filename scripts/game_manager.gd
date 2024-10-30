@@ -62,9 +62,11 @@ func _ready():
 	screenScenes[GameScreen.INTRO_CUTSCENE] = load("res://scenes/intro_cutscene.tscn")
 	screenScenes[GameScreen.GENDER_SELECT] = load("res://scenes/ui/gender_select_screen.tscn")
 	screenScenes[GameScreen.PASTOR] = load("res://scenes/ui/pastorscreen.tscn")
-	start_intro()
+	start_game()
 	
-	pass # Replace with function body.
+	#start_gender_select() #WHAT SHOULD REALLY BE HERE
+	
+	pass
 
 func start_gender_select():
 	load_screen(GameScreen.GENDER_SELECT)
@@ -140,6 +142,7 @@ func start_game():
 	load_level(currentLvlIndex)
 	load_game_ui()
 	show_pastor(PastorScreen.PastorState.INTRO, true)
+	player.canMove = false
 	pass
 	
 func freeze_enemies():
@@ -189,7 +192,7 @@ func end_game():
 		gameUI.queue_free()
 	pass
 
-func load_level(index: int):
+func load_level(index: int, canPlayerMove: bool = true):
 	if index > lvlScenes.size():
 		return false
 	var levelScene: PackedScene = load(lvlScenes[index])
@@ -201,15 +204,16 @@ func load_level(index: int):
 	currentLvlIndex = index
 	
 	if player == null:
-		load_player()
+		load_player(canPlayerMove)
 	player.global_position = get_tree().get_nodes_in_group("playerspawn")[0].global_position
 	
 	return true
 	pass
 	
-func load_player():
+func load_player(canPlayerMove: bool):
 	player = playerScene.instantiate() as Player
 	player.gender = chosenGender
+	player.canMove = canPlayerMove
 	self.add_child(player)
 	player.justDied.connect(load_death_screen)
 	pass	

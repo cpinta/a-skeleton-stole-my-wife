@@ -1,13 +1,12 @@
-[gd_scene load_steps=28 format=4 uid="uid://uc3l8elxyv5m"]
+[gd_scene load_steps=27 format=4 uid="uid://uc3l8elxyv5m"]
 
 [ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_p1rca"]
 [ext_resource type="Texture2D" uid="uid://c7l0h5y10r535" path="res://sprites/tiles/wedding tiles.png" id="4_brx0y"]
 [ext_resource type="Texture2D" uid="uid://d34rckikrmdqc" path="res://sprites/tiles/outside tiles.png" id="4_x8hy5"]
 [ext_resource type="Texture2D" uid="uid://dy5f1qkfmkqyw" path="res://sprites/tiles/graveyard tiles.png" id="5_co3eo"]
-[ext_resource type="PackedScene" uid="uid://ckys7dwiljknx" path="res://scenes/enemies/zombie.tscn" id="9_coxei"]
-[ext_resource type="PackedScene" uid="uid://chfidnfkpiklh" path="res://scenes/weapons/wp_sledgehammer.tscn" id="11_reqit"]
+[ext_resource type="PackedScene" uid="uid://hbq2a1i1uabb" path="res://scenes/haze.tscn" id="7_xiea6"]
+[ext_resource type="PackedScene" uid="uid://w6kon6yb3cg5" path="res://scenes/weapons/wp_hammer.tscn" id="8_b5sun"]
 [ext_resource type="PackedScene" uid="uid://dxv6vkvxip33p" path="res://scenes/objects/Entity_Spawnpoint.tscn" id="11_t5gi1"]
-[ext_resource type="PackedScene" uid="uid://d0d5s433erqlk" path="res://scenes/objects/item_chest.tscn" id="12_b8klk"]
 [ext_resource type="Script" path="res://scripts/tiles/tiles_frontwalls.gd" id="14_eqiqy"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hm222"]
@@ -289,7 +288,7 @@ y_sort_enabled = true
 script = ExtResource("1_p1rca")
 
 [node name="PlayerSpawn" type="Node2D" parent="." groups=["playerspawn"]]
-position = Vector2(-16, 28)
+position = Vector2(-62, -9)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 y_sort_enabled = true
@@ -348,9 +347,6 @@ tile_set = SubResource("TileSet_dnair")
 collision_enabled = false
 navigation_enabled = false
 
-[node name="zombie" parent="." instance=ExtResource("9_coxei")]
-position = Vector2(97, -9)
-
 [node name="EntitySpawnpoint" parent="." instance=ExtResource("11_t5gi1")]
 position = Vector2(-232, -152)
 spawnPool = Array[String](["Zombie"])
@@ -365,20 +361,8 @@ spawnWeights = Array[int]([0])
 SPAWN_TIME_MIN = 5.0
 SPAWNS_SCALE_W_TIME = false
 
-[node name="ItemChest" parent="." instance=ExtResource("12_b8klk")]
+[node name="Haze" parent="." instance=ExtResource("7_xiea6")]
+position = Vector2(0, 277)
 
-[node name="Sledgehammer" parent="." instance=ExtResource("11_reqit")]
-position = Vector2(-96, 13)
-
-[node name="Haze" type="Node2D" parent="."]
-position = Vector2(0, 278.025)
-
-[node name="Polygon2D" type="Polygon2D" parent="Haze"]
-polygon = PackedVector2Array(-161, -86.025, 112, -85.025, 115, 108.975, -163, 107.975)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Haze/Polygon2D"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Haze/Polygon2D/StaticBody2D"]
-polygon = PackedVector2Array(-160, -85.025, 112, -85.025, 113, 105.975, -160, 104.975)
-
-[editable path="zombie"]
+[node name="Hammer" parent="." instance=ExtResource("8_b5sun")]
+position = Vector2(-82, -10)

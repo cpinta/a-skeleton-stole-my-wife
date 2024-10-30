@@ -19,6 +19,8 @@ func _ready():
 	anim = get_node("animation")
 	
 	super._ready()
+	elementHeight.SHADOW_USES_PARENT_ORIGIN = true
+	drop(5)
 	pass # Replace with function body.
 
 

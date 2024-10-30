@@ -59,6 +59,8 @@ func drop(height: float):
 	enable_interact()
 	ownerEntity = null
 	pickedUp = false
+	if elementHeight.shadow != null:
+		elementHeight.unload_shadow()
 	elementHeight.load_shadow()
 	elementHeight.height = height
 	global_position.y += height

@@ -39,6 +39,7 @@ signal justDied
 func _ready():
 	STARTING_HEALTH = 1
 	super._ready()
+	allowInput = false
 	BASE_MOVEMENT_ACCELERATION = 500
 	BASE_MOVEMENT_MAX_SPEED = 60
 	
@@ -246,6 +247,8 @@ func exited_interact_area(node: Node2D):
 	pass
 	
 func find_closest_interact():
+	if not allowInput:
+		return
 	if availableInteractables.size() > 1:
 		var shortestDistance: float = 999999
 		var closestInteract: Interactable = null

@@ -24,6 +24,7 @@ var lastHovered: PastorItemButton
 var strIntro1: String = "Seems that skeleton is bombarding the town with demons!"
 var strIntro2: String = "Gain enough monster essence and you'll save us and your wife!"
 var strIntro3: String = "Here, take this hammer and fight those monsters!"
+var strIntro4: String = "Hurry! They're breaking through the windows!"
 
 var strItemTut: String = "Those monsters seem tough. One of these could help you."
 var strItemNoTut: String = "Here take one of these."
@@ -156,15 +157,16 @@ func intro_speak():
 	await speak_for_time(strIntro1, 5)
 	await speak_for_time(strIntro2, 5)
 	await speak_for_time(strIntro3, 5)
+	await speak_for_time(strIntro4, 5)
 	state = PastorState.LEAVING
 	pass
 
 func speak_for_time(text: String, time:float):
-	speak(text, time - 2)
+	speak(text, time - 2.25)
 	await get_tree().create_timer(time, true, false, true).timeout
 	pass
 
 func speak(text: String, textTime: float = TALK_TIME):
-	talkTimer = TALK_TIME
+	talkTimer = textTime
 	lblTextBox.text = text
 	pass

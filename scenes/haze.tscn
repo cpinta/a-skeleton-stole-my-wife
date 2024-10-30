@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://hbq2a1i1uabb"]
+
+[ext_resource type="Script" path="res://scenes/levels/haze.gd" id="1_lfms5"]
+
+[node name="Haze" type="Node2D"]
+script = ExtResource("1_lfms5")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-161, -86.025, 112, -85.025, 115, 108.975, -163, 107.975)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/StaticBody2D"]
+polygon = PackedVector2Array(-160, -85.025, 112, -85.025, 113, 105.975, -160, 104.975)
