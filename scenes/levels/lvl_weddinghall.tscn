@@ -351,14 +351,14 @@ collision_enabled = false
 navigation_enabled = false
 
 [node name="EntitySpawnpoint" parent="." instance=ExtResource("11_t5gi1")]
-position = Vector2(-232, -152)
+position = Vector2(-307, -214)
 spawnPool = Array[String](["Zombie"])
 spawnWeights = Array[int]([0])
 SPAWN_TIME_MIN = 5.0
 SPAWNS_SCALE_W_TIME = false
 
 [node name="EntitySpawnpoint2" parent="." instance=ExtResource("11_t5gi1")]
-position = Vector2(201, -135)
+position = Vector2(242, -196)
 spawnPool = Array[String](["Zombie"])
 spawnWeights = Array[int]([0])
 SPAWN_TIME_MIN = 5.0
