@@ -1,0 +1,471 @@
+[gd_scene load_steps=31 format=3 uid="uid://doctxyxjfrpjl"]
+
+[ext_resource type="Texture2D" uid="uid://scwe4gj6g0k0" path="res://sprites/items/weight.png" id="1_b5or1"]
+[ext_resource type="Texture2D" uid="uid://b6ep7hn3dkshq" path="res://sprites/items/corndog.png" id="1_cnbgj"]
+[ext_resource type="Script" path="res://scripts/ui/pastorscreen.gd" id="1_fhajn"]
+[ext_resource type="Texture2D" uid="uid://uro8f6v2b1el" path="res://sprites/items/boots.png" id="2_bosx0"]
+[ext_resource type="Texture2D" uid="uid://7dk5vd3ynu6h" path="res://sprites/items/gloves.png" id="3_hw0d6"]
+[ext_resource type="Script" path="res://scenes/ui/pastor_item_button.gd" id="5_r7w7q"]
+[ext_resource type="Texture2D" uid="uid://nwkkpuxms0ay" path="res://sprites/characters/pastor.png" id="5_t35hq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omc2e"]
+atlas = ExtResource("5_t35hq")
+region = Rect2(320, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88y5w"]
+atlas = ExtResource("5_t35hq")
+region = Rect2(0, 180, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf6qq"]
+atlas = ExtResource("5_t35hq")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ia3cn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omc2e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omc2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88y5w")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf6qq")
+}],
+"loop": true,
+"name": &"unlit",
+"speed": 10.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s67r0"]
+font_size = 8
+
+[sub_resource type="SystemFont" id="SystemFont_8qcba"]
+font_names = PackedStringArray("Monospace")
+font_weight = 999
+hinting = 2
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_60nj7"]
+font = SubResource("SystemFont_8qcba")
+font_size = 12
+
+[sub_resource type="Theme" id="Theme_xsdjd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2atnp"]
+atlas = ExtResource("1_b5or1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_indb7"]
+atlas = ExtResource("1_b5or1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lqkxv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2atnp")
+}],
+"loop": true,
+"name": &"large",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_indb7")
+}],
+"loop": true,
+"name": &"small",
+"speed": 10.0
+}]
+
+[sub_resource type="Theme" id="Theme_r3jrt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta8ki"]
+atlas = ExtResource("3_hw0d6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2n6n"]
+atlas = ExtResource("3_hw0d6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cknnv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta8ki")
+}],
+"loop": true,
+"name": &"large",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2n6n")
+}],
+"loop": true,
+"name": &"small",
+"speed": 10.0
+}]
+
+[sub_resource type="Theme" id="Theme_t3bff"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c6d6"]
+atlas = ExtResource("2_bosx0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bvua"]
+atlas = ExtResource("2_bosx0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmiyg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c6d6")
+}],
+"loop": true,
+"name": &"large",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bvua")
+}],
+"loop": true,
+"name": &"small",
+"speed": 10.0
+}]
+
+[sub_resource type="Theme" id="Theme_hngow"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poq4p"]
+atlas = ExtResource("1_cnbgj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fd5y"]
+atlas = ExtResource("1_cnbgj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ncjuo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poq4p")
+}],
+"loop": true,
+"name": &"large",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fd5y")
+}],
+"loop": true,
+"name": &"small",
+"speed": 10.0
+}]
+
+[node name="pastorscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(160, 90)
+script = ExtResource("1_fhajn")
+
+[node name="pastor" type="AnimatedSprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ia3cn")
+animation = &"idle"
+offset = Vector2(160, 90)
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/characters",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/characters/pastor.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "ccc91d87b9bd459c75e0c812d1cb5efc"
+
+[node name="back color" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.254902)
+
+[node name="textbox" type="ColorRect" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -203.0
+offset_top = 124.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.254902)
+
+[node name="name" type="Label" parent="textbox"]
+z_index = 8
+layout_mode = 2
+offset_left = 6.0
+offset_top = -7.0
+offset_right = 197.0
+offset_bottom = 37.0
+size_flags_vertical = 1
+text = "Pastor"
+label_settings = SubResource("LabelSettings_s67r0")
+autowrap_mode = 2
+
+[node name="Control" type="MarginContainer" parent="textbox"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="text" type="Label" parent="textbox/Control"]
+z_index = 8
+layout_mode = 2
+size_flags_vertical = 1
+text = "Gain enough monster essence and you'll save us and your wife!"
+label_settings = SubResource("LabelSettings_60nj7")
+autowrap_mode = 2
+
+[node name="Buttons" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -212.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="Weight" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_xsdjd")
+theme_type_variation = &"FlatButton"
+script = ExtResource("5_r7w7q")
+description = "The weights will give you an increase in your attack damage"
+
+[node name="Control" type="Control" parent="Buttons/Weight"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(16, 16)
+mouse_filter = 2
+
+[node name="sprite" type="AnimatedSprite2D" parent="Buttons/Weight/Control"]
+z_index = 1
+texture_filter = 1
+position = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_lqkxv")
+animation = &"small"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/items",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/items/weight.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": true,
+"slice_section": false
+}
+metadata/_aseprite_wizard_source_file_hash_ = "8274fc53470f5eaf12bca681fb3de279"
+
+[node name="Glove" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_r3jrt")
+theme_type_variation = &"FlatButton"
+script = ExtResource("5_r7w7q")
+description = "The glovess allow for faster hits"
+
+[node name="Control" type="Control" parent="Buttons/Glove"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(16, 16)
+mouse_filter = 2
+
+[node name="sprite" type="AnimatedSprite2D" parent="Buttons/Glove/Control"]
+texture_filter = 1
+position = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_cknnv")
+animation = &"small"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/items",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/items/gloves.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": true,
+"slice_section": false
+}
+metadata/_aseprite_wizard_source_file_hash_ = "94a7758b8ef8e0d762cb9cda3c9023f7"
+
+[node name="Boots" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_t3bff")
+theme_type_variation = &"FlatButton"
+script = ExtResource("5_r7w7q")
+description = "These shoes should increase your stride"
+
+[node name="Control" type="Control" parent="Buttons/Boots"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(16, 16)
+mouse_filter = 2
+
+[node name="sprite" type="AnimatedSprite2D" parent="Buttons/Boots/Control"]
+z_index = 1
+texture_filter = 1
+position = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_lmiyg")
+animation = &"small"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/items",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/items/boots.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": true,
+"slice_section": false
+}
+metadata/_aseprite_wizard_source_file_hash_ = "52515903c5ddd89c1ae0fbd96f66da73"
+
+[node name="Corndog" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_hngow")
+theme_type_variation = &"FlatButton"
+script = ExtResource("5_r7w7q")
+description = "A yummy corndog. Rejuvenates your health"
+
+[node name="Control" type="Control" parent="Buttons/Corndog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(16, 16)
+mouse_filter = 2
+
+[node name="sprite" type="AnimatedSprite2D" parent="Buttons/Corndog/Control"]
+z_index = 1
+texture_filter = 1
+position = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_ncjuo")
+animation = &"small"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/items",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/items/corndog.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": true,
+"slice_section": false
+}
+metadata/_aseprite_wizard_source_file_hash_ = "c79f0a0454521f25146eb8aa9f2ede8d"

@@ -56,7 +56,7 @@ func _ready():
 	introCutsceneScene = load("res://scenes/intro_cutscene.tscn")
 	genderSelectScreenScene = load("res://scenes/ui/gender_select_screen.tscn")
 	
-	load_screen(GameScreen.TITLE)
+	#load_screen(GameScreen.TITLE)
 	
 	pass # Replace with function body.
 
@@ -143,6 +143,8 @@ func load_next_level():
 		
 		pass
 	pass
+	
+
 	
 #game is over
 func end_game():

@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://salbkk1xvb2w"]
+
+[ext_resource type="Script" path="res://scenes/ui/pastor_item_button.gd" id="1_kyord"]
+[ext_resource type="Texture2D" uid="uid://7dk5vd3ynu6h" path="res://sprites/items/gloves.png" id="2_oxunu"]
+
+[sub_resource type="Theme" id="Theme_r3jrt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ta8ki"]
+atlas = ExtResource("2_oxunu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2n6n"]
+atlas = ExtResource("2_oxunu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cknnv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ta8ki")
+}],
+"loop": true,
+"name": &"large",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2n6n")
+}],
+"loop": true,
+"name": &"small",
+"speed": 10.0
+}]
+
+[node name="Glove" type="Button"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_r3jrt")
+theme_type_variation = &"FlatButton"
+script = ExtResource("1_kyord")
+description = "The glovess allow for faster hits"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(16, 16)
+
+[node name="sprite" type="AnimatedSprite2D" parent="Control"]
+z_index = 1
+texture_filter = 1
+position = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_cknnv")
+animation = &"small"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/items",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/items/gloves.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"output_section": true,
+"slice_section": false
+}
+metadata/_aseprite_wizard_source_file_hash_ = "94a7758b8ef8e0d762cb9cda3c9023f7"

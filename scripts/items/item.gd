@@ -66,3 +66,6 @@ func drop(height: float):
 	scale.y = 1
 	#rotation = 0
 	pass
+	
+func add_to_inventory():
+	pass

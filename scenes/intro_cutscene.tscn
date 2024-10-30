@@ -12,14 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://dnxomle0c10uv" path="res://scenes/intro 5 player f.png" id="5_u1gbc"]
 [ext_resource type="Texture2D" uid="uid://cbdhcuhjt8qi" path="res://scenes/intro 5 player m.png" id="5_yf1fh"]
 
-[sub_resource type="SystemFont" id="SystemFont_8qcba"]
+[sub_resource type="SystemFont" id="SystemFont_6bnd5"]
 font_names = PackedStringArray("Monospace")
 font_weight = 999
 hinting = 2
 subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_0y28p"]
-font = SubResource("SystemFont_8qcba")
+font = SubResource("SystemFont_6bnd5")
 font_size = 12
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_35fpq"]

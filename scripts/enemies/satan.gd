@@ -29,7 +29,6 @@ func _ready():
 	anim.play("idle")
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if raising:
@@ -69,4 +68,8 @@ func _process(delta):
 					else:
 						queue_free()
 					
+	pass
+
+func spawn_enemies():
+	
 	pass
