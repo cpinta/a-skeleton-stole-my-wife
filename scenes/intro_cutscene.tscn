@@ -514,7 +514,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 z_index = 3
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_m3gcp")
-animation = &"point talk"
+animation = &"reveal"
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",
@@ -527,6 +527,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "95994bbb925bdf4144774da4800324cb"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": false,
+"output_section": false,
 "slice_section": false
 }
 

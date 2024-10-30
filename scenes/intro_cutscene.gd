@@ -171,10 +171,12 @@ func play_intro2():
 	if gender == Player.Gender.HOMIE:
 		introRevealAnimm.visible = true
 		introRevealAnimf.visible = false
+		introRevealAnimm.play("reveal")
 		pass
 	else:
 		introRevealAnimf.visible = true
 		introRevealAnimm.visible = false
+		introRevealAnimf.play("reveal")
 		pass
 	
 	
