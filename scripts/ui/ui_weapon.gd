@@ -19,9 +19,9 @@ func _ready():
 	cooldownProgress.setup(playerWeaponIndex)
 	
 	if playerWeaponIndex == 0:
-		$"UpperPart/input icon/sprite".texture = load("res://scenes/ui/mouse_left_click.png")
+		$"UpperPart/input icon/sprite".texture = load("res://sprites/ui/mouse_left_click.png")
 	elif playerWeaponIndex == 1:
-		$"UpperPart/input icon/sprite".texture = load("res://scenes/ui/mouse_right_click.png")
+		$"UpperPart/input icon/sprite".texture = load("res://sprites/ui/mouse_right_click.png")
 	pass # Replace with function body.
 
 func _process(delta):

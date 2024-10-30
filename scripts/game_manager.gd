@@ -62,7 +62,7 @@ func _ready():
 	screenScenes[GameScreen.INTRO_CUTSCENE] = load("res://scenes/intro_cutscene.tscn")
 	screenScenes[GameScreen.GENDER_SELECT] = load("res://scenes/ui/gender_select_screen.tscn")
 	screenScenes[GameScreen.PASTOR] = load("res://scenes/ui/pastorscreen.tscn")
-	start_game()
+	start_game_skip_pastor()
 	
 	#start_gender_select() #WHAT SHOULD REALLY BE HERE
 	
@@ -142,7 +142,14 @@ func start_game():
 	load_level(currentLvlIndex)
 	load_game_ui()
 	show_pastor(PastorScreen.PastorState.INTRO, true)
-	player.canMove = false
+	pass
+	
+func start_game_skip_pastor():
+	unload_all_screens() #SCREEN
+	change_state(GameState.PLAYING)
+	load_level(currentLvlIndex)
+	load_game_ui()
+	player.allowInput = true
 	pass
 	
 func freeze_enemies():

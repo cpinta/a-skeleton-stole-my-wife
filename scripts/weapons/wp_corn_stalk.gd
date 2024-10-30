@@ -5,8 +5,8 @@ class_name CornStalk
 func _ready():
 	weaponName = "Corn Stalk"
 	description = "Stalk up or stalk out."
-	BASE_DAMAGE = 0
-	BASE_KNOCKBACK = 75
+	BASE_DAMAGE = 1
+	BASE_KNOCKBACK = 100
 	BASE_DURATION = 0.25
 	BASE_COOLDOWN = 0.1
 	

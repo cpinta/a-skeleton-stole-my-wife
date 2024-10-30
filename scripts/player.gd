@@ -37,7 +37,7 @@ signal justDied
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	STARTING_HEALTH = 1
+	STARTING_HEALTH = 20
 	super._ready()
 	allowInput = false
 	BASE_MOVEMENT_ACCELERATION = 500

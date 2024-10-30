@@ -80,7 +80,9 @@ var items: Array[Item]
 func _ready():
 	rb = self
 	body = $body
-	anim = body.get_node("animation")
+	anim = body.get_node_or_null("animation")
+	if anim == null:
+		print("WARNING: ",str(self.name),"'s AIM NODE IS NULL")
 	elementHeight = anim
 	health = STARTING_HEALTH
 	weapons.append(null)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dclrvv5xwjxvx"]
+[gd_scene load_steps=11 format=3 uid="uid://dclrvv5xwjxvx"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="1_epvr3"]
-[ext_resource type="PackedScene" uid="uid://byhlmvlump0td" path="res://scenes/enemies/satan.tscn" id="2_2by4y"]
 [ext_resource type="Script" path="res://scripts/ui/player_health.gd" id="3_yqsv7"]
 [ext_resource type="PackedScene" uid="uid://c7uja6ddq5jyf" path="res://scenes/ui/combo_ui.tscn" id="4_0ocu0"]
 [ext_resource type="PackedScene" uid="uid://ciocx6wvwso6i" path="res://scenes/ui/health_bar.tscn" id="4_nuc83"]
@@ -138,6 +137,3 @@ label_settings = SubResource("LabelSettings_1uraj")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_ok86e")
-
-[node name="satan" parent="Control" instance=ExtResource("2_2by4y")]
-layout_mode = 1

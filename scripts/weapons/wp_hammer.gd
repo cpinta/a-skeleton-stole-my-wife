@@ -6,8 +6,8 @@ class_name Hammer
 func _ready():
 	weaponName = "Hammer"
 	description = "To repair. Or destroy??"
-	BASE_DAMAGE = 0
-	BASE_KNOCKBACK = 100
+	BASE_DAMAGE = 2
+	BASE_KNOCKBACK = 75
 	SWING_ARC_ANGLE = 135
 	BASE_DURATION = 0.35
 	BASE_COOLDOWN = 0.25
