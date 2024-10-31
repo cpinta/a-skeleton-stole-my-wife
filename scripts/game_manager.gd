@@ -62,7 +62,8 @@ func _ready():
 	screenScenes[GameScreen.INTRO_CUTSCENE] = load("res://scenes/intro_cutscene.tscn")
 	screenScenes[GameScreen.GENDER_SELECT] = load("res://scenes/ui/gender_select_screen.tscn")
 	screenScenes[GameScreen.PASTOR] = load("res://scenes/ui/pastorscreen.tscn")
-	start_game()
+	#start_game()
+	start_game_skip_pastor()
 	
 	#start_gender_select() #WHAT SHOULD REALLY BE HERE
 	

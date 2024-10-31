@@ -65,6 +65,8 @@ collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_qkhdp")
 
+[node name="navAgent" type="NavigationAgent2D" parent="."]
+
 [node name="collider" type="CollisionShape2D" parent="."]
 position = Vector2(-5.96046e-08, 4.76837e-07)
 rotation = 1.5708

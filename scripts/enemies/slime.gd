@@ -50,7 +50,7 @@ func _physics_process(delta):
 func jump():
 	elementHeight.heightVerticalSpeed = JUMP_HEIGHT
 	velocity = velocity.normalized() * movement_max_speed
-	set_inputVector_toward_target(1)
+	set_inputVector_toward_navAgent(1)
 	anim.play("jump")
 	DAMAGES_ON_CONTACT = true
 	pass

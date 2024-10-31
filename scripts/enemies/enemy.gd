@@ -118,6 +118,15 @@ func set_inputVector_toward_target(delta):
 		inputVector =  inputVector.lerp(targetVector, turning_radius * delta)
 		print(inputVector)
 	inputVector = -Vector2(inputVector.x, inputVector.y)
+	
+func set_inputVector_toward_navAgent(delta):
+	if target == null:
+		return
+	if navAgent == null:
+		return
+	navAgent.target_position = target.global_position
+	inputVector = -global_position.direction_to(navAgent.get_next_path_position())
+	pass
 		
 func set_direction(dir: Direction):
 	super.set_direction(dir)
