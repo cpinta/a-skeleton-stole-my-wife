@@ -18,7 +18,7 @@ func _ready():
 	DAMAGES_ON_CONTACT = false
 	USES_DEFAULT_ANIMATIONS = false
 	elementHeight.isAffectedByHeight = true
-	BASE_MOVEMENT_MAX_SPEED = 40
+	BASE_MOVEMENT_MAX_SPEED = 80
 	#elementHeight.GRAVITY = 20
 
 	anim.play("idle")

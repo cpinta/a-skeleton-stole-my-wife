@@ -222,7 +222,7 @@ func load_player(canPlayerMove: bool):
 	player = playerScene.instantiate() as Player
 	player.gender = chosenGender
 	player.canMove = canPlayerMove
-	self.add_child(player)
+	currentLvl.add_child(player)
 	player.justDied.connect(load_death_screen)
 	pass	
 	
