@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bp0ah35c447mj"]
+[gd_scene load_steps=7 format=3 uid="uid://bp0ah35c447mj"]
 
 [ext_resource type="Script" path="res://scripts/weapons/wp_sceptre.gd" id="1_xhvt7"]
 [ext_resource type="Texture2D" uid="uid://cmecsyfnckr56" path="res://sprites/weapons/testcube.png" id="2_xk31s"]
+[ext_resource type="Script" path="res://scripts/element_height.gd" id="3_jh7o2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xfqr"]
 size = Vector2(6.66667, 27.7457)
@@ -41,6 +42,7 @@ position = Vector2(0, -12)
 scale = Vector2(0.18125, 1.20625)
 sprite_frames = SubResource("SpriteFrames_7rgke")
 animation = &"idle"
+script = ExtResource("3_jh7o2")
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",

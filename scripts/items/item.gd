@@ -53,6 +53,7 @@ func pickup(entity : Entity):
 	ownerEntity = entity
 	pickedUp = true
 	elementHeight.unload_shadow()
+	elementHeight.height = 0
 	pass
 	
 func drop(height: float):

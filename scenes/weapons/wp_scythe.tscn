@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://x6tfnv57sf3g"]
+[gd_scene load_steps=10 format=3 uid="uid://x6tfnv57sf3g"]
 
 [ext_resource type="Script" path="res://scripts/weapons/wp_scythe.gd" id="1_bjuds"]
 [ext_resource type="Texture2D" uid="uid://clolpu2e1akg" path="res://sprites/weapons/scythe2.png" id="2_crhpm"]
+[ext_resource type="Script" path="res://scripts/element_height.gd" id="3_o38aq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t252"]
 size = Vector2(19.5271, 9.50889)
@@ -58,6 +59,7 @@ shape = SubResource("RectangleShape2D_1xfqr")
 texture_filter = 1
 position = Vector2(15, -15)
 sprite_frames = SubResource("SpriteFrames_6asu6")
+script = ExtResource("3_o38aq")
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",

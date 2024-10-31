@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpta3slp6vtcu"]
+[gd_scene load_steps=11 format=3 uid="uid://dpta3slp6vtcu"]
 
 [ext_resource type="Script" path="res://scripts/weapons/wp_soda.gd" id="1_1p2ry"]
 [ext_resource type="Texture2D" uid="uid://dudkad25g3hhl" path="res://sprites/weapons/soda can.png" id="2_x58iv"]
+[ext_resource type="Script" path="res://scripts/element_height.gd" id="3_yw1sk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4t4v"]
 atlas = ExtResource("2_x58iv")
@@ -82,6 +83,7 @@ texture_filter = 1
 position = Vector2(15, -16)
 sprite_frames = SubResource("SpriteFrames_03on2")
 animation = &"idle"
+script = ExtResource("3_yw1sk")
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",

@@ -167,3 +167,20 @@ func check_for_target_or_player():
 			target = player
 	return true
 	pass
+	
+var CHEST_SPAWN_CHANGE: float = 0.05
+func was_killed():
+	apply_effects(0)
+	isDead = true
+	var rand = randf()
+	if rand < CHEST_SPAWN_CHANGE:
+		spawn_item_chest()
+		pass
+	queue_free()
+	pass
+
+func spawn_item_chest():
+	var chest = load("res://scenes/objects/item_chest.tscn").instantiate()
+	Game.currentLvl.add_child(chest)
+	chest.global_position = global_position
+	pass

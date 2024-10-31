@@ -341,7 +341,7 @@ y_sort_enabled = true
 script = ExtResource("1_p1rca")
 
 [node name="PlayerSpawn" type="Node2D" parent="." groups=["playerspawn"]]
-position = Vector2(-86, 67)
+position = Vector2(-61, 29)
 
 [node name="tiles invis walls" type="TileMapLayer" parent="."]
 z_as_relative = false
@@ -542,8 +542,8 @@ polygon = PackedVector2Array(-173, -257, 159, -254, 152, 6, -172, -3)
 [node name="CollisionPolygon2D" parent="Haze4/Polygon2D/StaticBody2D" index="0"]
 polygon = PackedVector2Array(-174, -257, 158, -255, 156, 0, -171, -2)
 
-[node name="Hammer" parent="." instance=ExtResource("8_b5sun")]
-position = Vector2(-102, 28)
+[node name="Hammer2" parent="." instance=ExtResource("8_b5sun")]
+position = Vector2(-98, 35)
 
 [editable path="es house"]
 [editable path="es gargoyle"]

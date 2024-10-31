@@ -181,10 +181,10 @@ func select_gender(gender: Player.Gender):
 		pass
 	pass
 
-func set_text_fade_state(state: FadeState):
+func set_text_fade_state(newState: FadeState):
 	lblText.visible = true
-	lblText.modulate.a = state
-	textFadeState = state
-	if state == FadeState.OUT:
+	lblText.modulate.a = newState
+	textFadeState = newState
+	if newState == FadeState.OUT:
 		textFading = true
 	pass

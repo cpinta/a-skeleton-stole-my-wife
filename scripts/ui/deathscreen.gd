@@ -74,8 +74,8 @@ func _process(delta):
 		btnQuit.position = btnQuitOrigin + Vector2.RIGHT.rotated(randf_range(0, 2*PI)) * SHAKE_STRENGTH_QUIT
 	pass
 	
-func change_state(state: GrimAnimState):
-	self.state = state
+func change_state(newState: GrimAnimState):
+	state = newState
 	match state:
 		GrimAnimState.SKULL_APPEARING:
 			talkText.text = "your circumstance seems grim."

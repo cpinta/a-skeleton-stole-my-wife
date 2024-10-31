@@ -21,6 +21,8 @@ func _ready():
 	currentAmmoCount = BASE_AMMO_COUNT
 	
 	collider = $collider
+	
+	anim = $animation
 	anim.play("ground")
 	
 	area = $"collider"

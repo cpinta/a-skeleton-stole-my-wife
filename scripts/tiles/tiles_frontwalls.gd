@@ -22,13 +22,13 @@ func _ready():
 		walls.append(curWall)
 	pass
 
-func _tile_data_runtime_update(coords, tile_data):
-	tile_data.modulate.a = cells_alpha.get(coords, 1.0)
+func _tile_data_runtime_update(coord, tile_data):
+	tile_data.modulate.a = cells_alpha.get(coord, 1.0)
 	
 #Warning: Make sure this function only return true when needed. 
 #Any tile processed at runtime without a need for it will imply a significant performance penalty.
-func _use_tile_data_runtime_update(coords):
-	return cells_alpha.has(coords)
+func _use_tile_data_runtime_update(coord):
+	return cells_alpha.has(coord)
 
 func _process(delta):
 	if player != null:

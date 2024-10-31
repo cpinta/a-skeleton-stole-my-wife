@@ -26,7 +26,7 @@ class_name Satan
 var enemiesWereSent: bool = false
 signal sendEnemies
 
-var speed_multiplier: float = 4
+var speed_multiplier: float = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

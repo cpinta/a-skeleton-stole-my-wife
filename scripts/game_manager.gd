@@ -40,6 +40,15 @@ var state: GameState
 	"Gargoyle": load("res://scenes/enemies/gargoyle.tscn"),\
 }
 
+@onready var dict_weapons = {\
+	"Corn Stalk": load("res://scenes/weapons/wp_corn_stalk.tscn"),\
+	"Hammer": load("res://scenes/weapons/wp_hammer.tscn"),\
+	"Pistol": load("res://scenes/weapons/wp_pistol.tscn"),\
+	"Scythe": load("res://scenes/weapons/wp_scythe.tscn"),\
+	"Sledgehammer": load("res://scenes/weapons/wp_sledgehammer.tscn"),\
+	"Soda": load("res://scenes/weapons/wp_soda.tscn")
+}
+
 var player: Player
 var playerScene: PackedScene
 var camera: GameCamera
@@ -77,8 +86,7 @@ func _ready():
 	
 	#start_game()
 	start_game_skip_pastor()
-	spawn_satan()
-	
+	#spawn_satan()
 	#start_gender_select() #WHAT SHOULD REALLY BE HERE
 	
 	pass
@@ -87,6 +95,10 @@ func start_gender_select():
 	load_screen(GameScreen.GENDER_SELECT)
 	screens[GameScreen.GENDER_SELECT].selectionDone.connect(gender_select_ended)
 	
+func get_random_weapon():
+	var keys = dict_weapons.keys()
+	return dict_weapons[keys[randi_range(0, keys.size()-1)]]
+	pass
 	
 func gender_select_ended():
 	start_intro()
@@ -128,7 +140,8 @@ func _process(delta):
 			pass
 		GameState.PLAYING:
 			if player.score > SATAN_SPAWN_SCORE:
-				spawn_satan()
+				if not satanWasSpawned:
+					spawn_satan()
 			if player.score > WIN_SCORE:
 				self.queue_free()
 				pass
@@ -159,6 +172,7 @@ func spawn_satans_enemies():
 		var enemy = dict_entites[keys[randi_range(0, keys.size()-2)]].instantiate()
 		currentLvl.add_child(enemy)
 		enemy.add_status_effect(SE_MovementSlow.new(enemy, 4, 0))
+		enemy.add_status_effect(SE_Invincibility.new(enemy, 4))
 		enemy.global_position = spawnLoc
 		pass
 	pass

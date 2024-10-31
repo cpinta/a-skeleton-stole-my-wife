@@ -7,7 +7,7 @@ var idle_timer: float = 0
 var LAND_TIME: float = 0.1
 var land_timer: float = 0
 
-var JUMP_HEIGHT: float = 15
+var JUMP_HEIGHT: float = 105
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +18,7 @@ func _ready():
 	DAMAGES_ON_CONTACT = false
 	USES_DEFAULT_ANIMATIONS = false
 	elementHeight.isAffectedByHeight = true
-	BASE_MOVEMENT_MAX_SPEED = 15
+	BASE_MOVEMENT_MAX_SPEED = 35
 	#elementHeight.GRAVITY = 20
 
 	anim.play("idle")

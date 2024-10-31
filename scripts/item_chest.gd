@@ -11,7 +11,6 @@ func _ready():
 	anim = $animation
 	anim.play("idle")
 	anim.connect("animation_finished", anim_done)
-	itemScene = load("res://scenes/weapons/wp_pistol.tscn")
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,8 +35,9 @@ func anim_done():
 		pass
 
 func spawn_item_in_chest():
+	itemScene = Game.get_random_weapon()
 	var itemSpawn = itemScene.instantiate()
-	self.owner.add_child(itemSpawn)
+	Game.currentLvl.add_child(itemSpawn)
 	itemSpawn.global_position = self.global_position
 	if itemSpawn.elementHeight.DOES_HEIGHT_USE_GRAVITY:
 		itemSpawn.elementHeight.heightVerticalSpeed = ITEM_POPOUT_SPEED

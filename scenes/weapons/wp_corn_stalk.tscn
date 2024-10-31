@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://e18okywm4qom"]
+[gd_scene load_steps=9 format=3 uid="uid://e18okywm4qom"]
 
 [ext_resource type="Script" path="res://scripts/weapons/wp_corn_stalk.gd" id="1_6urhv"]
 [ext_resource type="Texture2D" uid="uid://boax63jxfhmga" path="res://sprites/weapons/cornstalk.png" id="2_013ya"]
+[ext_resource type="Script" path="res://scripts/element_height.gd" id="3_247p8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xfqr"]
 size = Vector2(13.3333, 33.6082)
@@ -55,6 +56,7 @@ texture_filter = 1
 position = Vector2(15, -15)
 sprite_frames = SubResource("SpriteFrames_gooba")
 animation = &"idle"
+script = ExtResource("3_247p8")
 metadata/_aseprite_wizard_config_ = {
 "layer": "",
 "o_ex_p": "",

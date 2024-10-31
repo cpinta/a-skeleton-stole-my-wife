@@ -136,10 +136,10 @@ func reveal_anim_done():
 		queue_free()
 		pass
 		
-func intro_reveal_anim_set(name: String):
-	introRevealAnim.play(name)
-	introRevealAnimf.play(name)
-	introRevealAnimm.play(name)
+func intro_reveal_anim_set(animName: String):
+	introRevealAnim.play(animName)
+	introRevealAnimf.play(animName)
+	introRevealAnimm.play(animName)
 	pass
 	
 func _process(delta):
