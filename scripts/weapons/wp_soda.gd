@@ -18,6 +18,9 @@ func _ready():
 	BASE_DURATION = 0.5
 	BASE_AMMO_COUNT = THIRTEEN
 	currentAmmoCount = BASE_AMMO_COUNT
+	usesAmmo = true
+
+	STORE_OFFSET = Vector2(-15, 5)
 	
 	collider = $collider
 	

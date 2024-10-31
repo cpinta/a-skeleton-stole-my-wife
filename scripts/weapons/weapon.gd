@@ -30,6 +30,8 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var ammoCount: int = 1
 @export var currentAmmoCount: int = 1
 
+@export var usesAmmo: bool = false
+
 @export var cooldownTimer: float = 0
 
 var onHitEffects: Array[StatusEffect]
@@ -43,6 +45,7 @@ signal attack_hit(entity: Entity, entityWasKilled: bool, damageDealt: int)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
+	apply_stats()
 	pass # Replace with function body.
 
 
@@ -91,7 +94,7 @@ func equip():
 #called when weapon is put on players back
 func unequip():
 	rotation_degrees = STORE_ANGLE
-	position = Vector2.ZERO
+	position = STORE_OFFSET
 	isEquipped = false
 	pass
 	

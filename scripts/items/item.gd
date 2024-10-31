@@ -11,6 +11,7 @@ class_name Item
 @export var START_DROPPED: bool = true
 
 @export var STORE_ANGLE: int = 0
+@export var STORE_OFFSET: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://du7w4l4f4thq0"]
+[gd_scene load_steps=7 format=3 uid="uid://du7w4l4f4thq0"]
 
 [ext_resource type="Texture2D" uid="uid://dbobwelpunrqr" path="res://sprites/ui/mouse_left_click.png" id="1_gr8vs"]
 [ext_resource type="Script" path="res://scripts/ui/ui_weapon.gd" id="1_lp4wg"]
 [ext_resource type="Texture2D" uid="uid://dmf6h63gjshoc" path="res://sprites/ui/ui_donut.png" id="2_uxa2r"]
 [ext_resource type="Script" path="res://scripts/ui/ui_cooldown_progress.gd" id="3_0kjap"]
+[ext_resource type="Script" path="res://scripts/ui/ui_ammo_count.gd" id="5_558do"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ukuwn"]
+font_size = 8
 
 [node name="Weapon 0" type="Control"]
 layout_mode = 3
@@ -73,6 +77,19 @@ texture_under = ExtResource("2_uxa2r")
 texture_progress = ExtResource("2_uxa2r")
 tint_under = Color(0, 0, 0, 0.160784)
 script = ExtResource("3_0kjap")
+
+[node name="ammo count" type="Label" parent="UpperPart"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "12/12"
+label_settings = SubResource("LabelSettings_ukuwn")
+horizontal_alignment = 2
+script = ExtResource("5_558do")
 
 [node name="Center" type="Control" parent="."]
 layout_mode = 1

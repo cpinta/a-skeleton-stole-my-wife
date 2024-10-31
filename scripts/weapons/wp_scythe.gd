@@ -1,15 +1,15 @@
 extends SwingWeapon
 class_name Scythe
 
-@export var SLOW_TIME: float = 0.5
-@export var SLOW_MULTIPLIER: float = 0.25
+@export var SLOW_TIME: float = 2
+@export var SLOW_MULTIPLIER: float = 0.05
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	weaponName = "Scythe"
 	description = "It'll look grim for them!"
-	BASE_DAMAGE = 3
-	BASE_KNOCKBACK = -50
+	BASE_DAMAGE = 4
+	BASE_KNOCKBACK = 0
 	SWING_ARC_ANGLE = 180
 	BASE_DURATION = 0.25
 	

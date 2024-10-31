@@ -11,6 +11,7 @@ func _ready():
 	anim = get_node("animation")
 	anim.play("idle")
 	
+	usesAmmo = true
 	
 	elementHeight.SHADOW_USES_PARENT_ORIGIN = true
 	drop(5)

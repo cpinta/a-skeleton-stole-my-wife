@@ -6,6 +6,7 @@ var WeaponScene: Weapon
 var lblWeapon: Label
 
 var cooldownProgress: UI_Cooldown
+var ammoCount: UI_Ammo_Count
 
 @export var playerWeaponIndex: int
 
@@ -17,6 +18,9 @@ func _ready():
 	lblWeapon.text = ""
 	cooldownProgress = $UpperPart/CooldownProgress
 	cooldownProgress.setup(playerWeaponIndex)
+	
+	ammoCount = $"UpperPart/ammo count"
+	ammoCount.setup(playerWeaponIndex)
 	
 	if playerWeaponIndex == 0:
 		$"UpperPart/input icon/sprite".texture = load("res://sprites/ui/mouse_left_click.png")
