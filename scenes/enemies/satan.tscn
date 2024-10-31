@@ -38,6 +38,7 @@ animations = [{
 }]
 
 [node name="satan" type="Control"]
+z_index = 20
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0

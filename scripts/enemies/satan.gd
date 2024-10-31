@@ -19,21 +19,29 @@ class_name Satan
 @export var leaveTimer: float = 0
 @export var leaving: bool = false
 
-@export var START_POS: Vector2 = Vector2(256, 202)
-@export var POINT_POS: Vector2 = Vector2(256, 148)
-@export var LEAVE_POS: Vector2 = Vector2(343, 148)
+@export var START_POS: Vector2 = Vector2(96, 120)
+@export var POINT_POS: Vector2 = Vector2(96, 58)
+@export var LEAVE_POS: Vector2 = Vector2(183, 58)
+
+var enemiesWereSent: bool = false
+signal sendEnemies
+
+var speed_multiplier: float = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	anim = $animation
 	anim.play("idle")
+	
+	RISE_TIME = RISE_TIME/speed_multiplier
+	STARE_TIME = STARE_TIME/speed_multiplier
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if raising:
 		if riseTimer < RISE_TIME:
-			global_position = START_POS + ((riseTimer/RISE_TIME) * (POINT_POS-START_POS))
+			position = START_POS + ((riseTimer/RISE_TIME) * (POINT_POS-START_POS))
 			riseTimer += delta
 		else:
 			raising = false
@@ -53,6 +61,9 @@ func _process(delta):
 				anim.play("pointing")
 		else:
 			if pointing:
+				if not enemiesWereSent:
+					enemiesWereSent = true
+					sendEnemies.emit()
 				if pointTimer < POINT_TIME:
 					pointTimer += delta
 				else:
@@ -63,7 +74,7 @@ func _process(delta):
 			else:
 				if leaving:
 					if leaveTimer < LEAVE_TIME:
-						global_position = POINT_POS + ((leaveTimer/LEAVE_TIME) * (LEAVE_POS-POINT_POS))
+						position = POINT_POS + ((leaveTimer/LEAVE_TIME) * (LEAVE_POS-POINT_POS))
 						leaveTimer += delta
 					else:
 						queue_free()

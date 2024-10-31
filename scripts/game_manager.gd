@@ -46,6 +46,16 @@ var camera: GameCamera
 
 var SCREEN_RESOLUTION: Vector2 = Vector2(320, 180)
 
+var satanScene: PackedScene
+var satan: Satan
+var SATAN_SPAWN_SCORE: int = 700
+var satanWasSpawned: bool = false
+
+var SATAN_SPAWN_COUNT: int = 20
+var SATAN_SPAWN_RADIUS: float = 90
+
+var WIN_SCORE: int = 1000
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	lvlScenes.append("res://scenes/levels/lvl_weddinghall.tscn")
@@ -62,8 +72,12 @@ func _ready():
 	screenScenes[GameScreen.INTRO_CUTSCENE] = load("res://scenes/intro_cutscene.tscn")
 	screenScenes[GameScreen.GENDER_SELECT] = load("res://scenes/ui/gender_select_screen.tscn")
 	screenScenes[GameScreen.PASTOR] = load("res://scenes/ui/pastorscreen.tscn")
+	
+	satanScene = load("res://scenes/enemies/satan.tscn")
+	
 	#start_game()
 	start_game_skip_pastor()
+	spawn_satan()
 	
 	#start_gender_select() #WHAT SHOULD REALLY BE HERE
 	
@@ -113,9 +127,40 @@ func _process(delta):
 				pass
 			pass
 		GameState.PLAYING:
+			if player.score > SATAN_SPAWN_SCORE:
+				spawn_satan()
+			if player.score > WIN_SCORE:
+				self.queue_free()
+				pass
 			pass
 		GameState.PAUSED:
 			pass
+	pass
+	
+func spawn_satan():
+	satanWasSpawned = true
+	satan = satanScene.instantiate()
+	camera.add_child(satan)
+	
+	satan.sendEnemies.connect(spawn_satans_enemies)
+	pass
+	
+func spawn_satans_enemies():
+	var centerPoint: Vector2 = player.global_position
+	var circumfrence: float = 2*PI
+	var moveEveryEnemy: float = circumfrence/SATAN_SPAWN_COUNT
+	var currentRotation: float = 0
+	
+	var keys: Array = dict_entites.keys()
+	
+	for i in range(0, SATAN_SPAWN_COUNT):
+		currentRotation += moveEveryEnemy
+		var spawnLoc: Vector2 = centerPoint + (Vector2.RIGHT.rotated(currentRotation) * SATAN_SPAWN_RADIUS)
+		var enemy = dict_entites[keys[randi_range(0, keys.size()-2)]].instantiate()
+		currentLvl.add_child(enemy)
+		enemy.add_status_effect(SE_MovementSlow.new(enemy, 4, 0))
+		enemy.global_position = spawnLoc
+		pass
 	pass
 	
 func change_state(state: GameState):

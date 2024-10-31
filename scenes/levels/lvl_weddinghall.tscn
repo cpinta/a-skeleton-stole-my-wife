@@ -533,7 +533,6 @@ polygon = PackedVector2Array(-509, -83, 652, -88, 662, 92, -506, 112)
 polygon = PackedVector2Array(-499, -86, 272, -87, 310, 100, -507, 111)
 
 [node name="Haze4" parent="." instance=ExtResource("7_xiea6")]
-visible = false
 position = Vector2(792, 386)
 scoreRequirement = 400
 
@@ -544,7 +543,7 @@ polygon = PackedVector2Array(-173, -257, 159, -254, 152, 6, -172, -3)
 polygon = PackedVector2Array(-174, -257, 158, -255, 156, 0, -171, -2)
 
 [node name="Hammer" parent="." instance=ExtResource("8_b5sun")]
-position = Vector2(-82, -10)
+position = Vector2(-102, 28)
 
 [editable path="es house"]
 [editable path="es gargoyle"]
