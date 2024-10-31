@@ -55,13 +55,8 @@ func _physics_process(delta):
 				else:
 					stab_over()
 	else:
-		if position.y > NEUTRAL_POSITION:
-			if pokeTimer < poke_time:
-				position.y = (NEUTRAL_POSITION + poke_length) + ((pokeTimer/poke_time) * (-poke_length)) 
-				pokeTimer += delta
-			else:
-				position.y = NEUTRAL_POSITION
-		position = position.lerp(Vector2(0, NEUTRAL_POSITION), 0.99 * delta)
+		if pickedUp:
+			position = position.lerp(Vector2(0, NEUTRAL_POSITION), 20 * delta)
 		pass
 	pass
 

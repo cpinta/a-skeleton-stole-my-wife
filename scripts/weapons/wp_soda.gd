@@ -11,7 +11,6 @@ class_name Soda
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	super._ready()
 	weaponName = "13 Pack of Soda"
 	description = "The only baker's dozen I care about."
 	BASE_DAMAGE = 0
@@ -32,8 +31,13 @@ func _ready():
 	
 	IS_QUITTABLE = false
 	
-	EQUIP_ANGLE = 90
+	EQUIP_ANGLE = 135
 	EQUIP_OFFSET = -Vector2.ONE * 2
+	
+	
+	super._ready()
+	elementHeight.SHADOW_USES_PARENT_ORIGIN = true
+	drop(5)
 	
 	pass # Replace with function body.
 
