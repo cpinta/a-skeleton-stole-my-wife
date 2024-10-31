@@ -26,8 +26,12 @@ var strIntro2: String = "Gain enough monster essence and you'll save us and your
 var strIntro3: String = "Here, take this hammer and fight those monsters!"
 var strIntro4: String = "Hurry! They're breaking through the windows!"
 
-var strItemTut: String = "Those monsters seem tough. One of these could help you."
-var strItemNoTut: String = "Here take one of these."
+var strItemTut1: String = "Great. You collected 100 monster essence, lifting some of the veil of fog."
+var strItemTut2: String = "By gaining that essence, you decrease the skeleton's control."
+var strItemTut3: String = "Collect more to have a shot at saving your wife and the town."
+var strItemTut4: String = "Here. Take one of these to help you on your journey."
+var strItemNoTut1: String = "Thank the heavens, you've lifted more of the veil."
+var strItemNoTut2: String = "Here take one of these."
 
 var started: bool = false
 
@@ -87,6 +91,7 @@ func item_selected(itemName:String):
 			pass
 	
 	disable_buttons()
+	state = PastorState.LEAVING
 	pass
 
 func _process(delta):
@@ -147,9 +152,13 @@ func _process(delta):
 	
 func item_speak():
 	if isTutorialFinished:
-		await speak_for_time(strItemNoTut, 5)
+		await speak_for_time(strItemNoTut1, 5)
+		await speak_for_time(strItemNoTut2, 5)
 	else:
-		await speak_for_time(strItemTut, 5)
+		await speak_for_time(strItemTut1, 5)
+		await speak_for_time(strItemTut2, 5)
+		await speak_for_time(strItemTut3, 5)
+		await speak_for_time(strItemTut4, 5)
 		isTutorialFinished = true
 	pass
 

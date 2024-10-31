@@ -7,19 +7,21 @@ class_name Scythe
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	weaponName = "Scythe"
-	description = "It'll look grim for them"
-	BASE_DAMAGE = 0
-	BASE_KNOCKBACK = 0
+	description = "It'll look grim for them!"
+	BASE_DAMAGE = 3
+	BASE_KNOCKBACK = -50
 	SWING_ARC_ANGLE = 180
 	BASE_DURATION = 0.25
 	
 	EQUIP_ANGLE = 45
-	STORE_ANGLE = -45
+	STORE_ANGLE = 0
 	
 	collider = $collider
 	anim = get_node("animation")
 	
 	super._ready()
+	elementHeight.SHADOW_USES_PARENT_ORIGIN = true
+	drop(5)
 	pass # Replace with function body.
 
 

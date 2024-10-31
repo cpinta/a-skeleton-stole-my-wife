@@ -57,13 +57,13 @@ var SCREEN_RESOLUTION: Vector2 = Vector2(320, 180)
 
 var satanScene: PackedScene
 var satan: Satan
-var SATAN_SPAWN_SCORE: int = 700
+var SATAN_SPAWN_SCORE: int = 600
 var satanWasSpawned: bool = false
 
 var SATAN_SPAWN_COUNT: int = 20
 var SATAN_SPAWN_RADIUS: float = 90
 
-var WIN_SCORE: int = 1000
+var WIN_SCORE: int = 800
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -204,42 +204,63 @@ func start_game():
 	show_pastor(PastorScreen.PastorState.INTRO, true)
 	pass
 	
+func spawn_pastor():
+	if timesPastorVisited == 1:
+		show_pastor(PastorScreen.PastorState.SHOWING_ITEMS, true)
+	else:
+		show_pastor(PastorScreen.PastorState.SHOWING_ITEMS, false)
+	pass
+	
 func start_game_skip_pastor():
 	unload_all_screens() #SCREEN
 	change_state(GameState.PLAYING)
 	load_level(currentLvlIndex)
 	load_game_ui()
 	player.allowInput = true
+	timesPastorVisited += 1
 	pass
+	
+	
 	
 func freeze_enemies():
 	if get_tree().get_node_count_in_group("enemies") > 0:
 		var enemies = get_tree().get_nodes_in_group("enemies")
 		for enemy in enemies:
-			enemy.canMove = false
+			enemy.add_status_effect(SE_MovementSlow.new(enemy, 999999999, 0))
 	pass
 
 func unfreeze_enemies():
 	if get_tree().get_node_count_in_group("enemies") > 0:
 		var enemies = get_tree().get_nodes_in_group("enemies")
 		for enemy in enemies:
-			enemy.canMove = false
+			for effect in enemy.statusEffects:
+				if effect is SE_MovementSlow:
+					if effect.TIME_APPLIED == 999999999:
+						effect.queue_free()
+						continue
+					pass
 	pass
 	
 func show_pastor(pstate: PastorScreen.PastorState = PastorScreen.PastorState.SHOWING_ITEMS, hasTutorial: bool = false):
+	unload_all_screens()
 	load_screen(GameScreen.PASTOR) #SCREEN
 	screens[GameScreen.PASTOR].setup(pstate, hasTutorial)
 	screens[GameScreen.PASTOR].reparent(camera, false)
 	screens[GameScreen.PASTOR].position = -SCREEN_RESOLUTION/2
 	player.allowInput = false
 	timesPastorVisited += 1
-	screens[GameScreen.PASTOR].gone.connect(pastor_done)
-	freeze_enemies()
+	if not screens[GameScreen.PASTOR].gone.is_connected(pastor_done):
+		screens[GameScreen.PASTOR].gone.connect(pastor_done)
+	#freeze_enemies()
+	get_tree().paused = true
+	player.inputVector = Vector2.ZERO
 	pass
 	
 func pastor_done():
+	get_tree().paused = false
+	load_game_ui()
 	player.allowInput = true
-	unfreeze_enemies()
+	#unfreeze_enemies()
 	pass
 	
 func load_next_level():

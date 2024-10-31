@@ -2,7 +2,7 @@ extends Weapon
 class_name SwingWeapon
 
 @export var area: Area2D
-@export var hitbox: CollisionShape2D
+@export var hitboxes: Array[CollisionShape2D]
 
 @export var FRONT_FACING_ANGLE := 135 #DO NOT CHANGE IN INHERITERS
 
@@ -26,14 +26,27 @@ func _ready():
 	
 	area = $"collider"
 	area.connect("area_entered", hit_entity)
-	hitbox = area.get_node("shape")
+	var areaChildren = area.get_children()
+	for child in areaChildren:
+		if child is CollisionShape2D:
+			hitboxes.append(child)
 	weaponType = WeaponType.Swing
 	
-	hitbox.disabled = true
+	disable_hitboxes()
 	
 	onHitEffects.append(SE_Hitstun.new(null, HITSTUN_AMOUNT))
 	pass # Replace with function body.
 
+func disable_hitboxes():
+	for hitbox in hitboxes:
+		hitbox.disabled = true
+	pass
+	
+func enable_hitboxes():
+	for hitbox in hitboxes:
+		hitbox.disabled = false
+	pass
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
@@ -58,12 +71,12 @@ func use_weapon():
 func end_use_weapon():
 	super.end_use_weapon()
 	rotation_degrees = INHAND_ANGLE
-	hitbox.disabled = true
+	disable_hitboxes()
 	pass
 
 func swing():
 	apply_stats()
-	hitbox.disabled = false
+	enable_hitboxes()
 	rotation_degrees = SWING_START_ANGLE
 	curSwingTime = 0
 	pass
@@ -80,5 +93,5 @@ func apply_attack(entity: Entity):
 	
 func unequip():
 	super.unequip()
-	hitbox.disabled = true
+	disable_hitboxes()
 	pass

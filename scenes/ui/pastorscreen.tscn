@@ -180,6 +180,7 @@ animations = [{
 }]
 
 [node name="pastorscreen" type="Control"]
+process_mode = 3
 z_index = 20
 layout_mode = 3
 anchors_preset = 8
@@ -260,10 +261,11 @@ theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
 [node name="text" type="Label" parent="textbox/Control"]
+process_mode = 3
 z_index = 8
 layout_mode = 2
 size_flags_vertical = 1
-text = "Gain enough monster essence and you'll save us and your wife!"
+text = "Collect more to have a shot at saving your wife and the town."
 label_settings = SubResource("LabelSettings_60nj7")
 autowrap_mode = 2
 

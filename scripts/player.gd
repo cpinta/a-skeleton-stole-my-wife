@@ -197,7 +197,7 @@ func drop_weapon(weapon: Weapon):
 			pass
 		if weapon.inUse:
 			weapon.end_use_weapon()
-		weapon.reparent(self.owner, true)
+		weapon.reparent(Game.currentLvl, true)
 		weapon.drop(abs(weapon.global_position.y - global_position.y))
 		#weapon.global_position = Vector2(weapon.global_position.x, global_position.y)
 

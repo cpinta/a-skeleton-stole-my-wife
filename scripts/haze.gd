@@ -24,6 +24,7 @@ func _process(delta):
 		if polygon.modulate.a > 0:
 			polygon.modulate.a -= delta
 		else:
+			Game.spawn_pastor()
 			queue_free()
 	else:
 		check_score()
