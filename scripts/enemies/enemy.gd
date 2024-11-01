@@ -86,10 +86,10 @@ func _physics_process(delta):
 	if elementHeight.height > 25: #if flying
 		#dont hit player if high up
 		rb.collision_layer = 0b0001000
-		rb.collision_mask = 0b1001001
+		rb.collision_mask = 0b1001000
 		if hurtbox != null:
 			hurtbox.collision_layer = 0b0001000
-			hurtbox.collision_mask = 0b1001001
+			hurtbox.collision_mask = 0b1001000
 		pass
 	else: #if on ground
 		rb.collision_layer = 0b00000100
