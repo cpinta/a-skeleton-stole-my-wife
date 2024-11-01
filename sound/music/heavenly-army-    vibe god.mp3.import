@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bw4t2ffr550d6"
+path="res://.godot/imported/heavenly-army-    vibe god.mp3-64799445d71bde21b9ca4eb88241da0c.mp3str"
+
+[deps]
+
+source_file="res://sound/music/heavenly-army-    vibe god.mp3"
+dest_files=["res://.godot/imported/heavenly-army-    vibe god.mp3-64799445d71bde21b9ca4eb88241da0c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

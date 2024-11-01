@@ -1,9 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfmv0sp277qld"]
+[gd_scene load_steps=18 format=3 uid="uid://cfmv0sp277qld"]
 
 [ext_resource type="Script" path="res://scripts/enemies/ghost.gd" id="1_fg4n2"]
+[ext_resource type="AudioStream" uid="uid://gjfdfrcis4pq" path="res://sound/ghost1.wav" id="2_hgv4p"]
 [ext_resource type="Texture2D" uid="uid://dguip4dodbrim" path="res://sprites/enemies/ghost sprite.png" id="2_o1o08"]
+[ext_resource type="AudioStream" uid="uid://b4gootxy4gbpv" path="res://sound/ghost2.wav" id="3_nif3b"]
 [ext_resource type="Script" path="res://scripts/element_height.gd" id="3_xg02b"]
+[ext_resource type="AudioStream" uid="uid://dbgwso0wbo1rl" path="res://sound/ghost3.wav" id="4_swhst"]
 [ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="4_x80tp"]
+[ext_resource type="AudioStream" uid="uid://d01rpuqg8r0hp" path="res://sound/ghost4.wav" id="5_vxhxp"]
+[ext_resource type="AudioStream" uid="uid://c8llnl3pcqttf" path="res://sound/ghost hurt.wav" id="6_sn74p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k0yc0"]
 radius = 5.0
@@ -59,6 +64,8 @@ size = Vector2(11, 5)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_fg4n2")
+ambientNoises = Array[AudioStream]([ExtResource("2_hgv4p"), ExtResource("3_nif3b"), ExtResource("4_swhst"), ExtResource("5_vxhxp")])
+hurtNoises = Array[AudioStream]([ExtResource("6_sn74p")])
 
 [node name="collider" type="CollisionShape2D" parent="."]
 position = Vector2(-5.96046e-08, 4.76837e-07)
@@ -121,3 +128,5 @@ metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true
 }
 metadata/_aseprite_wizard_source_file_hash_ = "1543c1ff04c12f3ace724b29a33ea866"
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]

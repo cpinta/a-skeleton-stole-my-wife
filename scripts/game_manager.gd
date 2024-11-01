@@ -1,7 +1,7 @@
 extends Node
 class_name GM
 
-enum GameState {TITLE_SCREEN=0, INTRO_CUTSCENE=4, GENDER_SELECT=5, PLAYING=1, PAUSED=2, DEAD=3}
+enum GameState {TITLE_SCREEN=0, INTRO_CUTSCENE=4, END_CUTSCENE=6, GENDER_SELECT=5, PLAYING=1, PAUSED=2, DEAD=3}
 enum GameScreen {TITLE, INTRO_CUTSCENE, GENDER_SELECT, PASTOR, DEATH, END_CUTSCENE}
 
 var chosenGender: Player.Gender
@@ -109,7 +109,7 @@ func gender_select_ended():
 	
 	
 func start_ending():
-	change_state(GameState.INTRO_CUTSCENE)
+	change_state(GameState.END_CUTSCENE)
 	unload_all_screens()
 	load_screen(GameScreen.END_CUTSCENE) #SCREEN
 	screens[GameScreen.END_CUTSCENE].endingDone.connect(finish_ending)
@@ -125,7 +125,7 @@ func start_intro():
 	pass
 
 func finish_intro():
-	unload_screen(GameScreen.INTRO_CUTSCENE) #SCREEN
+	unload_all_screens()
 	start_game()
 	pass
 	

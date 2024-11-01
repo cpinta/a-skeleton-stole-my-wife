@@ -494,3 +494,6 @@ metadata/_aseprite_wizard_source_file_hash_ = "1543c1ff04c12f3ace724b29a33ea866"
 
 [node name="combo" type="Node2D" parent="."]
 script = ExtResource("7_t4s4h")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true

@@ -1,9 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://ckys7dwiljknx"]
+[gd_scene load_steps=21 format=3 uid="uid://ckys7dwiljknx"]
 
 [ext_resource type="Script" path="res://scripts/enemies/zombie.gd" id="1_gt8ip"]
 [ext_resource type="Texture2D" uid="uid://b70nmmoco05dq" path="res://sprites/enemies/zombie.png" id="2_bdsqg"]
+[ext_resource type="AudioStream" uid="uid://cs7vqxc4f8mpd" path="res://sound/zombie1.mp3" id="2_ktlm8"]
 [ext_resource type="Script" path="res://scripts/element_height.gd" id="3_1gwnw"]
 [ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="3_htpn1"]
+[ext_resource type="AudioStream" uid="uid://dl40hs58t1o7j" path="res://sound/zombie2.mp3" id="3_ur484"]
+[ext_resource type="AudioStream" uid="uid://ynhlmwkvtuva" path="res://sound/zombie hurt.mp3" id="4_rg8oe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k0yc0"]
 radius = 5.0
@@ -99,6 +102,9 @@ size = Vector2(11, 9)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_gt8ip")
+ambientNoises = Array[AudioStream]([ExtResource("2_ktlm8"), ExtResource("3_ur484")])
+hurtNoises = Array[AudioStream]([ExtResource("4_rg8oe")])
+deathNoise = ExtResource("4_rg8oe")
 
 [node name="navAgent" type="NavigationAgent2D" parent="."]
 
@@ -162,3 +168,5 @@ metadata/_aseprite_wizard_interface_config_ = {
 "output_section": true
 }
 metadata/_aseprite_wizard_source_file_hash_ = "1543c1ff04c12f3ace724b29a33ea866"
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwsfkpsl5tphm"
+path="res://.godot/imported/garg stomp.wav-49849fe8b00edd21ee3afa550e7949cb.sample"
+
+[deps]
+
+source_file="res://sound/garg stomp.wav"
+dest_files=["res://.godot/imported/garg stomp.wav-49849fe8b00edd21ee3afa550e7949cb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

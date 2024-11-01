@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://cnpevgr7l6fvw"]
+[gd_scene load_steps=50 format=4 uid="uid://cnpevgr7l6fvw"]
 
 [ext_resource type="Script" path="res://scripts/ui/floating_label.gd" id="1_8h80t"]
 [ext_resource type="Script" path="res://gender_selectscreen.gd" id="1_kwp12"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dhnntfbvpe6p0" path="res://sprites/characters/guy head.png" id="3_ra0kt"]
 [ext_resource type="Texture2D" uid="uid://bk6chyrbw7kou" path="res://sprites/characters/girl head.png" id="4_vcy1n"]
 [ext_resource type="Script" path="res://float_on_hover_button.gd" id="5_3dbe4"]
+[ext_resource type="AudioStream" uid="uid://bw4t2ffr550d6" path="res://sound/music/heavenly-army-    vibe god.mp3" id="7_0lcgt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jdvex"]
 font_size = 12
@@ -3449,3 +3450,7 @@ text = "
 icon = ExtResource("4_vcy1n")
 icon_alignment = 1
 script = ExtResource("5_3dbe4")
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_0lcgt")
+volume_db = -13.121

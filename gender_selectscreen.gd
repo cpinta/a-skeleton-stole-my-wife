@@ -32,6 +32,8 @@ var strExitSaying: String = "very well."
 var exitSayingFadeOutDelay: float = 2
 var exitSayingFadeOutTimer: float = 0
 
+var audio: AudioStreamPlayer2D
+
 signal selectionDone
 
 func _ready():
@@ -54,6 +56,9 @@ func _ready():
 	eAnim = $e
 	eAnim.animation_finished.connect(anim_done)
 	eAnim.play("reveal")
+	
+	audio = $audio
+	audio.play()
 	
 	state = GSSState.APPEARING
 	pass

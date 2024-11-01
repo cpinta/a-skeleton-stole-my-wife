@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ctcnhp6xaw37y"
+path="res://.godot/imported/skele interesting.wav-160d7c4a28b37d18711d1301ccbe3a62.sample"
+
+[deps]
+
+source_file="res://sound/skele interesting.wav"
+dest_files=["res://.godot/imported/skele interesting.wav-160d7c4a28b37d18711d1301ccbe3a62.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

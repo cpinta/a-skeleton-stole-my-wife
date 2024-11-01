@@ -77,6 +77,16 @@ var items: Array[Item]
 @export var score: int = 0
 @export var combo: EntityCombo
 
+@export var ambientNoises: Array[AudioStream]
+var AMBIENT_NOISE_EVERY: float = 3
+var ambientNoiseTimer: float = 0
+@export var audio: AudioStreamPlayer2D
+
+@export var hurtNoises: Array[AudioStream]
+
+@export var deathNoise: AudioStream
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rb = self
@@ -89,6 +99,8 @@ func _ready():
 	weapons.append(null)
 	weapons.append(null)
 	set_default_stats()
+	
+	audio = get_node_or_null("audio")
 	
 	combo = get_node_or_null("combo")
 	pass # Replace with function body.
@@ -105,6 +117,20 @@ func _process(delta):
 				anim.play(animIdleName)
 	if not isHittable and flickersWhenNotHittable:
 		anim.visible = not anim.visible
+		
+	if audio != null:
+		if ambientNoiseTimer > 0:
+			ambientNoiseTimer -= delta
+		else:
+			ambientNoiseTimer = AMBIENT_NOISE_EVERY
+			play_random_noise()
+			pass
+	pass
+	
+func play_random_noise():
+	var rand = randi_range(0, ambientNoises.size()-1)
+	audio.stream = ambientNoises[rand]
+	audio.play()
 	pass
 
 func _physics_process(delta):
@@ -179,6 +205,7 @@ func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2
 		combo.drop()
 	if current_health < 1:
 		wasKilledLastFrame = true
+		play_death_nosie()
 		if statusEffects.size() > 0:
 			add_status_effects(statusEffects)
 	else:
@@ -188,7 +215,30 @@ func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2
 			isHittable = true
 		if statusEffects.size() > 0:
 			add_status_effects(statusEffects)
+		
+	if audio != null:
+		play_random_hurt()
+		pass
 	return true
+	pass
+	
+func play_death_nosie():
+	if audio == null:
+		return
+	if deathNoise == null:
+		return
+	audio.stream = deathNoise
+	audio.play()
+	pass
+	
+func play_random_hurt():
+	if audio == null:
+		return
+	if hurtNoises.size() == 0:
+		return
+	var rand = randi_range(0, hurtNoises.size()-1)
+	audio.stream = hurtNoises[rand]
+	audio.play()
 	pass
 	
 func was_killed():
