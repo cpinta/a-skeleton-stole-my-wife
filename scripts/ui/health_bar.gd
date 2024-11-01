@@ -18,8 +18,8 @@ var lbl: Label
 func _ready():
 	if get_tree().get_node_count_in_group("player") > 0:
 		target = get_tree().get_nodes_in_group("player")[0]
-		max_value = target.health
-		value = target.health
+		max_value = target.total_health
+		value = target.total_health
 	type = HealthBarType.MAIN
 	target_value = value
 	
@@ -30,19 +30,19 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if target != null:
-		target_value = target.health
-		if max_value != target.STARTING_HEALTH:
+		target_value = target.current_health
+		if max_value != target.total_health:
 			var diff: float = sign(target.health - value) * BAR_CHANGE_AMOUNT * delta
 			max_value += diff
 			change_size(max_value)
-		if value != target.health:
+		if value != target.current_health:
 			if DONT_SHOW_UNTIL_FIRST_HIT and not visible:
 				visible = true
 			if not firstFrameAfterHit:
-				var diff: float = sign(target.health - value) * BAR_CHANGE_AMOUNT * delta
+				var diff: float = sign(target.current_health - value) * BAR_CHANGE_AMOUNT * delta
 				value += diff
-				if sign(target.health - value) != sign(diff):
-					value = target.health
+				if sign(target.current_health - value) != sign(diff):
+					value = target.current_health
 			else:
 				firstFrameAfterHit = false
 		else:
@@ -64,8 +64,8 @@ func _process(delta):
 
 func setup(newTarget: Entity, type: HealthBarType):
 	target = newTarget
-	max_value = target.STARTING_HEALTH
-	value = target.health
+	max_value = target.total_health
+	value = target.current_health
 	self.type = type
 	match type:
 		HealthBarType.MINI:

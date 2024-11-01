@@ -1,0 +1,18 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://bg8sgxtqkipgg"
+path="res://.godot/imported/skeleton flatten.aseprite-853d348deb438fa71029123cc2b7b148.res"
+
+[deps]
+
+source_file="res://sprites/ending/skeleton flatten.aseprite"
+dest_files=["res://.godot/imported/skeleton flatten.aseprite-853d348deb438fa71029123cc2b7b148.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"

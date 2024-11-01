@@ -6,7 +6,7 @@
 bg_color = Color(0.522158, 0, 0.110189, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cg3xk"]
-bg_color = Color(1, 0.268321, 0.604777, 1)
+bg_color = Color(0, 0.713223, 0.438912, 1)
 
 [sub_resource type="SystemFont" id="SystemFont_iodxf"]
 subpixel_positioning = 0

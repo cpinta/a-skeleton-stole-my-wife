@@ -33,7 +33,7 @@ var escapeVector: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	STARTING_HEALTH = 14
+	BASE_TOTAL_HEALTH = 14
 	BASE_ATTACK_DAMAGE = 5
 	NEVER_SHOW_HEALTH_BAR = true
 	super._ready()

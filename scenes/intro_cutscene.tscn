@@ -1,16 +1,16 @@
 [gd_scene load_steps=45 format=3 uid="uid://b6lw6ucl8v0cd"]
 
-[ext_resource type="Script" path="res://scenes/intro_cutscene.gd" id="1_3hfth"]
+[ext_resource type="Script" path="res://scripts/intro_cutscene.gd" id="1_3hfth"]
 [ext_resource type="Texture2D" uid="uid://b2w8c8quqi4xy" path="res://sprites/intro/intro blank.png" id="2_qtoky"]
 [ext_resource type="Script" path="res://scenes/fadein.gd" id="3_rr3w7"]
-[ext_resource type="Script" path="res://scenes/intro_skeleback.gd" id="4_054eq"]
-[ext_resource type="Texture2D" uid="uid://drpsgewgvisld" path="res://scenes/intro 5.png" id="4_207sx"]
+[ext_resource type="Script" path="res://scripts/intro_skeleback.gd" id="4_054eq"]
+[ext_resource type="Texture2D" uid="uid://drpsgewgvisld" path="res://sprites/intro/intro 5.png" id="4_207sx"]
 [ext_resource type="Texture2D" uid="uid://bb16b6p18j0fc" path="res://sprites/intro/intro 1 m.png" id="4_i8dq2"]
 [ext_resource type="Texture2D" uid="uid://c20t04mr2viis" path="res://sprites/intro/intro 1 skeleback.png" id="4_ko1r8"]
-[ext_resource type="Texture2D" uid="uid://d22mq61xkiouq" path="res://scenes/ui_textbox.png" id="4_t5g8b"]
-[ext_resource type="Texture2D" uid="uid://j8wuo4kb3nle" path="res://scenes/intro 1.5 walking 2.png" id="4_yvihp"]
-[ext_resource type="Texture2D" uid="uid://dnxomle0c10uv" path="res://scenes/intro 5 player f.png" id="5_u1gbc"]
-[ext_resource type="Texture2D" uid="uid://cbdhcuhjt8qi" path="res://scenes/intro 5 player m.png" id="5_yf1fh"]
+[ext_resource type="Texture2D" uid="uid://d22mq61xkiouq" path="res://sprites/ui_textbox.png" id="4_t5g8b"]
+[ext_resource type="Texture2D" uid="uid://j8wuo4kb3nle" path="res://sprites/intro/intro 1.5 walking 2.png" id="4_yvihp"]
+[ext_resource type="Texture2D" uid="uid://dnxomle0c10uv" path="res://sprites/intro/intro 5 player f.png" id="5_u1gbc"]
+[ext_resource type="Texture2D" uid="uid://cbdhcuhjt8qi" path="res://sprites/intro/intro 5 player m.png" id="5_yf1fh"]
 
 [sub_resource type="SystemFont" id="SystemFont_6bnd5"]
 font_names = PackedStringArray("Monospace")

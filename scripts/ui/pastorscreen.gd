@@ -6,7 +6,7 @@ enum PastorState {INTRO, SHOWING_ITEMS, LEAVING}
 var state: PastorState
 
 var buttonParent: Control
-var BUTTONS_START_Y: float = 98
+var BUTTONS_START_Y: float = 180
 var revealButtons: bool = false
 
 var buttons: Array[PastorItemButton]
@@ -37,7 +37,7 @@ var started: bool = false
 
 var isTutorialFinished: bool = false
 
-signal gone
+#signal gone
 
 func _ready():
 	animPastor = $pastor
@@ -75,7 +75,7 @@ func item_selected(itemName:String):
 	match itemName:
 		"Weight":
 			if Game.player != null:
-				Game.player.add_status_effect(SE_Attack_Damage.new(Game.player, 99999999999, 3))
+				Game.player.add_status_effect(SE_Attack_Damage.new(Game.player, 99999999999, 1))
 			pass
 		"Glove":
 			if Game.player != null:
@@ -139,7 +139,8 @@ func _process(delta):
 			if animPastor.position.x > PASTOR_START_X:
 				animPastor.position.x -= PASTOR_SLIDEIN_SPEED * delta
 			else:
-				gone.emit()
+				#gone.emit()
+				Game.pastor_done()
 				queue_free()
 	
 		

@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://deplgufgnp53h"]
+
+[ext_resource type="Script" path="res://scenes/levels/obj_chair.gd" id="1_vojda"]
+[ext_resource type="Texture2D" uid="uid://ca8255f3602tq" path="res://sprites/objects/chair.png" id="2_to1e7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_om6wt"]
+atlas = ExtResource("2_to1e7")
+region = Rect2(0, 0, 12, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivekc"]
+atlas = ExtResource("2_to1e7")
+region = Rect2(12, 19, 12, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyvg6"]
+atlas = ExtResource("2_to1e7")
+region = Rect2(12, 0, 12, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd3um"]
+atlas = ExtResource("2_to1e7")
+region = Rect2(0, 19, 12, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jd7h4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_om6wt")
+}],
+"loop": true,
+"name": &"DOWN",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivekc")
+}],
+"loop": true,
+"name": &"LEFT",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyvg6")
+}],
+"loop": true,
+"name": &"RIGHT",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd3um")
+}],
+"loop": true,
+"name": &"UP",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kptpo"]
+size = Vector2(7, 8.00003)
+
+[node name="chair" type="Node2D"]
+position = Vector2(-52, 134)
+script = ExtResource("1_vojda")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_jd7h4")
+animation = &"DOWN"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/objects",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/objects/chair.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "55ef834879ade81ea27a6eac4ae44233"
+
+[node name="collider" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collider"]
+position = Vector2(0, 6)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_kptpo")

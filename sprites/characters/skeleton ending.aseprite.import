@@ -1,0 +1,18 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://bcmutgmilb6ry"
+path="res://.godot/imported/skeleton ending.aseprite-7564bbd4c360e46af58cff95ca6c7292.res"
+
+[deps]
+
+source_file="res://sprites/characters/skeleton ending.aseprite"
+dest_files=["res://.godot/imported/skeleton ending.aseprite-7564bbd4c360e46af58cff95ca6c7292.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"

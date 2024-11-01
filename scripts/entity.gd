@@ -23,6 +23,7 @@ var elementHeight: HeightElement
 @export var BASE_DECCELERATION := 200
 @export var BASE_DASH_SPEED: float = 125
 @export var BASE_SIZE: float = 1
+@export var BASE_TOTAL_HEALTH: float = 10
 
 @export var attack_damage: float = 1
 @export var attack_cooldown: float = 1
@@ -38,6 +39,7 @@ var elementHeight: HeightElement
 @export var movement_decceleration: float = 1
 @export var dash_speed: float = 1
 @export var size: float = 1
+@export var total_health: int = 10
 
 @export var BASE_APPLY_POST_HIT_INVINC: bool = true
 @export var POST_HIT_INVINCIBILITY_TIME: float = 0.25
@@ -57,8 +59,7 @@ var elementHeight: HeightElement
 @export var USES_DEFAULT_ANIMATIONS := true
 @export var MIN_SPEED_TO_ANIM: float = 1
 
-@export var STARTING_HEALTH : int = 5
-@export var health : int
+@export var current_health : int
 @export var wasKilledLastFrame: bool = false
 @export var isDead: bool = false
 
@@ -84,7 +85,7 @@ func _ready():
 	if anim == null:
 		print("WARNING: ",str(self.name),"'s AIM NODE IS NULL")
 	elementHeight = anim
-	health = STARTING_HEALTH
+	current_health = BASE_TOTAL_HEALTH
 	weapons.append(null)
 	weapons.append(null)
 	set_default_stats()
@@ -161,7 +162,7 @@ func our_attack_did_hit(entityHit:Entity, wasEntityKilled:bool, damageDealt: int
 	if wasEntityKilled:
 		if combo != null:
 			combo.add()
-			calculate_score_addition(damageDealt)
+			calculate_score_addition(entityHit.BASE_TOTAL_HEALTH)
 			pass
 		pass
 	
@@ -173,10 +174,10 @@ func calculate_score_addition(value):
 func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2.ZERO, apply_post_hit_invinc: bool = true, statusEffects: Array[StatusEffect] = []):
 	if not isHittable:
 		return false
-	health -= damage
+	current_health -= damage
 	if combo != null:
 		combo.drop()
-	if health < 1:
+	if current_health < 1:
 		wasKilledLastFrame = true
 		if statusEffects.size() > 0:
 			add_status_effects(statusEffects)
@@ -224,6 +225,7 @@ func set_default_stats():
 	dash_speed = BASE_DASH_SPEED
 	size = BASE_SIZE
 	canMove = BASE_CAN_MOVE
+	total_health = BASE_TOTAL_HEALTH
 	
 	attack_damage = BASE_ATTACK_DAMAGE
 	attack_cooldown = BASE_ATTACK_COOLDOWN

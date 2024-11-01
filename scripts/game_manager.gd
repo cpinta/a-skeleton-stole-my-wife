@@ -2,7 +2,7 @@ extends Node
 class_name GM
 
 enum GameState {TITLE_SCREEN=0, INTRO_CUTSCENE=4, GENDER_SELECT=5, PLAYING=1, PAUSED=2, DEAD=3}
-enum GameScreen {TITLE, INTRO_CUTSCENE, GENDER_SELECT, PASTOR, DEATH}
+enum GameScreen {TITLE, INTRO_CUTSCENE, GENDER_SELECT, PASTOR, DEATH, END_CUTSCENE}
 
 var chosenGender: Player.Gender
 
@@ -16,14 +16,16 @@ GameScreen.TITLE:PackedScene, \
 GameScreen.DEATH:PackedScene, \
 GameScreen.INTRO_CUTSCENE:PackedScene, \
 GameScreen.GENDER_SELECT:PackedScene, \
-GameScreen.PASTOR:PackedScene}
+GameScreen.PASTOR:PackedScene, \
+GameScreen.END_CUTSCENE:PackedScene}
 
 var screens = { \
 GameScreen.TITLE:null, \
 GameScreen.DEATH:null, \
 GameScreen.INTRO_CUTSCENE:null, \
 GameScreen.GENDER_SELECT:null, \
-GameScreen.PASTOR:null}
+GameScreen.PASTOR:null, \
+GameScreen.END_CUTSCENE:null}
 
 var gameUIScene: PackedScene
 var gameUI: UI
@@ -57,13 +59,13 @@ var SCREEN_RESOLUTION: Vector2 = Vector2(320, 180)
 
 var satanScene: PackedScene
 var satan: Satan
-var SATAN_SPAWN_SCORE: int = 600
+var SATAN_SPAWN_SCORE: int = 800
 var satanWasSpawned: bool = false
 
 var SATAN_SPAWN_COUNT: int = 20
 var SATAN_SPAWN_RADIUS: float = 90
 
-var WIN_SCORE: int = 800
+var WIN_SCORE: int = 1000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -81,13 +83,15 @@ func _ready():
 	screenScenes[GameScreen.INTRO_CUTSCENE] = load("res://scenes/intro_cutscene.tscn")
 	screenScenes[GameScreen.GENDER_SELECT] = load("res://scenes/ui/gender_select_screen.tscn")
 	screenScenes[GameScreen.PASTOR] = load("res://scenes/ui/pastorscreen.tscn")
+	screenScenes[GameScreen.END_CUTSCENE] = load("res://scenes/ending_cutscene.tscn")
 	
 	satanScene = load("res://scenes/enemies/satan.tscn")
 	
+	#set_gender(Player.Gender.HOMETTE)
 	#start_game()
 	start_game_skip_pastor()
 	#spawn_satan()
-	#start_gender_select() #WHAT SHOULD REALLY BE HERE
+	#load_screen(GameScreen.TITLE) #WHAT SHOULD REALLY BE HERE
 	
 	pass
 
@@ -103,6 +107,16 @@ func get_random_weapon():
 func gender_select_ended():
 	start_intro()
 	
+	
+func start_ending():
+	change_state(GameState.INTRO_CUTSCENE)
+	unload_all_screens()
+	load_screen(GameScreen.END_CUTSCENE) #SCREEN
+	screens[GameScreen.END_CUTSCENE].endingDone.connect(finish_ending)
+	pass
+	
+func finish_ending():
+	pass
 	
 func start_intro():
 	change_state(GameState.INTRO_CUTSCENE)
@@ -143,12 +157,15 @@ func _process(delta):
 				if not satanWasSpawned:
 					spawn_satan()
 			if player.score > WIN_SCORE:
-				self.queue_free()
+				
 				pass
 			pass
 		GameState.PAUSED:
 			pass
 	pass
+	
+	#if screens[GameScreen.PASTOR] == null:
+		#get_tree().paused = true
 	
 func spawn_satan():
 	satanWasSpawned = true
@@ -249,8 +266,8 @@ func show_pastor(pstate: PastorScreen.PastorState = PastorScreen.PastorState.SHO
 	screens[GameScreen.PASTOR].position = -SCREEN_RESOLUTION/2
 	player.allowInput = false
 	timesPastorVisited += 1
-	if not screens[GameScreen.PASTOR].gone.is_connected(pastor_done):
-		screens[GameScreen.PASTOR].gone.connect(pastor_done)
+	#if not screens[GameScreen.PASTOR].gone.is_connected(pastor_done):
+		#screens[GameScreen.PASTOR].gone.connect(pastor_done)
 	#freeze_enemies()
 	get_tree().paused = true
 	player.inputVector = Vector2.ZERO
@@ -342,6 +359,7 @@ func unload_all_screens():
 
 func try_again():
 	unload_all_screens() #SCREEN
+	player.score = 0
 	load_level(currentLvlIndex)
 	load_game_ui()
 	camera.includeMouseMovement = true

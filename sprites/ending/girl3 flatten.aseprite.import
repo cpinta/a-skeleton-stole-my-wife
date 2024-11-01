@@ -1,0 +1,18 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://caqbeuyflaome"
+path="res://.godot/imported/girl3 flatten.aseprite-2bd55723c5f5bb5e626750f0d7b4baa9.res"
+
+[deps]
+
+source_file="res://sprites/ending/girl3 flatten.aseprite"
+dest_files=["res://.godot/imported/girl3 flatten.aseprite-2bd55723c5f5bb5e626750f0d7b4baa9.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"

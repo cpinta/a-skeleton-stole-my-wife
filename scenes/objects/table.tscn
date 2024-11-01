@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://j5gpva4o2yn0"]
+
+[ext_resource type="Texture2D" uid="uid://b1roqityeluv2" path="res://sprites/objects/table.png" id="1_dmbs6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrdfr"]
+atlas = ExtResource("1_dmbs6")
+region = Rect2(0, 0, 36, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lgwej"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrdfr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m1fke"]
+radius = 5.0
+height = 36.0
+
+[node name="table" type="Node2D"]
+position = Vector2(-15, 268)
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_lgwej")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/objects",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/objects/table.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "62558f6742cdf6f84e8b3f9c18de2cba"
+
+[node name="collider" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collider"]
+position = Vector2(0, 5.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_m1fke")

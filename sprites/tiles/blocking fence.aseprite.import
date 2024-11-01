@@ -1,0 +1,18 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://cirpr3i1py6it"
+path="res://.godot/imported/blocking fence.aseprite-45cebbb2c3a1ddc39c14b73bbc39524d.res"
+
+[deps]
+
+source_file="res://sprites/tiles/blocking fence.aseprite"
+dest_files=["res://.godot/imported/blocking fence.aseprite-45cebbb2c3a1ddc39c14b73bbc39524d.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"

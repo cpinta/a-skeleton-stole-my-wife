@@ -2,7 +2,7 @@ extends Node2D
 class_name EntityCombo
 
 var comboCount: int = 0
-var COMBO_SCORE_MULTIPLIER_ADDITION: float = 1
+var COMBO_SCORE_MULTIPLIER_ADDITION: float = 0.1
 
 var COMBO_TIME: float = 2.5
 var comboTimer: float = 0

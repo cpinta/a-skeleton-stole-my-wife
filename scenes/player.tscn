@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://beeahbbkto4ax" path="res://sprites/characters/girl3.png" id="3_8lmcu"]
 [ext_resource type="Texture2D" uid="uid://dto4m3y0q6wmx" path="res://sprites/characters/guy3.png" id="3_lhs5o"]
 [ext_resource type="Texture2D" uid="uid://dvduyqprk2016" path="res://guy2 face.png" id="4_lrblj"]
-[ext_resource type="Texture2D" uid="uid://btwv1enxxpimw" path="res://scenes/girl3 face.png" id="5_0repy"]
+[ext_resource type="Texture2D" uid="uid://btwv1enxxpimw" path="res://sprites/characters/girl3 face.png" id="5_0repy"]
 [ext_resource type="Texture2D" uid="uid://cypilpykkmbyk" path="res://sprites/characters/arm.png" id="5_udd1e"]
 [ext_resource type="Texture2D" uid="uid://de7qubb061rrk" path="res://sprites/vfx/shadow medium.png" id="6_wqpxq"]
 [ext_resource type="Script" path="res://scripts/combo.gd" id="7_t4s4h"]

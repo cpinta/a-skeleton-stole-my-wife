@@ -1,0 +1,18 @@
+[remap]
+
+importer="aseprite_wizard.plugin"
+type="SpriteFrames"
+uid="uid://lvnkv5eamiwv"
+path="res://.godot/imported/skele temp.aseprite-696c74e20d48e5c0c67dcde8fa7541ed.res"
+
+[deps]
+
+source_file="res://sprites/ending/skele temp.aseprite"
+dest_files=["res://.godot/imported/skele temp.aseprite-696c74e20d48e5c0c67dcde8fa7541ed.res"]
+
+[params]
+
+split_layers=false
+exclude_layers_pattern=""
+only_visible_layers=false
+sheet_type="Packed"

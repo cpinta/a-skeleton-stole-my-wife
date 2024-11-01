@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dclrvv5xwjxvx"]
+[gd_scene load_steps=16 format=3 uid="uid://dclrvv5xwjxvx"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="1_epvr3"]
 [ext_resource type="Script" path="res://scripts/ui/player_health.gd" id="3_yqsv7"]
@@ -8,13 +8,38 @@
 [ext_resource type="Script" path="res://scripts/ui/ui_item_display.gd" id="5_t8brj"]
 [ext_resource type="PackedScene" uid="uid://du7w4l4f4thq0" path="res://scenes/ui/ui_weapon.tscn" id="6_pcuxs"]
 [ext_resource type="Script" path="res://scripts/ui/ui_center_text.gd" id="7_ok86e"]
+[ext_resource type="Texture2D" uid="uid://dp7mis0iur2xu" path="res://sprites/characters/skeleton head icon.png" id="9_4fa2x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y06y7"]
 line_spacing = -3.0
 font_size = 8
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ygx7"]
+atlas = ExtResource("9_4fa2x")
+region = Rect2(0, 0, 18, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4e0a"]
+atlas = ExtResource("9_4fa2x")
+region = Rect2(18, 0, 18, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fqdsl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ygx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4e0a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4awl7"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_1uraj"]
-font_size = 14
+font_size = 12
 outline_size = 1
 shadow_size = 4
 shadow_color = Color(0, 0, 0, 1)
@@ -124,16 +149,53 @@ offset_left = 64.0
 offset_right = 124.0
 playerWeaponIndex = 1
 
-[node name="center text" type="Label" parent="Control/MarginContainer/Control"]
+[node name="center text" type="HBoxContainer" parent="Control/MarginContainer/Control"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = 10.0
+offset_right = 148.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
+script = ExtResource("7_ok86e")
+
+[node name="icon" type="Control" parent="Control/MarginContainer/Control/center text"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="skeleton icon" type="AnimatedSprite2D" parent="Control/MarginContainer/Control/center text/icon"]
+texture_filter = 1
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_fqdsl")
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://sprites/characters",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://sprites/characters/skeleton head icon.aseprite"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"output_section": true
+}
+metadata/_aseprite_wizard_source_file_hash_ = "f80881b031c8cd70b8bbe7d3c9299250"
+
+[node name="text" type="PanelContainer" parent="Control/MarginContainer/Control/center text"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4awl7")
+
+[node name="text" type="Label" parent="Control/MarginContainer/Control/center text/text"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "THEY'RE COMING THROUGH THE WINDOWS!"
+text = "Okay, let me invite my friend... SATAN! HEEHEE"
 label_settings = SubResource("LabelSettings_1uraj")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("7_ok86e")

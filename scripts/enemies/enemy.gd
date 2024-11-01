@@ -168,7 +168,7 @@ func check_for_target_or_player():
 	return true
 	pass
 	
-var CHEST_SPAWN_CHANGE: float = 0.05
+var CHEST_SPAWN_CHANGE: float = 0.15
 func was_killed():
 	apply_effects(0)
 	isDead = true

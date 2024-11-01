@@ -28,6 +28,8 @@ func _ready():
 	area.connect("area_entered", hit_entity)
 	hitbox = area.get_node("shape")
 	weaponType = WeaponType.Poke
+	
+	hitbox.disabled = true
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

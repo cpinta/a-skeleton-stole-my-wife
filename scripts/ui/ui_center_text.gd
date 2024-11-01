@@ -1,12 +1,15 @@
-extends Label
+extends Control
 class_name UI_CenterText
 
 var timer: float = 0
-
 var shakeStrength: float = 0
+
+var txtLabel: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	txtLabel = $text/text
+	visible = false
 	pass # Replace with function body.
 
 
@@ -23,7 +26,7 @@ func _process(delta):
 
 func set_center_text(txt: String, time: float, shakeStrength: float = 0):
 	visible = true
-	text = txt
+	txtLabel.text = txt
 	timer = time
 	self.shakeStrength = shakeStrength
 	pass

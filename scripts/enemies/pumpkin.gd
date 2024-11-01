@@ -4,14 +4,14 @@ class_name Pumpkin
 var IDLE_TIME: float = 0.2
 var idle_timer: float = 0
 
-var LAND_TIME: float = 0.1
+var LAND_TIME: float = 0.01
 var land_timer: float = 0
 
-var JUMP_HEIGHT: float = 105
+var JUMP_HEIGHT: float = 35
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	STARTING_HEALTH = 8
+	BASE_TOTAL_HEALTH = 8
 	BASE_ATTACK_DAMAGE = 4
 	super._ready()
 	FOLLOWS_PLAYER = false

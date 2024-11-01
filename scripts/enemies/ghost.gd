@@ -6,7 +6,7 @@ var FLOAT_BOB_SPEED = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	STARTING_HEALTH = 4
+	BASE_TOTAL_HEALTH = 4
 	BASE_ATTACK_DAMAGE = 1
 	super._ready()
 	FOLLOWS_PLAYER = true
