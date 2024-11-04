@@ -17,8 +17,8 @@ var strSnarkTalk2: String = "Okay, let me invite my friend... SATAN! HEEHEE"
 var strSnarkTalk3: String = "Alright buddy, cut it out! This isnt funny!"
 
 var FIRST_SNARK_SCORE: int = 700
-var SECOND_SNARK_SCORE: int = 800
-var THIRD_SNARK_SCORE: int = 900
+var SECOND_SNARK_SCORE: int = 900
+var THIRD_SNARK_SCORE: int = 1100
 
 var snarkLevel: int = 0
 var snarking: bool = false
@@ -59,7 +59,7 @@ func _process(delta):
 
 func first_entered():
 	if Game.gameUI != null:
-		doorblocker.disabled = false
+		doorblocker.set_deferred("disabled", false)
 		doorblockerSprite.visible = true
 		anim.play("pbj time")
 		intro_text()

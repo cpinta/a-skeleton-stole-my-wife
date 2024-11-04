@@ -37,6 +37,9 @@ var started: bool = false
 
 var isTutorialFinished: bool = false
 
+var audio: AudioStreamPlayer2D
+@export var audioClips: Array[AudioStream]
+
 #signal gone
 
 func _ready():
@@ -53,6 +56,8 @@ func _ready():
 	
 	lblTextBox = $textbox/Control/text
 	lblTextBox.text = ""
+	
+	audio = get_node_or_null("audio")
 	
 	setup(PastorState.SHOWING_ITEMS, true)
 	disable_buttons()
@@ -88,6 +93,7 @@ func item_selected(itemName:String):
 		"Corndog":
 			if Game.player != null:
 				Game.player.add_status_effect(SE_Health.new(Game.player, 99999999999, 5))
+				Game.player.current_health = Game.player.total_health
 			pass
 	
 	disable_buttons()
@@ -173,7 +179,16 @@ func intro_speak():
 
 func speak_for_time(text: String, time:float):
 	speak(text, time - 2.25)
+	get_speak_noise()
 	await get_tree().create_timer(time, true, false, true).timeout
+	pass
+
+func get_speak_noise():
+	if audio != null:
+		if audioClips.size() > 0:
+			var rand = randi_range(0, audioClips.size()-1)
+			audio.stream = audioClips[rand]
+			audio.play()
 	pass
 
 func speak(text: String, textTime: float = TALK_TIME):

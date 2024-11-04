@@ -13,7 +13,7 @@ func _init(entity: Entity, time=TIME_APPLIED, addition=ADDITION):
 	pass
 
 func apply(delta):
-	target.health += ADDITION
+	target.total_health += ADDITION
 	return 1
 
 func was_removed():

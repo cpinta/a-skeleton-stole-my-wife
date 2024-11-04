@@ -65,7 +65,9 @@ var satanWasSpawned: bool = false
 var SATAN_SPAWN_COUNT: int = 20
 var SATAN_SPAWN_RADIUS: float = 90
 
-var WIN_SCORE: int = 1000
+var WIN_SCORE: int = 1300
+
+var credits: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -85,15 +87,22 @@ func _ready():
 	screenScenes[GameScreen.PASTOR] = load("res://scenes/ui/pastorscreen.tscn")
 	screenScenes[GameScreen.END_CUTSCENE] = load("res://scenes/ending_cutscene.tscn")
 	
+	credits = $"credits label"
+	credits.visible = false
 	satanScene = load("res://scenes/enemies/satan.tscn")
 	
 	#set_gender(Player.Gender.HOMETTE)
 	#start_game()
 	start_game_skip_pastor()
+	#player.current_health = 1
+	#player.score = 999
 	#spawn_satan()
+	#camera.global_position = Vector2(1000, 2000)
+	#start_ending()
 	#load_screen(GameScreen.TITLE) #WHAT SHOULD REALLY BE HERE
+	#pass
 	
-	pass
+var skipPastor: bool = false
 
 func start_gender_select():
 	load_screen(GameScreen.GENDER_SELECT)
@@ -111,11 +120,18 @@ func gender_select_ended():
 func start_ending():
 	change_state(GameState.END_CUTSCENE)
 	unload_all_screens()
+	if currentLvl != null:
+		currentLvl.queue_free()
 	load_screen(GameScreen.END_CUTSCENE) #SCREEN
+	screens[GameScreen.END_CUTSCENE].reparent(camera, false)
 	screens[GameScreen.END_CUTSCENE].endingDone.connect(finish_ending)
+	#camera.position = Vector2.ZERO
 	pass
 	
 func finish_ending():
+	unload_all_screens()
+	camera.global_position = Vector2.ZERO
+	credits.visible = true
 	pass
 	
 func start_intro():
@@ -157,10 +173,13 @@ func _process(delta):
 				if not satanWasSpawned:
 					spawn_satan()
 			if player.score > WIN_SCORE:
-				
+				start_ending()
 				pass
 			pass
 		GameState.PAUSED:
+			pass
+		GameState.END_CUTSCENE:
+			camera.position = Vector2.ZERO
 			pass
 	pass
 	
@@ -222,6 +241,8 @@ func start_game():
 	pass
 	
 func spawn_pastor():
+	if skipPastor:
+		return
 	if timesPastorVisited == 1:
 		show_pastor(PastorScreen.PastorState.SHOWING_ITEMS, true)
 	else:
@@ -360,6 +381,9 @@ func unload_all_screens():
 func try_again():
 	unload_all_screens() #SCREEN
 	player.score = 0
+	player.current_health = player.BASE_TOTAL_HEALTH
+	player.isDead = false
+	player.wasKilledLastFrame = false
 	load_level(currentLvlIndex)
 	load_game_ui()
 	camera.includeMouseMovement = true
@@ -368,6 +392,10 @@ func try_again():
 	
 func quit():
 	get_tree().quit()
+	pass
+	
+func unload_level():
+	currentLvl.queue_free()
 	pass
 
 func load_screen(screenType: GameScreen):

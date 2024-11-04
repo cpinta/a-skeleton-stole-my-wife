@@ -1,12 +1,18 @@
-[gd_scene load_steps=31 format=3 uid="uid://doctxyxjfrpjl"]
+[gd_scene load_steps=37 format=3 uid="uid://doctxyxjfrpjl"]
 
 [ext_resource type="Texture2D" uid="uid://scwe4gj6g0k0" path="res://sprites/items/weight.png" id="1_b5or1"]
 [ext_resource type="Texture2D" uid="uid://b6ep7hn3dkshq" path="res://sprites/items/corndog.png" id="1_cnbgj"]
 [ext_resource type="Script" path="res://scripts/ui/pastorscreen.gd" id="1_fhajn"]
 [ext_resource type="Texture2D" uid="uid://uro8f6v2b1el" path="res://sprites/items/boots.png" id="2_bosx0"]
+[ext_resource type="AudioStream" uid="uid://m7hynmiwmm1f" path="res://sound/pastor1.wav" id="2_x78en"]
+[ext_resource type="AudioStream" uid="uid://bqa6fcrdbjvgo" path="res://sound/pastor2.wav" id="3_1eugs"]
 [ext_resource type="Texture2D" uid="uid://7dk5vd3ynu6h" path="res://sprites/items/gloves.png" id="3_hw0d6"]
+[ext_resource type="AudioStream" uid="uid://crok50x8tys02" path="res://sound/pastor3.wav" id="4_rr6rh"]
+[ext_resource type="AudioStream" uid="uid://dep622mh28knw" path="res://sound/pastor4.wav" id="5_dhswn"]
 [ext_resource type="Script" path="res://scenes/ui/pastor_item_button.gd" id="5_r7w7q"]
 [ext_resource type="Texture2D" uid="uid://05sk27fscscq" path="res://sprites/characters/pastor.png" id="5_t35hq"]
+[ext_resource type="AudioStream" uid="uid://ba5t0qm2taj1m" path="res://sound/pastor5.wav" id="6_chy4s"]
+[ext_resource type="AudioStream" uid="uid://ctyelivux0kov" path="res://sound/pastor6.wav" id="7_g68ee"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gatve"]
 atlas = ExtResource("5_t35hq")
@@ -61,7 +67,7 @@ subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_60nj7"]
 font = SubResource("SystemFont_8qcba")
-font_size = 12
+font_size = 10
 
 [sub_resource type="Theme" id="Theme_xsdjd"]
 
@@ -194,6 +200,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(160, 90)
 script = ExtResource("1_fhajn")
+audioClips = Array[AudioStream]([ExtResource("2_x78en"), ExtResource("3_1eugs"), ExtResource("4_rr6rh"), ExtResource("5_dhswn"), ExtResource("6_chy4s"), ExtResource("7_g68ee")])
 
 [node name="pastor" type="AnimatedSprite2D" parent="."]
 z_index = 2
@@ -263,6 +270,7 @@ theme_override_constants/margin_bottom = 6
 [node name="text" type="Label" parent="textbox/Control"]
 process_mode = 3
 z_index = 8
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_vertical = 1
 text = "Collect more to have a shot at saving your wife and the town."
@@ -474,3 +482,5 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": false
 }
 metadata/_aseprite_wizard_source_file_hash_ = "c79f0a0454521f25146eb8aa9f2ede8d"
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]

@@ -1,10 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://ba0opygbucnrv"]
+[gd_scene load_steps=4 format=3 uid="uid://ba0opygbucnrv"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fogtl"]
 [ext_resource type="Script" path="res://scripts/game_camera.gd" id="2_a8ybq"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_1f7hs"]
+font_size = 8
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_fogtl")
+
+[node name="credits label" type="Label" parent="."]
+offset_left = -159.0
+offset_top = -89.0
+offset_right = 245.0
+offset_bottom = 88.0
+text = "Game by Pinta
+Programming by Pinta
+Art by Krystyna :)
+Animated by Pinta
+Voices and Sounds by Pinta and his beautiful friends
+Main song was: 
+WTF Ghost! by Alexandr Zhelanov https://soundcloud.com/alexandr-zhelanov
+
+
+Credit screen sucks bc I didnt have time LOL
+
+THANKS FOR PLAYING"
+label_settings = SubResource("LabelSettings_1f7hs")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 script = ExtResource("2_a8ybq")

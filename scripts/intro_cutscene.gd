@@ -43,8 +43,12 @@ var currentFrame: int = 0
 var timer: float = 0
 
 signal introDone
+var audio: AudioStreamPlayer2D
+var sounds: Array[AudioStream]
+var soundindex: int = 0
 
 func _ready():
+	audio = get_node_or_null("audio")
 	foreground = $foreground
 	background = $background
 	fadein = $fadein
@@ -91,6 +95,16 @@ func _ready():
 	play_intro()
 	pass
 	
+func play_skele_sound():
+	if audio != null:
+		if sounds.size() > 0:
+			if soundindex < sounds.size():
+				audio.stream = sounds[soundindex]
+				soundindex += 1
+				audio.play()
+	
+	pass
+	
 func reveal_anim_done():
 	var animName = introRevealAnim.animation.get_basename()
 	revealCounter -= 1
@@ -99,6 +113,7 @@ func reveal_anim_done():
 			intro_reveal_anim_set("reveal")
 		else:
 			textbox.visible = true
+			play_skele_sound()
 			lblTextbox.text = "HAHA! ITS NOT YOUR WIFE! IT IS I!\n\nA SKELETON!"
 			intro_reveal_anim_set("talk reveal")
 			revealCounter = 20
@@ -117,12 +132,14 @@ func reveal_anim_done():
 		intro_reveal_anim_set("point talk")
 		revealCounter = 40
 		textbox.visible = true
+		play_skele_sound()
 		lblTextbox.text = "MY MONSTER ARMY IS CARRYING HER TO THE CEMETERY AT THIS MOMENT!"
 		pass
 	elif animName == "point talk":
 		if revealCounter > 0:
 			intro_reveal_anim_set("point talk")
 			if revealCounter < 20:
+				play_skele_sound()
 				lblTextbox.text = "AND I AM GOING TO MAKE HER MY SKELETON BRIDE! HAHA!"
 				pass
 		else:

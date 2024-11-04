@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://cdi0h486h8ctm"]
+[gd_scene load_steps=113 format=3 uid="uid://cdi0h486h8ctm"]
 
 [ext_resource type="Script" path="res://scenes/ending_cutscene.gd" id="1_dbpkr"]
 [ext_resource type="Script" path="res://scripts/ui/shaking_label.gd" id="2_7vgqt"]
@@ -7,18 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cpthlyx7rll4h" path="res://sprites/ending/ending mini 3 m.png" id="5_3m4uw"]
 [ext_resource type="Texture2D" uid="uid://yuqtbp36wxy4" path="res://sprites/ending/ending mini 3 f.png" id="6_oyjya"]
 
-[sub_resource type="FontFile" id="FontFile_arqs7"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_aqb1t"]
-font = SubResource("FontFile_arqs7")
 outline_size = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ftaxi"]

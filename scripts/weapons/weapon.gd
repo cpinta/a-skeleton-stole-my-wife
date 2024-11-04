@@ -40,11 +40,16 @@ var onHitEffects: Array[StatusEffect]
 @export var onCooldown := false
 @export var isEquipped := false
 
+@export var audio: AudioStreamPlayer2D
+@export var useSound: AudioStream
+
 signal attack_hit(entity: Entity, entityWasKilled: bool, damageDealt: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
+	audio = get_node_or_null("audio")
+	
 	apply_stats()
 	pass # Replace with function body.
 
@@ -67,6 +72,14 @@ func _physics_process(delta):
 func use_weapon():
 	if not onCooldown or inUse:
 		inUse = true
+		if audio != null:
+			use_sound()
+	pass
+
+func use_sound():
+	if useSound != null:
+		audio.stream = useSound
+		audio.play()
 	pass
 
 func cooldown_over():

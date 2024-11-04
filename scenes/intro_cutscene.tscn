@@ -565,3 +565,5 @@ script = ExtResource("4_054eq")
 [node name="background" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("4_i8dq2")
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]

@@ -78,13 +78,14 @@ var items: Array[Item]
 @export var combo: EntityCombo
 
 @export var ambientNoises: Array[AudioStream]
-var AMBIENT_NOISE_EVERY: float = 3
+var AMBIENT_NOISE_EVERY: float = 20
 var ambientNoiseTimer: float = 0
 @export var audio: AudioStreamPlayer2D
 
 @export var hurtNoises: Array[AudioStream]
 
 @export var deathNoise: AudioStream
+
 
 
 # Called when the node enters the scene tree for the first time.

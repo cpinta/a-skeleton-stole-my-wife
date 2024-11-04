@@ -29,17 +29,18 @@ func _process(delta):
 	
 func setup(newActionName: String):
 	actionName = newActionName
-	for event in InputMap.action_get_events(actionName):
-		print(event.as_text())
-		var keyName: String = event.as_text().split(" (")[0]
-		var path: String = "res://sprites/ui/chars/char_"+keyName+".png"
-		if FileAccess.file_exists(path):
-			char.texture = load(path)
-			return
-	print("couldnt find graphic for graphicHint. Action: "+actionName)
-	var path: String = "res://sprites/ui/chars/char_.png"
-	if FileAccess.file_exists(path):
-		char.texture = load(path)
+	char.texture = load("res://sprites/ui/chars/char_E.png")
+	#for event in InputMap.action_get_events(actionName):
+		#print(event.as_text())
+		#var keyName: String = event.as_text().split(" (")[0]
+		#var path: String = "res://sprites/ui/chars/char_"+keyName+".png"
+		#if FileAccess.file_exists(path):
+			#char.texture = load(path)
+			#return
+	#print("couldnt find graphic for graphicHint. Action: "+actionName)
+	#var path: String = "res://sprites/ui/chars/char_.png"
+	#if FileAccess.file_exists(path):
+		#char.texture = load(path)
 
 func pressed():
 	key.play("pressed")

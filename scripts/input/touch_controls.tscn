@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1nykogqat7cf"]
+
+[ext_resource type="Script" path="res://scripts/input/touch_controls.gd" id="1_qljmg"]
+
+[sub_resource type="Gradient" id="Gradient_kow70"]
+colors = PackedColorArray(0.128282, 0.309177, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6byir"]
+gradient = SubResource("Gradient_kow70")
+
+[sub_resource type="Gradient" id="Gradient_didw6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_82e3c"]
+gradient = SubResource("Gradient_didw6")
+fill_from = Vector2(0, 0.025641)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gtlbl"]
+radius = 32.0
+
+[node name="touch controls" type="Control"]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qljmg")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+texture_normal = SubResource("GradientTexture2D_6byir")
+texture_pressed = SubResource("GradientTexture2D_82e3c")
+shape = SubResource("CircleShape2D_gtlbl")
+
+[node name="circle container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
