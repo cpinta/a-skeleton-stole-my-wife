@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Spoopy"
+config/name="A Skeleton Stole My Wife"
 run/main_scene="res://scenes/root.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
@@ -29,10 +29,11 @@ Game="*res://scenes/game.tscn"
 window/size/viewport_width=320
 window/size/viewport_height=180
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/multidirectionnal joystick/plugin.cfg")
 
 [file_customization]
 
@@ -117,6 +118,10 @@ drop={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [layer_names]
 
 2d_render/layer_6="ui"
@@ -131,4 +136,5 @@ drop={
 
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.172137, 0.000270362, 0.282305, 1)

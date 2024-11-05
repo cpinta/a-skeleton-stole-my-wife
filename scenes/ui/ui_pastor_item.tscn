@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://salbkk1xvb2w"]
 
-[ext_resource type="Script" path="res://scenes/ui/pastor_item_button.gd" id="1_kyord"]
+[ext_resource type="Script" path="res://scripts/ui/pastor_item_button.gd" id="1_kyord"]
 [ext_resource type="Texture2D" uid="uid://7dk5vd3ynu6h" path="res://sprites/items/gloves.png" id="2_oxunu"]
 
 [sub_resource type="Theme" id="Theme_r3jrt"]

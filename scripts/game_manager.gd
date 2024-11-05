@@ -4,6 +4,9 @@ class_name GM
 enum GameState {TITLE_SCREEN=0, INTRO_CUTSCENE=4, END_CUTSCENE=6, GENDER_SELECT=5, PLAYING=1, PAUSED=2, DEAD=3}
 enum GameScreen {TITLE, INTRO_CUTSCENE, GENDER_SELECT, PASTOR, DEATH, END_CUTSCENE}
 
+
+var inputHandler: InputHandler
+
 var chosenGender: Player.Gender
 
 var lvlScenes: Array[String]
@@ -71,6 +74,8 @@ var credits: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	inputHandler = $"input handler"
+	
 	lvlScenes.append("res://scenes/levels/lvl_weddinghall.tscn")
 	currentLvlIndex = 0
 	state = GameState.TITLE_SCREEN
@@ -93,6 +98,7 @@ func _ready():
 	
 	#set_gender(Player.Gender.HOMETTE)
 	#start_game()
+	inputHandler.set_input_method(InputHandler.GameInput.TOUCH)
 	start_game_skip_pastor()
 	#player.current_health = 1
 	#player.score = 999
@@ -103,6 +109,14 @@ func _ready():
 	#pass
 	
 var skipPastor: bool = false
+
+func get_current_aim_point():
+	return inputHandler.get_aim_point()
+	pass
+	
+func get_current_input_vector():
+	return inputHandler.get_inputVector()
+	pass
 
 func start_gender_select():
 	load_screen(GameScreen.GENDER_SELECT)
@@ -253,7 +267,7 @@ func start_game_skip_pastor():
 	unload_all_screens() #SCREEN
 	change_state(GameState.PLAYING)
 	load_level(currentLvlIndex)
-	load_game_ui()
+	#load_game_ui()
 	player.allowInput = true
 	timesPastorVisited += 1
 	pass
@@ -342,6 +356,12 @@ func load_player(canPlayerMove: bool):
 	player.canMove = canPlayerMove
 	currentLvl.add_child(player)
 	player.justDied.connect(load_death_screen)
+	
+	inputHandler.inputDash.connect(player.dash)
+	inputHandler.inputDrop.connect(player.drop_key)
+	inputHandler.inputInteract.connect(player.interact)
+	inputHandler.inputShootPressed.connect(player.use_weapon)
+	inputHandler.inputShootReleased.connect(player.stop_use_weapon)
 	pass	
 	
 func load_game_ui():

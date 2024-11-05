@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://7dk5vd3ynu6h" path="res://sprites/items/gloves.png" id="3_hw0d6"]
 [ext_resource type="AudioStream" uid="uid://crok50x8tys02" path="res://sound/pastor3.wav" id="4_rr6rh"]
 [ext_resource type="AudioStream" uid="uid://dep622mh28knw" path="res://sound/pastor4.wav" id="5_dhswn"]
-[ext_resource type="Script" path="res://scenes/ui/pastor_item_button.gd" id="5_r7w7q"]
+[ext_resource type="Script" path="res://scripts/ui/pastor_item_button.gd" id="5_r7w7q"]
 [ext_resource type="Texture2D" uid="uid://05sk27fscscq" path="res://sprites/characters/pastor.png" id="5_t35hq"]
 [ext_resource type="AudioStream" uid="uid://ba5t0qm2taj1m" path="res://sound/pastor5.wav" id="6_chy4s"]
 [ext_resource type="AudioStream" uid="uid://ctyelivux0kov" path="res://sound/pastor6.wav" id="7_g68ee"]

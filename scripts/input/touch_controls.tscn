@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1nykogqat7cf"]
+[gd_scene load_steps=8 format=3 uid="uid://c1nykogqat7cf"]
 
 [ext_resource type="Script" path="res://scripts/input/touch_controls.gd" id="1_qljmg"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="2_hc661"]
 
 [sub_resource type="Gradient" id="Gradient_kow70"]
 colors = PackedColorArray(0.128282, 0.309177, 1, 1, 1, 1, 1, 1)
@@ -17,27 +18,94 @@ fill_from = Vector2(0, 0.025641)
 [sub_resource type="CircleShape2D" id="CircleShape2D_gtlbl"]
 radius = 32.0
 
-[node name="touch controls" type="Control"]
-z_index = 4096
+[node name="touch controls" type="CanvasLayer"]
+layer = 0
+script = ExtResource("1_qljmg")
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="buttons" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -160.0
 offset_top = -90.0
-offset_right = 160.0
-offset_bottom = 90.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_qljmg")
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(160, 90)
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+[node name="interact" type="PanelContainer" parent="Control/buttons"]
+custom_minimum_size = Vector2(51, 51)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="interact" type="TouchScreenButton" parent="Control/buttons/interact"]
+scale = Vector2(0.8, 0.8)
 texture_normal = SubResource("GradientTexture2D_6byir")
 texture_pressed = SubResource("GradientTexture2D_82e3c")
 shape = SubResource("CircleShape2D_gtlbl")
 
-[node name="circle container" type="Control" parent="."]
+[node name="Label" type="Label" parent="Control/buttons/interact/interact"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "interact"
+
+[node name="drop" type="PanelContainer" parent="Control/buttons"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="drop" type="TouchScreenButton" parent="Control/buttons/drop"]
+scale = Vector2(0.5, 0.5)
+texture_normal = SubResource("GradientTexture2D_6byir")
+texture_pressed = SubResource("GradientTexture2D_82e3c")
+shape = SubResource("CircleShape2D_gtlbl")
+
+[node name="Label" type="Label" parent="Control/buttons/drop/drop"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "drop"
+
+[node name="dash" type="PanelContainer" parent="Control/buttons"]
+custom_minimum_size = Vector2(51, 51)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="dash" type="TouchScreenButton" parent="Control/buttons/dash"]
+scale = Vector2(0.8, 0.8)
+texture_normal = SubResource("GradientTexture2D_6byir")
+texture_pressed = SubResource("GradientTexture2D_82e3c")
+shape = SubResource("CircleShape2D_gtlbl")
+
+[node name="Label" type="Label" parent="Control/buttons/dash/dash"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "dash"
+
+[node name="circle container" type="Control" parent="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Virtual Joystick" parent="Control" instance=ExtResource("2_hc661")]
+layout_mode = 1
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 0.0
+scale = Vector2(0.3, 0.3)
+pivot_offset = Vector2(0, 200)
+action_left = "left"
+action_right = "right"
+action_up = "up"
+action_down = "down"

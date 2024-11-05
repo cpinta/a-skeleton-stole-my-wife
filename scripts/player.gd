@@ -70,32 +70,16 @@ func _ready():
 	pickupArea.connect("area_exited", exited_interact_area)
 	
 	elementHeight.entity_height = 25
+	
+	
 	pass
-
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
 	if allowInput:
 		get_input_vector()
 		
-		if Input.is_action_pressed("jump"):
-			pass
-		if Input.is_action_just_pressed("dash"):
-			dash()
-			pass
-		if Input.is_action_just_pressed("shoot_left"):
-			use_weapon(HandToUse.LEFT)
-		if Input.is_action_just_released("shoot_left"):
-			stop_use_weapon(HandToUse.LEFT)
-		if Input.is_action_just_pressed("shoot_right"):
-			use_weapon(HandToUse.RIGHT)
-		if Input.is_action_just_released("shoot_right"):
-			stop_use_weapon(HandToUse.RIGHT)
-		if Input.is_action_just_released("interact"):
-			interact()
-		if Input.is_action_just_released("drop"):
-			drop_key()
 	
 	if entityVelocity.length() > 0.1:
 		anim.play("walk")
@@ -146,9 +130,12 @@ func dash():
 	
 func _physics_process(delta):
 	super._physics_process(delta)
+	point_hand_to(Game.get_current_aim_point())
+
+func point_hand_to(destination: Vector2):
 	hand.position = back.position
-	hand.look_at(get_global_mouse_position())
-	var handDistance: float = min(HAND_MAX_DISTANCE, (get_global_mouse_position() - global_position).length())
+	hand.look_at(destination)
+	var handDistance: float = min(HAND_MAX_DISTANCE, (destination - global_position).length())
 	hand.global_position = hand.global_position.lerp(global_position - Vector2(0, HAND_HEIGHT) + hand.transform.x * handDistance, 1)
 	hand.rotate(-(PI/2))
 	if hand.global_position.x > global_position.x:
@@ -156,18 +143,10 @@ func _physics_process(delta):
 	else:
 		set_direction(Direction.LEFT)
 	pass
-	
+
 func get_input_vector():
-	inputVector = Vector2.ZERO
-	if Input.is_action_pressed("left"):
-		inputVector.x += 1
-	if Input.is_action_pressed("right"):
-		inputVector.x -= 1
-	if Input.is_action_pressed("up"):
-		inputVector.y += 1
-	if Input.is_action_pressed("down"):
-		inputVector.y -= 1
-		
+	inputVector = Game.get_current_input_vector()
+
 func interact():
 	if availableInteractables.size() > 0:
 		if closestInteract is Weapon:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_fogtl"]
 [ext_resource type="Script" path="res://scripts/game_camera.gd" id="2_a8ybq"]
-[ext_resource type="Script" path="res://input_handler.gd" id="4_qnrgc"]
+[ext_resource type="PackedScene" uid="uid://c1nykogqat7cf" path="res://scripts/input/touch_controls.tscn" id="2_w0h54"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1f7hs"]
 font_size = 8
@@ -29,8 +29,7 @@ Credit screen sucks bc I didnt have time LOL
 THANKS FOR PLAYING"
 label_settings = SubResource("LabelSettings_1f7hs")
 
+[node name="touch controls" parent="." instance=ExtResource("2_w0h54")]
+
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 script = ExtResource("2_a8ybq")
-
-[node name="input handler" type="Node2D" parent="."]
-script = ExtResource("4_qnrgc")
