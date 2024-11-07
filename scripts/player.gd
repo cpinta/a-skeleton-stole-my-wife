@@ -32,6 +32,8 @@ var pickupArea: Area2D
 @export var closestInteract: Interactable
 
 @export var allowInput: bool = true
+var inputHandler: InputHandler
+
 
 signal justDied
 
@@ -70,7 +72,6 @@ func _ready():
 	pickupArea.connect("area_exited", exited_interact_area)
 	
 	elementHeight.entity_height = 25
-	
 	
 	pass
 	
@@ -130,7 +131,8 @@ func dash():
 	
 func _physics_process(delta):
 	super._physics_process(delta)
-	point_hand_to(Game.get_current_aim_point())
+	if inputHandler != null:
+		point_hand_to_vector(inputHandler.get_aim_vector())
 
 func point_hand_to(destination: Vector2):
 	hand.position = back.position
@@ -144,8 +146,20 @@ func point_hand_to(destination: Vector2):
 		set_direction(Direction.LEFT)
 	pass
 
+func point_hand_to_vector(vector: Vector2):
+	hand.position = back.position
+	hand.look_at(back.global_position + vector)
+	var handDistance: float = min(HAND_MAX_DISTANCE, (vector - hand.position).length())
+	hand.global_position = hand.global_position.lerp(global_position - Vector2(0, HAND_HEIGHT) + hand.transform.x * handDistance, 1)
+	hand.rotate(-(PI/2))
+	if hand.global_position.x > global_position.x:
+		set_direction(Direction.RIGHT)
+	else:
+		set_direction(Direction.LEFT)
+	pass
+
 func get_input_vector():
-	inputVector = Game.get_current_input_vector()
+	inputVector = inputHandler.get_inputVector()
 
 func interact():
 	if availableInteractables.size() > 0:
@@ -289,8 +303,8 @@ func face_anim_process():
 	faceAnim.set_frame_and_progress(anim.get_frame(), 0)
 	faceAnim.flip_h = anim.flip_h
 	
-	var mouseDist: float = get_global_mouse_position().distance_to(body.global_position + FACE_ORIGIN)
-	var faceAnimVector: Vector2 = (get_global_mouse_position() - FACE_ORIGIN).normalized() * (FACE_ANIM_MAX_FACE_DIST * min(mouseDist, FACE_ANIM_MAX_MOUSE_DIST)/FACE_ANIM_MAX_MOUSE_DIST)
+	var mouseDist: float = inputHandler.get_aim_point().distance_to(body.global_position + FACE_ORIGIN)
+	var faceAnimVector: Vector2 = (inputHandler.get_aim_point() - FACE_ORIGIN).normalized() * (FACE_ANIM_MAX_FACE_DIST * min(mouseDist, FACE_ANIM_MAX_MOUSE_DIST)/FACE_ANIM_MAX_MOUSE_DIST)
 	
 	var xoffset: int = 1 if facingDirection == Direction.RIGHT else 0
 	face.position = Vector2(FACE_ORIGIN.x + (facingDirection * xoffset), FACE_ORIGIN.y) + faceAnimVector 

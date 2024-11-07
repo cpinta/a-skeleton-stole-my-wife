@@ -1,13 +1,13 @@
 extends Camera2D
 class_name GameCamera
 
-@export var target: Entity
+@export var target: Player
 @export var targetOffset: Vector2
 
 @export var debug1: RichTextLabel
 
 @export var includeMouseMovement: bool = true
-@export var MAX_MOUSE_DISTANCE: float = 20
+@export var MAX_MOUSE_DISTANCE: float = 50
 @export var MOUSE_DISTANCE_MULTIPLIER: float = 0.2
 @export var MOUSE_LERP: float = 0.5
 
@@ -25,8 +25,8 @@ func _process(delta):
 	if target != null:
 		var mouseVector: Vector2 = Vector2.ZERO
 		if includeMouseMovement:
-			mouseVector = get_global_mouse_position() - target.global_position
-		global_position = global_position.lerp(target.global_position + targetOffset + (mouseVector.normalized() * mouseVector.length() * MOUSE_DISTANCE_MULTIPLIER), MOUSE_LERP)
+			mouseVector = target.inputHandler.get_aim_vector()
+		global_position = global_position.lerp(target.global_position + targetOffset + (mouseVector * MAX_MOUSE_DISTANCE * MOUSE_DISTANCE_MULTIPLIER), MOUSE_LERP)
 	else:
 		if get_tree().get_node_count_in_group("player") > 0:
 			target = get_tree().get_nodes_in_group("player")[0]

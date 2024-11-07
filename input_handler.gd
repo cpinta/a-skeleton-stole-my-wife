@@ -10,6 +10,8 @@ var inputVector: Vector2
 var touchScene: PackedScene
 var touchUI: TouchControls
 
+var target: Player
+
 signal inputDash
 signal inputInteract
 signal inputDrop
@@ -17,12 +19,15 @@ signal inputShootPressed(hand: Player.HandToUse)
 signal inputShootReleased(hand: Player.HandToUse)
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	touchScene = load("res://scripts/input/touch_controls.tscn")
+	if touchScene == null:
+		touchScene = load("res://scripts/input/touch_controls.tscn")
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if target == null:
+		target = Game.player
 	match curInputMethod:
 		GameInput.MOUSE:
 			if Input.is_action_pressed("jump"):
@@ -90,6 +95,9 @@ func unload_controls():
 	pass
 
 func set_input_method(newInput: GameInput):
+	if touchScene == null:
+		_ready()
+
 	curInputMethod = newInput
 	match curInputMethod:
 		GameInput.MOUSE:
@@ -107,7 +115,23 @@ func get_aim_point():
 			return get_global_mouse_position()
 			pass
 		GameInput.TOUCH:
-			return Vector2.ZERO
+			if touchUI != null:
+				return touchUI.aimPosition
+			pass
+	pass
+	
+func get_aim_vector():
+	match curInputMethod:
+		GameInput.MOUSE:
+			#print((get_global_mouse_position() - target.global_position)/(Game.SCREEN_RESOLUTION/2))
+			var vector: Vector2 = (get_global_mouse_position() - target.global_position)/(Game.SCREEN_RESOLUTION/2)
+			return Vector2(min(max(vector.x, -1), 1), min(max(vector.y, -1), 1))
+			pass
+		GameInput.TOUCH:
+			if touchUI != null:
+				if Game.debug:
+					touchUI.lblDebug.text = str("aimVector:",touchUI.aimVector,"\n")
+					return touchUI.aimVector
 			pass
 	pass
 	
@@ -141,6 +165,7 @@ func load_touch_controls():
 	if touchUI == null:
 		touchUI = touchScene.instantiate() as TouchControls
 		self.add_child(touchUI)
+		touchUI._ready()
 	pass
 	
 func unload_touch_controls():

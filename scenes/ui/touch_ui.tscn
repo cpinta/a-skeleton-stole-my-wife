@@ -1,25 +1,25 @@
-[gd_scene load_steps=16 format=3 uid="uid://dclrvv5xwjxvx"]
+[gd_scene load_steps=16 format=3 uid="uid://b2pi1h7m2sdkx"]
 
-[ext_resource type="Script" path="res://scripts/ui/ui.gd" id="1_epvr3"]
-[ext_resource type="Script" path="res://scripts/ui/player_health.gd" id="3_yqsv7"]
-[ext_resource type="PackedScene" uid="uid://c7uja6ddq5jyf" path="res://scenes/ui/combo_ui.tscn" id="4_0ocu0"]
-[ext_resource type="PackedScene" uid="uid://ciocx6wvwso6i" path="res://scenes/ui/health_bar.tscn" id="4_nuc83"]
-[ext_resource type="Script" path="res://scripts/ui/ui_score_counter.gd" id="4_x403p"]
-[ext_resource type="Script" path="res://scripts/ui/ui_item_display.gd" id="5_t8brj"]
-[ext_resource type="PackedScene" uid="uid://du7w4l4f4thq0" path="res://scenes/ui/ui_weapon.tscn" id="6_pcuxs"]
-[ext_resource type="Script" path="res://scripts/ui/ui_center_text.gd" id="7_ok86e"]
-[ext_resource type="Texture2D" uid="uid://dp7mis0iur2xu" path="res://sprites/characters/skeleton head icon.png" id="9_4fa2x"]
+[ext_resource type="Script" path="res://scripts/ui/ui.gd" id="1_ydhlq"]
+[ext_resource type="Script" path="res://scripts/ui/player_health.gd" id="2_gye21"]
+[ext_resource type="PackedScene" uid="uid://ciocx6wvwso6i" path="res://scenes/ui/health_bar.tscn" id="3_q5irh"]
+[ext_resource type="Script" path="res://scripts/ui/ui_score_counter.gd" id="4_13rn0"]
+[ext_resource type="PackedScene" uid="uid://c7uja6ddq5jyf" path="res://scenes/ui/combo_ui.tscn" id="5_8grwa"]
+[ext_resource type="Script" path="res://scripts/ui/ui_item_display.gd" id="6_3ntqb"]
+[ext_resource type="PackedScene" uid="uid://du7w4l4f4thq0" path="res://scenes/ui/ui_weapon.tscn" id="7_o1ah4"]
+[ext_resource type="Script" path="res://scripts/ui/ui_center_text.gd" id="8_j7iow"]
+[ext_resource type="Texture2D" uid="uid://dp7mis0iur2xu" path="res://sprites/characters/skeleton head icon.png" id="9_olanc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y06y7"]
 line_spacing = -3.0
 font_size = 8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ygx7"]
-atlas = ExtResource("9_4fa2x")
+atlas = ExtResource("9_olanc")
 region = Rect2(0, 0, 18, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l4e0a"]
-atlas = ExtResource("9_4fa2x")
+atlas = ExtResource("9_olanc")
 region = Rect2(18, 0, 18, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fqdsl"]
@@ -45,7 +45,7 @@ shadow_size = 4
 shadow_color = Color(0, 0, 0, 1)
 
 [node name="UI" type="CanvasLayer"]
-script = ExtResource("1_epvr3")
+script = ExtResource("1_ydhlq")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -78,31 +78,25 @@ layout_mode = 2
 anchors_preset = 0
 offset_right = 310.0
 offset_bottom = 170.0
-script = ExtResource("3_yqsv7")
+script = ExtResource("2_gye21")
 
-[node name="Health Bar" parent="Control/MarginContainer/Control/player health" instance=ExtResource("4_nuc83")]
+[node name="Health Bar" parent="Control/MarginContainer/Control/player health" instance=ExtResource("3_q5irh")]
 layout_mode = 0
 offset_bottom = 12.0
 
 [node name="top right" type="Control" parent="Control/MarginContainer/Control"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -165.0
-offset_right = -5.0
+anchors_preset = 0
+offset_top = 12.0
+offset_right = 160.0
 offset_bottom = 90.0
-grow_horizontal = 0
 
 [node name="score counter" type="Control" parent="Control/MarginContainer/Control/top right"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -91.0
+anchors_preset = 0
+offset_right = 91.0
 offset_bottom = 48.0
-grow_horizontal = 0
-script = ExtResource("4_x403p")
+script = ExtResource("4_13rn0")
 
 [node name="Label" type="Label" parent="Control/MarginContainer/Control/top right/score counter"]
 layout_mode = 1
@@ -114,40 +108,40 @@ grow_vertical = 2
 text = "monster essence
 100000"
 label_settings = SubResource("LabelSettings_y06y7")
-horizontal_alignment = 2
 
-[node name="combo ui" parent="Control/MarginContainer/Control/top right" instance=ExtResource("4_0ocu0")]
+[node name="combo ui" parent="Control/MarginContainer/Control/top right" instance=ExtResource("5_8grwa")]
 layout_mode = 1
+anchors_preset = 2
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_right = 64.0
+grow_horizontal = 1
 
 [node name="bottom left" type="Control" parent="Control/MarginContainer/Control"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -90.0
-offset_right = 160.0
-grow_vertical = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_bottom = 90.0
+grow_horizontal = 0
 
 [node name="item display" type="Control" parent="Control/MarginContainer/Control/bottom left"]
 custom_minimum_size = Vector2(138, 45)
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -45.0
-offset_right = -22.0
 grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("5_t8brj")
+script = ExtResource("6_3ntqb")
 
-[node name="Weapon 0" parent="Control/MarginContainer/Control/bottom left/item display" instance=ExtResource("6_pcuxs")]
-layout_mode = 2
+[node name="Weapon 0" parent="Control/MarginContainer/Control/bottom left/item display" instance=ExtResource("7_o1ah4")]
+grow_horizontal = 0
 
-[node name="Weapon 1" parent="Control/MarginContainer/Control/bottom left/item display" instance=ExtResource("6_pcuxs")]
-layout_mode = 2
+[node name="Weapon 1" parent="Control/MarginContainer/Control/bottom left/item display" instance=ExtResource("7_o1ah4")]
 offset_left = 64.0
 offset_right = 124.0
+grow_horizontal = 0
 playerWeaponIndex = 1
 
 [node name="center text" type="HBoxContainer" parent="Control/MarginContainer/Control"]
@@ -164,7 +158,7 @@ offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-script = ExtResource("7_ok86e")
+script = ExtResource("8_j7iow")
 
 [node name="icon" type="Control" parent="Control/MarginContainer/Control/center text"]
 custom_minimum_size = Vector2(16, 16)
