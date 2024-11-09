@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://doctxyxjfrpjl"]
+[gd_scene load_steps=38 format=3 uid="uid://doctxyxjfrpjl"]
 
 [ext_resource type="Texture2D" uid="uid://scwe4gj6g0k0" path="res://sprites/items/weight.png" id="1_b5or1"]
 [ext_resource type="Texture2D" uid="uid://b6ep7hn3dkshq" path="res://sprites/items/corndog.png" id="1_cnbgj"]
@@ -97,6 +97,9 @@ animations = [{
 "name": &"small",
 "speed": 10.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vv43"]
+size = Vector2(53, 180)
 
 [sub_resource type="Theme" id="Theme_r3jrt"]
 
@@ -340,6 +343,11 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "8274fc53470f5eaf12bca681fb3de279"
 
+[node name="touchbutton" type="TouchScreenButton" parent="Buttons/Weight/Control"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_3vv43")
+
 [node name="Glove" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -386,6 +394,11 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": false
 }
 metadata/_aseprite_wizard_source_file_hash_ = "94a7758b8ef8e0d762cb9cda3c9023f7"
+
+[node name="touchbutton" type="TouchScreenButton" parent="Buttons/Glove/Control"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_3vv43")
 
 [node name="Boots" type="Button" parent="Buttons"]
 layout_mode = 2
@@ -435,6 +448,11 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "52515903c5ddd89c1ae0fbd96f66da73"
 
+[node name="touchbutton" type="TouchScreenButton" parent="Buttons/Boots/Control"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_3vv43")
+
 [node name="Corndog" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -482,5 +500,10 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": false
 }
 metadata/_aseprite_wizard_source_file_hash_ = "c79f0a0454521f25146eb8aa9f2ede8d"
+
+[node name="touchbutton" type="TouchScreenButton" parent="Buttons/Corndog/Control"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_3vv43")
 
 [node name="audio" type="AudioStreamPlayer2D" parent="."]

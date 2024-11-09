@@ -13,6 +13,8 @@ var strLarge: String = "large"
 
 @export var description: String = ""
 
+var touchButton: TouchScreenButton
+
 signal wasSelected(item: String)
 
 func _ready():
@@ -21,6 +23,9 @@ func _ready():
 	itemAnim = innerControl.get_node("sprite")
 	itemAnim.play(strSmall)
 	pressed.connect(was_pressed)
+	
+	touchButton = $Control/touchbutton
+	touchButton.released.connect(was_pressed)
 	pass
 
 func _process(delta):
