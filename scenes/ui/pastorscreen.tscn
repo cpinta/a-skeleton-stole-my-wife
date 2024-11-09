@@ -188,20 +188,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="pastorscreen" type="Control"]
+[node name="pastorscreen" type="CanvasLayer"]
 process_mode = 3
-z_index = 20
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -180.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(160, 90)
 script = ExtResource("1_fhajn")
 audioClips = Array[AudioStream]([ExtResource("2_x78en"), ExtResource("3_1eugs"), ExtResource("4_rr6rh"), ExtResource("5_dhswn"), ExtResource("6_chy4s"), ExtResource("7_g68ee")])
 
@@ -226,7 +214,6 @@ metadata/_aseprite_wizard_interface_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "0324dd38f24cab7022e7e32cce4958d1"
 
 [node name="back color" type="ColorRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -236,7 +223,6 @@ color = Color(0, 0, 0, 0.439216)
 
 [node name="textbox" type="ColorRect" parent="."]
 z_index = 1
-layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -281,7 +267,6 @@ label_settings = SubResource("LabelSettings_60nj7")
 autowrap_mode = 2
 
 [node name="Buttons" type="GridContainer" parent="."]
-layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0

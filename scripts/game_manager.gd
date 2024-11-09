@@ -40,6 +40,9 @@ var timesPastorVisited: int = 0
 
 var state: GameState
 
+signal hideControls
+signal showControls
+
 @onready var dict_entites = {\
 	"Zombie": load("res://scenes/enemies/zombie.tscn"), \
 	"Slime": load("res://scenes/enemies/slime.tscn"),\
@@ -102,8 +105,8 @@ func _ready():
 	satanScene = load("res://scenes/enemies/satan.tscn")
 	
 	#set_gender(Player.Gender.HOMETTE)
-	#start_game()
-	start_game_skip_pastor()
+	start_game()
+	#start_game_skip_pastor()
 	#player.current_health = 1
 	#player.score = 999
 	#spawn_satan()
@@ -339,14 +342,13 @@ func show_pastor(pstate: PastorScreen.PastorState = PastorScreen.PastorState.SHO
 	load_screen(GameScreen.PASTOR) #SCREEN
 	screens[GameScreen.PASTOR].setup(pstate, hasTutorial)
 	screens[GameScreen.PASTOR].reparent(camera, false)
-	screens[GameScreen.PASTOR].position = -SCREEN_RESOLUTION/2
+	
 	player.allowInput = false
 	timesPastorVisited += 1
-	#if not screens[GameScreen.PASTOR].gone.is_connected(pastor_done):
-		#screens[GameScreen.PASTOR].gone.connect(pastor_done)
-	#freeze_enemies()
+	
 	get_tree().paused = true
 	player.inputVector = Vector2.ZERO
+	hideControls.emit()
 	pass
 	
 func pastor_done():
@@ -354,6 +356,7 @@ func pastor_done():
 	load_current_game_ui()
 	player.allowInput = true
 	#unfreeze_enemies()
+	showControls.emit()
 	pass
 	
 func load_next_level():
@@ -416,6 +419,9 @@ func load_player_input_handler(player: Player):
 	inputHandler.set_input_method(selectedGameInput)
 	
 	inputHandler.inputSet.connect(controls_chosen)
+	
+	hideControls.connect(inputHandler.unload_controls)
+	showControls.connect(inputHandler.load_controls)
 	pass
 	
 func load_game_ui():

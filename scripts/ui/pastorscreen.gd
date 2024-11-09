@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 class_name PastorScreen
 
 enum PastorState {INTRO, SHOWING_ITEMS, LEAVING}
