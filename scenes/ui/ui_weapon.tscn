@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://du7w4l4f4thq0"]
+[gd_scene load_steps=8 format=3 uid="uid://du7w4l4f4thq0"]
 
 [ext_resource type="Texture2D" uid="uid://dbobwelpunrqr" path="res://sprites/ui/mouse_left_click.png" id="1_gr8vs"]
 [ext_resource type="Script" path="res://scripts/ui/ui_weapon.gd" id="1_lp4wg"]
@@ -8,6 +8,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_ukuwn"]
 font_size = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jiohd"]
 
 [node name="Weapon 0" type="Control"]
 layout_mode = 3
@@ -119,3 +121,17 @@ theme_override_font_sizes/font_size = 8
 text = "item"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="touchbutton" type="TouchScreenButton" parent="Control"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_jiohd")

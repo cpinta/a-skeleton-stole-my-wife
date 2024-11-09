@@ -5,7 +5,7 @@ enum GameState {TITLE_SCREEN=0, INTRO_CUTSCENE=4, END_CUTSCENE=6, GENDER_SELECT=
 enum GameScreen {TITLE, INTRO_CUTSCENE, GENDER_SELECT, PASTOR, DEATH, END_CUTSCENE}
 
 var inputHandlerScene: PackedScene
-var selectedGameInput: InputHandler.GameInput = InputHandler.GameInput.MOUSE
+var selectedGameInput: InputHandler.GameInput = InputHandler.GameInput.TOUCH
 
 var chosenGender: Player.Gender
 
@@ -32,6 +32,9 @@ GameScreen.END_CUTSCENE:null}
 
 var gameUIScene: PackedScene
 var gameUI: UI
+
+var gameUItouchScene: PackedScene
+var gameUItouch: UI
 
 var timesPastorVisited: int = 0
 
@@ -85,6 +88,7 @@ func _ready():
 	playerScene = load("res://scenes/player.tscn")
 	inputHandlerScene = load("res://scenes/input_handler.tscn")
 	gameUIScene = load("res://scenes/ui/ui.tscn")
+	gameUItouchScene = load("res://scenes/ui/touch_ui.tscn")
 	
 	screenScenes[GameScreen.TITLE] = load("res://scenes/ui/title_screen.tscn")
 	screenScenes[GameScreen.DEATH] = load("res://scenes/ui/death_screen.tscn")
@@ -153,6 +157,51 @@ func finish_intro():
 	
 func set_gender(gender: Player.Gender):
 	chosenGender = gender
+	pass
+	
+func load_current_game_ui():
+	match selectedGameInput:
+		InputHandler.GameInput.MOUSE:
+			unload_touch_controls_and_ui()
+			load_game_ui()
+			pass
+		InputHandler.GameInput.TOUCH:
+			unload_game_ui()
+			load_touch_controls_and_ui()
+			pass
+	pass
+
+func unload_current_game_ui():
+	match selectedGameInput:
+		InputHandler.GameInput.MOUSE:
+			unload_game_ui()
+			pass
+		InputHandler.GameInput.TOUCH:
+			unload_touch_controls_and_ui()
+			pass
+	pass
+
+func controls_chosen(newInput: InputHandler.GameInput):
+	match newInput:
+		InputHandler.GameInput.MOUSE:
+			unload_touch_controls_and_ui()
+			load_game_ui()
+			pass
+		InputHandler.GameInput.TOUCH:
+			unload_game_ui()
+			load_touch_controls_and_ui()
+			pass
+	pass
+
+func load_touch_controls_and_ui():
+	if gameUItouch == null:
+		gameUItouch = gameUItouchScene.instantiate() as UI
+		self.add_child(gameUItouch)
+	pass
+
+func unload_touch_controls_and_ui():
+	if gameUItouch != null:
+		gameUItouch.queue_free()
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -242,7 +291,7 @@ func start_game():
 	unload_all_screens() #SCREEN
 	change_state(GameState.PLAYING)
 	load_level(currentLvlIndex)
-	load_game_ui()
+	load_current_game_ui()
 	show_pastor(PastorScreen.PastorState.INTRO, true)
 	pass
 	
@@ -259,7 +308,7 @@ func start_game_skip_pastor():
 	unload_all_screens() #SCREEN
 	change_state(GameState.PLAYING)
 	load_level(currentLvlIndex)
-	#load_game_ui()
+	load_current_game_ui()
 	player.allowInput = true
 	timesPastorVisited += 1
 	pass
@@ -302,7 +351,7 @@ func show_pastor(pstate: PastorScreen.PastorState = PastorScreen.PastorState.SHO
 	
 func pastor_done():
 	get_tree().paused = false
-	load_game_ui()
+	load_current_game_ui()
 	player.allowInput = true
 	#unfreeze_enemies()
 	pass
@@ -365,6 +414,8 @@ func load_player_input_handler(player: Player):
 	inputHandler.inputShootReleased.connect(player.stop_use_weapon)
 	
 	inputHandler.set_input_method(selectedGameInput)
+	
+	inputHandler.inputSet.connect(controls_chosen)
 	pass
 	
 func load_game_ui():
@@ -396,7 +447,7 @@ func load_death_screen():
 	pass
 	
 func unload_all_screens():
-	unload_game_ui()
+	unload_current_game_ui()
 	for key in screens:
 		if screens[key] != null:
 			screens[key].queue_free()
@@ -408,7 +459,7 @@ func try_again():
 	player.isDead = false
 	player.wasKilledLastFrame = false
 	load_level(currentLvlIndex)
-	load_game_ui()
+	load_current_game_ui()
 	camera.includeMouseMovement = true
 	player.allowInput = true
 	pass

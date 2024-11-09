@@ -8,6 +8,8 @@ var lblWeapon: Label
 var cooldownProgress: UI_Cooldown
 var ammoCount: UI_Ammo_Count
 
+var touchButton: TouchScreenButton
+
 @export var playerWeaponIndex: int
 
 # Called when the node enters the scene tree for the first time.
@@ -22,11 +24,21 @@ func _ready():
 	ammoCount = $"UpperPart/ammo count"
 	ammoCount.setup(playerWeaponIndex)
 	
+	touchButton = $Control/touchbutton
+	touchButton.released.connect(switch_to_this_weapon)
+	
 	if playerWeaponIndex == 0:
 		$"UpperPart/input icon/sprite".texture = load("res://sprites/ui/mouse_left_click.png")
 	elif playerWeaponIndex == 1:
 		$"UpperPart/input icon/sprite".texture = load("res://sprites/ui/mouse_right_click.png")
 	pass # Replace with function body.
+
+func switch_to_this_weapon():
+	if WeaponScene != null:
+		if Game.player != null:
+			if Game.player.currentHand != playerWeaponIndex:
+				Game.player.swap_weapons()
+	pass
 
 func _process(delta):
 	if Game.player == null:

@@ -14,6 +14,10 @@ var aimVector: Vector2 = Vector2(1, 0)	#DIRECTION AND MAGNITUDE! BOOYAH!
 
 var lblDebug: Label
 
+signal press_shoot_current_weapon
+var current_weapon_pressed: bool = false
+signal release_shoot_current_weapon
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	btnInteract = $Control/buttons/interact/interact
@@ -38,6 +42,13 @@ func _process(delta):
 func _physics_process(delta):
 	if aimJoystick.is_pressed:
 		aimVector = aimJoystick.output
+		press_shoot_current_weapon.emit()
+		current_weapon_pressed = true
+	else:
+		if current_weapon_pressed:
+			release_shoot_current_weapon.emit()
+			current_weapon_pressed = false
+			pass
 	pass
 
 func _input(event: InputEvent) -> void:

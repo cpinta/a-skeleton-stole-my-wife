@@ -17,6 +17,10 @@ signal inputInteract
 signal inputDrop
 signal inputShootPressed(hand: Player.HandToUse)
 signal inputShootReleased(hand: Player.HandToUse)
+
+signal inputSet(input: GameInput)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if touchScene == null:
@@ -36,18 +40,21 @@ func _process(delta):
 				input_dash()
 				#dash()
 				pass
+				
 			if Input.is_action_just_pressed("shoot_left"):
 				shoot_pressed(Player.HandToUse.LEFT)
 				#use_weapon(HandToUse.LEFT)
 			if Input.is_action_just_released("shoot_left"):
 				shoot_released(Player.HandToUse.LEFT)
 				#stop_use_weapon(HandToUse.LEFT)
+				
 			if Input.is_action_just_pressed("shoot_right"):
 				shoot_pressed(Player.HandToUse.RIGHT)
 				#use_weapon(HandToUse.RIGHT)
 			if Input.is_action_just_released("shoot_right"):
 				shoot_released(Player.HandToUse.RIGHT)
 				#stop_use_weapon(HandToUse.RIGHT)
+				
 			if Input.is_action_just_released("interact"):
 				input_interact()
 				#interact()
@@ -82,7 +89,18 @@ func load_controls():
 			touchUI.btnDash.released.connect(input_dash)
 			touchUI.btnInteract.released.connect(input_interact)
 			touchUI.btnDrop.released.connect(input_drop)
+			
+			touchUI.press_shoot_current_weapon.connect(press_current_weapon)
+			touchUI.release_shoot_current_weapon.connect(release_current_weapon)
 			pass
+	pass
+	
+func press_current_weapon():
+	shoot_pressed(target.currentHand)
+	pass
+	
+func release_current_weapon():
+	shoot_released(target.currentHand)
 	pass
 	
 func unload_controls():

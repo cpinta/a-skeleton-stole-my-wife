@@ -80,8 +80,7 @@ func _process(delta):
 	super._process(delta)
 	if allowInput:
 		get_input_vector()
-		
-	
+
 	if entityVelocity.length() > 0.1:
 		anim.play("walk")
 	else:
