@@ -16,10 +16,12 @@ var HAND_RAISE_SPEED: float = 40
 var btnTryAgain: Button
 var btnTryAgainOrigin: Vector2
 var SHAKE_STRENGTH_TRYAGAIN: float = 1
+var btnTryAgainTouch: TouchScreenButton
 
 var btnQuit: Button
 var btnQuitOrigin: Vector2
 var SHAKE_STRENGTH_QUIT: float = 6
+var btnQuitTouch: TouchScreenButton
 
 signal tryagain
 signal quitgame
@@ -34,15 +36,22 @@ func _ready():
 	lhand = $"body/left arm"
 	rhand = $"body/right arm"
 	btnTryAgain = $"body/left arm/tryagain"
+	btnTryAgainTouch = btnTryAgain.get_node("Control/TouchScreenButton")
+	
 	btnQuit = $"body/right arm/quit"
+	btnQuitTouch = btnQuit.get_node("Control/TouchScreenButton")
 	
 	lhand.position.y = HAND_START_YOFFSET
 	rhand.position.y = HAND_START_YOFFSET
 	
 	btnTryAgain.visible = false 
 	btnQuit.visible = false
+	
 	btnTryAgain.pressed.connect(try_again)
+	btnTryAgainTouch.released.connect(try_again)
 	btnQuit.pressed.connect(quit)
+	btnQuitTouch.released.connect(quit)
+	
 	btnTryAgainOrigin = btnTryAgain.position
 	btnQuitOrigin = btnQuit.position
 	change_state(GrimAnimState.SKULL_APPEARING)

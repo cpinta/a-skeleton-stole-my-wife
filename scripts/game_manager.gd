@@ -117,6 +117,17 @@ func _ready():
 	
 var skipPastor: bool = false
 
+
+func load_title_screen():
+	load_screen(GameScreen.TITLE)
+	var title = screens[GameScreen.TITLE] as TitleScreen
+	title.startPressed.connect(title_start)
+	
+func title_start():
+	unload_screen(GameScreen.TITLE) #SCREEN
+	start_gender_select()
+	pass
+
 func start_gender_select():
 	load_screen(GameScreen.GENDER_SELECT)
 	screens[GameScreen.GENDER_SELECT].selectionDone.connect(gender_select_ended)
@@ -216,10 +227,6 @@ func _process(delta):
 		pass
 	match state:
 		GameState.TITLE_SCREEN:
-			if Input.is_action_just_released("ui_accept"):
-				unload_screen(GameScreen.TITLE) #SCREEN
-				start_gender_select()
-				pass
 			pass
 		GameState.INTRO_CUTSCENE:
 			if Input.is_action_just_released("ui_accept"):

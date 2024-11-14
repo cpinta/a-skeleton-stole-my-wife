@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://cnpevgr7l6fvw"]
+[gd_scene load_steps=51 format=4 uid="uid://cnpevgr7l6fvw"]
 
 [ext_resource type="Script" path="res://scripts/ui/floating_label.gd" id="1_8h80t"]
 [ext_resource type="Script" path="res://gender_selectscreen.gd" id="1_kwp12"]
@@ -3331,6 +3331,9 @@ Button/styles/pressed = null
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hd1g3"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxlqd"]
+size = Vector2(32, 32)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8q7sk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wucbx"]
@@ -3421,6 +3424,19 @@ icon = ExtResource("3_ra0kt")
 icon_alignment = 1
 script = ExtResource("5_3dbe4")
 
+[node name="Control" type="Control" parent="m"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="m/Control"]
+shape = SubResource("RectangleShape2D_nxlqd")
+
 [node name="f" type="Button" parent="."]
 texture_filter = 1
 layout_mode = 1
@@ -3450,6 +3466,19 @@ text = "
 icon = ExtResource("4_vcy1n")
 icon_alignment = 1
 script = ExtResource("5_3dbe4")
+
+[node name="Control" type="Control" parent="f"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="f/Control"]
+shape = SubResource("RectangleShape2D_nxlqd")
 
 [node name="audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_0lcgt")

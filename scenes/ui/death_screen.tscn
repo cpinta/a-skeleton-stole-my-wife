@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://bqbcjdu61my46"]
+[gd_scene load_steps=33 format=4 uid="uid://bqbcjdu61my46"]
 
 [ext_resource type="Script" path="res://scripts/ui/deathscreen.gd" id="1_0saip"]
 [ext_resource type="Texture2D" uid="uid://b8nq7s28yostb" path="res://sprites/characters/grim left hand.png" id="2_8ifep"]
@@ -3276,6 +3276,9 @@ Button/styles/disabled = SubResource("StyleBoxFlat_d1i5t")
 Button/styles/focus = SubResource("StyleBoxFlat_dgrfa")
 Button/styles/hover = SubResource("StyleBoxFlat_hw4is")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5l2t3"]
+size = Vector2(92, 31)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vfky6"]
 atlas = ExtResource("2_8ifep")
 region = Rect2(0, 0, 320, 180)
@@ -3350,14 +3353,34 @@ metadata/_aseprite_wizard_interface_config_ = {
 
 [node name="quit" type="Button" parent="body/right arm"]
 z_index = 1
-offset_left = 28.0
-offset_top = 21.0
-offset_right = 120.0
-offset_bottom = 52.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_top = -161.0
+offset_right = -200.0
+offset_bottom = -130.0
+grow_horizontal = 0
+grow_vertical = 0
 pivot_offset = Vector2(46, 15)
 theme = SubResource("Theme_3ml6l")
 theme_type_variation = &"FlatButton"
 text = "QUIT"
+
+[node name="Control" type="Control" parent="body/right arm/quit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="body/right arm/quit/Control"]
+shape = SubResource("RectangleShape2D_5l2t3")
 
 [node name="left arm" type="AnimatedSprite2D" parent="body"]
 texture_filter = 1
@@ -3378,14 +3401,31 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 
 [node name="tryagain" type="Button" parent="body/left arm"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = -120.0
-offset_top = 25.0
+offset_top = -161.0
 offset_right = -28.0
-offset_bottom = 56.0
+offset_bottom = -130.0
+grow_vertical = 0
 pivot_offset = Vector2(46, 15)
 theme = SubResource("Theme_3ml6l")
 theme_type_variation = &"FlatButton"
 text = "TRY AGAIN"
+
+[node name="Control" type="Control" parent="body/left arm/tryagain"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="body/left arm/tryagain/Control"]
+shape = SubResource("RectangleShape2D_5l2t3")
 
 [node name="talking" type="Label" parent="."]
 layout_mode = 1

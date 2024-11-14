@@ -12,9 +12,11 @@ var eAnim: AnimatedSprite2D
 
 var btnM: Button
 var btnMOrigin: Vector2
+var btnMtouch: TouchScreenButton
 
 var btnF: Button
 var btnFOrigin: Vector2
+var btnFtouch: TouchScreenButton
 
 var BTN_FLOAT_DISTANCE: float = 2
 var BTN_LERP_SPEED: float = 1
@@ -46,12 +48,16 @@ func _ready():
 	btnMOrigin = btnM.position
 	btnM.pressed.connect(select_m)
 	btnM.disabled = true
+	btnMtouch = $m/Control/TouchScreenButton
+	btnMtouch.released.connect(select_m)
 	
 	btnF = $f
 	btnF.visible = false
 	btnFOrigin = btnF.position
 	btnF.pressed.connect(select_f)
 	btnF.disabled = true
+	btnFtouch = $f/Control/TouchScreenButton
+	btnFtouch.released.connect(select_f)
 	
 	eAnim = $e
 	eAnim.animation_finished.connect(anim_done)

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://mtb0mmrismma"]
+[gd_scene load_steps=4 format=3 uid="uid://mtb0mmrismma"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_k8hq1"]
 [ext_resource type="Texture2D" uid="uid://ikvcogpq608f" path="res://sprites/titlescreen/title logo.png" id="2_duuxu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hr50"]
+size = Vector2(320, 180)
 
 [node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource("1_k8hq1")
@@ -35,3 +38,16 @@ theme_override_font_sizes/font_size = 12
 text = "Press Enter"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Control/Control"]
+shape = SubResource("RectangleShape2D_4hr50")
