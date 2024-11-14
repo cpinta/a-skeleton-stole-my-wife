@@ -17,12 +17,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="title logo" type="Sprite2D" parent="Control"]
+[node name="Centered" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Control/Centered"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Control/Centered/Control"]
+visible = false
+shape = SubResource("RectangleShape2D_4hr50")
+
+[node name="Control2" type="Control" parent="Control/Centered"]
+anchors_preset = 0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
+
+[node name="title logo" type="Sprite2D" parent="Control/Centered/Control2"]
 texture_filter = 1
 texture = ExtResource("2_duuxu")
 centered = false
 
-[node name="Press Start" type="Label" parent="Control/title logo"]
+[node name="Press Start" type="Label" parent="Control/Centered/Control2/title logo"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -39,15 +70,11 @@ text = "Press Enter"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[node name="back" type="ColorRect" parent="."]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="Control/Control"]
-shape = SubResource("RectangleShape2D_4hr50")
+color = Color(0.00850523, 0, 0.635562, 1)

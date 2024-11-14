@@ -105,7 +105,8 @@ func _ready():
 	satanScene = load("res://scenes/enemies/satan.tscn")
 	
 	#set_gender(Player.Gender.HOMETTE)
-	start_game()
+	#start_game()
+	load_title_screen()
 	#start_game_skip_pastor()
 	#player.current_health = 1
 	#player.score = 999
@@ -123,7 +124,8 @@ func load_title_screen():
 	var title = screens[GameScreen.TITLE] as TitleScreen
 	title.startPressed.connect(title_start)
 	
-func title_start():
+func title_start(input: InputHandler.GameInput):
+	selectedGameInput = input
 	unload_screen(GameScreen.TITLE) #SCREEN
 	start_gender_select()
 	pass
