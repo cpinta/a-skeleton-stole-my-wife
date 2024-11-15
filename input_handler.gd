@@ -148,7 +148,7 @@ func get_aim_vector():
 		GameInput.TOUCH:
 			if touchUI != null:
 				if Game.debug:
-					touchUI.lblDebug.text = str("aimVector:",touchUI.aimVector,"\n")
+					#touchUI.lblDebug.text = str("aimVector:",touchUI.aimVector,"\n")
 					return touchUI.aimVector
 			pass
 	pass

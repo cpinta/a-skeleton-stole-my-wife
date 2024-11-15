@@ -106,14 +106,14 @@ func _ready():
 	
 	#set_gender(Player.Gender.HOMETTE)
 	#start_game()
-	load_title_screen()
-	#start_game_skip_pastor()
+	#load_title_screen()
+	start_game_skip_pastor()
 	#player.current_health = 1
 	#player.score = 999
 	#spawn_satan()
 	#camera.global_position = Vector2(1000, 2000)
 	#start_ending()
-	#load_screen(GameScreen.TITLE) #WHAT SHOULD REALLY BE HERE
+	#load_title_screen() #WHAT SHOULD REALLY BE HERE
 	#pass
 	
 var skipPastor: bool = false

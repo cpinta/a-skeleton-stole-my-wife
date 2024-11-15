@@ -3428,6 +3428,7 @@ grow_vertical = 2
 shape = SubResource("RectangleShape2D_5l2t3")
 
 [node name="talking" type="Label" parent="."]
+layout_mode = 0
 offset_right = 133.0
 offset_bottom = 29.0
 label_settings = SubResource("LabelSettings_m6sg1")

@@ -38,7 +38,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="Control/Centered/Control"]
-visible = false
 shape = SubResource("RectangleShape2D_4hr50")
 
 [node name="Control2" type="Control" parent="Control/Centered"]

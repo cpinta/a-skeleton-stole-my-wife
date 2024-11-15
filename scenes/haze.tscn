@@ -6,6 +6,7 @@
 script = ExtResource("1_lfms5")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.61339, 0.61339, 0.61339, 1)
 polygon = PackedVector2Array(-161, -86.025, 112, -85.025, 115, 108.975, -163, 107.975)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D"]

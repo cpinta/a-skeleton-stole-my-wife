@@ -440,7 +440,7 @@ position = Vector2(0.5, -3.5)
 shape = SubResource("RectangleShape2D_ksnnh")
 
 [node name="back" type="Node2D" parent="body"]
-z_index = -1
+show_behind_parent = true
 position = Vector2(0, -13)
 rotation = 0.785398
 
