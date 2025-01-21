@@ -8,6 +8,10 @@ class_name ProjecteWeapon
 @export var continuousTimer: float = 0
 @export var IS_FIRST_SHOT: bool = true
 
+@export var BASE_TIME_BT_BULLETS: float = 0.25
+@export var timeBetweenBullets: float = 0.25
+@export var timeBtBulletsTimer: float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
@@ -24,22 +28,25 @@ func _process(delta):
 func _physics_process(delta):
 	super._physics_process(delta)
 	if inUse:
-		if IS_CONTINUOUS:
-			if(continuousTimer > 0):
-				continuousTimer -= delta
+		if timeBtBulletsTimer > 0:
+			timeBtBulletsTimer -= delta
+		else:
+			if IS_CONTINUOUS:
+				if(continuousTimer > 0):
+					continuousTimer -= delta
+				else:
+					if(currentAmmoCount > 0):
+						shoot()
+					else:
+						end_use_weapon()
 			else:
 				if(currentAmmoCount > 0):
 					shoot()
+					quit_use_weapon()
 				else:
 					end_use_weapon()
-		else:
-			if(currentAmmoCount > 0):
-				shoot()
-				quit_use_weapon()
-			else:
-				end_use_weapon()
+					pass
 				pass
-			pass
 	pass
 
 func use_weapon():
@@ -56,6 +63,7 @@ func quit_use_weapon():
 
 func shoot():
 	apply_stats()
+	timeBtBulletsTimer = timeBetweenBullets
 	currentAmmoCount -= 1
 	var proj: Projectile = projectile.instantiate()
 	Game.add_child(proj)
@@ -73,6 +81,10 @@ func cooldown_over():
 func reload():
 	currentAmmoCount = ammoCount
 	pass
+	
+func apply_stats():
+	super.apply_stats()
+	timeBetweenBullets = BASE_TIME_BT_BULLETS * (attackspeed/BASE_ATTACKSPEED)
 
 func hit_entity(body: Node2D):
 	super.hit_entity(body)

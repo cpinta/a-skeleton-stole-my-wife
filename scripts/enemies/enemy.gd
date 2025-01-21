@@ -119,7 +119,7 @@ func set_inputVector_toward_target(delta):
 		print(inputVector)
 	inputVector = -Vector2(inputVector.x, inputVector.y)
 	
-func set_inputVector_toward_navAgent(delta):
+func set_inputVector_toward_navAgent(_delta):
 	if target == null:
 		return
 	if navAgent == null:
@@ -166,7 +166,6 @@ func check_for_target_or_player():
 		else:
 			target = player
 	return true
-	pass
 	
 var CHEST_SPAWN_CHANGE: float = 0.15
 func was_killed():

@@ -48,6 +48,7 @@ func _ready():
 	#USES_DEFAULT_ANIMATIONS = true
 	
 	hand = body.get_node("hand")
+	HAND_ORIGIN = hand.position
 	handInner = hand.get_node("inner")
 	back = body.get_node("back")
 	face = body.get_node("face")

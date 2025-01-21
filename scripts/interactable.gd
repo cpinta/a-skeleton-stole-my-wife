@@ -25,7 +25,7 @@ func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	
 	if interactKey != null:
 		interactKey.global_position = Vector2(global_position.x, global_position.y - interactKeyVOffset)

@@ -1,7 +1,7 @@
 extends Node2D
 class_name UI_ButtonHint
 
-var char: Sprite2D
+var character: Sprite2D
 var key: AnimatedSprite2D
 
 var unpressedPos: int = -2
@@ -12,7 +12,7 @@ var pressedPos: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	char = $char
+	character = $char
 	key = $key
 	pass # Replace with function body.
 
@@ -29,7 +29,7 @@ func _process(delta):
 	
 func setup(newActionName: String):
 	actionName = newActionName
-	char.texture = load("res://sprites/ui/chars/char_E.png")
+	character.texture = load("res://sprites/ui/chars/char_E.png")
 	#for event in InputMap.action_get_events(actionName):
 		#print(event.as_text())
 		#var keyName: String = event.as_text().split(" (")[0]
@@ -44,9 +44,9 @@ func setup(newActionName: String):
 
 func pressed():
 	key.play("pressed")
-	char.position.y = pressedPos
+	character.position.y = pressedPos
 	
 func unpressed():
 	key.play("unpressed")
-	char.position.y = unpressedPos
+	character.position.y = unpressedPos
 	

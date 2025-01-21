@@ -221,7 +221,6 @@ func hurt(damage: int, knock_amount: int = 0, knock_direction: Vector2 = Vector2
 		play_random_hurt()
 		pass
 	return true
-	pass
 	
 func play_death_nosie():
 	if audio == null:

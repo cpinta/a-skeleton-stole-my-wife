@@ -141,10 +141,7 @@ offset_bottom = -20.0
 scale = Vector2(0.3, 0.3)
 pivot_offset = Vector2(0, 200)
 clampzone_size = 20.0
-action_left = "left"
-action_right = "right"
-action_up = "up"
-action_down = "down"
+use_input_actions = false
 
 [node name="aim Virtual Joystick" parent="Control" instance=ExtResource("2_hc661")]
 layout_mode = 1

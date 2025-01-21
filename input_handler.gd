@@ -29,7 +29,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if target == null:
 		target = Game.player
 	match curInputMethod:
@@ -131,40 +131,46 @@ func get_aim_point():
 	match curInputMethod:
 		GameInput.MOUSE:
 			return get_global_mouse_position()
-			pass
 		GameInput.TOUCH:
 			if touchUI != null:
 				return touchUI.aimPosition
-			pass
 	pass
 	
 func get_aim_vector():
 	match curInputMethod:
 		GameInput.MOUSE:
-			#print((get_global_mouse_position() - target.global_position)/(Game.SCREEN_RESOLUTION/2))
-			var vector: Vector2 = (get_global_mouse_position() - target.global_position)/(Game.SCREEN_RESOLUTION/2)
-			return Vector2(min(max(vector.x, -1), 1), min(max(vector.y, -1), 1))
-			pass
+			var vector: Vector2 = (get_global_mouse_position() - (target.back.global_position))
+			vector = Vector2(min(max(vector.x/(Game.SCREEN_RESOLUTION.y/2), -1), 1), min(max(vector.y/(Game.SCREEN_RESOLUTION.y/2), -1), 1))
+			return vector
 		GameInput.TOUCH:
 			if touchUI != null:
 				if Game.debug:
-					#touchUI.lblDebug.text = str("aimVector:",touchUI.aimVector,"\n")
-					return touchUI.aimVector
+					touchUI.lblDebug.text = str("aimVector:",touchUI.aimVector,"\n")
+				return touchUI.aimVector
 			pass
 	pass
 	
+func debugtext(string):
+	if Game.gameUI != null:
+		Game.gameUI.lblDebug.text += string+"\n"
+	
 func get_inputVector():
-	inputVector = Vector2.ZERO
-	if Input.is_action_pressed("left"):
-		inputVector.x += 1
-	if Input.is_action_pressed("right"):
-		inputVector.x -= 1
-	if Input.is_action_pressed("up"):
-		inputVector.y += 1
-	if Input.is_action_pressed("down"):
-		inputVector.y -= 1
+	match curInputMethod:
+		GameInput.MOUSE:
+			inputVector = Vector2.ZERO
+			if Input.is_action_pressed("left"):
+				inputVector.x += 1
+			if Input.is_action_pressed("right"):
+				inputVector.x -= 1
+			if Input.is_action_pressed("up"):
+				inputVector.y += 1
+			if Input.is_action_pressed("down"):
+				inputVector.y -= 1
+		GameInput.TOUCH:
+			if touchUI != null:
+				inputVector = touchUI.moveVector
+			pass
 	return inputVector
-	pass
 	
 func touch_joystick_change(vector: Vector2):
 	if curInputMethod == GameInput.TOUCH:

@@ -12,7 +12,7 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var BASE_DURATION: float = 1
 @export var BASE_SIZE: float = 1
 @export var BASE_KNOCKBACK: float = 1
-@export var BASE_RANGE: float = 1
+@export var BASE_ATTACKRANGE: float = 1
 @export var BASE_AMMO_COUNT: int = 1
 
 @export var IS_QUITTABLE: bool = false
@@ -26,7 +26,7 @@ enum WeaponType {Swing, Poke, Projectile}
 @export var duration: float = 1
 @export var size: float = 1
 @export var knockback: float = 1
-@export var range: float = 1
+@export var attackrange: float = 1
 @export var ammoCount: int = 1
 @export var currentAmmoCount: int = 1
 
@@ -136,7 +136,7 @@ func apply_stats():
 	duration = BASE_DURATION
 	size = BASE_SIZE
 	knockback = BASE_KNOCKBACK
-	range = BASE_RANGE
+	attackrange = BASE_ATTACKRANGE
 	ammoCount = BASE_AMMO_COUNT
 	
 	if ownerEntity != null:
@@ -146,7 +146,7 @@ func apply_stats():
 		duration *= ownerEntity.attack_duration
 		size *= ownerEntity.attack_size
 		knockback *= ownerEntity.attack_knockback
-		range *= ownerEntity.attack_range
+		attackrange *= ownerEntity.attack_range
 	pass
 	
 func pickup(entity : Entity):

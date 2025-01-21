@@ -117,7 +117,7 @@ func quit_use_weapon():
 func apply_stats():
 	super.apply_stats()
 	
-	poke_length = range * BASE_POKE_LENGTH
+	poke_length = attackrange * BASE_POKE_LENGTH
 	
 	damage = BASE_DAMAGE
 	cooldown = BASE_COOLDOWN

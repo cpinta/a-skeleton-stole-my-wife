@@ -19,7 +19,7 @@ func _ready():
 	IS_CONTINUOUS = false
 	EQUIP_ANGLE = 90
 	BASE_DAMAGE = 4
-	BASE_COOLDOWN = 0.25
+	BASE_TIME_BT_BULLETS = 0.25
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

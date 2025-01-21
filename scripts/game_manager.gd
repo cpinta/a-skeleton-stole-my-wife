@@ -5,7 +5,7 @@ enum GameState {TITLE_SCREEN=0, INTRO_CUTSCENE=4, END_CUTSCENE=6, GENDER_SELECT=
 enum GameScreen {TITLE, INTRO_CUTSCENE, GENDER_SELECT, PASTOR, DEATH, END_CUTSCENE}
 
 var inputHandlerScene: PackedScene
-var selectedGameInput: InputHandler.GameInput = InputHandler.GameInput.TOUCH
+var selectedGameInput: InputHandler.GameInput = InputHandler.GameInput.MOUSE
 
 var chosenGender: Player.Gender
 
@@ -78,7 +78,7 @@ var WIN_SCORE: int = 1300
 
 var credits: Label
 
-var debug: bool = true
+var debug: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -106,8 +106,8 @@ func _ready():
 	
 	#set_gender(Player.Gender.HOMETTE)
 	#start_game()
-	#load_title_screen()
-	start_game_skip_pastor()
+	load_title_screen()
+	#start_game_skip_pastor()
 	#player.current_health = 1
 	#player.score = 999
 	#spawn_satan()
@@ -137,7 +137,6 @@ func start_gender_select():
 func get_random_weapon():
 	var keys = dict_weapons.keys()
 	return dict_weapons[keys[randi_range(0, keys.size()-1)]]
-	pass
 	
 func gender_select_ended():
 	start_intro()
@@ -221,7 +220,7 @@ func unload_touch_controls_and_ui():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if player == null:
 		if get_tree().get_node_count_in_group("player") > 0:
 			player = get_tree().get_nodes_in_group("player")[0]
@@ -401,7 +400,6 @@ func load_level(index: int, canPlayerMove: bool = true):
 	player.global_position = get_tree().get_nodes_in_group("playerspawn")[0].global_position
 	
 	return true
-	pass
 	
 func load_player(canPlayerMove: bool):
 	player = playerScene.instantiate() as Player
